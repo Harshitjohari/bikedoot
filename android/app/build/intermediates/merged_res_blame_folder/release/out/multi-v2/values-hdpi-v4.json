@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.bikedoot.app-mergeReleaseResources-36:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/ee5e82bf22bf03e557460dedee86cf38/transformed/appcompat-1.4.1/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -6,7 +6,6 @@ import MainNavigator from "./src/navigation";
 import { AuthProvider } from './src/context/loginContext';
 
 const App = () => {
-
   return (<NativeBaseProvider theme={theme}>
     <NavigationContainer>
       <AuthProvider>
