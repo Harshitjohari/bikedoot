@@ -74,6 +74,18 @@ const BookingCardDetail = ({ booking }) => {
         return `${day}/${month}/${year}`;
     };
 
+    const formatDate2 = (timestamp) => {
+        const date = new Date(timestamp);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+        const year = date.getFullYear();
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+
+        return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    };
+
     const fetchMechanicData = async () => {
         try {
             setLoading(true);
@@ -533,6 +545,32 @@ const BookingCardDetail = ({ booking }) => {
                                     </View>
                                 </View>
                             </View>
+                        }
+
+                        {
+                            booking?.paymentDetails &&
+                            <View
+                                width="100%"
+                                bg="#ffffff"
+                                borderRadius="10px"
+                                marginTop={2}
+                                p={3}
+                            >
+
+                                <View>
+                                    <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                                        Payment Details
+                                    </Text>
+                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                        Transaction Id : {booking?.paymentDetails?.order_id}
+                                    </Text>
+                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                        Payment Date & Time : {formatDate2(booking?.paymentDetails?.created_at)}
+                                    </Text>
+                                </View>
+                            </View>
+
+
                         }
 
 
