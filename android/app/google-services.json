@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1022678321206",
+    "project_id": "bikedootpartner",
+    "storage_bucket": "bikedootpartner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022678321206:android:9287fb6ecc6baf77dbb097",
+        "android_client_info": {
+          "package_name": "com.bikedoot_partner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_kpm3PqSfEImEKkA-WnHsyKlk83lfMM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
