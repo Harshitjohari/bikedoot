@@ -1,0 +1,544 @@
+// Updated BookingCard.js
+import React from 'react';
+import { Box, Image, Text, FlatList, HStack, IconButton, Divider, navigation, Pressable, View } from 'native-base';
+import { Alert, Button, Dimensions, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
+
+import BadgeComponent from '../../UI/badges'
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+// import Timeline from 'react-native-timeline-flatlist';
+import CustomButton from '../../../components/UI/button'
+import { Component, useEffect, useRef, useState } from 'react';
+import Constant from '../../../common/constant';
+
+import Apis from '../../../utils/api';
+import { useAuth } from '../../../context/loginContext';
+import { handleToast } from '../../../utils/toast';
+
+import { imageConstant } from '../../../utils/constant';
+
+import { useNavigation } from '@react-navigation/native';
+
+
+const FinishService = ({ booking }) => {
+
+    // console.log('booking?._id===========>',booking?._id)
+
+
+    const navigation = useNavigation()
+    const [isLoading, setLoading] = useState(true);
+    const [totalAmount, setTotalAmount] = useState(booking?.amount || 0);
+    const { show, close, closeAll } = handleToast();
+
+
+
+    const { token } = useAuth();
+    const [selectedAdditionalServicesMechanic, setSelectedAdditionalServicesMechanic] = useState(booking?.additionalServices.map(d => {
+        return { _id: d._id }
+    }));
+    const [selectedSpareParts, setSelectedSpareParts] = useState(booking?.spareParts.map(d => {
+        return { _id: d._id }
+    }));
+
+
+
+    const handleCheckboxChange = (_id, type) => {
+        switch (type) {
+            case 'service':
+                toggleCheckbox(selectedServices, setSelectedServices, _id);
+                break;
+            case 'accessory':
+                toggleCheckbox(selectedAccessories, setSelectedAccessories, _id);
+                break;
+            case 'additionalServiceMechanic':
+                toggleCheckbox(
+                    selectedAdditionalServicesMechanic,
+                    setSelectedAdditionalServicesMechanic,
+                    _id
+                );
+                break;
+            case 'additionalServiceUser':
+                toggleCheckbox(
+                    selectedAdditionalServicesUser,
+                    setSelectedAdditionalServicesUser,
+                    _id
+                );
+                break;
+            case 'sparePart':
+                toggleCheckbox(selectedSpareParts, setSelectedSpareParts, _id);
+                updateTotalAmount(_id);
+                break;
+            default:
+                break;
+        }
+    };
+   
+    const updateTotalAmount = (_id) => {
+        const sparePart = booking?.spareParts.find(sparePart => sparePart._id === _id);
+        if (sparePart) {
+            const isChecked = selectedSpareParts.some(item => item._id === _id);
+            if (isChecked) {
+                setTotalAmount(prevAmount => prevAmount - sparePart.price); 
+            } else {
+                setTotalAmount(prevAmount => prevAmount + sparePart.price); 
+            }
+        }
+    };
+        
+
+    const toggleCheckbox = (selectedItems, setSelectedItems, _id) => {
+        if (selectedItems.some((item) => item._id === _id)) {
+            setSelectedItems(selectedItems.filter((item) => item._id !== _id));
+        } else {
+            setSelectedItems([...selectedItems, { _id, checked: true }]);
+        }
+    };
+
+    const handleAlert = () => {
+        Alert.alert(
+            'Check Alert',
+            'Have you selected all the required Spares and Service?',
+            [
+                {
+                    text: 'No',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                { text: 'Yes', onPress: approvedBooking },
+            ],
+            { cancelable: false }
+        );
+    };
+
+    const formatDate = (inputDate) => {
+        const date = new Date(inputDate);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+        const year = date.getFullYear();
+
+        return `${day}/${month}/${year}`;
+    };
+
+
+    const approvedBooking = async () => {
+        try {
+            setLoading(true);
+
+            let data = {
+                bookingId: booking?._id,
+                // services: [...selectedServices.map(d => d._id), ...selectedAdditionalServicesUser.map(d => d._id)],
+                additionalServices: selectedAdditionalServicesMechanic.map(d => d._id),
+                // accessories: selectedAccessories.map(d => d._id),
+                spareParts: selectedSpareParts.map(d => d._id)
+            }
+
+            // console.log('dataaaaa===============+>',data)
+
+            let response = await Apis.HttpPostRequest(
+                Constant.BASE_URL + Constant.APPROVED_PREINSPECTION,
+                token,
+                data
+            );
+            if (response?.status) {
+                show(response ?.message, "success");
+                navigation.navigate("BookingsScreenDetail", { id: booking?._id })
+                setLoading(false);
+            } else {
+                setLoading(false);
+            }
+        } catch (e) {
+            setLoading(false);
+        }
+    };
+
+    
+
+    return (
+        <>
+            <ScrollView >
+                <View style={{ flex: 1, backgroundColor: "#edeeec" }}>
+                </View>
+                <View
+                    width="100%"
+                    // borderColor="#ffffff"
+                    // borderWidth={1}
+                    // borderRadius="10px"
+                    paddingBottom={2}
+                    border={0}
+                    shadow={0}
+                    padding={2}>
+
+                    <View
+                        width="100%"
+                        bg="#ffffff"
+                        borderRadius="10px"
+                        marginTop={2}
+                        p={3}
+                    >
+                        <HStack space={2}>
+                            <Box flex={4}>
+                                <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                                    Booking ID
+                                </Text>
+                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                    {booking?.bookingId}
+                                </Text>
+                            </Box>
+                            <Box flex={1}>
+                            </Box>
+                            <Box flex={4}>
+                                <Text fontWeight="600" fontSize="bd_sm" lineHeight="50px" color="bd_dark_text" textAlign="right">
+                                    <BadgeComponent text={booking?.status} />
+                                </Text>
+                            </Box>
+                        </HStack>
+                    </View>
+
+                    <View
+                        width="100%"
+                        bg="#ffffff"
+                        borderRadius="10px"
+                        marginTop={2}
+                        p={3}
+                        flexDirection="row"
+                        alignItems="center"
+                    >
+                        <Image source={imageConstant.time} alt="" style={{ width: 14, height: 14 }} />
+                        <Text fontSize="bd_xsm" color="bd_sec_text" marginLeft={2}>
+                            {formatDate(booking?.date) + " at " + booking?.time}
+                        </Text>
+                    </View>
+
+                    <View
+                        width="100%"
+                        bg="#ffffff"
+                        borderRadius="10px"
+                        marginTop={2}
+                        p={3}
+                    >
+                        <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                            Services
+                        </Text>
+                        {[booking?.services[0]].map((service, index) => (
+                            <View
+                                key={index}
+                                width="100%"
+                                bg="#ffffff"
+                                borderRadius="10px"
+                                alignItems="center"
+                                flexDirection="row"
+                                justifyContent="space-between"
+                            >
+                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                    {index + 1}. {service?.service?.service?.name}
+                                </Text>
+                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                    ₹{service?.price}
+                                </Text>
+
+                            </View>
+                        ))}
+
+                        {
+                            booking?.services.length > 1 && (
+                                <>
+                                    <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                        Add Ons (User)
+                                    </Text>
+                                    {booking?.services.slice(1).map((service, index) => (
+                                        <View
+                                            key={index}
+                                            width="100%"
+                                            bg="#ffffff"
+                                            borderRadius="10px"
+                                            // marginTop={2}
+                                            // p={3}
+                                            alignItems="center"
+                                            flexDirection="row"
+                                            justifyContent="space-between"
+                                        >
+                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                {index + 1}. {service?.service?.service?.name}
+                                            </Text>
+                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                ₹{service?.price}
+                                            </Text>
+                                        </View>
+                                    ))}
+                                </>
+                            )
+                        }
+
+                        {
+                            booking?.additionalServices.length > 0 && (
+                                <>
+                                    <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                        Add Ons (Mechanic)
+                                    </Text>
+                                    {booking?.additionalServices.map((service, index) => (
+                                        <View
+                                            key={index}
+                                            width="100%"
+                                            bg="#ffffff"
+                                            borderRadius="10px"
+                                            // marginTop={2}
+                                            // p={3}
+                                            alignItems="center"
+                                            flexDirection="row"
+                                            justifyContent="space-between"
+                                        >
+
+                                            <View
+                                                alignItems="center"
+                                                flexDirection="row">
+                                                <TouchableOpacity onPress={() => handleCheckboxChange(service?._id, 'additionalServiceMechanic')} >
+                                                    <View
+                                                        style={[
+                                                            styles.checkbox,
+                                                            {
+                                                                backgroundColor: selectedAdditionalServicesMechanic.some(
+                                                                    (additionalService) => additionalService._id === service._id
+                                                                )
+                                                                    ? 'transparent'
+                                                                    : 'transparent',
+                                                            },
+                                                        ]}>
+                                                        {selectedAdditionalServicesMechanic.some(
+                                                            (additionalService) => additionalService?._id === service?._id
+                                                        ) && <Text style={styles.checkmark}>&#x2713;</Text>}
+                                                    </View>
+                                                </TouchableOpacity>
+                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                    {index + 1}. {service?.service?.service?.name}
+                                                </Text>
+
+                                            </View>
+                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" marginTop={2}>
+                                                ₹{service?.price}
+                                            </Text>
+
+                                        </View>
+                                    ))}
+                                </>
+                            )
+                        }
+
+                        {
+                            booking?.accessories.length > 0 && (
+                                <>
+                                    <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                        Accessories
+                                    </Text>
+                                    {booking?.accessories.map((accessory, index) => (
+                                        <View
+                                            key={index}
+                                            width="100%"
+                                            bg="#ffffff"
+                                            borderRadius="10px"
+                                            // marginTop={2}
+                                            // p={3}
+                                            alignItems="center"
+                                            flexDirection="row"
+                                            justifyContent="space-between"
+                                        >
+                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                {index + 1}. {accessory?.accessories?.accessories?.name}
+                                            </Text>
+                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                ₹{accessory?.price}
+                                            </Text>
+
+                                        </View>
+                                    ))}
+                                </>
+
+                            )
+                        }
+
+
+                        <View
+                            width="100%"
+                            bg="#ffffff"
+                            borderRadius="10px"
+                            marginTop={4}
+                            alignItems="center"
+                            flexDirection="row"
+                            justifyContent="space-between"
+                        >
+                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                Spare Part Permission :
+                            </Text>
+                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                {booking?.sparePartPermission == false ? 'No' : 'Yes'}
+                            </Text>
+
+
+                        </View>
+
+                        {
+                            booking?.spareParts.length > 0 &&
+                            <View
+                                width="100%"
+                                bg="#ffffff"
+                                borderRadius="10px"
+                                marginTop={0}
+                            >
+                                <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                    Spares
+                                </Text>
+                                {booking?.spareParts.map((spareParts, index) => (
+                                    <View
+                                        key={index}
+                                        width="100%"
+                                        bg="#ffffff"
+                                        borderRadius="10px"
+                                        // marginTop={2}
+                                        // p={3}
+                                        alignItems="center"
+                                        flexDirection="row"
+                                        justifyContent="space-between"
+                                    >
+
+
+                                        <View
+                                            alignItems="center"
+                                            flexDirection="row">
+
+                                            <TouchableOpacity
+                                                key={index}
+                                                onPress={() => handleCheckboxChange(spareParts._id, 'sparePart')}
+                                            >
+                                                <View
+                                                    style={[
+                                                        styles.checkbox,
+                                                        {
+                                                            backgroundColor: selectedSpareParts.some(
+                                                                (sparePart) => sparePart._id === spareParts._id
+                                                            )
+                                                                ? 'transparent'
+                                                                : 'transparent',
+                                                        },
+                                                    ]}>
+                                                    {selectedSpareParts.some(
+                                                        (sparePart) => sparePart?._id === spareParts?._id
+                                                    ) && <Text style={styles.checkmark}>&#x2713;</Text>}
+                                                </View>
+                                            </TouchableOpacity>
+
+                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                {index + 1}. {spareParts?.name} {spareParts?.quantity > 1 ? `x ${spareParts?.quantity}` : ''}
+                                            </Text>
+
+                                        </View>
+                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" marginTop={2}>
+                                            ₹{spareParts?.price}
+                                        </Text>
+
+
+                                    </View>
+                                ))}
+                            </View>
+                        }
+                        <View
+                            width="100%"
+                            bg="#ffffff"
+                            borderRadius="10px"
+                            marginTop={5}
+                            alignItems="center"
+                            flexDirection="row"
+                            justifyContent="space-between"
+                        >
+                            <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
+                                {booking?.completed ? 'Total ' : 'Estimated '}
+                                Amount :
+                            </Text>
+                            <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
+                                ₹{totalAmount}
+                                {/* ₹{booking?.amount} */}
+                            </Text>
+
+                        </View>
+
+                    </View>
+
+
+
+
+                </View>
+            </ScrollView>
+
+            <CustomButton
+                onPress={handleAlert}
+                btnStyle={{ margin: 10 }}>
+                Approve
+            </CustomButton>
+        </>
+
+    );
+};
+
+const styles = StyleSheet.create({
+    modalView: {
+        bottom: 0,
+        position: 'absolute',
+        // margin: 20,
+        backgroundColor: 'white',
+        borderTopStartRadius: 20,
+        borderTopEndRadius: 20,
+        padding: 20,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+        width: '100%',
+        height: 200,
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // marginTop: 22,
+        // bottom:0,
+        // position:'absolute',
+        // width:'100%',
+        // height:'100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    },
+    modalTitle: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        textAlign: 'center',
+        color: 'black'
+    },
+    checkboxItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 20,
+        flexWrap: 'wrap',
+        width: '100%', // Ensure items take full width
+    },
+    checkbox: {
+        width: 20,
+        height: 20,
+        borderWidth: 2,
+        borderRadius: 4,
+        marginRight: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: '#5349f8',
+        flexShrink: 0,
+    },
+    checkmark: {
+        fontSize: 15,
+        lineHeight: 18,
+        color: 'green',
+    },
+});
+
+export default FinishService;
