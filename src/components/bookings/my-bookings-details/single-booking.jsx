@@ -1,7 +1,7 @@
 // Updated BookingCard.js
 import React from 'react';
-import { Box, Image, Text, ScrollView, FlatList, HStack, IconButton, Divider,VStack, navigation, Pressable, View } from 'native-base';
-import { TouchableOpacity, Alert, Modal,StyleSheet } from 'react-native';
+import { Box, Image, Text, ScrollView, FlatList, HStack, IconButton, Divider, VStack, navigation, Pressable, View } from 'native-base';
+import { TouchableOpacity, Alert, Modal, StyleSheet } from 'react-native';
 
 import BadgeComponent from '../../UI/badges'
 import { Rating, AirbnbRating } from 'react-native-ratings';
@@ -23,8 +23,7 @@ import Constant from '../../../common/constant';
 import Ratings from '../../UI/rating';
 import { handleToast } from '../../../utils/toast';
 
-const BookingCardDetail = ({ booking,refresh }) => {
-
+const BookingCardDetail = ({ booking, refresh }) => {
 
     const navigation = useNavigation()
     const [previewVisible, setPreviewVisible] = useState(false);
@@ -37,12 +36,13 @@ const BookingCardDetail = ({ booking,refresh }) => {
 
 
 
-    const { token,userData } = useAuth();
+    const { token, userData } = useAuth();
     const { show, close, closeAll } = handleToast();
+
 
     useEffect(() => {
         fetchGarageData();
-      }, []);
+    }, []);
 
     const handleClosePreview = () => {
         setPreviewVisible(false);
@@ -70,7 +70,7 @@ const BookingCardDetail = ({ booking,refresh }) => {
         const hours = date.getHours().toString().padStart(2, '0');
         const minutes = date.getMinutes().toString().padStart(2, '0');
         const seconds = date.getSeconds().toString().padStart(2, '0');
-    
+
         return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
     };
 
@@ -88,19 +88,19 @@ const BookingCardDetail = ({ booking,refresh }) => {
 
     const fetchGarageData = async () => {
         try {
-          let response = await Apis.HttpGetRequest(Constant.BASE_URL + Constant.AUTH.GURAGE_DEATIL_API +  booking?.garage?._id , token)
-          if (response ?.status) {
-            setGarageData(response.data)
-            const dates = garageData.availableDates                
-            const index = dates.indexOf(booking.date);
-            // console.log('123=============++>',index);
+            let response = await Apis.HttpGetRequest(Constant.BASE_URL + Constant.AUTH.GURAGE_DEATIL_API + booking?.garage?._id, token)
+            if (response?.status) {
+                setGarageData(response.data)
+                const dates = garageData.availableDates
+                const index = dates.indexOf(booking.date);
+                // console.log('123=============++>',index);
 
-            setSelectedDateIndex(index+1)              
-          } else {
-            // show(response ?.message || "Failed to send OTP, try again later");
-          }
+                setSelectedDateIndex(index + 1)
+            } else {
+                // show(response ?.message || "Failed to send OTP, try again later");
+            }
         } catch (e) {
-          // show("Some error has occured!");
+            // show("Some error has occured!");
         }
     };
 
@@ -246,13 +246,13 @@ const BookingCardDetail = ({ booking,refresh }) => {
             );
             if (response?.status) {
                 setModalVisible(!modalVisible)
-                show(response ?.message, "success");
+                show(response?.message, "success");
                 refresh()
             } else {
                 show('Some error', "error");
             }
         } catch (e) {
-            console.log('========>',e)
+            console.log('========>', e)
         }
     };
 
@@ -268,7 +268,7 @@ const BookingCardDetail = ({ booking,refresh }) => {
                 data
             );
             if (response?.status) {
-                show(response ?.message, "success");
+                show(response?.message, "success");
                 refresh()
             } else {
                 show('Some error', "error");
@@ -319,7 +319,7 @@ const BookingCardDetail = ({ booking,refresh }) => {
                                 </Box>
                                 <Box flex={1}>
                                 </Box>
-                                <Box flex={3}>
+                                <Box flex={5}>
                                     <Text fontWeight="600" fontSize="bd_sm" lineHeight="50px" color="bd_dark_text" textAlign="right">
                                         <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre Inspection Done' : booking?.status} />
                                     </Text>
@@ -398,10 +398,10 @@ const BookingCardDetail = ({ booking,refresh }) => {
                             >
                                 <View>
                                     <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
-                                    Garage
+                                        Garage
                                     </Text>
                                     <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                    {booking?.garage?.name}
+                                        {booking?.garage?.name}
                                     </Text>
                                     <Ratings count={booking?.garage.avgRating ? booking?.garage.avgRating : 1} rating={booking?.garage.avgRating ? booking?.garage.avgRating : 1} ratingCount={booking?.garage.ratingCount ? booking?.garage.ratingCount : 1} />
                                 </View>
@@ -513,26 +513,26 @@ const BookingCardDetail = ({ booking,refresh }) => {
                             <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
                                 Services
                             </Text>
-                            {[booking?.services[0]].map((service, index) => (
-                                <View
-                                    key={index}
-                                    width="100%"
-                                    bg="#ffffff"
-                                    borderRadius="10px"
-                                    // marginTop={2}
-                                    // p={3}
-                                    alignItems="center"
-                                    flexDirection="row"
-                                    justifyContent="space-between"
-                                >
-                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                        {index + 1}. {service?.service?.service?.name}
-                                    </Text>
-                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                        ₹{service?.price}
-                                    </Text>
-                                </View>
-                            ))}
+                            {booking?.services
+                                .filter(service => service?.service?.service?.serviceType?.name === "Service")
+                                .map((service, index) => (
+                                    <View
+                                        key={index}
+                                        width="100%"
+                                        bg="#ffffff"
+                                        borderRadius="10px"
+                                        alignItems="center"
+                                        flexDirection="row"
+                                        justifyContent="space-between"
+                                    >
+                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                            {index + 1}. {service?.service?.service?.name}
+                                        </Text>
+                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                            ₹{service?.price}
+                                        </Text>
+                                    </View>
+                                ))}
 
                             {
                                 booking?.services.length > 1 && (
@@ -540,26 +540,26 @@ const BookingCardDetail = ({ booking,refresh }) => {
                                         <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                             Add Ons (User)
                                         </Text>
-                                        {booking?.services.slice(1).map((service, index) => (
-                                            <View
-                                                key={index}
-                                                width="100%"
-                                                bg="#ffffff"
-                                                borderRadius="10px"
-                                                // marginTop={2}
-                                                // p={3}
-                                                alignItems="center"
-                                                flexDirection="row"
-                                                justifyContent="space-between"
-                                            >
-                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                    {index + 1}. {service?.service?.service?.name}
-                                                </Text>
-                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                    ₹{service?.price}
-                                                </Text>
-                                            </View>
-                                        ))}
+                                        {booking?.services
+                                            .filter(service => service?.service?.service?.serviceType?.name === "Add-On")
+                                            .map((service, index) => (
+                                                <View
+                                                    key={index}
+                                                    width="100%"
+                                                    bg="#ffffff"
+                                                    borderRadius="10px"
+                                                    alignItems="center"
+                                                    flexDirection="row"
+                                                    justifyContent="space-between"
+                                                >
+                                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                        {index + 1}. {service?.service?.service?.name}
+                                                    </Text>
+                                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                        ₹{service?.price}
+                                                    </Text>
+                                                </View>
+                                            ))}
                                     </>
                                 )
                             }
@@ -718,28 +718,28 @@ const BookingCardDetail = ({ booking,refresh }) => {
                         </View>
                         {
                             booking?.paymentDetails &&
-                                <View
-                                    width="100%"
-                                    bg="#ffffff"
-                                    borderRadius="10px"
-                                    marginTop={2}
-                                    p={3}
-                                >
-                            
-                                        <View>
-                                            <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
-                                                Payment Details
-                                            </Text>
-                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                Transaction Id : {booking?.paymentDetails?.order_id}
-                                            </Text>
-                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                Payment Date & Time : {formatDate2(booking?.paymentDetails?.created_at)}
-                                            </Text>
-                                        </View>
+                            <View
+                                width="100%"
+                                bg="#ffffff"
+                                borderRadius="10px"
+                                marginTop={2}
+                                p={3}
+                            >
+
+                                <View>
+                                    <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                                        Payment Details
+                                    </Text>
+                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                        Transaction Id : {booking?.paymentDetails?.order_id}
+                                    </Text>
+                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                        Payment Date & Time : {formatDate2(booking?.paymentDetails?.created_at)}
+                                    </Text>
                                 </View>
-                                
-                                
+                            </View>
+
+
                         }
 
                         {
@@ -821,95 +821,95 @@ const BookingCardDetail = ({ booking,refresh }) => {
                 </View>
 
                 <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                supportedOrientations={['portrait', 'landscape']}
-                onRequestClose={() => {
-                    setModalVisible(!modalVisible);
-                }}>
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalTitle}>Reschedule Service</Text>
+                    animationType="slide"
+                    transparent={true}
+                    visible={modalVisible}
+                    supportedOrientations={['portrait', 'landscape']}
+                    onRequestClose={() => {
+                        setModalVisible(!modalVisible);
+                    }}>
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <Text style={styles.modalTitle}>Reschedule Service</Text>
 
-                        <VStack space={2} mb={2} height={200}>
-                            <Text fontWeight="500" fontSize="14" mb={1} lineHeight="20px" color="grey">
-                                Selected Date : {formatDate(booking?.date)}
-                            </Text>
-                            <Text fontWeight="600" fontSize="bd_md" mb={0} lineHeight="20px" color="bd_dark_text">
-                                Select Date
-                            </Text>
-                            <Divider />
-                            <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
-                                {garageData?.availableDates && garageData?.availableDates.map((data, index) => {
-                                    let formattedDate = formatDate1(data);
-                                    return (
-                                        <Pressable onPress={() => handleDateSelection(data, index)}>
-                                            <VStack mr={2} space={2} bg={selectedDateIndex === index ? "#5349f8" : "transparent"} p={2} borderRadius={50} pt={4} pb={4}>
-                                                <Text fontWeight="700" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_sec_text"} textAlign="center">{formattedDate.monthShort}</Text>
-                                                <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.dayName}</Text>
-                                                <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.day}</Text>
-                                            </VStack>
-                                        </Pressable>
-                                    )
-                                })}
-                            </ScrollView>
-                        </VStack>
+                            <VStack space={2} mb={2} height={200}>
+                                <Text fontWeight="500" fontSize="14" mb={1} lineHeight="20px" color="grey">
+                                    Selected Date : {formatDate(booking?.date)}
+                                </Text>
+                                <Text fontWeight="600" fontSize="bd_md" mb={0} lineHeight="20px" color="bd_dark_text">
+                                    Select Date
+                                </Text>
+                                <Divider />
+                                <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
+                                    {garageData?.availableDates && garageData?.availableDates.map((data, index) => {
+                                        let formattedDate = formatDate1(data);
+                                        return (
+                                            <Pressable onPress={() => handleDateSelection(data, index)}>
+                                                <VStack mr={2} space={2} bg={selectedDateIndex === index ? "#5349f8" : "transparent"} p={2} borderRadius={50} pt={4} pb={4}>
+                                                    <Text fontWeight="700" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_sec_text"} textAlign="center">{formattedDate.monthShort}</Text>
+                                                    <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.dayName}</Text>
+                                                    <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.day}</Text>
+                                                </VStack>
+                                            </Pressable>
+                                        )
+                                    })}
+                                </ScrollView>
+                            </VStack>
 
-                        <VStack space={2} mb={1} mt={0} height={130}>
-                            <Text fontWeight="500" fontSize="14" mb={1} lineHeight="20px" color="grey">
-                                Selected Time Slot : {booking?.time}
-                            </Text>
-                            <Text fontWeight="600" fontSize="bd_md" mb={0} lineHeight="20px" color="bd_dark_text">
-                                Select Time Slot
-                            </Text>
-                            <Divider />
+                            <VStack space={2} mb={1} mt={0} height={130}>
+                                <Text fontWeight="500" fontSize="14" mb={1} lineHeight="20px" color="grey">
+                                    Selected Time Slot : {booking?.time}
+                                </Text>
+                                <Text fontWeight="600" fontSize="bd_md" mb={0} lineHeight="20px" color="bd_dark_text">
+                                    Select Time Slot
+                                </Text>
+                                <Divider />
 
-                            <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
-                                {garageData?.availableTimes && garageData?.availableTimes.map((data, index) => {
-                                    return renderTimeItem(data, index)
-                                })}
-                            </ScrollView>
+                                <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
+                                    {garageData?.availableTimes && garageData?.availableTimes.map((data, index) => {
+                                        return renderTimeItem(data, index)
+                                    })}
+                                </ScrollView>
 
-                        </VStack>
+                            </VStack>
 
- 
 
-                        <View flexDirection={'row'}
-                            justifyContent={'space-evenly'}
-                            p={3}
-                            marginTop={20}
-                            width={'100%'}>
-                            <TouchableOpacity
-                                onPress={() => setModalVisible(false)}
-                                style={styles.cancelButton}>
-                                <Text style={styles.cancelText}>Cancel</Text>
-                            </TouchableOpacity>
 
-                            <TouchableOpacity
-                                onPress={() => handleReschedule()}
-                                style={styles.submitButton}>
-                                <Text style={styles.submitText}>Submit</Text>
-                            </TouchableOpacity>
+                            <View flexDirection={'row'}
+                                justifyContent={'space-evenly'}
+                                p={3}
+                                marginTop={20}
+                                width={'100%'}>
+                                <TouchableOpacity
+                                    onPress={() => setModalVisible(false)}
+                                    style={styles.cancelButton}>
+                                    <Text style={styles.cancelText}>Cancel</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity
+                                    onPress={() => handleReschedule()}
+                                    style={styles.submitButton}>
+                                    <Text style={styles.submitText}>Submit</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
-                </View>
-            </Modal>
+                </Modal>
             </ScrollView>
 
             {/* CREATED */}
             {booking?.status === 'CREATED' && (
-                <View style={{flexDirection:'row',justifyContent:'space-around'}}>
-                <CustomButton onPress={() => {
-                  setModalVisible(!modalVisible)
-                }} btnStyle={{ margin: 10, borderRadius: 10, width:'40%' }}>
-                    Reschedule
-                </CustomButton>
-                <CustomButton onPress={() => {
-                    handleCancelAlert()
-                }} btnStyle={{ margin: 10, borderRadius: 10, width:'40%' }}>
-                    Cancel
-                </CustomButton>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    <CustomButton onPress={() => {
+                        setModalVisible(!modalVisible)
+                    }} btnStyle={{ margin: 10, borderRadius: 10, width: '40%' }}>
+                        Reschedule
+                    </CustomButton>
+                    <CustomButton onPress={() => {
+                        handleCancelAlert()
+                    }} btnStyle={{ margin: 10, borderRadius: 10, width: '40%' }}>
+                        Cancel
+                    </CustomButton>
                 </View>
             )}
 

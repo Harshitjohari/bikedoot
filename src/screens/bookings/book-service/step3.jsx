@@ -88,7 +88,7 @@ const DateTimePicker = ({ dateArray, timeArray, navigation, selectedDate, setSel
 
 
     return (
-        <Box p={0} flex={1} mb={5}>
+        <Box p={0} flex={1} mb={2}>
             <VStack space={2} mb={4}>
                 <Text fontWeight="600" fontSize="bd_md" mb={0} lineHeight="20px" color="bd_dark_text">
                     Select Date
