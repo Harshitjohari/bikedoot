@@ -30,7 +30,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const BookingCardDetail = ({ booking }) => {
 
-    // console.log('==========>', booking)
+    console.log('==========>', booking?._id)
 
     const { token } = useAuth();
     const { show, close, closeAll } = handleToast();
@@ -201,7 +201,7 @@ const BookingCardDetail = ({ booking }) => {
                                 </Box>
                                 <Box flex={1}>
                                 </Box>
-                                <Box flex={4}>
+                                <Box flex={5}>
                                     <Text fontWeight="500" fontSize="bd_sm" lineHeight="50px" color="bd_dark_text" textAlign="right">
                                         <BadgeComponent text={booking?.status} />
                                     </Text>
@@ -285,12 +285,9 @@ const BookingCardDetail = ({ booking }) => {
                                         resizeMode='contain'
                                     />
                                 </TouchableOpacity> */}
-                                <CustomButton btnStyle={{ width: "21%", height: "32%" }} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={navigate}>Navigate</CustomButton>
+                                <CustomButton btnStyle={{height: "35%"}} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={navigate}>Navigate</CustomButton>
                             </HStack>
                         </View>
-
-
-
 
                         <View
                             width="100%"
@@ -336,26 +333,26 @@ const BookingCardDetail = ({ booking }) => {
                             <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
                                 Services
                             </Text>
-                            {booking?.services.map((service, index) => (
-                                <View
-                                    key={index}
-                                    width="100%"
-                                    bg="#ffffff"
-                                    borderRadius="10px"
-                                    // marginTop={2}
-                                    // p={3}
-                                    alignItems="center"
-                                    flexDirection="row"
-                                    justifyContent="space-between"
-                                >
-                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                        {index + 1}. {service?.service?.service?.name}
-                                    </Text>
-                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                        ₹{service?.price}
-                                    </Text>
-                                </View>
-                            ))}
+                            {booking?.services
+                                .filter(service => service?.service?.service?.serviceType?.name === "Service")
+                                .map((service, index) => (
+                                    <View
+                                        key={index}
+                                        width="100%"
+                                        bg="#ffffff"
+                                        borderRadius="10px"
+                                        alignItems="center"
+                                        flexDirection="row"
+                                        justifyContent="space-between"
+                                    >
+                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                            {index + 1}. {service?.service?.service?.name}
+                                        </Text>
+                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                            ₹{service?.price}
+                                        </Text>
+                                    </View>
+                                ))}
 
                             {
                                 booking?.services.length > 1 && (
@@ -363,23 +360,26 @@ const BookingCardDetail = ({ booking }) => {
                                         <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                             Add Ons (User)
                                         </Text>
-                                        {booking?.services.slice(1).map((service, index) => (
-                                            <View
-                                                key={index}
-                                                width="100%"
-                                                bg="#ffffff"
-                                                borderRadius="10px"
-                                                // marginTop={2}
-                                                // p={3}
-                                                alignItems="center"
-                                                flexDirection="row"
-                                                justifyContent="space-between"
-                                            >
-                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                    {index + 1}. {service?.service?.service?.name}
-                                                </Text>
-                                            </View>
-                                        ))}
+                                        {booking?.services
+                                            .filter(service => service?.service?.service?.serviceType?.name === "Add-On")
+                                            .map((service, index) => (
+                                                <View
+                                                    key={index}
+                                                    width="100%"
+                                                    bg="#ffffff"
+                                                    borderRadius="10px"
+                                                    alignItems="center"
+                                                    flexDirection="row"
+                                                    justifyContent="space-between"
+                                                >
+                                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                        {index + 1}. {service?.service?.service?.name}
+                                                    </Text>
+                                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                        ₹{service?.price}
+                                                    </Text>
+                                                </View>
+                                            ))}
                                     </>
                                 )
                             }
@@ -404,6 +404,9 @@ const BookingCardDetail = ({ booking }) => {
                                             >
                                                 <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
                                                     {index + 1}. {service?.service?.service?.name}
+                                                </Text>
+                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                    ₹{service?.price}
                                                 </Text>
                                             </View>
                                         ))}

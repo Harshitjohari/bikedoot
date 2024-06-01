@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomButton from '../../components/UI/button'
 import { useAuth } from '../../context/loginContext';
@@ -51,15 +51,17 @@ const Earnings = (props) => {
   return (
     <View style={{ flex: 1, backgroundColor: '#f5f5f5' }}>
       <Header title="Earnings" />
-
-      <FlatListContainer
+      <View style={{padding:5,flex: 1}}>
+      <FlatList
         horizontal={false}
-        containerStyle={{ margin: 10, marginBottom: 0 }}
+        containerStyle={{marginBottom: 10 }}
         data={RevenueData}
         emptyMessage="No data found"
         isLoading={loading}
         renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
       />
+      </View>
 
     </View>
 

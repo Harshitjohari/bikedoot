@@ -168,7 +168,7 @@ const AddOnScreen = (props) => {
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.description}>{description}</Text>
         <Text style={styles.price}>{`₹${price}`}</Text>
-        <Text style={styles.price}>{`₹${gstRate}`}</Text>
+        {/* <Text style={styles.price}>{`₹${gstRate}`}</Text> */}
       </View>
       <TouchableOpacity
         style={[styles.button, selected ? styles.selectedButton : null]}
@@ -265,7 +265,7 @@ const AddOnScreen = (props) => {
   return (
 
     <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-      <Header title="Add On Service" />
+      <Header title="Additional Services" />
 
       <ScrollView contentContainerStyle={styles.container}>
         {data.map((item) => (
