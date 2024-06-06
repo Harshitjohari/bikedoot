@@ -14,7 +14,7 @@ import CustomButton from './../../../components/UI/button'
 const ServiceDetailPage = ({ navigation, route }) => {
     const { token } = useAuth();
     const [activeTab, setActiveTab] = useState(0);
-    const { garageID, name, serviceType, title } = route.params;
+    const { garageID, name, serviceType, title,distance } = route.params;
 
     const handleTabChange = (tabIndex) => {
         setActiveTab(tabIndex);
@@ -87,14 +87,16 @@ const ServiceDetailPage = ({ navigation, route }) => {
                     <Box p={0} mb={0} mt={5}>
                         <ServiceCard 
                         fromDetailPage={true} 
-                        navigation={navigation} 
+                        navigation={navigation}
                         serviceObj={{
                             name: garageData.name,
                             _id: garageData?._id,
                             specialization: garageData?.specialization,
                             serviceCategory: serviceCategory,
                             icon: garageData.icon,
-                            avgRating: garageData?.avgRating
+                            avgRating: garageData?.avgRating,
+                            distance:distance,
+                            address:garageData?.address
                         }}
                         serviceType={serviceType} />
                     </Box>

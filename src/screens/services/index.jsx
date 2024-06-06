@@ -6,6 +6,8 @@ import Header from '../../components/header';
 import Apis from '../../utils/api'
 import Constant from '../../common/constant';
 import { useAuth } from '../../context/loginContext';
+import Geolocation from '@react-native-community/geolocation';
+
 
 const ServiesList = ({ navigation, route }) => {
     const {garageID, title} = route.params;
@@ -15,15 +17,42 @@ const ServiesList = ({ navigation, route }) => {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
+    const [location, setLocation] = useState(null);
+    const [latitude, setlatitude] = useState(28.6367922);
+    const [longitude, setlongitude] = useState(77.3720661);
+    const [radius, setRadius] = useState(0);
+
 
     useEffect(() => {
-        fetchGarageData();
+        if (latitude !== null && longitude !== null) {
+            fetchGarageData();
+        }
+    }, [latitude, longitude, radius]);
+
+    useEffect(() => {
+        getLocation();
     }, []);
+
+    const getLocation = async () => {
+        Geolocation.getCurrentPosition(
+          position => {
+            const { latitude, longitude } = position.coords;
+            setlatitude(latitude)
+            setlongitude(longitude)
+            // console.log('=======>',{latitude, longitude})
+      });
+    }
 
     const fetchGarageData = async () => {
         try {
             setLoading(true);
-            let response = await Apis.HttpGetRequest(Constant.BASE_URL + Constant.GARAGE_DATA + cityID + "/garage/" + garageID, token)
+            let data = {
+                "latitude":latitude,
+                "longitude":longitude,
+                "radius": radius === 'All' ? 0 : parseInt(radius)
+            }
+            let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.GARAGE_DATA + cityID + "/garage/" + garageID, token, data)
+
             setLoading(false);
             if (response ?.status) {
                 setServices(response ?.data);
@@ -32,6 +61,7 @@ const ServiesList = ({ navigation, route }) => {
             }
         } catch (e) {
             setLoading(false);
+            console.log('error=========>',e)
             // show("Some error has occured!");
         }
     };
@@ -39,12 +69,13 @@ const ServiesList = ({ navigation, route }) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: "#edeeec" }}>
-            <Header title="Garage List" navigation={navigation} />
+            <Header title="Garage List" navigation={navigation} showRadiusBtn={true} onRadiusChange={(radius) => {setRadius(radius); }} />
+            {/* <Header title="Garage List" navigation={navigation} showRadiusBtn={true} onRadiusChange={(radius) => fetchGarageData(radius)} /> */}
             <FlatListContainer
                 containerStyle={{ margin: 10 ,marginBottom:60}}
                 data={services}
                 isLoading={loading}
-                renderItem={renderItem} // Pass the renderItem function as a prop
+                renderItem={renderItem}
             />
         </View>
     );

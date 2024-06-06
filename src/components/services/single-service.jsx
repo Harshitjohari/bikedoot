@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Image, Text, HStack, IconButton, Divider, View, Pressable, FlatList } from 'native-base';
+import { Box, Image, Text, HStack, IconButton, Divider, View, Pressable, FlatList, VStack } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 import BadgeComponent from '../UI/badges'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -12,6 +12,7 @@ const ServicesCard = ({ fromDetailPage = false, serviceObj, serviceType, navigat
     const {
         _id,
         name,
+        distance,
         specialization = '',
         serviceCategory,
         icon = "https://freepngimg.com/thumb/bike/23104-9-hero-bike-transparent-background.png",
@@ -19,6 +20,8 @@ const ServicesCard = ({ fromDetailPage = false, serviceObj, serviceType, navigat
         ratingCount,
         address
     } = serviceObj;
+
+    
 
     const TruncatedText = ({ text }) => {
         const [showFullText, setShowFullText] = useState(false);
@@ -67,20 +70,28 @@ const ServicesCard = ({ fromDetailPage = false, serviceObj, serviceType, navigat
                 {/* First Row */}
                 <HStack space={4}>
                     <Box flex={7}>
+                        {/* <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="20px" color="bd_dark_text">
+                            {name}
+                        </Text> */}
+                        <HStack>
                         <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="20px" color="bd_dark_text">
                             {name}
                         </Text>
+                        <Text fontWeight="500" fontSize={10} mb={0} lineHeight="20px" color="grey" marginLeft={1}>
+                            ({distance})
+                        </Text>
+                        </HStack>
                         <Text fontWeight="400" fontSize={12} mb={2} lineHeight="20px" color="grey">
                             {address}
                         </Text>
                         <TruncatedText text={specialization} />
-                        <Ratings count={avgRating ? avgRating : 1} rating={avgRating ? avgRating : 1} ratingCount={ratingCount ? ratingCount : 1} />
+                        <Ratings count={avgRating ? avgRating : 0} rating={avgRating ? avgRating : 0} ratingCount={avgRating} />
 
                         {!fromDetailPage &&
 
                             <HStack space={5} >
                                 <Button onPress={() => navigation.navigate('DateTimeSelectStep1', { garageID: _id, name: name, serviceType: serviceType, title: title })} p={0} mt={5} textStyle={{ fontSize: 12, fontWeight: "500" }} btnStyle={{ height: 40, borderRadius: 50, padding: 0, width: fromDetailPage ? "100%" : "60%" }}>Book Now</Button>
-                                {!fromDetailPage && <Button onPress={() => navigation.navigate('ServiceDetailPage', { garageID: _id, name: name, serviceType: serviceType, title: title })} p={0} mt={5} textStyle={{ fontSize: 12, fontWeight: "500" }} btnStyle={{ height: 40, borderRadius: 50, padding: 0, width: "60%" }}>View Garage</Button>}
+                                {!fromDetailPage && <Button onPress={() => navigation.navigate('ServiceDetailPage', { garageID: _id, name: name,address: address, distance:distance,serviceType: serviceType, title: title })} p={0} mt={5} textStyle={{ fontSize: 12, fontWeight: "500" }} btnStyle={{ height: 40, borderRadius: 50, padding: 0, width: "60%" }}>View Garage</Button>}
                             </HStack>
 
                         }

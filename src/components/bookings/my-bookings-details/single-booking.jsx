@@ -321,7 +321,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 </Box>
                                 <Box flex={5}>
                                     <Text fontWeight="600" fontSize="bd_sm" lineHeight="50px" color="bd_dark_text" textAlign="right">
-                                        <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre Inspection Done' : booking?.status} />
+                                        <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre-Inspection Completed' : booking?.status} />
                                     </Text>
                                     {
                                         booking?.authCode &&

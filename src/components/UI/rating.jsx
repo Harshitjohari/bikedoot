@@ -22,7 +22,15 @@ const Ratings = ({ rating, count, ratingCount,from, isDarkMode }) => {
       {
         from != 'tab' &&
         <Text fontWeight="400" fontSize="bd_xsm" mb={0} lineHeight="16px" color="bd_sec_text">
-        {`${ratingCount}+ Ratings`}
+          {/* {`${ratingCount}+ Ratings`} */}
+
+          {
+            ratingCount > 0 ?
+            `${ratingCount}+ Ratings`
+            :
+            `No Rating`
+          }
+        
       </Text>
       }
       
