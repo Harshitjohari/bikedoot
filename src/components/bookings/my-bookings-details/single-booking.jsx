@@ -30,7 +30,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const BookingCardDetail = ({ booking }) => {
 
-    console.log('==========>', booking?._id)
+    // console.log('==========>', booking?._id)
 
     const { token } = useAuth();
     const { show, close, closeAll } = handleToast();

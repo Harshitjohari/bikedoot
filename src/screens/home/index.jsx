@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Center, Box, Button, ScrollView } from 'native-base';
-import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, navigation, Switch, SafeAreaView, Alert} from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, navigation, Switch, SafeAreaView, Alert, Modal, TextInput } from 'react-native';
 import RoundBoxCard from '../../components/UI/services-cards';
 import RoundBoxCardNumber from '../../components/UI/card_number';
 import TextHeader from '../../components/UI/text-header'
@@ -15,11 +15,12 @@ import { useAuth } from '../../context/loginContext';
 import { imageConstant } from '../../utils/constant';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {Logout} from '../../utils/logout'
+import { Logout } from '../../utils/logout'
 import { useNavigation } from '@react-navigation/native';
 
-import {getToken} from '../../utils/NotificationController';
+import { getToken } from '../../utils/NotificationController';
 import Storage from '../../utils/async-storage';
+import CustomButton from '../../components/UI/button'
 
 
 
@@ -40,8 +41,8 @@ const HorizontalFlatList = (props) => {
 
   const data = [];
 
-  const renderItem = ({ item, index}) => (
-    <RoundBoxCardNumber value={item.value} title={item.title} onPress={() => props.navigation.navigate('Bookings', { id: item.status,value:item.value,index:index})} />
+  const renderItem = ({ item, index }) => (
+    <RoundBoxCardNumber value={item.value} title={item.title} onPress={() => props.navigation.navigate('Bookings', { id: item.status, value: item.value, index: index })} />
   );
 
   const renderServicesItem = ({ item }) => (
@@ -57,39 +58,70 @@ const HorizontalFlatList = (props) => {
   const [GarageData, setGarageData] = useState(false);
   const [isAgreed, setIsAgreed] = useState(false);
   const [toggleValue, setToggleValue] = useState();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [withdrawAmount, setWithdrawAmount] = useState(null);
+  const [withdrawPending, setWithdrawPending] = useState(false);
 
 
-  const handleAlert = () => {
+  const handleWithdrawAmountChange = (amount) => {
+    if (!isNaN(amount) && Number(amount) <= Earnings) {
+      setWithdrawAmount(amount);
+    } else if (Number(amount) > Earnings) {
+      alert('Amount cannot exceed your earnings.');
+    }
+  };
 
-    console.log('Inside handleAlert');
-
-    Alert.alert(
-        'Session over!!',
-        'Your session is over please select Yes to login again..',
+  const handleWithdrawPress = () => {
+    if (withdrawPending) {
+      Alert.alert(
+        'Withdrawal pending!!',
+        'Your recent withdrawal is already in queue.',
         [
-            {
-                text: 'No',
-                onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel',
-            },
-            {
-                text: 'Yes', onPress: () => {props.logout}
-            },
+          {
+            text: 'Ok',
+            style: 'cancel',
+          }
         ],
         { cancelable: false }
-    );
-};
+      );
+    } else {
+      setModalVisible(!modalVisible);
+    }
+  };
 
-const getFcmToken = async () => {
-  try {
-    let fcmToken = await getToken();
-    // await Storage.setDataInStorage('fcmToken', token);
-    console.log('FCM=============>',fcmToken)
-  } catch (e) {
-    console.log("Some error has occured!",e);
-  }
-};
+  const handleWithdraw =  async () => {
+    console.log('==========>',withdrawAmount);
+    setModalVisible(false);
+    setWithdrawAmount(null);
+    // try {
+      
+    //   setLoading(true);
+    //   let data = {
+    //     live: liveStatus
+    //   }
+    //   let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.UPDATE_LIVE_STATUS, token, data)
+    //   // console.log('response==========================>',response)
+    //   setLoading(false);
+    //   if (response?.status) {
+    //     setModalVisible(false);
+    //     setWithdrawAmount(null);
+    //   } else {
+    //     setModalVisible(false);
+    //   }
+    // } catch (e) {
+    //   setLoading(false);
+    // }
+  };
 
+  const getFcmToken = async () => {
+    try {
+      let fcmToken = await getToken();
+      // await Storage.setDataInStorage('fcmToken', token);
+      console.log('FCM=============>', fcmToken)
+    } catch (e) {
+      console.log("Some error has occured!", e);
+    }
+  };
 
   const fetchHomeData = async () => {
     try {
@@ -98,7 +130,7 @@ const getFcmToken = async () => {
 
       let getGarageData = JSON.parse(await AsyncStorage.getItem('userData'));
 
-      console.log('================>',response.data)
+      // console.log('================>',response.data)
       setLoading(false);
       if (response?.status) {
         setGarageData(getGarageData);
@@ -138,11 +170,11 @@ const getFcmToken = async () => {
   const handleToggle = async () => {
     try {
       let liveStatus
-      if(toggleValue == true){
+      if (toggleValue == true) {
         liveStatus = false
         setToggleValue(false);
       }
-      if(toggleValue == false){
+      if (toggleValue == false) {
         liveStatus = true
         setToggleValue(true);
       }
@@ -164,8 +196,6 @@ const getFcmToken = async () => {
 
   return (
     <SafeAreaView p={0} mb={20}>
-      {/* <MainHeader title="Home" showLanguageIcon={true}/> */}
-
       <View style={{ height: 60, width: width }}>
         <View style={{
           // backgroundColor: 'pink',
@@ -208,13 +238,13 @@ const getFcmToken = async () => {
               trackColor={{ false: "#c9c5c5", true: "green" }}
               thumbColor={toggleValue ? "white" : "white"}
               ios_backgroundColor="#3e3e3e"
-              style={{ transform: [{ scaleX: 1.1 }, { scaleY: 1.1 }] }} 
+              style={{ transform: [{ scaleX: 1.1 }, { scaleY: 1.1 }] }}
             />
           </View>
 
-            <View>
-            <Text style={{color:'#ffffff',fontWeight:600, fontSize:14, marginLeft :5,alignSelf:'center',letterSpacing:1}}>{toggleValue == true ? 'Online': 'Offline' }</Text>
-            </View> 
+          <View>
+            <Text style={{ color: '#ffffff', fontWeight: 600, fontSize: 14, marginLeft: 5, alignSelf: 'center', letterSpacing: 1 }}>{toggleValue == true ? 'Online' : 'Offline'}</Text>
+          </View>
 
           {/* <View>
             <TouchableOpacity 
@@ -250,10 +280,10 @@ const getFcmToken = async () => {
 
         {loading ? <LoadingSpinner /> : <Box p={2}>
           <>
-          {
-            banners.length > 0 &&
-            <MyCarousel entries={banners} />
-          }
+            {
+              banners.length > 0 &&
+              <MyCarousel entries={banners} />
+            }
           </>
           {/* <BookingList horizontal={true} isHomePageComponent={true} navigation={props.navigation}/> */}
 
@@ -313,6 +343,8 @@ const getFcmToken = async () => {
 
 
               </TouchableOpacity>
+
+
             </View>
 
             <View style={styles.card}>
@@ -373,10 +405,72 @@ const getFcmToken = async () => {
             </View> */}
 
           </View>
-
-        </Box>}
-
+        </Box>
+        }
       </ScrollView>
+
+      {
+        Earnings > 0 &&
+        <CustomButton onPress={() => handleWithdrawPress()} btnStyle={{ margin: 10 }}>
+          Withdraw
+        </CustomButton>
+      }
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        supportedOrientations={['portrait', 'landscape']}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalTitle}>Withdraw Earnings</Text>
+
+            <View style={{
+              width: "90%",
+              minHeight: 40,
+              maxHeight: 40,
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginTop: 20,
+              borderBottomWidth: 1,
+              borderColor: '#E6E8EC',
+            }}>
+              <Text style={styles.textStyle}>Amount (₹)</Text>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="black"
+                keyboardType='numeric'
+                value={withdrawAmount}
+                onChangeText={handleWithdrawAmountChange}
+              />
+            </View>
+
+
+
+            <View flexDirection={'row'}
+              justifyContent={'space-evenly'}
+              p={3}
+              marginTop={50}
+              width={'100%'}>
+              <TouchableOpacity
+                onPress={() => {setModalVisible(false); setWithdrawAmount(null);}}
+                style={styles.cancelButton}>
+                <Text style={styles.cancelText}>Cancel</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={handleWithdraw}
+                style={styles.submitButton}>
+                <Text style={styles.submitText}>Submit</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
     </SafeAreaView>
   );
 };
@@ -384,6 +478,9 @@ const getFcmToken = async () => {
 export default HorizontalFlatList;
 
 const styles = StyleSheet.create({
+  textStyle: {
+    color: 'black'
+  },
   card: {
     backgroundColor: '#fff',
     borderRadius: 20,
@@ -438,5 +535,78 @@ const styles = StyleSheet.create({
     width: 60,
     height: 30,
     alignContent: 'center'
+  },
+  input: {
+    fontSize: 16,
+    color: 'black',
+    fontWeight: '400',
+    paddingVertical: 0,
+    borderWidth: 0.5,
+    borderRadius: 8,
+    backgroundColor: '#f4f5f7',
+    borderColor: '#e7e7e7',
+    padding: 15,
+    height: 50,
+    marginTop: 5,
+  },
+  modalView: {
+    position: 'absolute',
+    backgroundColor: 'white',
+    borderTopStartRadius: 20,
+    borderTopEndRadius: 20,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    width: '100%',
+    height: 300,
+    bottom: 0
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+  modalTitle: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: 'black'
+  },
+  submitButton: {
+    backgroundColor: '#5349f8',
+    paddingVertical: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '40%',
+    // marginTop: 40
+  },
+  submitText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  cancelButton: {
+    backgroundColor: 'white',
+    paddingVertical: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    // marginTop: 10,
+    width: '40%',
+    borderColor: '#5349f8',
+    borderWidth: 1
+  },
+  cancelText: {
+    color: '#5349f8',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 })
