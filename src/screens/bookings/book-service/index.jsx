@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, StyleSheet, ScrollView, Image} from 'react-native';
+import { View, TouchableOpacity, StyleSheet, ScrollView, Image, Alert} from 'react-native';
 import { Footer, FooterTab, Box, Text, VStack, HStack } from 'native-base';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Step1 from './step1';
@@ -131,19 +131,43 @@ const Stepper = (props) => {
 
   useEffect(() => {
     fetchGarageData();
-    getLocation();
+    // getLocation();
+    checkGPS();
   }, []);
 
-  const getLocation = async () => {
-    // Geolocation.getCurrentPosition(info => console.log('=======>',info));
+  const checkGPS = () => {
     Geolocation.getCurrentPosition(
-      position => {
+      (position) => {
+        // console.log('1234============================>>>>>>',position.coords);
         const { latitude, longitude } = position.coords;
         setLocation({latitude, longitude})
         console.log('=======>',{latitude, longitude})
-  });
+      },
+      (error) => {
+        Alert.alert(
+          'GPS not enabled',
+          'Please enable GPS to use this app.',
+          [
+            { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+          ],
+          { cancelable: false }
+        );
+      },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+};
 
-  }
+
+  // const getLocation = async () => {
+  //   // Geolocation.getCurrentPosition(info => console.log('=======>',info));
+  //   Geolocation.getCurrentPosition(
+  //     position => {
+  //       const { latitude, longitude } = position.coords;
+  //       setLocation({latitude, longitude})
+  //       console.log('=======>',{latitude, longitude})
+  // });
+
+  // }
 
   const fetchGarageData = async () => {
     try {

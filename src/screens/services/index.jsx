@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View,Alert} from 'react-native';
 import FlatListContainer from '../../components/flatlist';
 import ServiceCard from '../../components/services/single-service';
 import Header from '../../components/header';
@@ -30,18 +30,41 @@ const ServiesList = ({ navigation, route }) => {
     }, [latitude, longitude, radius]);
 
     useEffect(() => {
-        getLocation();
+        // getLocation();
+        checkGPS();
     }, []);
 
-    const getLocation = async () => {
+    const checkGPS = () => {
         Geolocation.getCurrentPosition(
-          position => {
+          (position) => {
+            console.log(position);
             const { latitude, longitude } = position.coords;
             setlatitude(latitude)
             setlongitude(longitude)
-            // console.log('=======>',{latitude, longitude})
-      });
-    }
+          },
+          (error) => {
+            Alert.alert(
+              'GPS not enabled',
+              'Please enable GPS to use this app.',
+              [
+                { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+              ],
+              { cancelable: false }
+            );
+          },
+          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+        );
+    };
+
+    // const getLocation = async () => {
+    //     Geolocation.getCurrentPosition(
+    //       position => {
+    //         const { latitude, longitude } = position.coords;
+    //         setlatitude(latitude)
+    //         setlongitude(longitude)
+    //         // console.log('=======>',{latitude, longitude})
+    //   });
+    // }
 
     const fetchGarageData = async () => {
         try {
@@ -70,7 +93,6 @@ const ServiesList = ({ navigation, route }) => {
     return (
         <View style={{ flex: 1, backgroundColor: "#edeeec" }}>
             <Header title="Garage List" navigation={navigation} showRadiusBtn={true} onRadiusChange={(radius) => {setRadius(radius); }} />
-            {/* <Header title="Garage List" navigation={navigation} showRadiusBtn={true} onRadiusChange={(radius) => fetchGarageData(radius)} /> */}
             <FlatListContainer
                 containerStyle={{ margin: 10 ,marginBottom:60}}
                 data={services}

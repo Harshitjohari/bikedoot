@@ -11,6 +11,7 @@ import Apis from '../../utils/api'
 import Constant from '../../common/constant';
 import LoadingSpinner from '../../components/UI/loading'
 import { useAuth } from '../../context/loginContext';
+
 const HorizontalFlatList = (props) => {
   const { token, userData, selectedCity} = useAuth();
   let cityID = "";

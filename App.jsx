@@ -4,12 +4,14 @@ import { NativeBaseProvider } from 'native-base';
 import theme from './src/theme';
 import MainNavigator from "./src/navigation";
 import { AuthProvider } from './src/context/loginContext';
+import GpsCheck from './src/utils/gpsCheck';
 
 const App = () => {
   return (<NativeBaseProvider theme={theme}>
     <NavigationContainer>
       <AuthProvider>
-        <MainNavigator />
+      <GpsCheck />        
+      <MainNavigator />
       </AuthProvider>
     </NavigationContainer>
   </NativeBaseProvider>
