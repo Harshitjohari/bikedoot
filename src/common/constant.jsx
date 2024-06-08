@@ -12,6 +12,7 @@ const Constants = {
 
     UPDATE_LIVE_STATUS: "/api/garage/live/update",
     HOME_DATA: "/api/garage/home",
+    REQUEST_WITHDRAW: "/api/garage/withdraw/request",
     GARAGE_DATA: "/api/user/",
     GARAGE_PROFILE: "/api/garage/profile",
     GURAGE_DEATIL_API: "/api/user/garage/",

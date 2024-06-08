@@ -21,7 +21,7 @@ import { useNavigation } from '@react-navigation/native';
 import { getToken } from '../../utils/NotificationController';
 import Storage from '../../utils/async-storage';
 import CustomButton from '../../components/UI/button'
-
+import { handleToast } from '../../utils/toast';
 
 
 
@@ -49,6 +49,7 @@ const HorizontalFlatList = (props) => {
     <RoundBoxCard onPress={() => props.navigation.navigate('ServicesList', { garageID: item._id })} iconSource={item.icon ? { uri: item?.icon } : require('../../assets/images/doorstep-services.png')} title={item.name} />
   );
 
+  const { show } = handleToast();
   const [banners, setBanners] = useState([]);
   const [serviceCategory, setServiceCategory] = useState([]);
   const [Bookigs, setBookigs] = useState([]);
@@ -90,27 +91,29 @@ const HorizontalFlatList = (props) => {
   };
 
   const handleWithdraw =  async () => {
-    console.log('==========>',withdrawAmount);
-    setModalVisible(false);
-    setWithdrawAmount(null);
-    // try {
-      
-    //   setLoading(true);
-    //   let data = {
-    //     live: liveStatus
-    //   }
-    //   let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.UPDATE_LIVE_STATUS, token, data)
-    //   // console.log('response==========================>',response)
-    //   setLoading(false);
-    //   if (response?.status) {
-    //     setModalVisible(false);
-    //     setWithdrawAmount(null);
-    //   } else {
-    //     setModalVisible(false);
-    //   }
-    // } catch (e) {
-    //   setLoading(false);
-    // }
+    if (!withdrawAmount) {
+      Alert.alert('Error', 'Please fill valid amount');
+      return;
+    }
+    try {
+      setLoading(true);
+      let data = {
+        amount : withdrawAmount
+      }
+      let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.REQUEST_WITHDRAW, token,data)
+      setLoading(false);
+      if (response?.status) {
+        show(response?.message, 'success');
+        setModalVisible(false);
+        setWithdrawAmount(null);
+        fetchHomeData();
+      } else {
+        show(response?.message, 'error');
+        setModalVisible(false);
+      }
+    } catch (e) {
+      setLoading(false);
+    }
   };
 
   const getFcmToken = async () => {
@@ -139,6 +142,12 @@ const HorizontalFlatList = (props) => {
         setBookigs(response?.data?.booking);
         setEarnings(response?.data?.earnings);
         setMechanics(response?.data?.mechanics);
+        if(response?.data?.withdraw.length > 0){
+          setWithdrawPending(true)
+        }
+        else{
+          setWithdrawPending(false)
+        }
       } else {
         // show(response ?.message || "Failed to send OTP, try again later");
       }
