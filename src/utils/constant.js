@@ -32,6 +32,7 @@ import verified from '../assets/images/verified.gif';
 import phone from '../assets/images/phone.png';
 import bikedoot from '../assets/images/bikedoot.png';
 import dummyBanner from '../assets/images/dummyBanner.png';
+import invoice from '../assets/images/invoice.png';
 
 
 const imageConstant = {
@@ -69,7 +70,8 @@ const imageConstant = {
     phone,
     bikedoot,
     refresh,
-    dummyBanner
+    dummyBanner,
+    invoice
 }
 
 const fontConstant = {

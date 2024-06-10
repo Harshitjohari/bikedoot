@@ -1,7 +1,7 @@
 // Updated BookingCard.js
 import React from 'react';
 import { Box, Image, Text, ScrollView, FlatList, HStack, IconButton, Divider, VStack, navigation, Pressable, View } from 'native-base';
-import { TouchableOpacity, Alert, Modal, StyleSheet } from 'react-native';
+import { TouchableOpacity, Alert, Modal, StyleSheet, Linking } from 'react-native';
 
 import BadgeComponent from '../../UI/badges'
 import { Rating, AirbnbRating } from 'react-native-ratings';
@@ -12,9 +12,6 @@ import CustomButton from '../../../components/UI/button'
 import { Component, useEffect, useRef, useState } from 'react';
 import ImagePreviewModal from '../../../components/UI/image_view';
 
-
-import { imageConstant } from '../../../utils/constant';
-
 import { useNavigation } from '@react-navigation/native';
 import RazorpayCheckout from 'react-native-razorpay';
 import { useAuth } from '../../../context/loginContext';
@@ -22,6 +19,7 @@ import Apis from '../../../utils/api';
 import Constant from '../../../common/constant';
 import Ratings from '../../UI/rating';
 import { handleToast } from '../../../utils/toast';
+import { imageConstant } from '../../../utils/constant';
 
 const BookingCardDetail = ({ booking, refresh }) => {
 
@@ -278,6 +276,10 @@ const BookingCardDetail = ({ booking, refresh }) => {
         }
     };
 
+    const openPdf = (pdfUrl) => {
+        console.log('============>',pdfUrl)
+        Linking.openURL(pdfUrl).catch(err => console.error("Couldn't load page", err));
+    };
 
 
     return (
@@ -741,6 +743,36 @@ const BookingCardDetail = ({ booking, refresh }) => {
 
 
                         }
+
+                        {
+                            booking?.invoice &&
+                            <View
+                                width="100%"
+                                bg="#ffffff"
+                                borderRadius="10px"
+                                marginTop={2}
+                                p={3}
+                                flexDirection="row"
+                                justifyContent="space-between"
+                                alignItems="center"
+                            >
+                                <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                                    Invoice
+                                </Text>
+                                <TouchableOpacity onPress={() => openPdf(booking?.invoice)}>
+                                    <Image
+                                        source={imageConstant.invoice}
+                                        alt="Bike Image"
+                                        size="50px"
+                                        resizeMode="contain"
+                                    />
+                                </TouchableOpacity>
+                            </View>
+
+
+
+                        }
+
 
                         {
                             booking?.status == 'COMPLETED' && booking?.garageRating &&
