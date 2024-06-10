@@ -111,8 +111,6 @@ const Earnings = (props) => {
       let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.REQUEST_WITHDRAW, token,data)
       setLoading(false);
       if (response?.status) {
-    console.log('=========>')
-
         show(response?.message, 'success');
         setModalVisible(false);
         setWithdrawAmount(null);
