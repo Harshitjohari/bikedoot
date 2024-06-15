@@ -7,7 +7,7 @@ const Constants = {
     AUTH: {
         OTP_REQUEST: "/auth/login/admin/otp/send",
         OTP_VERIFY: "/auth/login/admin/otp/verify",
-        GURAGE_DEATIL_API: "/api/user/garage/659eeae8998d7a8cbc8b4945",
+        GURAGE_DEATIL_API: "/api/mechanics/garage/",
     },
 
     UPDATE_LIVE_STATUS: "/api/garage/live/update",

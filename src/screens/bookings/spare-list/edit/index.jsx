@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, Dimensions, Image,Alert, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, TextInput, Button, Dimensions, Image, Alert, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import Constant from '../../../../common/constant';
 import Apis from '../../../../utils/api';
@@ -24,7 +24,7 @@ const EditScreen = (props) => {
   let spareData = props?.route?.params
   // console.log('spareData=====>',spareData)
 
-  
+
 
   const navigation = useNavigation()
 
@@ -34,7 +34,7 @@ const EditScreen = (props) => {
 
   const [modalVisibleProfile, setModalVisibleProfile] = useState(false);
   const [modalVisibleAadharF, setModalVisibleAadharF] = useState(false);
-  
+
   const [customData, setCustomData] = useState({
     name: spareData?.name,
     quantity: spareData?.quantity,
@@ -45,8 +45,8 @@ const EditScreen = (props) => {
   });
 
 
-  const updateImage = async(reqData,key)=>{
-    try{
+  const updateImage = async (reqData, key) => {
+    try {
       // console.log('key====================>',key)
       let formDataReq = new FormData();
       let data = {
@@ -55,24 +55,24 @@ const EditScreen = (props) => {
         name: reqData?.assets?.[0]?.fileName,
       };
 
-      formDataReq.append(key,data);
-      formDataReq.append('_id',spareData?._id);
+      formDataReq.append(key, data);
+      formDataReq.append('_id', spareData?._id);
 
       // console.log('formDataReq=================+>',formDataReq)
 
 
 
       setLoading(true)
-        let response = await fetch(Constant.BASE_URL + Constant.UPDATE_SPARE + spareData?.bookId + '/spareParts/update',{
-            method: "PUT",
-            headers: {
-                "token": token,
-                'Content-Type': 'multipart/form-data'
-            },
-            body : formDataReq
-        })
-        let result = await response.json()
-      
+      let response = await fetch(Constant.BASE_URL + Constant.UPDATE_SPARE + spareData?.bookId + '/spareParts/update', {
+        method: "PUT",
+        headers: {
+          "token": token,
+          'Content-Type': 'multipart/form-data'
+        },
+        body: formDataReq
+      })
+      let result = await response.json()
+
       setLoading(false)
 
       if (result?.status) {
@@ -85,16 +85,15 @@ const EditScreen = (props) => {
       }
 
     }
-    catch(error)
-    {
-        console.log(error)
+    catch (error) {
+      console.log(error)
     }
-}
+  }
 
   const openCamera = (key) => {
     let options = {
-      mediaType: 'photo', 
-      quality: 0.5, 
+      mediaType: 'photo',
+      quality: 0.5,
     };
     launchCamera(options, (response) => {
       if (response.didCancel) {
@@ -110,7 +109,7 @@ const EditScreen = (props) => {
           'response from gallery------------------->',
           JSON.stringify(response)
         );
-        updateImage(response,key);
+        updateImage(response, key);
       }
     });
   };
@@ -123,7 +122,7 @@ const EditScreen = (props) => {
         path: 'images'
       },
     };
-    launchImageLibrary(options,  async (response) => {
+    launchImageLibrary(options, async (response) => {
       if (response.didCancel) {
         // toastShow('User cancelled ', colorConstant.darkRed)
         console.log('User cancelled image picker');
@@ -137,7 +136,7 @@ const EditScreen = (props) => {
           'response from gallery------------------->',
           response
         );
-        updateImage(response,key);
+        updateImage(response, key);
       }
     });
   };
@@ -157,11 +156,11 @@ const EditScreen = (props) => {
     // }
 
     const saveData = {
-      _id:spareData?._id,
+      _id: spareData?._id,
       name: customData.name,
       quantity: customData.quantity,
       price: customData.price,
-      gstRate:customData.gstRate
+      gstRate: customData.gstRate
     };
 
     // console.log('send=========>',saveData)
@@ -222,86 +221,12 @@ const EditScreen = (props) => {
             />
           </View>
 
-
-          <View style={{
-            width: "90%",
-            minHeight: 40,
-            maxHeight: 40,
-            justifyContent: 'center',
-            alignSelf: 'center',
-            marginTop: 50,
-            borderBottomWidth: 1,
-            borderColor: '#E6E8EC',
-          }}>
-            <Text style={styles.textStyle}>Quantity</Text>
-            <TextInput
-              style={styles.input}
-              placeholder=""
-              keyboardType="numeric"
-              value={customData?.quantity.toString()}
-              onChangeText={(text) => handleCustomInputChange('quantity', text)}
-            />
-          </View>
-
-          <View style={{
-            width: "90%",
-            minHeight: 40,
-            maxHeight: 40,
-            justifyContent: 'center',
-            alignSelf: 'center',
-            marginTop: 50,
-            borderBottomWidth: 1,
-            borderColor: '#E6E8EC',
-          }}>
-            <Text style={styles.textStyle}>Price</Text>
-            <TextInput
-              style={styles.input}
-              placeholder=""
-              keyboardType="numeric"
-              value={customData?.price.toString()}
-              onChangeText={(text) => handleCustomInputChange('price', text)}
-            />
-          </View>
-          <View style={{
-            width: "90%",
-            minHeight: 40,
-            maxHeight: 40,
-            justifyContent: 'center',
-            alignSelf: 'center',
-            marginTop: 50,
-            borderBottomWidth: 1,
-            borderColor: '#E6E8EC',
-          }}>
-            <Text style={styles.textStyle}>Gst Rate</Text>
-            <TextInput
-              style={styles.input}
-              placeholder=""
-              keyboardType="numeric"
-              value={customData?.gstRate.toString()}
-              onChangeText={(text) => handleCustomInputChange('gstRate', text)}
-            />
-          </View>
-
-
-          <View style={{
-            marginLeft: 20,
-            marginRight: 20,
-            marginTop: 90,
-            // marginBottom : 100
-          }}>
-            <CustomButton onPress={handleUpdate} btnStyle={{}}>
-              Update
-            </CustomButton>
-          </View>
-
-
-
           <View style={styles.rowContainer}>
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
               <View style={styles.profileContainer}>
-                <Text style={styles.profileText}>Before image</Text>
+                <Text style={styles.profileText}>Before Image</Text>
                 <View style={styles.imageContainer}>
                   <Image
                     style={styles.imageStyle}
@@ -320,12 +245,12 @@ const EditScreen = (props) => {
               </View>
 
               <View style={styles.profileContainer}>
-                <Text style={styles.profileText}>After image</Text>
+                <Text style={styles.profileText}>After Image</Text>
                 <View style={styles.imageContainer}>
                   <Image
                     style={styles.imageStyle}
                     source={{ uri: customData?.afterImage }}
-                    />
+                  />
                 </View>
                 <TouchableOpacity
                   style={styles.iconContainer}
@@ -341,10 +266,79 @@ const EditScreen = (props) => {
 
           </View>
 
+          <View style={{
+            width: "90%",
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignSelf: 'center',
+            marginTop: 30,
+          }}>
+            <View style={{
+              flex: 1,
+              minHeight: 40,
+              maxHeight: 40,
+              justifyContent: 'center',
+              marginRight: 10,
+              borderBottomWidth: 1,
+              borderColor: '#E6E8EC',
+            }}>
+              <Text style={styles.textStyle}>Quantity</Text>
+              <TextInput
+                style={styles.input}
+                placeholder=""
+                keyboardType="numeric"
+                value={customData?.quantity.toString()}
+                onChangeText={(text) => handleCustomInputChange('quantity', text)}
+              />
+            </View>
 
-          
+            <View style={{
+              flex: 1,
+              minHeight: 40,
+              maxHeight: 40,
+              justifyContent: 'center',
+              marginRight: 10,
+              borderBottomWidth: 1,
+              borderColor: '#E6E8EC',
+            }}>
+              <Text style={styles.textStyle}>Price</Text>
+              <TextInput
+                style={styles.input}
+                placeholder=""
+                keyboardType="numeric"
+                value={customData?.price.toString()}
+                onChangeText={(text) => handleCustomInputChange('price', text)}
+              />
+            </View>
 
+            <View style={{
+              flex: 1,
+              minHeight: 40,
+              maxHeight: 40,
+              justifyContent: 'center',
+              borderBottomWidth: 1,
+              borderColor: '#E6E8EC',
+            }}>
+              <Text style={styles.textStyle}>Gst Rate</Text>
+              <TextInput
+                style={styles.input}
+                placeholder=""
+                keyboardType="numeric"
+                value={customData?.gstRate.toString()}
+                onChangeText={(text) => handleCustomInputChange('gstRate', text)}
+              />
+            </View>
+          </View>
         </ScrollView>
+        <View style={{
+            marginLeft: 20,
+            marginRight: 20,
+            marginBottom : 20
+          }}>
+            <CustomButton onPress={handleUpdate} btnStyle={{}}>
+              Update
+            </CustomButton>
+          </View>
       </KeyboardAwareScrollView>
 
       <Modal
@@ -499,7 +493,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 0,
     justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#fff',
     padding: 8,
     paddingBottom: 100
   },
@@ -507,7 +501,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginLeft: 50,
     marginRight: 50,
-    marginTop: 70
+    marginTop: 50
   },
   profileContainer: {
     alignItems: 'center',

@@ -233,7 +233,7 @@ const SpareList = (props) => {
 
         <View style={styles.imageContainer}>
           <View style={styles.imageTextContainer}>
-            <Text style={styles.imageText}>Before image</Text>
+            <Text style={styles.imageText}>Before Image</Text>
             <TouchableOpacity onPress={() => handleImageClick( beforeImage)}>
               <Image source={{ uri:  beforeImage}} style={styles.image} />
             </TouchableOpacity>
@@ -245,7 +245,7 @@ const SpareList = (props) => {
           </View>
 
           <View style={styles.imageTextContainer}>
-            <Text style={styles.imageText}>After image</Text>
+            <Text style={styles.imageText}>After Image</Text>
             <TouchableOpacity onPress={() => handleImageClick( afterImage)}>
               <Image source={{ uri:  afterImage}} style={styles.image} />
             </TouchableOpacity>

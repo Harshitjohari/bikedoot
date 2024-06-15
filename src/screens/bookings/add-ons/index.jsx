@@ -23,12 +23,13 @@ import { useNavigation } from '@react-navigation/native';
 import { useIsFocused } from '@react-navigation/native';
 import SelectDropdown from 'react-native-select-dropdown';
 import { handleToast } from '../../../utils/toast';
+import LoadingSpinner from '../../../components/UI/loading';
 
 
 
 
 const AddOnScreen = (props) => {
-  // console.log('props==============+>', props.route?.params?.booking?._id)
+  // console.log('props==============+>', props.route?.params?.booking)
 
   const navigation = useNavigation()
 
@@ -43,24 +44,53 @@ const AddOnScreen = (props) => {
   const { token } = useAuth();
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
+  const [selectedServiceCards, setSelectedServiceCards] = useState([]);
   const [customCards, setCustomCards] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [customData, setCustomData] = useState({
     name: '',
     quantity: '',
     price: '',
-    gstRate:''
+    gstRate: ''
   });
+  const [services, setServices] = useState([]);
+  const [selectedAdd, setselectedAdd] = useState([]);
 
 
-  // console.log('selectedItems============>',selectedItems[0].name)
+  let preSelectedServices = props.route?.params?.booking?.services.filter(
+    service => service?.service?.service?.serviceType?.name === "Service"
+  ).map(service => service.service._id);
+
+  // let preSelectedAddService = props.route?.params?.booking?.services.filter(
+  //   service => service?.service?.service?.serviceType?.name === "Add-On"
+  // );
+  // let serviceIds = preSelectedAddService.map(data => data.service._id);
+  // let filteredServices = addonData.filter(service => serviceIds.includes(service._id)).map(service => service._id);
+
 
 
   useEffect(() => {
     if (isFocused)
       fetchAddonList();
-      fetchSpareList();
+    fetchSpareList();
+    fetchGarageData();
+    setSelectedServiceCards(preSelectedServices);
   }, [isFocused]);
+
+  useEffect(() => {
+    if (addonData.length > 0) {
+
+    let preSelectedAddService = props.route?.params?.booking?.services.filter(
+      service => service?.service?.service?.serviceType?.name === "Add-On"
+    );
+    let serviceIds = preSelectedAddService.map(data => data.service._id);
+    let filteredServices = addonData.filter(service => serviceIds.includes(service._id)).map(service => service._id);
+
+    // console.log('==========>',preSelectedAddService)
+
+      setSelectedCards(filteredServices);
+    }
+  }, [addonData]);
 
 
   const fetchAddonList = async () => {
@@ -84,9 +114,14 @@ const AddOnScreen = (props) => {
   };
 
   const handleSubmit = async () => {
+    if (selectedServiceCards.length === 0) {
+      Alert.alert('Please select atleast one service...')
+      return
+    }
     const data = {
       additionalServices: selectedCards,
-      spareParts: customCards
+      spareParts: customCards,
+      services: selectedServiceCards
     };
     setLoading(true)
     let response = await Apis.HttpPostRequest(
@@ -97,7 +132,7 @@ const AddOnScreen = (props) => {
     setLoading(false)
     if (response?.status) {
 
-      show(response ?.message, "success");
+      show(response?.message, "success");
       navigation.navigate("MechanicBookingsDetails", { id: props.route?.params?.booking?._id })
     } else {
       show(response?.message || "Failed to send data, try again later", "error");
@@ -108,7 +143,7 @@ const AddOnScreen = (props) => {
     try {
       setLoading(true);
       let response = await Apis.HttpGetRequest(
-        Constant.BASE_URL + Constant.GET_MECHANIC_BOOKINGS_DETAILS  + props.route?.params?.booking?._id + '/spareParts',
+        Constant.BASE_URL + Constant.GET_MECHANIC_BOOKINGS_DETAILS + props.route?.params?.booking?._id + '/spareParts',
         token
       );
 
@@ -126,26 +161,54 @@ const AddOnScreen = (props) => {
     }
   };
 
+  const fetchGarageData = async () => {
+    try {
+      setLoading(true);
+      let response = await Apis.HttpGetRequest(Constant.BASE_URL + Constant.AUTH.GURAGE_DEATIL_API + props.route?.params?.booking?.garage?._id, token)
+      setLoading(false);
+      if (response?.status) {
+        // console.log('============>',response.data)
+        let services = response?.data?.services;
+
+        // if (response.data.garage.serviceCategory.length === 0) {
+        //   setIsNotServicable(true)
+        // }
+        for (let index = 0; index < services.length; index++) {
+          if (services[index]?.type === "Service") {
+            setServices(services[index]?.data)
+          }
+        }
+      } else {
+        show(response?.message || "Failed to fetch data");
+      }
+    } catch (e) {
+      setLoading(false);
+      // show("Some error has occured!");
+    }
+  };
+
+  let filterServices = services.filter(data => data.cc._id === props.route?.params?.booking?.bike?.cc?._id)
+
   let gstData = [
     {
-      "_id" : '1',
-      "name" : '0%'
+      "_id": '1',
+      "name": '0%'
     },
     {
-      "_id" : '2',
-      "name" : '5%'
+      "_id": '2',
+      "name": '5%'
     },
     {
-      "_id" : '3',
-      "name" : '12%'
+      "_id": '3',
+      "name": '12%'
     },
     {
-      "_id" : '4',
-      "name" : '18%'
+      "_id": '4',
+      "name": '18%'
     },
     {
-      "_id" : '5',
-      "name" : '28%'
+      "_id": '5',
+      "name": '28%'
     }
   ]
 
@@ -158,7 +221,7 @@ const AddOnScreen = (props) => {
     "name": "Other"
   }]
 
-  sparesData = [...sparesData,...otherObject]
+  sparesData = [...sparesData, ...otherObject]
 
 
 
@@ -166,8 +229,8 @@ const AddOnScreen = (props) => {
     <View style={styles.card}>
       <View style={styles.cardContent}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.description}>{description}</Text>
-        <Text style={styles.price}>{`₹${price}`}</Text>
+        {/* <Text style={styles.description}>{description}</Text> */}
+        <Text style={styles.price}>{`Price: ₹ ${price}`}</Text>
         {/* <Text style={styles.price}>{`₹${gstRate}`}</Text> */}
       </View>
       <TouchableOpacity
@@ -180,12 +243,31 @@ const AddOnScreen = (props) => {
     </View>
   );
 
+  const ServiceCard = ({ _id, name, description, price, gstRate, onPress, selected }) => (
+    <View style={styles.card}>
+      <View style={styles.cardContent}>
+        <Text style={styles.name}>{name}</Text>
+        {/* <Text style={styles.description}>{description}</Text> */}
+        <Text style={styles.price}>{`Price: ₹ ${price}`}</Text>
+        {/* <Text style={styles.price}>{`₹${gstRate}`}</Text> */}
+      </View>
+      <TouchableOpacity
+        style={[styles.button, selected ? styles.selectedButton : null]}
+        onPress={() => onPress(_id)}>
+        <Image
+          style={styles.imageButton}
+          source={selected ? imageConstant.remove : imageConstant.plus}
+        />
+      </TouchableOpacity>
+    </View>
+  );
+
   const CustomCard = ({ name, quantity, price, gstRate, onPressRemove }) => (
     <View style={styles.card}>
       <View style={styles.cardContent}>
-        <Text style={styles.name}>Name: {name}</Text>
+        <Text style={styles.name}>{name}</Text>
         <Text style={styles.quantity}>Quantity: {quantity}</Text>
-        <Text style={styles.quantity}>Price: {`₹${price}`}</Text>
+        <Text style={styles.quantity}>Price: {`₹ ${price}`}</Text>
         <Text style={styles.quantity}>Gst: {`${gstRate}`}%</Text>
       </View>
       <TouchableOpacity style={styles.removeButton} onPress={onPressRemove}>
@@ -240,7 +322,10 @@ const AddOnScreen = (props) => {
     setCustomCards(updatedCustomCards);
   };
 
+
   const handleCardPress = (_id) => {
+    // console.log('Selected item received:', _id);
+
     if (selectedCards.includes(_id)) {
       setSelectedCards(selectedCards.filter((id) => id !== _id));
     } else {
@@ -248,26 +333,57 @@ const AddOnScreen = (props) => {
     }
   };
 
+
+  const handleServiceCardPress = (_id) => {
+    if (selectedServiceCards.includes(_id)) {
+      setSelectedServiceCards([]);
+    } else {
+      setSelectedServiceCards([_id]);
+    }
+  };
+
   const selectedItemFn = (selectedItem, index) => {
     console.log('Selected item received:', selectedItem.name);
     handleCustomInputChange('name', selectedItem.name)
     selectedItem.name == 'Other' ? setIsOther(true) : setIsOther(false)
-    
+
   };
 
   const selectedItemFn1 = (selectedItem, index) => {
     // console.log('Selected item received:', selectedItem.name);
     handleCustomInputChange1('gstRate', selectedItem.name)
   };
-  
-  
+
+
 
   return (
 
     <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-      <Header title="Additional Services" />
+      <Header title="Edit/Add Services & Spares" />
 
-      <ScrollView contentContainerStyle={styles.container}>
+      {isLoading ? <LoadingSpinner /> : <>
+      <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+
+        <View style={{ borderBottomWidth: 1, borderBottomColor: 'black', marginBottom: 10 }}>
+          <Text style={styles.customTitle}>Services</Text>
+        </View>
+        
+        {filterServices.map((item) => (
+          <ServiceCard
+            key={item._id}
+            _id={item._id}
+            name={item.name}
+            description={item.description}
+            price={item.price}
+            // gstRate={item.gstRate}
+            onPress={handleServiceCardPress}
+            selected={selectedServiceCards.includes(item._id)}
+          />
+        ))}
+
+        <View style={{ borderBottomWidth: 1, borderBottomColor: 'black', marginBottom: 10 }}>
+          <Text style={styles.customTitle}>Additional Service</Text>
+        </View>
         {data.map((item) => (
           <Card
             key={item._id}
@@ -283,7 +399,9 @@ const AddOnScreen = (props) => {
 
         {customCards.length > 0 && (
           <View>
-            <Text style={styles.customTitle}>Spares</Text>
+            <View style={{ borderBottomWidth: 1, borderBottomColor: 'black', marginBottom: 10 }}>
+              <Text style={styles.customTitle}>Spares</Text>
+            </View>
             {customCards.map((customCard, index) => (
               <CustomCard
                 key={index}
@@ -304,35 +422,60 @@ const AddOnScreen = (props) => {
           />
         </View> */}
 
-        <CustomButton
+        {/* <CustomButton
           onPress={() => setModalVisible(!modalVisible)}
           btnStyle={{
             alignItems: 'right',
-            marginTop: 20,
+            marginTop: 10,
             // marginBottom: 20,
-            backgroundColor : 'white',
-            borderColor:'#5349f8',
-            borderWidth:1,
+            backgroundColor: 'white',
+            borderColor: '#5349f8',
+            borderWidth: 1,
           }}
           textStyle={{
-            color:'#5349f8'
+            color: '#5349f8'
           }}>
+          Add Custom Additional Service
+        </CustomButton> */}
+      </ScrollView>
+
+
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10 }}>
+        <CustomButton
+          onPress={() => setModalVisible(!modalVisible)}
+          btnStyle={{
+            alignItems: 'center',
+            backgroundColor: 'white',
+            borderColor: '#5349f8',
+            borderWidth: 1,
+            padding: 10,
+            width: '45%'
+          }}
+          textStyle={{
+            color: '#5349f8',
+          }}
+        >
           Add Spares
         </CustomButton>
 
         <CustomButton
           onPress={handleSubmit}
           btnStyle={{
-            alignItems: 'right',
-            marginTop: 20,
-            marginBottom: 20,
-            borderColor:'#5349f8',
-            borderWidth:1,
-          }}>
+            alignItems: 'center',
+            borderColor: '#5349f8',
+            borderWidth: 1,
+            padding: 10,
+            width: '45%'
+          }}
+          textStyle={{
+            color: 'white',
+          }}
+        >
           Submit
         </CustomButton>
-
-      </ScrollView>
+      </View>
+      </>
+}
 
       {/* <Modal
         animationType="slide"
@@ -447,13 +590,14 @@ const AddOnScreen = (props) => {
               borderBottomWidth: 1,
               borderColor: '#E6E8EC',
               // backgroundColor:'pink',
-              marginBottom : isOther ? 30 : 0
+              marginBottom: isOther ? 30 : 0
             }}>
               <Text style={styles.textStyle}>Name</Text>
-              
+
               <SelectDropdown
                 data={sparesData}
-                onSelect={(selectedItem, index) => {selectedItemFn(selectedItem, index)  
+                onSelect={(selectedItem, index) => {
+                  selectedItemFn(selectedItem, index)
 
                   // console.log('selected item ===========>',selectedItems)
                   // setSelectedItems([selectedItem]);
@@ -466,7 +610,8 @@ const AddOnScreen = (props) => {
                   // Display mechanic name in dropdown
                   return item.name;
                 }}
-                buttonStyle={{fontSize: 16,
+                buttonStyle={{
+                  fontSize: 16,
                   color: 'black',
                   fontWeight: '400',
                   paddingVertical: 0,
@@ -477,24 +622,24 @@ const AddOnScreen = (props) => {
                   padding: 15,
                   height: 50,
                   marginTop: 5,
-                width:'90%'
-              }}
+                  width: '90%'
+                }}
                 buttonTextStyle={{ color: 'black' }}
                 defaultButtonText="Select Spare"
                 dropdownStyle={{ borderColor: '#E6E8EC' }}
               />
 
               {
-                isOther ? 
-                <TextInput
-                style={styles.input}
-                placeholderTextColor="grey"
-                placeholder='Enter custom spare name'
-                // value={customData.name}
-                onChangeText={(text) => handleCustomInputChange('name', text)}
-              />
-              :
-              null
+                isOther ?
+                  <TextInput
+                    style={styles.input}
+                    placeholderTextColor="grey"
+                    placeholder='Enter custom spare name'
+                    // value={customData.name}
+                    onChangeText={(text) => handleCustomInputChange('name', text)}
+                  />
+                  :
+                  null
               }
 
             </View>
@@ -552,7 +697,8 @@ const AddOnScreen = (props) => {
               <Text style={styles.textStyle}>Gst Rate</Text>
               <SelectDropdown
                 data={gstData}
-                onSelect={(selectedItem, index) => {selectedItemFn1(selectedItem, index)  
+                onSelect={(selectedItem, index) => {
+                  selectedItemFn1(selectedItem, index)
 
                   // console.log('selected item ===========>',selectedItems)
                   // setSelectedItems([selectedItem]);
@@ -565,7 +711,8 @@ const AddOnScreen = (props) => {
                   // Display mechanic name in dropdown
                   return item.name;
                 }}
-                buttonStyle={{fontSize: 16,
+                buttonStyle={{
+                  fontSize: 16,
                   color: 'black',
                   fontWeight: '400',
                   paddingVertical: 0,
@@ -576,8 +723,8 @@ const AddOnScreen = (props) => {
                   padding: 15,
                   height: 50,
                   marginTop: 5,
-                width:'90%'
-              }}
+                  width: '90%'
+                }}
                 buttonTextStyle={{ color: 'black' }}
                 defaultButtonText="Select Gst Rate"
                 dropdownStyle={{ borderColor: '#E6E8EC' }}
@@ -646,7 +793,8 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   quantity: {
-    fontSize: 14,
+    fontSize: 12,
+    fontWeight: '500',
     marginTop: 5,
     color: 'grey',
   },
@@ -654,7 +802,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '500',
     marginTop: 5,
-    color: 'black',
+    color: 'grey',
   },
   customTitle: {
     fontSize: 16,
@@ -704,7 +852,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
     width: '100%',
-    height:600,
+    height: 600,
   },
   centeredView: {
     flex: 1,
@@ -752,8 +900,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // marginTop: 10,
     width: '43%',
-    borderColor:'#5349f8',
-    borderWidth:1
+    borderColor: '#5349f8',
+    borderWidth: 1
   },
   cancelText: {
     color: '#5349f8',

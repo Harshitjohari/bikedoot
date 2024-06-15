@@ -102,7 +102,7 @@ const Otpverify = (props) => {
           ))}
         </HStack>
 
-        <CustomButton onPress={verifyOtp} isLoading={isLoading} isLoadingText="Verifying OTP" disabled={isLoading}>
+        <CustomButton onPress={verifyOtp} isLoading={isLoading} isLoadingText="Verifying auth code" disabled={isLoading}>
           Verify Auth Code
         </CustomButton>
 

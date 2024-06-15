@@ -47,7 +47,7 @@ const BookingCardDetail = ({ booking }) => {
         const hours = date.getHours().toString().padStart(2, '0');
         const minutes = date.getMinutes().toString().padStart(2, '0');
         const seconds = date.getSeconds().toString().padStart(2, '0');
-    
+
         return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
     };
 
@@ -125,7 +125,7 @@ const BookingCardDetail = ({ booking }) => {
 
     return (
         <>
-            <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
                 <View style={{ flex: 1, backgroundColor: "#edeeec" }}></View>
                 <View
                     width="100%"
@@ -243,7 +243,7 @@ const BookingCardDetail = ({ booking }) => {
                                     City : {booking?.address?.city?.name}, Pincode : {booking?.address?.pincode}
                                 </Text>
                             </Box>
-                            <CustomButton btnStyle={{height: "35%"}} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={navigate}>Navigate</CustomButton>
+                            <CustomButton btnStyle={{ height: "35%" }} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={navigate}>Navigate</CustomButton>
                         </HStack>
                     </View>
 
@@ -296,52 +296,57 @@ const BookingCardDetail = ({ booking }) => {
                             Services
                         </Text>
                         {booking?.services
-                                .filter(service => service?.service?.service?.serviceType?.name === "Service")
-                                .map((service, index) => (
-                                    <View
-                                        key={index}
-                                        width="100%"
-                                        bg="#ffffff"
-                                        borderRadius="10px"
-                                        alignItems="center"
-                                        flexDirection="row"
-                                        justifyContent="space-between"
-                                    >
-                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                            {index + 1}. {service?.service?.service?.name}
-                                        </Text>
-                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                            ₹{service?.price}
-                                        </Text>
-                                    </View>
-                                ))}
+                            .filter(service => service?.service?.service?.serviceType?.name === "Service")
+                            .map((service, index) => (
+                                <View
+                                    key={index}
+                                    width="100%"
+                                    bg="#ffffff"
+                                    borderRadius="10px"
+                                    alignItems="center"
+                                    flexDirection="row"
+                                    justifyContent="space-between"
+                                >
+                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                        {index + 1}. {service?.service?.service?.name}
+                                    </Text>
+                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                        ₹{service?.price}
+                                    </Text>
+                                </View>
+                            ))}
+
+                        <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                            Additional Services
+                            {/* Add Ons (Mechanic) */}
+                        </Text>
 
                         {
                             booking?.services.length > 1 && (
                                 <>
-                                    <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                    {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                         Add Ons (User)
-                                    </Text>
+                                    </Text> */}
                                     {booking?.services
-                                            .filter(service => service?.service?.service?.serviceType?.name === "Add-On")
-                                            .map((service, index) => (
-                                                <View
-                                                    key={index}
-                                                    width="100%"
-                                                    bg="#ffffff"
-                                                    borderRadius="10px"
-                                                    alignItems="center"
-                                                    flexDirection="row"
-                                                    justifyContent="space-between"
-                                                >
-                                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                        {index + 1}. {service?.service?.service?.name}
-                                                    </Text>
-                                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                        ₹{service?.price}
-                                                    </Text>
-                                                </View>
-                                            ))}
+                                        .filter(service => service?.service?.service?.serviceType?.name === "Add-On")
+                                        .map((service, index) => (
+                                            <View
+                                                key={index}
+                                                width="100%"
+                                                bg="#ffffff"
+                                                borderRadius="10px"
+                                                alignItems="center"
+                                                flexDirection="row"
+                                                justifyContent="space-between"
+                                            >
+                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                    {index + 1}. {service?.service?.service?.name}
+                                                </Text>
+                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                    ₹{service?.price}
+                                                </Text>
+                                            </View>
+                                        ))}
                                 </>
                             )
                         }
@@ -349,29 +354,31 @@ const BookingCardDetail = ({ booking }) => {
                         {
                             booking?.additionalServices.length > 0 && (
                                 <>
-                                    <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
-                                        Add Ons (Mechanic)
-                                    </Text>
-                                    {booking?.additionalServices.map((service, index) => (
-                                        <View
-                                            key={index}
-                                            width="100%"
-                                            bg="#ffffff"
-                                            borderRadius="10px"
-                                            // marginTop={2}
-                                            // p={3}
-                                            alignItems="center"
-                                            flexDirection="row"
-                                            justifyContent="space-between"
-                                        >
-                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                {index + 1}. {service?.service?.service?.name}
-                                            </Text>
-                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                ₹{service?.price}
-                                            </Text>
-                                        </View>
-                                    ))}
+                                    {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                        Additional Services
+                                    </Text> */}
+                                    {booking?.additionalServices
+                                        // .filter(d => d.approved === true)
+                                        .map((service, index) => (
+                                            <View
+                                                key={index}
+                                                width="100%"
+                                                bg="#ffffff"
+                                                borderRadius="10px"
+                                                // marginTop={2}
+                                                // p={3}
+                                                alignItems="center"
+                                                flexDirection="row"
+                                                justifyContent="space-between"
+                                            >
+                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                    {index + 1}. {service?.service?.service?.name}
+                                                </Text>
+                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                                    ₹{service?.price}
+                                                </Text>
+                                            </View>
+                                        ))}
                                 </>
                             )
                         }
@@ -447,16 +454,16 @@ const BookingCardDetail = ({ booking }) => {
                                     </Text>
                                     <CustomButton
                                         onPress={() => navigation.navigate("SpareListScreen", booking?._id)}
-                                        btnStyle={{ margin: 0, padding: 0, height: 30, alignSelf: 'flex-end', backgroundColor: 'white' }}
+                                        btnStyle={{ margin: 0, padding: 0, height: 35, alignSelf: 'flex-end', backgroundColor: '#5349f8' }}
                                         textStyle={{
-                                            color: "#5349f8",
+                                            color: "#fff",
                                             fontWeight: "500",
                                             fontSize: 12,
                                             lineHeight: 12,
                                             padding: 0
                                         }}
                                     >
-                                        View Spares List
+                                        Add/Edit Spares Images
                                     </CustomButton>
                                 </View>
 
@@ -512,30 +519,30 @@ const BookingCardDetail = ({ booking }) => {
                     </View>
 
                     {
-                            booking?.paymentDetails &&
-                                <View
-                                    width="100%"
-                                    bg="#ffffff"
-                                    borderRadius="10px"
-                                    marginTop={2}
-                                    p={3}
-                                >
-                            
-                                        <View>
-                                            <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
-                                                Payment Details
-                                            </Text>
-                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                Transaction Id : {booking?.paymentDetails?.order_id}
-                                            </Text>
-                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                Payment Date & Time : {formatDate2(booking?.paymentDetails?.created_at)}
-                                            </Text>
-                                        </View>
-                                </View>
-                                
-                                
-                        }
+                        booking?.paymentDetails &&
+                        <View
+                            width="100%"
+                            bg="#ffffff"
+                            borderRadius="10px"
+                            marginTop={2}
+                            p={3}
+                        >
+
+                            <View>
+                                <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                                    Payment Details
+                                </Text>
+                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                    Transaction Id : {booking?.paymentDetails?.order_id}
+                                </Text>
+                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                    Payment Date & Time : {formatDate2(booking?.paymentDetails?.created_at)}
+                                </Text>
+                            </View>
+                        </View>
+
+
+                    }
 
                     {
                         booking?.status == 'COMPLETED' && booking?.userRating &&
@@ -569,6 +576,20 @@ const BookingCardDetail = ({ booking }) => {
 
                 </View>
             </ScrollView>
+
+            {/* <CustomButton
+                onPress={() => navigation.navigate("SpareListScreen", booking?._id)}
+                btnStyle={{ margin: 10 }}
+                textStyle={{
+                    // color: "#ffffff",
+                    // fontWeight: "500",
+                    // fontSize: 12,
+                    // lineHeight: 12,
+                    // padding: 0
+                }}
+            >
+                View Spares List
+            </CustomButton> */}
             {
                 booking?.status == 'VERIFIED' &&
 
@@ -576,7 +597,7 @@ const BookingCardDetail = ({ booking }) => {
                     // onPress={handleAlert}
                     onPress={() => navigation.navigate("InseptionScreen", { booking })}
                     btnStyle={{ margin: 10 }}>
-                    Start Service
+                    Start Pre-Inspection
                 </CustomButton>
             }
 
@@ -586,18 +607,23 @@ const BookingCardDetail = ({ booking }) => {
                 <CustomButton
                     onPress={() => navigation.navigate('FinishService', booking?._id)}
                     btnStyle={{ margin: 10 }}>
-                    Finish Service
+                    Start Service
                 </CustomButton>
             }
 
             {
                 booking?.status == 'APPROVED' &&
 
+                // <CustomButton
+                //     onPress={handleAlert}
+                //     btnStyle={{ margin: 10 }}>
+                //     Enter Auth Code
+                // </CustomButton>
                 <CustomButton
-                    onPress={handleAlert}
-                    btnStyle={{ margin: 10 }}>
-                    Start Service
-                </CustomButton>
+                onPress={() => navigation.navigate("OtpVerify", { booking })}
+                btnStyle={{ margin: 10 }}>
+                Enter Auth Code
+            </CustomButton>
             }
 
             {
@@ -619,6 +645,7 @@ const BookingCardDetail = ({ booking }) => {
                     Rate & Review User
                 </CustomButton>
             }
+
         </>
     );
 };

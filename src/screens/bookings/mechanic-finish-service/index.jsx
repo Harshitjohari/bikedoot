@@ -62,7 +62,7 @@ useEffect(() => {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#edeeec' }}>
-      <Header title="FINISH SERVICE" />
+      <Header title="Finish Service" />
 
       <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={{ flex: 1, backgroundColor: "#edeeec" }}>

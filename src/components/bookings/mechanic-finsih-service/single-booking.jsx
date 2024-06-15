@@ -19,35 +19,40 @@ import { imageConstant } from '../../../utils/constant';
 import { useNavigation } from '@react-navigation/native';
 
 import { handleToast } from '../../../utils/toast';
+import { useIsFocused } from '@react-navigation/native';
 
-  
+
 
 const FinishService = ({ booking }) => {
 
-
+    const isFocused = useIsFocused();
     const navigation = useNavigation()
     const [isLoading, setLoading] = useState(true);
     const { show, close, closeAll } = handleToast();
-
+    const [spareData, setSpareData] = useState(null);
 
     const { token } = useAuth();
 
     const [selectedServices, setSelectedServices] = useState(booking?.services.map(d => {
-        return{ _id: d._id }
+        return { _id: d._id }
     }));
     const [selectedAccessories, setSelectedAccessories] = useState(booking?.accessories.map(d => {
-        return{ _id: d._id }
+        return { _id: d._id }
     }));
     const [selectedAdditionalServicesMechanic, setSelectedAdditionalServicesMechanic] = useState(booking?.additionalServices.map(d => {
-        return{ _id: d._id }
+        return { _id: d._id }
     }));
     const [selectedAdditionalServicesUser, setSelectedAdditionalServicesUser] = useState(booking?.services.slice(1).map(d => {
-        return{ _id: d._id }
+        return { _id: d._id }
     }));
     const [selectedSpareParts, setSelectedSpareParts] = useState(booking?.spareParts.map(d => {
-        return{ _id: d._id }
+        return { _id: d._id }
     }));
 
+    useEffect(() => {
+        if (isFocused)
+          fetchBookingsDetails();
+      }, [isFocused]);
 
     const handleCheckboxChange = (_id, type) => {
         switch (type) {
@@ -87,6 +92,22 @@ const FinishService = ({ booking }) => {
         }
     };
 
+    const fetchBookingsDetails = async () => {
+        try {
+          let response = await Apis.HttpGetRequest(
+            Constant.BASE_URL + Constant.GET_MECHANIC_BOOKINGS_DETAILS + booking?._id,
+            token
+          );
+          if (response?.status) {
+    
+            const data = await response?.data;
+            setSpareData(data.spareParts);
+          } else {
+          }
+        } catch (e) {
+        }
+      };
+
     const handleAlert = () => {
         Alert.alert(
             'Check Alert',
@@ -115,20 +136,38 @@ const FinishService = ({ booking }) => {
         return `${day}/${month}/${year}`;
     };
 
+   
 
     const finishBooking = async () => {
         try {
+            let validationFailed = false;
+    
+            spareData.forEach(part => {
+                if (!part.beforeImage || !part.afterImage) {
+                    validationFailed = true;
+                    Alert.alert(
+                        "Validation Error",
+                        `Part ${part.name} has missing images. Please provide both before and after images.`
+                    );
+                }
+            });
+    
+            // If validation failed, return early and don't proceed to the API call
+            if (validationFailed) {
+                return;
+            }
+    
             setLoading(true);
-
+    
             let data = {
                 services: [...selectedServices.map(d => d._id), ...selectedAdditionalServicesUser.map(d => d._id)],
                 additionalServices: selectedAdditionalServicesMechanic.map(d => d._id),
                 accessories: selectedAccessories.map(d => d._id),
                 spareParts: selectedSpareParts.map(d => d._id)
-            }
-
+            };
+    
             // console.log('dataaaaa===============+>',data)
-
+    
             let response = await Apis.HttpPostRequest(
                 Constant.BASE_URL + Constant.COMPLETE_SERVICE + booking?._id + '/completeService',
                 token,
@@ -136,7 +175,7 @@ const FinishService = ({ booking }) => {
             );
             if (response?.status) {
                 show(response?.message, "success");
-                navigation.navigate("MechanicBookingsDetails", { id:booking?._id })
+                navigation.navigate("MechanicBookingsDetails", { id: booking?._id });
                 setLoading(false);
             } else {
                 setLoading(false);
@@ -145,6 +184,7 @@ const FinishService = ({ booking }) => {
             setLoading(false);
         }
     };
+    
 
 
 
@@ -304,12 +344,16 @@ const FinishService = ({ booking }) => {
                     </View>
                 ))}
 
+                <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                    Additional Services
+                </Text>
+
                 {
                     booking?.services.length > 1 && (
                         <>
-                            <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                            {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                 Add Ons (User)
-                            </Text>
+                            </Text> */}
                             {booking?.services.slice(1).map((service, index) => (
                                 <View
                                     key={index}
@@ -351,9 +395,9 @@ const FinishService = ({ booking }) => {
                 {
                     booking?.additionalServices.length > 0 && (
                         <>
-                            <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                            {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                 Add Ons (Mechanic)
-                            </Text>
+                            </Text> */}
                             {booking?.additionalServices.map((service, index) => (
                                 <View
                                     key={index}
@@ -459,9 +503,32 @@ const FinishService = ({ booking }) => {
                         borderRadius="10px"
                         marginTop={2}
                     >
-                        <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
-                            Spares
-                        </Text>
+                        <View
+                            width="100%"
+                            bg="#ffffff"
+                            borderRadius="10px"
+                            // marginTop={2}
+                            // p={3}
+                            alignItems="center"
+                            flexDirection="row"
+                            justifyContent="space-between">
+                            <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                Spares
+                            </Text>
+                            <CustomButton
+                                onPress={() => navigation.navigate("SpareListScreen", booking?._id)}
+                                btnStyle={{ margin: 0, padding: 0, height: 35, alignSelf: 'flex-end', backgroundColor: '#5349f8' }}
+                                textStyle={{
+                                    color: "#fff",
+                                    fontWeight: "500",
+                                    fontSize: 12,
+                                    lineHeight: 12,
+                                    padding: 0
+                                }}
+                            >
+                                Add/Edit Spares Images
+                            </CustomButton>
+                        </View>
                         {booking?.spareParts.map((spareParts, index) => (
                             <View
                                 key={index}
