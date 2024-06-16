@@ -285,7 +285,7 @@ const BookingCardDetail = ({ booking }) => {
                                         resizeMode='contain'
                                     />
                                 </TouchableOpacity> */}
-                                <CustomButton btnStyle={{height: "35%"}} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={navigate}>Navigate</CustomButton>
+                                <CustomButton btnStyle={{ height: "35%" }} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={navigate}>Navigate</CustomButton>
                             </HStack>
                         </View>
 
@@ -354,12 +354,16 @@ const BookingCardDetail = ({ booking }) => {
                                     </View>
                                 ))}
 
+                            <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                Additional Services
+                            </Text>
+
                             {
                                 booking?.services.length > 1 && (
                                     <>
-                                        <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                        {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                             Add Ons (User)
-                                        </Text>
+                                        </Text> */}
                                         {booking?.services
                                             .filter(service => service?.service?.service?.serviceType?.name === "Add-On")
                                             .map((service, index) => (
@@ -387,9 +391,9 @@ const BookingCardDetail = ({ booking }) => {
                             {
                                 booking?.additionalServices.length > 0 && (
                                     <>
-                                        <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                        {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                             Add Ons (Mechanic)
-                                        </Text>
+                                        </Text> */}
                                         {booking?.additionalServices.map((service, index) => (
                                             <View
                                                 key={index}

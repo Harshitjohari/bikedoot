@@ -7,7 +7,7 @@ import Header from '../../../../components/header';
 import { useAuth } from '../../../../context/loginContext';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation } from '@react-navigation/native';
-
+import { handleToast } from '../../../../utils/toast'
 
 
 import CustomButton from '../../../../components/UI/button'
@@ -30,6 +30,7 @@ const EditScreen = (props) => {
 
 
   const { token } = useAuth();
+  const { show } = handleToast();
   const [isLoading, setLoading] = useState(true);
 
   const [modalVisibleProfile, setModalVisibleProfile] = useState(false);
@@ -47,7 +48,6 @@ const EditScreen = (props) => {
 
   const updateImage = async (reqData, key) => {
     try {
-      // console.log('key====================>',key)
       let formDataReq = new FormData();
       let data = {
         uri: reqData?.assets?.[0]?.uri,
@@ -57,10 +57,6 @@ const EditScreen = (props) => {
 
       formDataReq.append(key, data);
       formDataReq.append('_id', spareData?._id);
-
-      // console.log('formDataReq=================+>',formDataReq)
-
-
 
       setLoading(true)
       let response = await fetch(Constant.BASE_URL + Constant.UPDATE_SPARE + spareData?.bookId + '/spareParts/update', {
@@ -76,14 +72,23 @@ const EditScreen = (props) => {
       setLoading(false)
 
       if (result?.status) {
-        // show(response ?.message, "success");
-        props.navigation.goBack();
-        // props.navigation.navigate('SpareEdit',{id : spareData._id})
+
+        let  updatedSpareData = result?.data.find(sparePart => sparePart._id === spareData?._id);
+        setCustomData({
+          name: updatedSpareData?.name,
+          quantity: updatedSpareData?.quantity,
+          price: updatedSpareData?.price,
+          gstRate: updatedSpareData?.gstRate,
+          beforeImage: updatedSpareData?.beforeImage,
+          afterImage: updatedSpareData?.afterImage,
+        })
+        setModalVisibleProfile(false)
+        setModalVisibleAadharF(false)
+        show(result?.message, "success");
       }
       else {
-        // show(response?.message || "Failed to update, please try again later", "error");
+        show(result?.message || "Failed to update, please try again later", "error");
       }
-
     }
     catch (error) {
       console.log(error)
@@ -170,7 +175,7 @@ const EditScreen = (props) => {
     // console.log('res============++>',response)
 
     if (response?.status) {
-      // show(response ?.message, "success");
+      show(response ?.message, "success");
       // navigation.navigate("SpareListScreen", spareData?.bookId)
       props.navigation.goBack();
       // props.navigation.navigate('SpareEdit',{spareData?.bookId})
@@ -331,14 +336,14 @@ const EditScreen = (props) => {
           </View>
         </ScrollView>
         <View style={{
-            marginLeft: 20,
-            marginRight: 20,
-            marginBottom : 20
-          }}>
-            <CustomButton onPress={handleUpdate} btnStyle={{}}>
-              Update
-            </CustomButton>
-          </View>
+          marginLeft: 20,
+          marginRight: 20,
+          marginBottom: 20
+        }}>
+          <CustomButton onPress={handleUpdate} btnStyle={{}}>
+            Update
+          </CustomButton>
+        </View>
       </KeyboardAwareScrollView>
 
       <Modal

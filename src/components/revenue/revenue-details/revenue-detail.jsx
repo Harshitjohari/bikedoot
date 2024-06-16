@@ -46,7 +46,7 @@ const RevenueCardDetail = ({ revenue }) => {
         const hours = date.getHours().toString().padStart(2, '0');
         const minutes = date.getMinutes().toString().padStart(2, '0');
         const seconds = date.getSeconds().toString().padStart(2, '0');
-    
+
         return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
     };
 
@@ -252,108 +252,112 @@ const RevenueCardDetail = ({ revenue }) => {
                             {revenue?.booking?.services
                                 .filter(service => service?.service?.service?.serviceType?.name === "Service")
                                 .map((service, index) => (
-                                <View
-                                    key={index}
-                                    width="100%"
-                                    bg="#ffffff"
-                                    borderRadius="10px"
-                                    alignItems="center"
-                                    flexDirection="row"
-                                    justifyContent="space-between"
-                                >
-                                    <Text
-                                        fontWeight="500"
-                                        fontSize="bd_xsm"
-                                        mb={1}
-                                        lineHeight="20px"
-                                        color="bd_sec_text"
-                                        style={{ flex: 1 }}
+                                    <View
+                                        key={index}
+                                        width="100%"
+                                        bg="#ffffff"
+                                        borderRadius="10px"
+                                        alignItems="center"
+                                        flexDirection="row"
+                                        justifyContent="space-between"
                                     >
-                                        {index + 1}. {service?.service?.service?.name}
-                                    </Text>
-                                    <Text
-                                        fontWeight="500"
-                                        fontSize="bd_xsm"
-                                        mb={1}
-                                        lineHeight="20px"
-                                        color="bd_sec_text"
-                                        style={{ width: 80, textAlign: 'right' }}
-                                    >
-                                        ₹{service?.price}
-                                    </Text>
-                                    {userData.garage.firmRegistered === true && userData.garage.firmGstNo !== '' && (
                                         <Text
                                             fontWeight="500"
                                             fontSize="bd_xsm"
                                             mb={1}
                                             lineHeight="20px"
                                             color="bd_sec_text"
-                                            style={{ width: 100, textAlign: 'right' }}
+                                            style={{ flex: 1 }}
                                         >
-                                            ₹{(service?.price * 18) / 100} (18%)
+                                            {index + 1}. {service?.service?.service?.name}
                                         </Text>
-                                    )}
-                                </View>
-                            ))}
+                                        <Text
+                                            fontWeight="500"
+                                            fontSize="bd_xsm"
+                                            mb={1}
+                                            lineHeight="20px"
+                                            color="bd_sec_text"
+                                            style={{ width: 80, textAlign: 'right' }}
+                                        >
+                                            ₹{service?.price}
+                                        </Text>
+                                        {userData.garage.firmRegistered === true && userData.garage.firmGstNo !== '' && (
+                                            <Text
+                                                fontWeight="500"
+                                                fontSize="bd_xsm"
+                                                mb={1}
+                                                lineHeight="20px"
+                                                color="bd_sec_text"
+                                                style={{ width: 100, textAlign: 'right' }}
+                                            >
+                                                ₹{(service?.price * 18) / 100} (18%)
+                                            </Text>
+                                        )}
+                                    </View>
+                                ))}
+
+                            <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                Additional Services
+                            </Text>
 
                             {revenue?.booking?.services.length > 1 && (
                                 <>
-                                    <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                    {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                         Add Ons (User)
-                                    </Text>
+                                    </Text> */}
                                     {revenue?.booking?.services
-                                .filter(service => service?.service?.service?.serviceType?.name === "Add-On").map((service, index) => (
-                                        <View
-                                            key={index}
-                                            width="100%"
-                                            bg="#ffffff"
-                                            borderRadius="10px"
-                                            alignItems="center"
-                                            flexDirection="row"
-                                            justifyContent="space-between"
-                                        >
-                                            <Text
-                                                fontWeight="500"
-                                                fontSize="bd_xsm"
-                                                mb={1}
-                                                lineHeight="20px"
-                                                color="bd_sec_text"
-                                                style={{ flex: 1 }}
+                                        .filter(service => service?.service?.service?.serviceType?.name === "Add-On").map((service, index) => (
+                                            <View
+                                                key={index}
+                                                width="100%"
+                                                bg="#ffffff"
+                                                borderRadius="10px"
+                                                alignItems="center"
+                                                flexDirection="row"
+                                                justifyContent="space-between"
                                             >
-                                                {index + 1}. {service?.service?.service?.name}
-                                            </Text>
-                                            <Text
-                                                fontWeight="500"
-                                                fontSize="bd_xsm"
-                                                mb={1}
-                                                lineHeight="20px"
-                                                color="bd_sec_text"
-                                                style={{ width: 80, textAlign: 'right' }}
-                                            >
-                                                ₹{service?.price}
-                                            </Text>
-                                            {userData.garage.firmRegistered === true && userData.garage.firmGstNo !== '' && (
                                                 <Text
                                                     fontWeight="500"
                                                     fontSize="bd_xsm"
                                                     mb={1}
                                                     lineHeight="20px"
                                                     color="bd_sec_text"
-                                                    style={{ width: 100, textAlign: 'right' }}
+                                                    style={{ flex: 1 }}
                                                 >
-                                                    ₹{(service?.price * 18) / 100} (18%)
+                                                    {index + 1}. {service?.service?.service?.name}
                                                 </Text>
-                                            )}
-                                        </View>
-                                    ))}
+                                                <Text
+                                                    fontWeight="500"
+                                                    fontSize="bd_xsm"
+                                                    mb={1}
+                                                    lineHeight="20px"
+                                                    color="bd_sec_text"
+                                                    style={{ width: 80, textAlign: 'right' }}
+                                                >
+                                                    ₹{service?.price}
+                                                </Text>
+                                                {userData.garage.firmRegistered === true && userData.garage.firmGstNo !== '' && (
+                                                    <Text
+                                                        fontWeight="500"
+                                                        fontSize="bd_xsm"
+                                                        mb={1}
+                                                        lineHeight="20px"
+                                                        color="bd_sec_text"
+                                                        style={{ width: 100, textAlign: 'right' }}
+                                                    >
+                                                        ₹{(service?.price * 18) / 100} (18%)
+                                                    </Text>
+                                                )}
+                                            </View>
+                                        ))}
                                 </>
                             )}
 
                             {revenue?.booking?.additionalServices.length > 0 && (
                                 <>
-                                    <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                    {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                         Add Ons (Mechanic)
-                                    </Text>
+                                    </Text> */}
                                     {revenue?.booking?.additionalServices.map((service, index) => (
                                         <View
                                             key={index}
@@ -537,29 +541,29 @@ const RevenueCardDetail = ({ revenue }) => {
                             </View>
 
                             {
-                            revenue?.booking?.paymentDetails &&
+                                revenue?.booking?.paymentDetails &&
                                 <View
                                     width="100%"
                                     bg="#ffffff"
                                     borderRadius="10px"
                                     marginTop={5}
                                 >
-                            
-                                        <View>
-                                            <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
-                                                Payment Details
-                                            </Text>
-                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                Transaction Id : {revenue?.booking?.paymentDetails?.order_id}
-                                            </Text>
-                                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                Payment Date & Time : {formatDate2(revenue?.booking?.paymentDetails?.created_at)}
-                                            </Text>
-                                        </View>
+
+                                    <View>
+                                        <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                                            Payment Details
+                                        </Text>
+                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                            Transaction Id : {revenue?.booking?.paymentDetails?.order_id}
+                                        </Text>
+                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                            Payment Date & Time : {formatDate2(revenue?.booking?.paymentDetails?.created_at)}
+                                        </Text>
+                                    </View>
                                 </View>
-                                
-                                
-                        }
+
+
+                            }
                         </View>
                     </Box>
                 </View>

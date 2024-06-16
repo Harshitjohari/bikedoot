@@ -452,7 +452,7 @@ const BookingCardDetail = ({ booking }) => {
                                     <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                         Spares
                                     </Text>
-                                    <CustomButton
+                                    {/* <CustomButton
                                         onPress={() => navigation.navigate("SpareListScreen", booking?._id)}
                                         btnStyle={{ margin: 0, padding: 0, height: 35, alignSelf: 'flex-end', backgroundColor: '#5349f8' }}
                                         textStyle={{
@@ -464,7 +464,7 @@ const BookingCardDetail = ({ booking }) => {
                                         }}
                                     >
                                         Add/Edit Spares Images
-                                    </CustomButton>
+                                    </CustomButton> */}
                                 </View>
 
                                 {booking?.spareParts.map((spareParts, index) => (
