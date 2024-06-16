@@ -1509,6 +1509,7 @@ drawable src_assets_images_dummybanner
 drawable src_assets_images_editt
 drawable src_assets_images_empty
 drawable src_assets_images_gallery
+drawable src_assets_images_invoice
 drawable src_assets_images_phone
 drawable src_assets_images_pin
 drawable src_assets_images_rating

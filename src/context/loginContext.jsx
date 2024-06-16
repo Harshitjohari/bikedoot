@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
     const [userData, setUserData] = useState(null);
     const [selectedCity, setSelectedCity] = useState(null);
     const [cities, setCities] = useState([]);
+    const [location, setLocation] = useState(null);
+
 
     const fetchCities = async (token) => {
         try {
@@ -41,6 +43,7 @@ export const AuthProvider = ({ children }) => {
     const loadUserDataFromStorage = async () => {
         try {
             const storedToken = JSON.parse(await Storage.getDataFromStorage('userToken'));
+            const location = JSON.parse(await Storage.getDataFromStorage('location'));
             const storedUserData = JSON.parse(await Storage.getDataFromStorage('userData'));
             const selectedCity = JSON.parse(await Storage.getDataFromStorage('city'));
             const cityArray = JSON.parse(await Storage.getDataFromStorage('cityArray'));
@@ -59,6 +62,9 @@ export const AuthProvider = ({ children }) => {
             }
             if (storedUserData) {
                 setUserData(storedUserData);
+            }
+            if (location) {
+                setLocation(location);
             }
         } catch (error) {
             console.error('Error loading user data from storage:', error);
@@ -102,6 +108,15 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const setLatLong = async (latlong) => {
+        try {
+            setLocation(latlong);
+            await Storage.setDataInStorage('location', latlong);
+        } catch (error) {
+            console.error('Error setting user data to storage:', error);
+        }
+    };
+
     const saveCityArrayInStorage = async (cityArray) => {
         try {
             await Storage.setDataInStorage('cityArray', JSON.stringify(cityArray));
@@ -128,13 +143,14 @@ export const AuthProvider = ({ children }) => {
             await Storage.removeDataFromStorage('userData');
             await Storage.removeDataFromStorage('city');
             await Storage.removeDataFromStorage('cityArray');
+            await Storage.removeDataFromStorage('location');
         } catch (error) {
             console.error('Error clearing user data from storage:', error);
         }
     };
 
     return (
-        <AuthContext.Provider value={{ token, userData, setAuthData, clearAuthData, selectedCity, setCityData, loadUserDataFromStorage, loadCityDataFromStorage, cities, fetchCities }}>
+        <AuthContext.Provider value={{ token, userData, setAuthData, clearAuthData, selectedCity, setCityData, loadUserDataFromStorage, loadCityDataFromStorage, cities, fetchCities, setLatLong,location }}>
             {children}
         </AuthContext.Provider>
     );

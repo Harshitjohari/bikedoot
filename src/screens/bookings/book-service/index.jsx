@@ -23,7 +23,7 @@ import Geolocation from '@react-native-community/geolocation';
 const Stepper = (props) => {
   const { garageID, serviceType, title } = props.route.params;
 
-  const { token } = useAuth();
+  const { token, location } = useAuth();
   const { show, close, closeAll } = handleToast();
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -58,8 +58,6 @@ const Stepper = (props) => {
   const [takePermissionBeforeReplacing, setTakePermissionBeforeReplacing] = useState(false);
   const [selectedDateIndex, setSelectedDateIndex] = useState(-1);
   const [isNotServicable, setIsNotServicable] = useState(false)
-
-  const [location, setLocation] = useState(null);
 
 
   const [totalAmount, setTotalAmount] = useState(0);
@@ -132,30 +130,30 @@ const Stepper = (props) => {
   useEffect(() => {
     fetchGarageData();
     // getLocation();
-    checkGPS();
+    // checkGPS();
   }, []);
 
-  const checkGPS = () => {
-    Geolocation.getCurrentPosition(
-      (position) => {
-        // console.log('1234============================>>>>>>',position.coords);
-        const { latitude, longitude } = position.coords;
-        setLocation({latitude, longitude})
-        console.log('=======>',{latitude, longitude})
-      },
-      (error) => {
-        Alert.alert(
-          'GPS not enabled',
-          'Please enable GPS to use this app.',
-          [
-            { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-          ],
-          { cancelable: false }
-        );
-      },
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
-};
+//   const checkGPS = () => {
+//     Geolocation.getCurrentPosition(
+//       (position) => {
+//         // console.log('1234============================>>>>>>',position.coords);
+//         const { latitude, longitude } = position.coords;
+//         setLocation({latitude, longitude})
+//         console.log('=======>',{latitude, longitude})
+//       },
+//       (error) => {
+//         Alert.alert(
+//           'GPS not enabled',
+//           'Please enable GPS to use this app.',
+//           [
+//             { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+//           ],
+//           { cancelable: false }
+//         );
+//       },
+//       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+//     );
+// };
 
 
   // const getLocation = async () => {
@@ -229,8 +227,8 @@ const Stepper = (props) => {
           "city": selectedAddress[0].id,
           "pincode": selectedAddress[0].pincode,
           "address": selectedAddress[0].address1,
-          "latitude":location.latitude,
-          "longitude":location.longitude
+          "latitude":JSON.parse(location).latitude,
+          "longitude":JSON.parse(location).longitude,
         },
         "date": selectedDate,
         "time": selectedTime,

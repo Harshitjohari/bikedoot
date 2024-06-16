@@ -11,50 +11,21 @@ import Geolocation from '@react-native-community/geolocation';
 
 const ServiesList = ({ navigation, route }) => {
     const {garageID, title} = route.params;
-    const { token,selectedCity,userData } = useAuth();
+    const { token,selectedCity,userData, location } = useAuth();
     const {_id} = selectedCity;
     const cityID = _id;
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
-    const [location, setLocation] = useState(null);
-    const [latitude, setlatitude] = useState(28.6367922);
-    const [longitude, setlongitude] = useState(77.3720661);
+    const [latitude, setlatitude] = useState(null);
+    const [longitude, setlongitude] = useState(null);
     const [radius, setRadius] = useState(0);
 
 
     useEffect(() => {
-        if (latitude !== null && longitude !== null) {
             fetchGarageData();
-        }
-    }, [latitude, longitude, radius]);
-
-    useEffect(() => {
-        // getLocation();
-        checkGPS();
     }, []);
 
-    const checkGPS = () => {
-        Geolocation.getCurrentPosition(
-          (position) => {
-            console.log(position);
-            const { latitude, longitude } = position.coords;
-            setlatitude(latitude)
-            setlongitude(longitude)
-          },
-          (error) => {
-            Alert.alert(
-              'GPS not enabled',
-              'Please enable GPS to use this app.',
-              [
-                { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-              ],
-              { cancelable: false }
-            );
-          },
-          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-        );
-    };
 
     // const getLocation = async () => {
     //     Geolocation.getCurrentPosition(
@@ -70,10 +41,11 @@ const ServiesList = ({ navigation, route }) => {
         try {
             setLoading(true);
             let data = {
-                "latitude":latitude,
-                "longitude":longitude,
+                "latitude":JSON.parse(location).latitude,
+                "longitude":JSON.parse(location).longitude,
                 "radius": radius === 'All' ? 0 : parseInt(radius)
             }
+            console.log('=======>',data)
             let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.GARAGE_DATA + cityID + "/garage/" + garageID, token, data)
 
             setLoading(false);

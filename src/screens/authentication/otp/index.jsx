@@ -86,6 +86,19 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
 
     };
 
+    const resendOtp = async () => {
+        try {
+            let response = await Apis.HttpPostRequestForLogin(Constant.BASE_URL + Constant.AUTH.OTP_REQUEST, { mobile: phone })
+            if (response?.status) {
+                show(response?.message, "success");
+            } else {
+                show(response?.message || "Failed to send OTP, try again later", "error");
+            }
+        } catch (e) {
+            show("Some error has occured!", "error");
+        }
+    };
+
     return (
         <Box flex={1} justifyContent="center" p={4} bg="screen_bg">
             <Pressable onPress={() => navigation.navigate("Login")}>
@@ -148,12 +161,12 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
                 >
                     Verify OTP
                 </CustomButton>
-                {/* <Text textAlign="center" mt={4}>
+                <Text textAlign="center" mt={4}>
                     Didn't get any OTP?{' '}
-                    <Text color="blue.500" onPress={() => navigation.navigate('SignUp')}>
+                    <Text color="blue.500" onPress={() => resendOtp()}>
                         click to resend
-        </Text>
-                </Text> */}
+                    </Text>
+                </Text>
             </Box>
         </Box>
     );

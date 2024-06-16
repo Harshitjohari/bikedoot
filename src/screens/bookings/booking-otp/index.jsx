@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Box, Text, HStack, Pressable, Input } from 'native-base';
+import { Box, Text, HStack, Pressable, Input, VStack } from 'native-base';
 import CustomButton from '../../../components/UI/button';
 import Apis from '../../../utils/api';
 import Constant from '../../../common/constant';
@@ -51,7 +51,7 @@ const Otpverify = (props) => {
 
     try {
       setIsLoading(true);
-      const response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.VERIFY_MECHANIC ,token, {bookingId:booking?._id, shareCode: otpNumber });
+      const response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.VERIFY_MECHANIC, token, { bookingId: booking?._id, shareCode: otpNumber });
       // console.log('==========>',response)
       setIsLoading(false);
 
@@ -70,59 +70,60 @@ const Otpverify = (props) => {
 
   return (
     <Box flex={1} justifyContent="center" p={4} bg="screen_bg">
-  <Box flex={1} justifyContent="center" p={4} bg="bg_white">
-    <Text fontSize="bd_xlg" textAlign="center" mb={0} fontWeight="900">
-      Enter OTP to verify
-    </Text>
+      <Box flex={1} justifyContent="center" p={4} bg="bg_white">
+        <Text fontSize="bd_xlg" textAlign="center" mb={0} fontWeight="900">
+          Enter Share Code
+        </Text>
 
-    <HStack space={4} alignItems="center" justifyContent="center" padding={4}>
-      {otpDigits.map((digit, index) => (
-        <Input
-          key={index}
-          width={12}
-          textAlign="center"
-          keyboardType="numeric"
-          maxLength={1}
-          ref={inputRefs.current[index]}
-          value={digit}
-          onChangeText={(text) => handleInputChange(text, index)}
-          variant="filled"
-          borderColor="#534AF9"
-          _focus={{
-            borderColor: '#534AF9',
+        <HStack space={4} alignItems="center" justifyContent="center" padding={4}>
+          {otpDigits.map((digit, index) => (
+            <Input
+              key={index}
+              width={12}
+              textAlign="center"
+              keyboardType="numeric"
+              maxLength={1}
+              ref={inputRefs.current[index]}
+              value={digit}
+              onChangeText={(text) => handleInputChange(text, index)}
+              variant="filled"
+              borderColor="#534AF9"
+              _focus={{
+                borderColor: '#534AF9',
+              }}
+              borderWidth={1}
+              borderRadius={10}
+              fontSize={24}
+            />
+          ))}
+        </HStack>
+
+        <VStack space={3} mt={5} justifyContent="center" alignItems="center">
+          <CustomButton onPress={verifyOtp} isLoading={isLoading} isLoadingText="Verifying share code..." disabled={isLoading} btnStyle={{ width: '70%' }}>
+            Verify Share Code
+          </CustomButton>
+
+          <CustomButton onPress={() => navigation.goBack()} btnStyle={{
+            width: '70%',
+            backgroundColor: 'white',
+            paddingVertical: 15,
+            borderRadius: 50,
+            alignItems: 'center',
+            borderColor: '#5349f8',
+            borderWidth: 1
           }}
-          borderWidth={1}
-          borderRadius={10}
-          fontSize={24}
-        />
-      ))}
-    </HStack>
+            textStyle={{
+              color: '#5349f8',
+              fontSize: 16,
+              fontWeight: 'bold'
+            }}>
+            Cancel
+          </CustomButton>
+        </VStack>
 
-    <HStack space={3} mt={5} justifyContent="center">
-      <CustomButton onPress={verifyOtp} isLoading={isLoading} isLoadingText="Verifying OTP" disabled={isLoading} btnStyle={{ width : '40%'}}>
-        Verify OTP
-      </CustomButton>
+      </Box>
+    </Box>
 
-      <CustomButton onPress={() => navigation.goBack()} isLoading={isLoading} disabled={isLoading} btnStyle={{ 
-        width : '40%',
-        backgroundColor: 'white',
-        paddingVertical: 15,
-        borderRadius: 50,
-        alignItems: 'center',
-        borderColor:'#5349f8',
-        borderWidth:1
-        }}
-        textStyle={{
-          color: '#5349f8',
-          fontSize: 16,
-          fontWeight: 'bold'
-        }}>
-        Cancel
-      </CustomButton>
-    </HStack>
-
-  </Box>
-</Box>
 
   );
 };

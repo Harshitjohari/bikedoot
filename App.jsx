@@ -10,7 +10,7 @@ const App = () => {
   return (<NativeBaseProvider theme={theme}>
     <NavigationContainer>
       <AuthProvider>
-      <GpsCheck />        
+      {/* <GpsCheck />         */}
       <MainNavigator />
       </AuthProvider>
     </NavigationContainer>
