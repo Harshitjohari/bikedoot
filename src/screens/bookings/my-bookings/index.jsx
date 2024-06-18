@@ -111,10 +111,10 @@ const BookingList = ({ horizontal = false, isHomePageComponent = false, navigati
             />
         </> : 
         <>
-         <TextHeader title="Book Your Service" text=''/>
+         {/* <TextHeader title="Book Your Service" text=''/>
          <View style={{borderWidth:1,borderColor:'#E1E1E1',borderRadius:10,alignContent:'center'}}>
         <Image source={imageConstant.dummyBanner} alt="" style={{ width: '100%', height:200, resizeMode: 'contain',marginTop:5 }} />
-        </View>
+        </View> */}
         </>
         )
     else

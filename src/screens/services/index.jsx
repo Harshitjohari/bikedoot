@@ -24,7 +24,7 @@ const ServiesList = ({ navigation, route }) => {
 
     useEffect(() => {
             fetchGarageData();
-    }, []);
+    }, [radius]);
 
 
     // const getLocation = async () => {

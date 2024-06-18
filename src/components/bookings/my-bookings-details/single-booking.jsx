@@ -1,7 +1,7 @@
 // Updated BookingCard.js
 import React from 'react';
 import { Box, Image, Text, ScrollView, FlatList, HStack, IconButton, Divider, VStack, navigation, Pressable, View } from 'native-base';
-import { TouchableOpacity, Alert, Modal, StyleSheet, Linking } from 'react-native';
+import { TouchableOpacity, Alert, Modal, StyleSheet, Linking, Dimensions } from 'react-native';
 
 import BadgeComponent from '../../UI/badges'
 import { Rating, AirbnbRating } from 'react-native-ratings';
@@ -21,6 +21,9 @@ import Ratings from '../../UI/rating';
 import { handleToast } from '../../../utils/toast';
 import { imageConstant } from '../../../utils/constant';
 
+const { width } = Dimensions.get('window');
+
+
 const BookingCardDetail = ({ booking, refresh }) => {
 
     const navigation = useNavigation()
@@ -31,6 +34,8 @@ const BookingCardDetail = ({ booking, refresh }) => {
     const [selectedDateIndex, setSelectedDateIndex] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
+    const [selectedTimeSlots, setSelectedTimeSlots] = useState(null);
+    const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
 
 
 
@@ -41,6 +46,9 @@ const BookingCardDetail = ({ booking, refresh }) => {
     useEffect(() => {
         fetchGarageData();
     }, []);
+
+    useEffect(() => {
+    }, [selectedTimeSlots]);
 
     const handleClosePreview = () => {
         setPreviewVisible(false);
@@ -89,9 +97,9 @@ const BookingCardDetail = ({ booking, refresh }) => {
             let response = await Apis.HttpGetRequest(Constant.BASE_URL + Constant.AUTH.GURAGE_DEATIL_API + booking?.garage?._id, token)
             if (response?.status) {
                 setGarageData(response.data)
-                const dates = garageData.availableDates
+                const dates = garageData.availableSlots
                 const index = dates.indexOf(booking.date);
-                // console.log('123=============++>',index);
+                // console.log('123=============++>',dates);
 
                 setSelectedDateIndex(index + 1)
             } else {
@@ -192,11 +200,13 @@ const BookingCardDetail = ({ booking, refresh }) => {
 
     const handleDateSelection = (date, index) => {
         setSelectedDateIndex(index)
-        setSelectedDate(date);
+        setSelectedDate(date.date);
+        setSelectedTimeSlots(date.slots)
     };
 
     const handleTimeSelection = (time) => {
-        setSelectedTime(time);
+        setSelectedTime(time.label);
+        setSelectedTimeSlot(time.value)
     };
 
     const renderTimeItem = (time, index) => (
@@ -204,12 +214,12 @@ const BookingCardDetail = ({ booking, refresh }) => {
             key={index}
             onPress={() => handleTimeSelection(time)}
             p={3}
-            bg={selectedTime === time ? '#ff5c39' : '#ffeeec'}
+            bg={selectedTime === time.label ? '#ff5c39' : '#ffeeec'}
             borderRadius={8}
             mr={1}
             mt={3}
         >
-            <Text fontWeight="500" fontSize="bd_sm" lineHeight="20px" color={selectedTime === time ? 'white' : '#ce8b7b'}>{time}</Text>
+            <Text fontWeight="500" fontSize="bd_sm" lineHeight="20px" color={selectedTime === time.label ? 'white' : '#ce8b7b'}>{time.label}</Text>
         </Pressable>
     );
 
@@ -234,7 +244,8 @@ const BookingCardDetail = ({ booking, refresh }) => {
             let data = {
                 "bookingId": booking?._id,
                 "date": selectedDate,
-                "time": selectedTime
+                "time": selectedTime,
+                "slot":selectedTimeSlot,
             }
 
             let response = await Apis.HttpPostRequest(
@@ -277,7 +288,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
     };
 
     const openPdf = (pdfUrl) => {
-        console.log('============>', pdfUrl)
+        // console.log('============>', pdfUrl)
         Linking.openURL(pdfUrl).catch(err => console.error("Couldn't load page", err));
     };
 
@@ -303,12 +314,12 @@ const BookingCardDetail = ({ booking, refresh }) => {
                             marginTop={2}
                             p={3}
                         >
-                            <HStack space={2}>
-                                <Box flex={4}>
+                            <HStack space={1}>
+                                <Box flex={4} width={width-60}>
                                     <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
                                         Booking ID
                                     </Text>
-                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" width={width-60}>
                                         {booking?.bookingId}
                                     </Text>
                                     {
@@ -321,7 +332,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 </Box>
                                 <Box flex={1}>
                                 </Box>
-                                <Box flex={5}>
+                                <Box flex={5} width={width-40}>
                                     <Text fontWeight="600" fontSize="bd_sm" lineHeight="50px" color="bd_dark_text" textAlign="right">
                                         <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre-Inspection Completed' : booking?.status} />
                                     </Text>
@@ -540,12 +551,9 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 Additional Services
                             </Text>
 
-                            {
+                            {/* {
                                 booking?.services.length > 1 && (
                                     <>
-                                        {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
-                                            Add Ons (User)
-                                        </Text> */}
                                         {booking?.services
                                             .filter(service => service?.service?.service?.serviceType?.name === "Add-On")
                                             .map((service, index) => (
@@ -568,7 +576,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                             ))}
                                     </>
                                 )
-                            }
+                            } */}
 
                             {
                                 booking?.additionalServices.length > 0 && (
@@ -704,14 +712,14 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 paddingBottom={2}
                                 alignItems="center"
                                 flexDirection="row"
-                                justifyContent="space-between"
+                                justifyContent="space-between" 
                             >
 
                                 <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
                                     {booking?.completed ? 'Total ' : 'Estimated '}
                                     Amount :
                                 </Text>
-                                <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
+                                <Text fontWeight="500" fontSize="bd_sm" mb={0}  color="bd_dark_text">
                                     ₹{booking?.amount}
                                 </Text>
 
@@ -760,13 +768,18 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 justifyContent="space-between"
                                 alignItems="center"
                             >
+                                <View>
                                 <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
                                     Invoice
                                 </Text>
-                                <TouchableOpacity onPress={() => openPdf(booking?.invoice)}>
+                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                   {booking?.invoice?.invoice_no}
+                                </Text>
+                                </View>
+                                <TouchableOpacity onPress={() => openPdf(booking?.invoice?.url)}>
                                     <Image
                                         source={imageConstant.invoice}
-                                        alt="Bike Image"
+                                        alt="Invoice Image"
                                         size="50px"
                                         resizeMode="contain"
                                     />
@@ -868,15 +881,28 @@ const BookingCardDetail = ({ booking, refresh }) => {
                         <View style={styles.modalView}>
                             <Text style={styles.modalTitle}>Reschedule Service</Text>
 
-                            <VStack space={2} mb={2} height={200}>
+                            <VStack space={3} mb={0} height={200} width={'100%'}>
                                 <Text fontWeight="500" fontSize="14" mb={1} lineHeight="20px" color="grey">
                                     Selected Date : {formatDate(booking?.date)}
                                 </Text>
                                 <Text fontWeight="600" fontSize="bd_md" mb={0} lineHeight="20px" color="bd_dark_text">
                                     Select Date
                                 </Text>
-                                <Divider />
+                                {/* <Divider /> */}
                                 <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
+                                    {garageData?.availableSlots && garageData?.availableSlots.map((data, index) => {
+                                        return (
+                                            <Pressable onPress={() => handleDateSelection(data, index)}>
+                                                <VStack mr={2} space={2} bg={selectedDateIndex === index ? "#5349f8" : "transparent"} p={2} borderRadius={50} pt={4} pb={4}>
+                                                    <Text fontWeight="700" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_sec_text"} textAlign="center">{data.dateLabel}</Text>
+                                                    {/* <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.dayName}</Text>
+                                                    <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.day}</Text> */}
+                                                </VStack>
+                                            </Pressable>
+                                        )
+                                    })}
+                                </ScrollView>
+                                {/* <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
                                     {garageData?.availableDates && garageData?.availableDates.map((data, index) => {
                                         let formattedDate = formatDate1(data);
                                         return (
@@ -889,10 +915,10 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                             </Pressable>
                                         )
                                     })}
-                                </ScrollView>
+                                </ScrollView> */}
                             </VStack>
 
-                            <VStack space={2} mb={1} mt={0} height={130}>
+                            <VStack space={2} mb={1} mt={-5} height={130}>
                                 <Text fontWeight="500" fontSize="14" mb={1} lineHeight="20px" color="grey">
                                     Selected Time Slot : {booking?.time}
                                 </Text>
@@ -902,10 +928,15 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 <Divider />
 
                                 <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
-                                    {garageData?.availableTimes && garageData?.availableTimes.map((data, index) => {
+                                    {selectedTimeSlots && selectedTimeSlots.map((data, index) => {
                                         return renderTimeItem(data, index)
                                     })}
                                 </ScrollView>
+                                {/* <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
+                                    {garageData?.availableTimes && garageData?.availableTimes.map((data, index) => {
+                                        return renderTimeItem(data, index)
+                                    })}
+                                </ScrollView> */}
 
                             </VStack>
 

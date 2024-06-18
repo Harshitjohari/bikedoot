@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Dimensions, TouchableOpacity } from 'react-native';
 import { View, Box, Text, Button, VStack, HStack, Pressable, ScrollView, Divider, TextArea, Switch } from 'native-base';
 import Header from '../../../components/header';
@@ -9,15 +9,25 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AddressCard from '../../../components/address/single-address'
 
-const DateTimePicker = ({ dateArray, timeArray, navigation, selectedDate, setSelectedDateIndex, selectedDateIndex,
+const DateTimePicker = ({ dateArray,dateArrayNew, timeArray, navigation, selectedDate, setSelectedDateIndex, selectedDateIndex,
     setSelectedDate,
     selectedTime,
     setSelectedTime,
+    selectedTimeSlot,
+    setSelectedTimeSlot,
     selectedAddress,
     setOtherSuggestionText, otherSuggestionText,
     takePermissionBeforeReplacing,
     setTakePermissionBeforeReplacing,
-    setSelectedAddress }) => {
+    setSelectedAddress,
+    }) => {
+
+  const [selectedTimeSlots, setSelectedTimeSlots] = useState(null);
+
+  useEffect(() => {
+   
+  }, [selectedTimeSlots]);
+
 
     // function formatDate(dateString) {
     //     const dateObject = new Date(dateString);
@@ -46,11 +56,13 @@ const DateTimePicker = ({ dateArray, timeArray, navigation, selectedDate, setSel
 
     const handleDateSelection = (date, index) => {
         setSelectedDateIndex(index)
-        setSelectedDate(date);
+        setSelectedDate(date.date);
+        setSelectedTimeSlots(date.slots)
     };
 
     const handleTimeSelection = (time) => {
-        setSelectedTime(time);
+        setSelectedTime(time.label);
+        setSelectedTimeSlot(time.value)
     };
 
     const renderTimeItem = (time, index) => (
@@ -58,12 +70,12 @@ const DateTimePicker = ({ dateArray, timeArray, navigation, selectedDate, setSel
             key={index}
             onPress={() => handleTimeSelection(time)}
             p={3}
-            bg={selectedTime === time ? '#ff5c39' : '#ffeeec'}
+            bg={selectedTime === time.label ? '#ff5c39' : '#ffeeec'}
             borderRadius={8}
             mr={1}
             mt={3}
         >
-            <Text fontWeight="500" fontSize="bd_sm" lineHeight="20px" color={selectedTime === time ? 'white' : '#ce8b7b'}>{time}</Text>
+            <Text fontWeight="500" fontSize="bd_sm" lineHeight="20px" color={selectedTime === time.label ? 'white' : '#ce8b7b'}>{time.label}</Text>
         </Pressable>
     );
 
@@ -86,7 +98,6 @@ const DateTimePicker = ({ dateArray, timeArray, navigation, selectedDate, setSel
     const [bottomSheetHeight, setBottomSheetHeight] = useState(height - 100);
     const [contentType, setContentType] = useState('');
 
-
     return (
         <Box p={0} flex={1} mb={2}>
             <VStack space={2} mb={4}>
@@ -108,6 +119,21 @@ const DateTimePicker = ({ dateArray, timeArray, navigation, selectedDate, setSel
                 />
 
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={3}>
+                    {dateArrayNew && dateArrayNew.map((data, index) => {
+                        return (
+                            <Pressable onPress={() => handleDateSelection(data, index)}>
+                                <VStack mr={2} space={2} bg={selectedDateIndex === index ? "#5349f8" : "transparent"} p={2} borderRadius={50} pt={4} pb={4}>
+                                    <Text fontWeight="700" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_sec_text"} textAlign="center">{data.dateLabel}</Text>
+                                    {/* <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.dayName}</Text>
+                                    <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.day}</Text> */}
+                                </VStack>
+                            </Pressable>
+                        )
+                    })}
+                </ScrollView>
+
+
+                {/* <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={3}>
                     {dateArray && dateArray.map((data, index) => {
                         let formattedDate = formatDate(data);
                         return (
@@ -120,7 +146,7 @@ const DateTimePicker = ({ dateArray, timeArray, navigation, selectedDate, setSel
                             </Pressable>
                         )
                     })}
-                </ScrollView>
+                </ScrollView> */}
             </VStack>
 
             <VStack space={2} mb={4} mt={5}>
@@ -130,10 +156,16 @@ const DateTimePicker = ({ dateArray, timeArray, navigation, selectedDate, setSel
                 <Divider />
 
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
-                    {timeArray && timeArray.map((data, index) => {
+                    {selectedTimeSlots && selectedTimeSlots.map((data, index) => {
                         return renderTimeItem(data, index)
                     })}
                 </ScrollView>
+
+                {/* <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
+                    {timeArray && timeArray.map((data, index) => {
+                        return renderTimeItem(data, index)
+                    })}
+                </ScrollView> */}
 
             </VStack>
 

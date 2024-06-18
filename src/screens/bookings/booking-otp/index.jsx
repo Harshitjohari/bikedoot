@@ -33,11 +33,19 @@ const Otpverify = (props) => {
   const handleInputChange = (text, index) => {
     const newOtpDigits = [...otpDigits];
     newOtpDigits[index] = text;
-
     setOtpDigits(newOtpDigits);
 
     if (text !== '' && index < 3) {
       handleFocus(index + 1);
+    }
+  };
+
+  const handleKeyPress = (event, index) => {
+    if (event.nativeEvent.key === 'Backspace' && index > 0) {
+      const newOtpDigits = [...otpDigits];
+      newOtpDigits[index] = '';
+      setOtpDigits(newOtpDigits);
+      inputRefs.current[index - 1].current.focus();
     }
   };
 
@@ -86,6 +94,7 @@ const Otpverify = (props) => {
               ref={inputRefs.current[index]}
               value={digit}
               onChangeText={(text) => handleInputChange(text, index)}
+              onKeyPress={(e) => handleKeyPress(e, index)}
               variant="filled"
               borderColor="#534AF9"
               _focus={{

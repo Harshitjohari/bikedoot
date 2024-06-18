@@ -37,6 +37,7 @@ const AddAllServices = ({
     }, []);
 
     const onItemPressed = (item, index) => {
+
         // Create a new array to avoid directly modifying the state
         const updatedServices = [...servicesData];
         // Update the is_selected property based on the _id
@@ -50,6 +51,7 @@ const AddAllServices = ({
         });
         // Update the state with the modified array
         setServicesData(updatedServices);
+
 
         calculateTotalAmount();
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Center, Box, Button, Text, ScrollView } from 'native-base';
+import { FlatList, Center, Box, Button, Text, ScrollView, Alert } from 'native-base';
 
 import RoundBoxCard from '../../components/UI/services-cards';
 import TextHeader from '../../components/UI/text-header'

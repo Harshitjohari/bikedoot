@@ -53,11 +53,13 @@ const Stepper = (props) => {
   // step3
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null)
   const [selectedAddress, setSelectedAddress] = useState([]);
   const [otherSuggestionText, setOtherSuggestionText] = useState("");
   const [takePermissionBeforeReplacing, setTakePermissionBeforeReplacing] = useState(false);
   const [selectedDateIndex, setSelectedDateIndex] = useState(-1);
   const [isNotServicable, setIsNotServicable] = useState(false)
+
 
 
   const [totalAmount, setTotalAmount] = useState(0);
@@ -232,6 +234,7 @@ const Stepper = (props) => {
         },
         "date": selectedDate,
         "time": selectedTime,
+        "slot":selectedTimeSlot,
         "services": services,
         "accessories": accessories,
         "sparePartPermission": takePermissionBeforeReplacing,
@@ -239,6 +242,7 @@ const Stepper = (props) => {
       }
 
       // console.log('==============>',data)
+      // return
 
       
       setCreateBookingLoader(true)
@@ -295,9 +299,12 @@ const Stepper = (props) => {
           setSelectedDate={setSelectedDate}
           selectedTime={selectedTime}
           setSelectedTime={setSelectedTime}
+          selectedTimeSlot={selectedTimeSlot}
+          setSelectedTimeSlot={setSelectedTimeSlot}
           selectedAddress={selectedAddress}
           setSelectedAddress={setSelectedAddress}
           dateArray={garageData ?.availableDates}
+          dateArrayNew={garageData ?.availableSlots}
           selectedDateIndex={selectedDateIndex}
           setSelectedDateIndex={setSelectedDateIndex}
           otherSuggestionText={otherSuggestionText}

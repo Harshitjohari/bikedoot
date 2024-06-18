@@ -21,7 +21,7 @@ const ServicesCard = ({ fromDetailPage = false, serviceObj, serviceType, navigat
         address
     } = serviceObj;
 
-    
+
 
     const TruncatedText = ({ text }) => {
         const [showFullText, setShowFullText] = useState(false);
@@ -74,12 +74,12 @@ const ServicesCard = ({ fromDetailPage = false, serviceObj, serviceType, navigat
                             {name}
                         </Text> */}
                         <HStack>
-                        <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="20px" color="bd_dark_text">
-                            {name}
-                        </Text>
-                        <Text fontWeight="500" fontSize={10} mb={0} lineHeight="20px" color="grey" marginLeft={1}>
-                            ({distance})
-                        </Text>
+                            <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="20px" color="bd_dark_text">
+                                {name}
+                            </Text>
+                            <Text fontWeight="500" fontSize={10} mb={0} lineHeight="20px" color="grey" marginLeft={1}>
+                                ({distance})
+                            </Text>
                         </HStack>
                         <Text fontWeight="400" fontSize={12} mb={2} lineHeight="20px" color="grey">
                             {address}
@@ -91,7 +91,7 @@ const ServicesCard = ({ fromDetailPage = false, serviceObj, serviceType, navigat
 
                             <HStack space={5} >
                                 <Button onPress={() => navigation.navigate('DateTimeSelectStep1', { garageID: _id, name: name, serviceType: serviceType, title: title })} p={0} mt={5} textStyle={{ fontSize: 12, fontWeight: "500" }} btnStyle={{ height: 40, borderRadius: 50, padding: 0, width: fromDetailPage ? "100%" : "60%" }}>Book Now</Button>
-                                {!fromDetailPage && <Button onPress={() => navigation.navigate('ServiceDetailPage', { garageID: _id, name: name,address: address, distance:distance,serviceType: serviceType, title: title })} p={0} mt={5} textStyle={{ fontSize: 12, fontWeight: "500" }} btnStyle={{ height: 40, borderRadius: 50, padding: 0, width: "60%" }}>View Garage</Button>}
+                                {!fromDetailPage && <Button onPress={() => navigation.navigate('ServiceDetailPage', { garageID: _id, name: name, address: address, distance: distance, serviceType: serviceType, title: title })} p={0} mt={5} textStyle={{ fontSize: 12, fontWeight: "500" }} btnStyle={{ height: 40, borderRadius: 50, padding: 0, width: "60%" }}>View Garage</Button>}
                             </HStack>
 
                         }
@@ -175,6 +175,8 @@ const ServicesCard = ({ fromDetailPage = false, serviceObj, serviceType, navigat
                             )
                         })} */}
 
+
+
                         {serviceCategory.map((data, index) => {
                             const isEvenIndex = index % 2 === 0;
                             const hasNextItem = index + 1 < serviceCategory.length;
@@ -182,36 +184,33 @@ const ServicesCard = ({ fromDetailPage = false, serviceObj, serviceType, navigat
                             if (isEvenIndex && hasNextItem) {
                                 const nextData = serviceCategory[index + 1];
                                 return (
-                                    <HStack space={3}>
-                                        <HStack key={index} space={1}>
-                                            <FontAwesome5 color={data?.active ? "#5cb85c" : "#bb2124"} name={data?.active ? "check-circle" : "times-circle"} />
-
+                                    <HStack space={3} key={index}>
+                                        <HStack space={1}>
+                                            <FontAwesome5 color={data.active ? "#5cb85c" : "#bb2124"} name={data.active ? "check-circle" : "times-circle"} />
                                             <Text fontWeight="600" fontSize="bd_xsm" mb={1} lineHeight="14px" color="#616C82">
-                                                {data?.name}
+                                                {data.name}
                                             </Text>
-
                                         </HStack>
-                                        <HStack key={index} space={1}>
-                                            <FontAwesome5 color={data?.active ? "#5cb85c" : "#bb2124"} name={data?.active ? "check-circle" : "times-circle"} />
-
+                                        <HStack space={1}>
+                                            <FontAwesome5 color={nextData.active ? "#5cb85c" : "#bb2124"} name={nextData.active ? "check-circle" : "times-circle"} />
                                             <Text fontWeight="600" fontSize="bd_xsm" mb={1} lineHeight="14px" color="#616C82">
-                                                {nextData?.name}
+                                                {nextData.name}
                                             </Text>
                                         </HStack>
                                     </HStack>
-
                                 );
-                            } else if (!hasNextItem) {
+                            } else if (!hasNextItem && isEvenIndex) {
                                 return (
                                     <HStack key={index} space={1}>
-                                        <FontAwesome5 color={data?.active ? "#5cb85c" : "#bb2124"} name={data?.active ? "check-circle" : "times-circle"} />
+                                        <FontAwesome5 color={data.active ? "#5cb85c" : "#bb2124"} name={data.active ? "check-circle" : "times-circle"} />
                                         <Text fontWeight="600" fontSize="bd_xsm" mb={1} lineHeight="14px" color="#616C82">
-                                            {data?.name}
+                                            {data.name}
                                         </Text>
                                     </HStack>
                                 );
                             }
                         })}
+
                     </Box>
                 </HStack>
             </Box>
