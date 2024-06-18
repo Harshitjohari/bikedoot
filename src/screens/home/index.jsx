@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Center, Box, Button, Text, ScrollView, Alert } from 'native-base';
+import { FlatList, Center, Box, Button, Text, ScrollView, Platform } from 'native-base';
+import { Alert } from 'react-native';
 
 import RoundBoxCard from '../../components/UI/services-cards';
 import TextHeader from '../../components/UI/text-header'
@@ -14,25 +15,32 @@ import { useAuth } from '../../context/loginContext';
 import Geolocation from '@react-native-community/geolocation';
 
 
+
 const HorizontalFlatList = (props) => {
   const { token, userData, setLatLong, selectedCity, location } = useAuth();
   let cityID = "";
+  const [banners, setBanners] = useState([]);
+  const [serviceCategory, setServiceCategory] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isAgreed, setIsAgreed] = useState(false);
+  const [loadingServices, setLoadingServices] = useState(false);
 
-  useEffect(() => {
-    checkGPS();
-  }, []);
+  // useEffect(() => {
+  //   checkGPS();
+  // }, []);
 
-  const checkGPS = () => {
+  const checkGPS = (item) => {
+    setLoadingServices(true)
     Geolocation.getCurrentPosition(
       (position) => {
-        console.log('===============>', position);
-        const { latitude, longitude } = position.coords;
+        setLoadingServices(false)
+        // console.log('==============>', position.coords);
         setLatLong(JSON.stringify(position.coords), JSON.stringify(position.coords))
-
-        // setlatitude(latitude)
-        // setlongitude(longitude)
+        props.navigation.navigate('ServicesList', { garageID: item._id, title: item.name })
       },
       (error) => {
+        setLoadingServices(false)
+        // console.log('===================++>', error)
         Alert.alert(
           'GPS not enabled',
           'Please enable GPS to use this app.',
@@ -45,7 +53,6 @@ const HorizontalFlatList = (props) => {
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
   };
-
 
   if (selectedCity) {
     if (selectedCity._id !== null) {
@@ -66,14 +73,15 @@ const HorizontalFlatList = (props) => {
     <RoundBoxCard iconSource={item.iconSource} title={item.title} />
   );
 
+  // const renderServicesItem = ({ item }) => (
+  //   <RoundBoxCard onPress={() => props.navigation.navigate('ServicesList', { garageID: item._id, title: item.name })} iconSource={item.icon ? { uri: item?.icon } : require('../../assets/images/doorstep-services.png')} title={item.name} />
+  // );
+
   const renderServicesItem = ({ item }) => (
-    <RoundBoxCard onPress={() => props.navigation.navigate('ServicesList', { garageID: item._id, title: item.name })} iconSource={item.icon ? { uri: item?.icon } : require('../../assets/images/doorstep-services.png')} title={item.name} />
+    <RoundBoxCard onPress={() => checkGPS(item)} iconSource={item.icon ? { uri: item?.icon } : require('../../assets/images/doorstep-services.png')} title={item.name} />
   );
 
-  const [banners, setBanners] = useState([]);
-  const [serviceCategory, setServiceCategory] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [isAgreed, setIsAgreed] = useState(false);
+
 
 
   useEffect(() => {
@@ -112,14 +120,16 @@ const HorizontalFlatList = (props) => {
           <BookingList horizontal={true} isHomePageComponent={true} navigation={props.navigation} />
           <TextHeader title="Book Your Service" showSeeAll={false} />
 
-          <FlatList
-            data={serviceCategory}
-            renderItem={renderServicesItem}
-            keyExtractor={(item) => item._id}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          // numColumns={2}
-          />
+          {loadingServices ? <Box p={2}> <LoadingSpinner text={'Please wait fetching location...'}  /> </Box > : (
+            <FlatList
+              data={serviceCategory}
+              renderItem={renderServicesItem}
+              keyExtractor={(item) => item._id}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+            // numColumns={2}
+            />
+          )}
 
           {/* <TextHeader title="Services By Brand" onPressSeeAll={() => console.log("Under construction")} />
 

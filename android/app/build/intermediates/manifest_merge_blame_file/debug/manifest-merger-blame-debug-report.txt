@@ -85,208 +85,215 @@
 46-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:37:13-61
 46-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:37:21-58
 47        </intent>
-48    </queries> <!-- Include required permissions for Google Maps API to run. -->
-49    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-49-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:23:5-79
-49-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:23:22-76
-50
-51    <uses-feature
-51-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:26:5-28:35
-52        android:glEsVersion="0x00020000"
-52-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:27:9-41
-53        android:required="true" />
-53-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:28:9-32
-54
-55    <application
-55-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:10:5-30:19
-56        android:name="com.bikedoot.MainApplication"
-56-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:11:7-38
-57        android:allowBackup="false"
-57-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:15:7-34
-58        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-58-->[androidx.core:core:1.8.0] /Users/harshit/.gradle/caches/transforms-3/73d130de081067ccd234419f7a70c184/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
-59        android:debuggable="true"
-60        android:icon="@mipmap/ic_launcher"
-60-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:13:7-41
-61        android:label="@string/app_name"
-61-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:12:7-39
-62        android:roundIcon="@mipmap/ic_launcher_round"
-62-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:14:7-52
-63        android:testOnly="true"
-64        android:theme="@style/AppTheme"
-64-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:17:7-38
-65        android:usesCleartextTraffic="true" >
-65-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:16:8-43
-66        <activity
-66-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml:11:9-111
-67            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-67-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml:11:19-83
-68            android:exported="false" />
-68-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml:11:84-108
+48    </queries> <!-- Required by older versions of Google Play services to create IID tokens -->
+49    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> <!-- Include required permissions for Google Maps API to run. -->
+49-->[com.google.android.gms:play-services-iid:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3265607c4b61e567341cd7d35e1b37bd/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:23:5-82
+49-->[com.google.android.gms:play-services-iid:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3265607c4b61e567341cd7d35e1b37bd/transformed/jetified-play-services-iid-17.0.0/AndroidManifest.xml:23:22-79
+50    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+50-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:23:5-79
+50-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:23:22-76
+51
+52    <uses-feature
+52-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:26:5-28:35
+53        android:glEsVersion="0x00020000"
+53-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:27:9-41
+54        android:required="true" />
+54-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:28:9-32
+55
+56    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+56-->[com.android.installreferrer:installreferrer:1.1.2] /Users/harshit/.gradle/caches/transforms-3/37e1af1c61932655942381b1311abfd4/transformed/jetified-installreferrer-1.1.2/AndroidManifest.xml:9:5-110
+56-->[com.android.installreferrer:installreferrer:1.1.2] /Users/harshit/.gradle/caches/transforms-3/37e1af1c61932655942381b1311abfd4/transformed/jetified-installreferrer-1.1.2/AndroidManifest.xml:9:22-107
+57
+58    <application
+58-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:10:5-30:19
+59        android:name="com.bikedoot.MainApplication"
+59-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:11:7-38
+60        android:allowBackup="false"
+60-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:15:7-34
+61        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+61-->[androidx.core:core:1.8.0] /Users/harshit/.gradle/caches/transforms-3/73d130de081067ccd234419f7a70c184/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
+62        android:debuggable="true"
+63        android:icon="@mipmap/ic_launcher"
+63-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:13:7-41
+64        android:label="@string/app_name"
+64-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:12:7-39
+65        android:roundIcon="@mipmap/ic_launcher_round"
+65-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:14:7-52
+66        android:testOnly="true"
+67        android:theme="@style/AppTheme"
+67-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:17:7-38
+68        android:usesCleartextTraffic="true" >
+68-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:16:8-43
 69        <activity
-69-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:18:7-29:18
-70            android:name="com.bikedoot.MainActivity"
-70-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:19:9-37
-71            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-71-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:21:9-118
-72            android:exported="true"
-72-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:24:9-32
-73            android:label="@string/app_name"
-73-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:20:9-41
-74            android:launchMode="singleTask"
-74-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:22:9-40
-75            android:windowSoftInputMode="adjustResize" >
-75-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:23:9-51
-76            <intent-filter>
-76-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:25:9-28:25
-77                <action android:name="android.intent.action.MAIN" />
-77-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:13-65
-77-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:21-62
-78
-79                <category android:name="android.intent.category.LAUNCHER" />
-79-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:27:13-73
-79-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:27:23-70
-80            </intent-filter>
-81        </activity>
-82
-83        <provider
-83-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-16:20
-84            android:name="com.imagepicker.ImagePickerProvider"
-84-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-63
-85            android:authorities="com.bikedoot.imagepickerprovider"
-85-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-71
-86            android:exported="false"
-86-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-37
-87            android:grantUriPermissions="true" >
-87-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-47
-88            <meta-data
-88-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
-89                android:name="android.support.FILE_PROVIDER_PATHS"
-89-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
-90                android:resource="@xml/imagepicker_provider_paths" />
-90-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
-91        </provider>
-92
-93        <activity
-93-->[:react-native-razorpay] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-razorpay/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-10:86
-94            android:name="com.razorpay.CheckoutActivity"
-94-->[:react-native-razorpay] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-razorpay/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-57
-95            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-95-->[:react-native-razorpay] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-razorpay/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-83
-96            android:exported="false"
-96-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:54:13-37
-97            android:theme="@style/CheckoutTheme" >
-97-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:55:13-49
-98            <intent-filter>
-98-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:56:13-58:29
-99                <action android:name="android.intent.action.MAIN" />
-99-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:13-65
-99-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:21-62
-100            </intent-filter>
-101        </activity>
-102
-103        <meta-data
-103-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] /Users/harshit/.gradle/caches/transforms-3/30508b5c4fced203718f0c895ed7662b/transformed/jetified-okhttp3-integration-4.12.0/AndroidManifest.xml:11:9-13:43
-104            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
-104-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] /Users/harshit/.gradle/caches/transforms-3/30508b5c4fced203718f0c895ed7662b/transformed/jetified-okhttp3-integration-4.12.0/AndroidManifest.xml:12:13-84
-105            android:value="GlideModule" />
-105-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] /Users/harshit/.gradle/caches/transforms-3/30508b5c4fced203718f0c895ed7662b/transformed/jetified-okhttp3-integration-4.12.0/AndroidManifest.xml:13:13-40
-106
-107        <receiver
-107-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:42:9-49:20
-108            android:name="com.razorpay.RzpTokenReceiver"
-108-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:43:13-57
-109            android:exported="true" >
-109-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:44:13-36
-110            <intent-filter>
-110-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:46:13-48:29
-111                <action android:name="rzp.device_token.share" />
-111-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:37:13-61
-111-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:37:21-58
-112            </intent-filter>
-113        </receiver>
-114
-115        <meta-data
-115-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:61:9-63:58
-116            android:name="com.razorpay.plugin.googlepay_all"
-116-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:62:13-61
-117            android:value="com.razorpay.RzpGpayMerged" />
-117-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:63:13-55
-118
-119        <activity
-119-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:23:9-27:75
-120            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-120-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:24:13-93
-121            android:excludeFromRecents="true"
-121-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:25:13-46
-122            android:exported="false"
-122-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:26:13-37
-123            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-123-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:27:13-72
-124        <!--
-125            Service handling Google Sign-In user revocation. For apps that do not integrate with
-126            Google Sign-In, this service will never be started.
-127        -->
-128        <service
-128-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:33:9-37:51
-129            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-129-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:34:13-89
-130            android:exported="true"
-130-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:35:13-36
-131            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-131-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:36:13-107
-132            android:visibleToInstantApps="true" /> <!-- Needs to be explicitly declared on P+ -->
-132-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:37:13-48
-133        <uses-library
-133-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
-134            android:name="org.apache.http.legacy"
-134-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
-135            android:required="false" />
-135-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
-136
-137        <activity
-137-->[com.google.android.gms:play-services-base:18.3.0] /Users/harshit/.gradle/caches/transforms-3/1975fa6ae02c2a69493e23b9d594ff88/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:20:9-22:45
-138            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-138-->[com.google.android.gms:play-services-base:18.3.0] /Users/harshit/.gradle/caches/transforms-3/1975fa6ae02c2a69493e23b9d594ff88/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:20:19-85
-139            android:exported="false"
-139-->[com.google.android.gms:play-services-base:18.3.0] /Users/harshit/.gradle/caches/transforms-3/1975fa6ae02c2a69493e23b9d594ff88/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:22:19-43
-140            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-140-->[com.google.android.gms:play-services-base:18.3.0] /Users/harshit/.gradle/caches/transforms-3/1975fa6ae02c2a69493e23b9d594ff88/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:21:19-78
-141
-142        <meta-data
-142-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/50d36ad885e8605cd5f81a95bf6af6bb/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
-143            android:name="com.google.android.gms.version"
-143-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/50d36ad885e8605cd5f81a95bf6af6bb/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
-144            android:value="@integer/google_play_services_version" />
-144-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/50d36ad885e8605cd5f81a95bf6af6bb/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+69-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml:11:9-111
+70            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+70-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml:11:19-83
+71            android:exported="false" />
+71-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml:11:84-108
+72        <activity
+72-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:18:7-29:18
+73            android:name="com.bikedoot.MainActivity"
+73-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:19:9-37
+74            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+74-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:21:9-118
+75            android:exported="true"
+75-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:24:9-32
+76            android:label="@string/app_name"
+76-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:20:9-41
+77            android:launchMode="singleTask"
+77-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:22:9-40
+78            android:windowSoftInputMode="adjustResize" >
+78-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:23:9-51
+79            <intent-filter>
+79-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:25:9-28:25
+80                <action android:name="android.intent.action.MAIN" />
+80-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:13-65
+80-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:21-62
+81
+82                <category android:name="android.intent.category.LAUNCHER" />
+82-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:27:13-73
+82-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:27:23-70
+83            </intent-filter>
+84        </activity>
+85
+86        <provider
+86-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-16:20
+87            android:name="com.imagepicker.ImagePickerProvider"
+87-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-63
+88            android:authorities="com.bikedoot.imagepickerprovider"
+88-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-71
+89            android:exported="false"
+89-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-37
+90            android:grantUriPermissions="true" >
+90-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-47
+91            <meta-data
+91-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
+92                android:name="android.support.FILE_PROVIDER_PATHS"
+92-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
+93                android:resource="@xml/imagepicker_provider_paths" />
+93-->[:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
+94        </provider>
+95
+96        <activity
+96-->[:react-native-razorpay] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-razorpay/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-10:86
+97            android:name="com.razorpay.CheckoutActivity"
+97-->[:react-native-razorpay] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-razorpay/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-57
+98            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+98-->[:react-native-razorpay] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-razorpay/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-83
+99            android:exported="false"
+99-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:54:13-37
+100            android:theme="@style/CheckoutTheme" >
+100-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:55:13-49
+101            <intent-filter>
+101-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:56:13-58:29
+102                <action android:name="android.intent.action.MAIN" />
+102-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:13-65
+102-->/Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:21-62
+103            </intent-filter>
+104        </activity>
+105
+106        <meta-data
+106-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] /Users/harshit/.gradle/caches/transforms-3/30508b5c4fced203718f0c895ed7662b/transformed/jetified-okhttp3-integration-4.12.0/AndroidManifest.xml:11:9-13:43
+107            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
+107-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] /Users/harshit/.gradle/caches/transforms-3/30508b5c4fced203718f0c895ed7662b/transformed/jetified-okhttp3-integration-4.12.0/AndroidManifest.xml:12:13-84
+108            android:value="GlideModule" />
+108-->[com.github.bumptech.glide:okhttp3-integration:4.12.0] /Users/harshit/.gradle/caches/transforms-3/30508b5c4fced203718f0c895ed7662b/transformed/jetified-okhttp3-integration-4.12.0/AndroidManifest.xml:13:13-40
+109
+110        <receiver
+110-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:42:9-49:20
+111            android:name="com.razorpay.RzpTokenReceiver"
+111-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:43:13-57
+112            android:exported="true" >
+112-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:44:13-36
+113            <intent-filter>
+113-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:46:13-48:29
+114                <action android:name="rzp.device_token.share" />
+114-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:37:13-61
+114-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:37:21-58
+115            </intent-filter>
+116        </receiver>
+117
+118        <meta-data
+118-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:61:9-63:58
+119            android:name="com.razorpay.plugin.googlepay_all"
+119-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:62:13-61
+120            android:value="com.razorpay.RzpGpayMerged" />
+120-->[com.razorpay:checkout:1.6.39] /Users/harshit/.gradle/caches/transforms-3/01edc83dd92da5cd0995198a92f0617c/transformed/jetified-checkout-1.6.39/AndroidManifest.xml:63:13-55
+121
+122        <activity
+122-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:23:9-27:75
+123            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+123-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:24:13-93
+124            android:excludeFromRecents="true"
+124-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:25:13-46
+125            android:exported="false"
+125-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:26:13-37
+126            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+126-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:27:13-72
+127        <!--
+128            Service handling Google Sign-In user revocation. For apps that do not integrate with
+129            Google Sign-In, this service will never be started.
+130        -->
+131        <service
+131-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:33:9-37:51
+132            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+132-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:34:13-89
+133            android:exported="true"
+133-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:35:13-36
+134            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+134-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:36:13-107
+135            android:visibleToInstantApps="true" /> <!-- Needs to be explicitly declared on P+ -->
+135-->[com.google.android.gms:play-services-auth:21.1.0] /Users/harshit/.gradle/caches/transforms-3/70c09ceaa14ce1f1e96fe11aa2407181/transformed/jetified-play-services-auth-21.1.0/AndroidManifest.xml:37:13-48
+136        <uses-library
+136-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:33:9-35:40
+137            android:name="org.apache.http.legacy"
+137-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:34:13-50
+138            android:required="false" />
+138-->[com.google.android.gms:play-services-maps:17.0.0] /Users/harshit/.gradle/caches/transforms-3/3d7dd59c9c23c070d9464da2f185ae32/transformed/jetified-play-services-maps-17.0.0/AndroidManifest.xml:35:13-37
+139
+140        <activity
+140-->[com.google.android.gms:play-services-base:18.3.0] /Users/harshit/.gradle/caches/transforms-3/1975fa6ae02c2a69493e23b9d594ff88/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:20:9-22:45
+141            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+141-->[com.google.android.gms:play-services-base:18.3.0] /Users/harshit/.gradle/caches/transforms-3/1975fa6ae02c2a69493e23b9d594ff88/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:20:19-85
+142            android:exported="false"
+142-->[com.google.android.gms:play-services-base:18.3.0] /Users/harshit/.gradle/caches/transforms-3/1975fa6ae02c2a69493e23b9d594ff88/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:22:19-43
+143            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+143-->[com.google.android.gms:play-services-base:18.3.0] /Users/harshit/.gradle/caches/transforms-3/1975fa6ae02c2a69493e23b9d594ff88/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:21:19-78
+144
 145        <meta-data
-145-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/72b2dba20373a52270aea5f051986b7d/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:12:9-14:37
-146            android:name="com.facebook.soloader.enabled"
-146-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/72b2dba20373a52270aea5f051986b7d/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:13:13-57
-147            android:value="false" />
-147-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/72b2dba20373a52270aea5f051986b7d/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:14:13-34
-148
-149        <provider
-149-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
-150            android:name="androidx.startup.InitializationProvider"
-150-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
-151            android:authorities="com.bikedoot.androidx-startup"
-151-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
-152            android:exported="false" >
-152-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
-153            <meta-data
-153-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
-154                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-154-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
-155                android:value="androidx.startup" />
-155-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
+145-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/50d36ad885e8605cd5f81a95bf6af6bb/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
+146            android:name="com.google.android.gms.version"
+146-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/50d36ad885e8605cd5f81a95bf6af6bb/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
+147            android:value="@integer/google_play_services_version" />
+147-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/50d36ad885e8605cd5f81a95bf6af6bb/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+148        <meta-data
+148-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/72b2dba20373a52270aea5f051986b7d/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:12:9-14:37
+149            android:name="com.facebook.soloader.enabled"
+149-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/72b2dba20373a52270aea5f051986b7d/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:13:13-57
+150            android:value="false" />
+150-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/72b2dba20373a52270aea5f051986b7d/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:14:13-34
+151
+152        <provider
+152-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+153            android:name="androidx.startup.InitializationProvider"
+153-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
+154            android:authorities="com.bikedoot.androidx-startup"
+154-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
+155            android:exported="false" >
+155-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
 156            <meta-data
-156-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/harshit/.gradle/caches/transforms-3/ee712553ce6b0d2ede7f930565dd558c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
-157                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-157-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/harshit/.gradle/caches/transforms-3/ee712553ce6b0d2ede7f930565dd558c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+156-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+157                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+157-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
 158                android:value="androidx.startup" />
-158-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/harshit/.gradle/caches/transforms-3/ee712553ce6b0d2ede7f930565dd558c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
-159        </provider>
-160    </application>
-161
-162</manifest>
+158-->[androidx.emoji2:emoji2:1.0.0] /Users/harshit/.gradle/caches/transforms-3/8552bc720ad2a51617790c1b823de83c/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
+159            <meta-data
+159-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/harshit/.gradle/caches/transforms-3/ee712553ce6b0d2ede7f930565dd558c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+160                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+160-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/harshit/.gradle/caches/transforms-3/ee712553ce6b0d2ede7f930565dd558c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+161                android:value="androidx.startup" />
+161-->[androidx.lifecycle:lifecycle-process:2.4.0] /Users/harshit/.gradle/caches/transforms-3/ee712553ce6b0d2ede7f930565dd558c/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+162        </provider>
+163    </application>
+164
+165</manifest>

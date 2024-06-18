@@ -15,12 +15,18 @@ import java.util.ArrayList;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-community/geolocation
 import com.reactnativecommunity.geolocation.GeolocationPackage;
+// react-native-device-info
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 // react-native-fast-image
 import com.dylanvann.fastimage.FastImageViewPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+// react-native-get-location
+import com.github.douglasjunior.reactNativeGetLocation.ReactNativeGetLocationPackage;
 // react-native-image-picker
 import com.imagepicker.ImagePickerPackage;
+// react-native-permissions
+import com.zoontek.rnpermissions.RNPermissionsPackage;
 // react-native-razorpay
 import com.razorpay.rn.RazorpayPackage;
 // react-native-safe-area-context
@@ -76,9 +82,12 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
       new GeolocationPackage(),
+      new RNDeviceInfo(),
       new FastImageViewPackage(),
       new RNGestureHandlerPackage(),
+      new ReactNativeGetLocationPackage(),
       new ImagePickerPackage(),
+      new RNPermissionsPackage(),
       new RazorpayPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),

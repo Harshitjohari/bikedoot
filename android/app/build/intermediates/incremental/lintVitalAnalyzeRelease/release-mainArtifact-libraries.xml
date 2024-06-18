@@ -78,6 +78,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="/Users/harshit/Desktop/bikedoot-client-app/android@@:react-native-device-info::release"
+      jars="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-device-info/android/build/.transforms/33ff5165d6f0c930a6af7544926a3a61/transformed/out/jars/classes.jar:/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-device-info/android/build/.transforms/33ff5165d6f0c930a6af7544926a3a61/transformed/out/jars/libs/R.jar"
+      resolved="bikedoot:react-native-device-info:unspecified"
+      folder="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-device-info/android/build/.transforms/33ff5165d6f0c930a6af7544926a3a61/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="/Users/harshit/Desktop/bikedoot-client-app/android@@:react-native-fast-image::release"
       jars="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-fast-image/android/build/.transforms/af65a57f29dc0555470a9ee159ad1c7c/transformed/out/jars/classes.jar:/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-fast-image/android/build/.transforms/af65a57f29dc0555470a9ee159ad1c7c/transformed/out/jars/libs/R.jar"
       resolved="bikedoot:react-native-fast-image:unspecified"
@@ -104,10 +117,36 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="/Users/harshit/Desktop/bikedoot-client-app/android@@:react-native-get-location::release"
+      jars="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-get-location/android/build/.transforms/bfe8221258a7df1eab216e87db81509e/transformed/out/jars/classes.jar:/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-get-location/android/build/.transforms/bfe8221258a7df1eab216e87db81509e/transformed/out/jars/libs/R.jar"
+      resolved="bikedoot:react-native-get-location:unspecified"
+      folder="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-get-location/android/build/.transforms/bfe8221258a7df1eab216e87db81509e/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="/Users/harshit/Desktop/bikedoot-client-app/android@@:react-native-image-picker::release"
       jars="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/.transforms/7913bf125a2d3b446389e96c1ece591e/transformed/out/jars/classes.jar:/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/.transforms/7913bf125a2d3b446389e96c1ece591e/transformed/out/jars/libs/R.jar"
       resolved="bikedoot:react-native-image-picker:unspecified"
       folder="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/.transforms/7913bf125a2d3b446389e96c1ece591e/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="/Users/harshit/Desktop/bikedoot-client-app/android@@:react-native-permissions::release"
+      jars="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-permissions/android/build/.transforms/9783df5ec27715db2d11ef9319ae1f65/transformed/out/jars/classes.jar:/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-permissions/android/build/.transforms/9783df5ec27715db2d11ef9319ae1f65/transformed/out/jars/libs/R.jar"
+      resolved="bikedoot:react-native-permissions:unspecified"
+      folder="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-permissions/android/build/.transforms/9783df5ec27715db2d11ef9319ae1f65/transformed/out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -903,6 +942,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="com.google.android.gms:play-services-iid:17.0.0@aar"
+      jars="/Users/harshit/.gradle/caches/transforms-3/3265607c4b61e567341cd7d35e1b37bd/transformed/jetified-play-services-iid-17.0.0/jars/classes.jar"
+      resolved="com.google.android.gms:play-services-iid:17.0.0"
+      folder="/Users/harshit/.gradle/caches/transforms-3/3265607c4b61e567341cd7d35e1b37bd/transformed/jetified-play-services-iid-17.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="com.google.android.gms:play-services-auth-api-phone:18.0.2@aar"
       jars="/Users/harshit/.gradle/caches/transforms-3/1a731b272fcd18445454325f6d48dcd7/transformed/jetified-play-services-auth-api-phone-18.0.2/jars/classes.jar"
       resolved="com.google.android.gms:play-services-auth-api-phone:18.0.2"
@@ -981,6 +1033,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="com.google.android.gms:play-services-stats:17.0.0@aar"
+      jars="/Users/harshit/.gradle/caches/transforms-3/c423b24dfcd5c44c33d3483e9f39a705/transformed/jetified-play-services-stats-17.0.0/jars/classes.jar"
+      resolved="com.google.android.gms:play-services-stats:17.0.0"
+      folder="/Users/harshit/.gradle/caches/transforms-3/c423b24dfcd5c44c33d3483e9f39a705/transformed/jetified-play-services-stats-17.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="com.google.android.gms:play-services-tasks:18.1.0@aar"
       jars="/Users/harshit/.gradle/caches/transforms-3/4a6adbc4bd690b348c820bd799faefd3/transformed/jetified-play-services-tasks-18.1.0/jars/classes.jar"
       resolved="com.google.android.gms:play-services-tasks:18.1.0"
@@ -1050,6 +1115,19 @@
       jars="/Users/harshit/.gradle/caches/transforms-3/52917dcff76f14721effa46a154b8aa5/transformed/jetified-soloader-2.5.0/jars/classes.jar"
       resolved="com.facebook.fresco:soloader:2.5.0"
       folder="/Users/harshit/.gradle/caches/transforms-3/52917dcff76f14721effa46a154b8aa5/transformed/jetified-soloader-2.5.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.legacy:legacy-support-core-utils:1.0.0@aar"
+      jars="/Users/harshit/.gradle/caches/transforms-3/dba06c1cdc903df7c05480a77818f971/transformed/legacy-support-core-utils-1.0.0/jars/classes.jar"
+      resolved="androidx.legacy:legacy-support-core-utils:1.0.0"
+      folder="/Users/harshit/.gradle/caches/transforms-3/dba06c1cdc903df7c05480a77818f971/transformed/legacy-support-core-utils-1.0.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -1145,6 +1223,45 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="androidx.documentfile:documentfile:1.0.0@aar"
+      jars="/Users/harshit/.gradle/caches/transforms-3/401a24dd23eb783cb1414624e17de469/transformed/documentfile-1.0.0/jars/classes.jar"
+      resolved="androidx.documentfile:documentfile:1.0.0"
+      folder="/Users/harshit/.gradle/caches/transforms-3/401a24dd23eb783cb1414624e17de469/transformed/documentfile-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.localbroadcastmanager:localbroadcastmanager:1.0.0@aar"
+      jars="/Users/harshit/.gradle/caches/transforms-3/250c63a3348be8700eee42a44d8a6705/transformed/localbroadcastmanager-1.0.0/jars/classes.jar"
+      resolved="androidx.localbroadcastmanager:localbroadcastmanager:1.0.0"
+      folder="/Users/harshit/.gradle/caches/transforms-3/250c63a3348be8700eee42a44d8a6705/transformed/localbroadcastmanager-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.print:print:1.0.0@aar"
+      jars="/Users/harshit/.gradle/caches/transforms-3/fc74bfad542a1f51f6a56ec9cd61d80d/transformed/print-1.0.0/jars/classes.jar"
+      resolved="androidx.print:print:1.0.0"
+      folder="/Users/harshit/.gradle/caches/transforms-3/fc74bfad542a1f51f6a56ec9cd61d80d/transformed/print-1.0.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="androidx.arch.core:core-runtime:2.1.0@aar"
       jars="/Users/harshit/.gradle/caches/transforms-3/bba8dca71801421cebd7def320264a4a/transformed/core-runtime-2.1.0/jars/classes.jar"
       resolved="androidx.arch.core:core-runtime:2.1.0"
@@ -1161,6 +1278,19 @@
       name="androidx.concurrent:concurrent-futures:1.0.0@jar"
       jars="/Users/harshit/.gradle/caches/modules-2/files-2.1/androidx.concurrent/concurrent-futures/1.0.0/c1e77e3ee6f4643b77496a1ddf7a2eef1aefdaa1/concurrent-futures-1.0.0.jar"
       resolved="androidx.concurrent:concurrent-futures:1.0.0"/>
+  <library
+      name="com.android.installreferrer:installreferrer:1.1.2@aar"
+      jars="/Users/harshit/.gradle/caches/transforms-3/37e1af1c61932655942381b1311abfd4/transformed/jetified-installreferrer-1.1.2/jars/classes.jar"
+      resolved="com.android.installreferrer:installreferrer:1.1.2"
+      folder="/Users/harshit/.gradle/caches/transforms-3/37e1af1c61932655942381b1311abfd4/transformed/jetified-installreferrer-1.1.2"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
   <library
       name="com.github.bumptech.glide:disklrucache:4.12.0@jar"
       jars="/Users/harshit/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.12.0/6d44c9103551e3ff51f00ac26077c143a8fb74f9/disklrucache-4.12.0.jar"
