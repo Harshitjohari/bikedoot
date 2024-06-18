@@ -170,7 +170,7 @@ const RevenueCardDetail = ({ revenue }) => {
                                     p={3}
                                 >
                                     <HStack space={2}>
-                                        <Box flex={4} width={width-60}>
+                                        <Box flex={4} width={width - 60}>
                                             <Text fontWeight="500" fontSize="bd_xsm" mb={0} lineHeight="14px" color="#616C82">
                                                 Booking ID: {revenue?.bookingId}
                                             </Text>
@@ -425,7 +425,7 @@ const RevenueCardDetail = ({ revenue }) => {
                                 </>
                             )}
 
-                            {revenue?.booking?.spareParts && (
+                            {revenue?.booking?.spareParts.length > 0 && (
                                 <View
                                     width="100%"
                                     bg="#ffffff"

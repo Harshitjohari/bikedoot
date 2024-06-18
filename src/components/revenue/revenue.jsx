@@ -56,6 +56,14 @@ const RevenueCard = ({ revenue }) => {
                                 <Text fontWeight="600" fontSize={14} color="grey">₹{revenue?.amount}</Text>
                             </HStack>
                         </HStack>
+
+                        <HStack justifyContent="space-between" alignItems="center" mb={1}>
+                                                <Text fontWeight="500" fontSize={14} color="grey">Transaction Charge :</Text>
+                                                <HStack space={1} alignItems="center">
+                                                    <Text fontWeight="600" fontSize={14} color="grey">-</Text>
+                                                    <Text fontWeight="600" fontSize={14} color="grey">₹{revenue?.txnCharge} ({revenue?.txnRate}%)</Text>
+                                                </HStack>
+                                            </HStack>
     
                         {/* Platform Fee */}
                         <HStack justifyContent="space-between" alignItems="center" mb={1}>
@@ -65,6 +73,15 @@ const RevenueCard = ({ revenue }) => {
                                 <Text fontWeight="600" fontSize={14} color="grey">₹{revenue?.plateformFee}</Text>
                             </HStack>
                         </HStack>
+
+                        <HStack justifyContent="space-between" alignItems="center" mb={1}>
+                                                <Text fontWeight="500" fontSize={14} color="grey">Platform Fee Gst :</Text>
+                                                <HStack space={1} alignItems="center">
+                                                    <Text fontWeight="600" fontSize={14} color="grey">-</Text>
+                                                    <Text fontWeight="600" fontSize={14} color="grey">₹{revenue?.plateformFeeGst} ({revenue?.gstRate}%)</Text>
+                                                </HStack>
+                                            </HStack>
+
     
                         {/* Revenue */}
                         <HStack justifyContent="space-between" alignItems="center" mb={1}>
