@@ -14,8 +14,7 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
   const [otpDigits, setOtpDigits] = useState(['', '', '', '']);
   const [isLoading, setIsLoading] = useState(false);
 
-  let hiddenDigits = phone. substring(0, 2) + "xxxxxx" + phone. substring(8);
-
+  const hiddenDigits = phone.substring(0, 2) + 'xxxxxx' + phone.substring(8);
 
   const inputRefs = useRef([...Array(4)].map(() => React.createRef()));
 
@@ -26,11 +25,19 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
   const handleInputChange = (text, index) => {
     const newOtpDigits = [...otpDigits];
     newOtpDigits[index] = text;
-
     setOtpDigits(newOtpDigits);
 
     if (text !== '' && index < 3) {
       handleFocus(index + 1);
+    }
+  };
+
+  const handleKeyPress = (event, index) => {
+    if (event.nativeEvent.key === 'Backspace' && index > 0) {
+      const newOtpDigits = [...otpDigits];
+      newOtpDigits[index] = '';
+      setOtpDigits(newOtpDigits);
+      inputRefs.current[index - 1].current.focus();
     }
   };
 
@@ -61,17 +68,16 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
 
   const resendOtp = async () => {
     try {
-        let response = await Apis.HttpPostRequestForLogin(Constant.BASE_URL + Constant.AUTH.OTP_REQUEST, { mobile: phone })
-        if (response?.status) {
-            show(response?.message, "success");
-        } else {
-            show(response?.message || "Failed to send OTP, try again later", "error");
-        }
+      const response = await Apis.HttpPostRequestForLogin(Constant.BASE_URL + Constant.AUTH.OTP_REQUEST, { mobile: phone });
+      if (response?.status) {
+        show(response?.message, 'success');
+      } else {
+        show(response?.message || 'Failed to send OTP, try again later', 'error');
+      }
     } catch (e) {
-        show("Some error has occured!", "error");
+      show('Some error has occurred!', 'error');
     }
-};
-
+  };
 
   return (
     <Box flex={1} justifyContent="center" p={4} bg="screen_bg">
@@ -100,6 +106,7 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
               ref={inputRefs.current[index]}
               value={digit}
               onChangeText={(text) => handleInputChange(text, index)}
+              onKeyPress={(e) => handleKeyPress(e, index)}
               variant="filled"
               borderColor="#534AF9"
               _focus={{
@@ -118,7 +125,7 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
 
         <Text textAlign="center" mt={4}>
           Didn't get any OTP?{' '}
-          <Text color="blue.500" onPress={() => resendOtp()}>
+          <Text color="blue.500" onPress={resendOtp}>
             Click to resend
           </Text>
         </Text>
@@ -128,5 +135,3 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
 };
 
 export default VerifyOTP;
-
-

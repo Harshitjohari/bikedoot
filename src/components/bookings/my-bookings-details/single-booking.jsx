@@ -7,7 +7,8 @@ import {
     TouchableOpacity,
     ScrollView,
     Alert,
-    Linking
+    Linking,
+    Dimensions
 } from 'react-native';
 import BadgeComponent from '../../UI/badges'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -27,6 +28,9 @@ import { handleToast } from '../../../utils/toast';
 import { imageConstant } from '../../../utils/constant';
 
 import { useNavigation } from '@react-navigation/native';
+
+const { width } = Dimensions.get('window');
+
 
 const BookingCardDetail = ({ booking }) => {
 
@@ -191,17 +195,17 @@ const BookingCardDetail = ({ booking }) => {
                             p={3}
                         >
                             <HStack space={2}>
-                                <Box flex={4}>
+                                <Box flex={4} width={width-60}>
                                     <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
                                         Booking ID
                                     </Text>
-                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" width={width-60}>
                                         {booking?.bookingId}
                                     </Text>
                                 </Box>
                                 <Box flex={1}>
                                 </Box>
-                                <Box flex={5}>
+                                <Box flex={5} width={width-40}>
                                     <Text fontWeight="500" fontSize="bd_sm" lineHeight="50px" color="bd_dark_text" textAlign="right">
                                         <BadgeComponent text={booking?.status} />
                                     </Text>
@@ -504,7 +508,7 @@ const BookingCardDetail = ({ booking }) => {
                                 <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
                                     Total amount :
                                 </Text>
-                                <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
+                                <Text fontWeight="500" fontSize="bd_sm" mb={0}  color="bd_dark_text">
                                     ₹{booking?.amount}
                                 </Text>
                             </View>

@@ -21,6 +21,9 @@ import { useNavigation } from '@react-navigation/native';
 import { handleToast } from '../../../utils/toast';
 import { useIsFocused } from '@react-navigation/native';
 
+const { width } = Dimensions.get('window');
+
+
 
 
 const FinishService = ({ booking }) => {
@@ -206,17 +209,17 @@ const FinishService = ({ booking }) => {
                 p={3}
             >
                 <HStack space={2}>
-                    <Box flex={4}>
+                    <Box flex={4} width={width-60}>
                         <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
                             Booking ID
                         </Text>
-                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" width={width-60}>
                             {booking?.bookingId}
                         </Text>
                     </Box>
                     <Box flex={1}>
                     </Box>
-                    <Box flex={4}>
+                    <Box flex={4} width={width-40}>
                         <Text fontWeight="600" fontSize="bd_sm" lineHeight="50px" color="bd_dark_text" textAlign="right">
                             <BadgeComponent text={booking?.status} />
                         </Text>
