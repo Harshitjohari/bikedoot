@@ -56,6 +56,7 @@ const FinishService = ({ booking }) => {
                     setSelectedAdditionalServicesMechanic,
                     _id
                 );
+                updateTotalAmount(_id,'additionalServiceMechanic');
                 break;
             case 'additionalServiceUser':
                 toggleCheckbox(
@@ -66,25 +67,48 @@ const FinishService = ({ booking }) => {
                 break;
             case 'sparePart':
                 toggleCheckbox(selectedSpareParts, setSelectedSpareParts, _id);
-                updateTotalAmount(_id);
+                updateTotalAmount(_id,'sparePart');
                 break;
             default:
                 break;
         }
     };
-   
-    const updateTotalAmount = (_id) => {
+
+    const updateTotalAmount1 = (_id) => {
         const sparePart = booking?.spareParts.find(sparePart => sparePart._id === _id);
         if (sparePart) {
             const isChecked = selectedSpareParts.some(item => item._id === _id);
             if (isChecked) {
-                setTotalAmount(prevAmount => prevAmount - sparePart.price); 
+                setTotalAmount(prevAmount => prevAmount - sparePart.price);
             } else {
-                setTotalAmount(prevAmount => prevAmount + sparePart.price); 
+                setTotalAmount(prevAmount => prevAmount + sparePart.price);
             }
         }
     };
-        
+    const updateTotalAmount = (_id, type) => {
+        if (type === 'sparePart') {
+            const sparePart = booking?.spareParts.find(sparePart => sparePart._id === _id);
+            if (sparePart) {
+                const isChecked = selectedSpareParts.some(item => item._id === _id);
+                if (isChecked) {
+                    setTotalAmount(prevAmount => prevAmount - sparePart.price);
+                } else {
+                    setTotalAmount(prevAmount => prevAmount + sparePart.price);
+                }
+            }
+        } else if (type === 'additionalServiceMechanic') {
+            const additionalService = booking?.additionalServices.find(service => service._id === _id);
+            if (additionalService) {
+                const isChecked = selectedAdditionalServicesMechanic.some(item => item._id === _id);
+                if (isChecked) {
+                    setTotalAmount(prevAmount => prevAmount - additionalService.price);
+                } else {
+                    setTotalAmount(prevAmount => prevAmount + additionalService.price);
+                }
+            }
+        }
+    };
+
 
     const toggleCheckbox = (selectedItems, setSelectedItems, _id) => {
         if (selectedItems.some((item) => item._id === _id)) {
@@ -140,7 +164,7 @@ const FinishService = ({ booking }) => {
                 data
             );
             if (response?.status) {
-                show(response ?.message, "success");
+                show(response?.message, "success");
                 navigation.navigate("BookingsScreenDetail", { id: booking?._id })
                 setLoading(false);
             } else {
@@ -151,7 +175,7 @@ const FinishService = ({ booking }) => {
         }
     };
 
-    
+
 
     return (
         <>
@@ -238,13 +262,13 @@ const FinishService = ({ booking }) => {
 
                             </View>
                         ))}
+                        <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                            Additional Services
+                        </Text>
 
-                        {
+                        {/* {
                             booking?.services.length > 1 && (
                                 <>
-                                    <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
-                                        Add Ons (User)
-                                    </Text>
                                     {booking?.services.slice(1).map((service, index) => (
                                         <View
                                             key={index}
@@ -267,14 +291,14 @@ const FinishService = ({ booking }) => {
                                     ))}
                                 </>
                             )
-                        }
+                        } */}
 
                         {
                             booking?.additionalServices.length > 0 && (
                                 <>
-                                    <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
+                                    {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                         Add Ons (Mechanic)
-                                    </Text>
+                                    </Text> */}
                                     {booking?.additionalServices.map((service, index) => (
                                         <View
                                             key={index}

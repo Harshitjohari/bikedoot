@@ -6,6 +6,7 @@ import Header from '../../../components/header';
 import { useAuth } from '../../../context/loginContext';
 import FlatListContainer from '../../../components/flatlist';
 import BookingCard from '../../../components/bookings/my-bookings-details/single-booking';
+import CustomButton from '../../../components/UI/button';
 
 import { imageConstant } from '../../../utils/constant';
 
@@ -80,6 +81,14 @@ const DetailsScreen = (props) => {
       {
         bookingData && <BookingCardDetail booking={bookingData} refresh={fetchBookingsDetails} />
       }
+
+      {bookingData?.status === 'APPROVED' && (
+        <CustomButton
+          onPress={() => fetchBookingsDetails()}
+          btnStyle={{ margin: 10 }}>
+          Share Auth Code with Mechanic...
+        </CustomButton>
+      )}
 
       {/* </View>
       </ScrollView> */}

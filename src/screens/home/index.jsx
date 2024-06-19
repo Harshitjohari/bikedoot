@@ -14,7 +14,8 @@ import LoadingSpinner from '../../components/UI/loading'
 import { useAuth } from '../../context/loginContext';
 import Geolocation from '@react-native-community/geolocation';
 import { useNavigation } from '@react-navigation/native';
-
+import { imageConstant } from '../../utils/constant';
+import FastImage from 'react-native-fast-image';
 
 
 const HorizontalFlatList = (props) => {
@@ -38,7 +39,7 @@ const HorizontalFlatList = (props) => {
         setLoadingServices(false)
         console.log('==============>', position.coords);
         if (position.coords) {
-          navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc:position.coords });
+          navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: position.coords });
           setLatLong(JSON.stringify(position.coords), JSON.stringify(position.coords))
         }
       },
@@ -110,7 +111,7 @@ const HorizontalFlatList = (props) => {
   };
 
   return (
-    <Box p={0} mb={15}>
+    <Box p={0} mb={15} >
       <MainHeader title="Home" showLanguageIcon={true} onCityChange={(cityID) => fetchHomeData(cityID)} />
       <ScrollView showsVerticalScrollIndicator={false} style={{ marginBottom: 50 }}>
 
@@ -124,7 +125,11 @@ const HorizontalFlatList = (props) => {
           <BookingList horizontal={true} isHomePageComponent={true} navigation={props.navigation} />
           <TextHeader title="Book Your Service" showSeeAll={false} />
 
-          {loadingServices ? <Box p={2}> <LoadingSpinner text={'Please wait fetching location...'} /> </Box > : (
+          {loadingServices ? <Box style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:'#fff', borderRadius:8 }}> <FastImage
+            source={imageConstant.map}
+            style={{ width: 100, height: 100, marginBottom: 5 }}
+            resizeMode="contain"
+          /> </Box > : (
             <FlatList
               data={serviceCategory}
               renderItem={renderServicesItem}

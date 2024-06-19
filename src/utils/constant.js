@@ -29,6 +29,7 @@ import cart from '../assets/images/cart.png';
 import pin from '../assets/images/pin.png';
 import bike2 from '../assets/images/bike2.png';
 import verified from '../assets/images/verified.gif';
+import map from '../assets/images/map.gif';
 import phone from '../assets/images/phone.png';
 import bikedoot from '../assets/images/bikedoot.png';
 import dummyBanner from '../assets/images/dummyBanner.png';
@@ -71,7 +72,8 @@ const imageConstant = {
     bikedoot,
     refresh,
     dummyBanner,
-    invoice
+    invoice,
+    map
 }
 
 const fontConstant = {

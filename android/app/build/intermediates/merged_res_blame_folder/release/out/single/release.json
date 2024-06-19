@@ -164,6 +164,10 @@
         "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backiconmask.png"
     },
     {
+        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_map.gif.flat",
+        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_map.gif"
+    },
+    {
         "merged": "com.bikedoot.app-merged_res-38:/mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "com.bikedoot.app-main-39:/mipmap-xxhdpi/ic_launcher.png"
     },
