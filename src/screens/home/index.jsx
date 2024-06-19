@@ -13,10 +13,12 @@ import Constant from '../../common/constant';
 import LoadingSpinner from '../../components/UI/loading'
 import { useAuth } from '../../context/loginContext';
 import Geolocation from '@react-native-community/geolocation';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 const HorizontalFlatList = (props) => {
+  const navigation = useNavigation()
   const { token, userData, setLatLong, selectedCity, location } = useAuth();
   let cityID = "";
   const [banners, setBanners] = useState([]);
@@ -34,13 +36,15 @@ const HorizontalFlatList = (props) => {
     Geolocation.getCurrentPosition(
       (position) => {
         setLoadingServices(false)
-        // console.log('==============>', position.coords);
-        setLatLong(JSON.stringify(position.coords), JSON.stringify(position.coords))
-        props.navigation.navigate('ServicesList', { garageID: item._id, title: item.name })
+        console.log('==============>', position.coords);
+        if (position.coords) {
+          navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc:position.coords });
+          setLatLong(JSON.stringify(position.coords), JSON.stringify(position.coords))
+        }
       },
       (error) => {
         setLoadingServices(false)
-        // console.log('===================++>', error)
+        console.log('===================++>', error)
         Alert.alert(
           'GPS not enabled',
           'Please enable GPS to use this app.',
@@ -120,7 +124,7 @@ const HorizontalFlatList = (props) => {
           <BookingList horizontal={true} isHomePageComponent={true} navigation={props.navigation} />
           <TextHeader title="Book Your Service" showSeeAll={false} />
 
-          {loadingServices ? <Box p={2}> <LoadingSpinner text={'Please wait fetching location...'}  /> </Box > : (
+          {loadingServices ? <Box p={2}> <LoadingSpinner text={'Please wait fetching location...'} /> </Box > : (
             <FlatList
               data={serviceCategory}
               renderItem={renderServicesItem}

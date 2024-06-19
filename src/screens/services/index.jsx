@@ -10,7 +10,7 @@ import Geolocation from '@react-native-community/geolocation';
 
 
 const ServiesList = ({ navigation, route }) => {
-    const {garageID, title} = route.params;
+    const {garageID, title, loc} = route.params;
     const { token,selectedCity,userData, location } = useAuth();
     const {_id} = selectedCity;
     const cityID = _id;
@@ -26,26 +26,15 @@ const ServiesList = ({ navigation, route }) => {
             fetchGarageData();
     }, [radius]);
 
-
-    // const getLocation = async () => {
-    //     Geolocation.getCurrentPosition(
-    //       position => {
-    //         const { latitude, longitude } = position.coords;
-    //         setlatitude(latitude)
-    //         setlongitude(longitude)
-    //         // console.log('=======>',{latitude, longitude})
-    //   });
-    // }
-
     const fetchGarageData = async () => {
         try {
             setLoading(true);
             let data = {
-                "latitude":JSON.parse(location).latitude,
-                "longitude":JSON.parse(location).longitude,
+                "latitude":loc.latitude,
+                "longitude":loc.longitude,
                 "radius": radius === 'All' ? 0 : parseInt(radius)
             }
-            console.log('=======>',data)
+            // console.log('=======>',data)
             let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.GARAGE_DATA + cityID + "/garage/" + garageID, token, data)
 
             setLoading(false);
