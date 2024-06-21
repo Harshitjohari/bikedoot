@@ -39,7 +39,7 @@ const HorizontalFlatList = (props) => {
     Geolocation.getCurrentPosition(
       (position) => {
         if (position.coords) {
-          setLatLong(JSON.stringify(position.coords))
+          setLatLong(position.coords)
         }
       },
       (error) => {
@@ -50,23 +50,23 @@ const HorizontalFlatList = (props) => {
 
 
   const checkGPS = (item) => {
-    if (location) {
-      navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: JSON.parse(location) });
+    if (location && location.latitude) {
+      navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: location });
     } else {
-      setLoadingServices(true)
+      setLoadingServices(true)                     
       Geolocation.getCurrentPosition(
         (position) => {
           setLoadingServices(false)
           // console.log('==============>', position.coords);
           if (position.coords) {
             navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: position.coords });
-            setLatLong(JSON.stringify(position.coords))
+            setLatLong(position.coords)
           }
         },
         (error) => {
           setLoadingServices(false)
-          // console.log('===================++>', error)
-          Alert.alert(
+          // console.log('===================++>', error)       
+          Alert.alert(           
             'Location Error',
             error.code == 2 ? 'Please enable GPS to use this app.' : error.message,
             [

@@ -15,7 +15,6 @@ import LoadingSpinner from '../../../components/UI/loading'
 import EmptyState from '../../../components/empty-screen';
 
 import { imageConstant } from '../../../utils/constant';
-import Geolocation from '@react-native-community/geolocation';
 
 
 
@@ -229,8 +228,11 @@ const Stepper = (props) => {
           "city": selectedAddress[0].id,
           "pincode": selectedAddress[0].pincode,
           "address": selectedAddress[0].address1,
-          "latitude":JSON.parse(location).latitude,
-          "longitude":JSON.parse(location).longitude,
+          // "latitude":JSON.parse(location).latitude,
+          // "longitude":JSON.parse(location).longitude,
+          "latitude":location.latitude,
+          "longitude":location.longitude,
+          
         },
         "date": selectedDate,
         "time": selectedTime,

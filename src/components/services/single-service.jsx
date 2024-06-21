@@ -9,7 +9,7 @@ import Button from '../UI/button'
 import { compareSpecificity } from 'native-base/lib/typescript/hooks/useThemeProps/propsFlattener';
 
 const ServicesCard = ({ fromDetailPage = false, serviceObj, serviceType, navigation, title }) => {
-    const {
+    let {
         _id,
         name,
         distance,
@@ -21,7 +21,7 @@ const ServicesCard = ({ fromDetailPage = false, serviceObj, serviceType, navigat
         address
     } = serviceObj;
 
-
+    serviceCategory = serviceCategory.filter( d=> d.active)
 
     const TruncatedText = ({ text }) => {
         const [showFullText, setShowFullText] = useState(false);
