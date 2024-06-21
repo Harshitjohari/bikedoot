@@ -6,7 +6,7 @@
 // import spares1 from '../assets/images/spares1.png';
 // import earnings from '../assets/images/earnings.png';
 // import earnings1 from '../assets/images/earnings1.png';
-// import profile from '../assets/images/user.png';
+import dummy from '../assets/images/dummy.png';
 // import profile1 from '../assets/images/user1.png';
 import splash from '../assets/images/bikedoot.png';
 // import mechanic from '../assets/images/mechanic.png';
@@ -73,7 +73,8 @@ const imageConstant = {
     refresh,
     dummyBanner,
     invoice,
-    map
+    map,
+    dummy
 }
 
 const fontConstant = {

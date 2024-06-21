@@ -23,7 +23,7 @@ const MyCarousel = ({ entries }) => {
       autoplay={true}
       enableMomentum={false}
       lockScrollWhileSnapping={true}
-      showsHorizontalScrollIndicator={true}
+      showsHorizontalScrollIndicator={false}
       ref={carouselRef}
       data={entries}
       renderItem={renderItem}

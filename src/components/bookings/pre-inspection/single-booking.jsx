@@ -56,7 +56,7 @@ const FinishService = ({ booking }) => {
                     setSelectedAdditionalServicesMechanic,
                     _id
                 );
-                updateTotalAmount(_id,'additionalServiceMechanic');
+                updateTotalAmount(_id, 'additionalServiceMechanic');
                 break;
             case 'additionalServiceUser':
                 toggleCheckbox(
@@ -67,24 +67,13 @@ const FinishService = ({ booking }) => {
                 break;
             case 'sparePart':
                 toggleCheckbox(selectedSpareParts, setSelectedSpareParts, _id);
-                updateTotalAmount(_id,'sparePart');
+                updateTotalAmount(_id, 'sparePart');
                 break;
             default:
                 break;
         }
     };
 
-    const updateTotalAmount1 = (_id) => {
-        const sparePart = booking?.spareParts.find(sparePart => sparePart._id === _id);
-        if (sparePart) {
-            const isChecked = selectedSpareParts.some(item => item._id === _id);
-            if (isChecked) {
-                setTotalAmount(prevAmount => prevAmount - sparePart.price);
-            } else {
-                setTotalAmount(prevAmount => prevAmount + sparePart.price);
-            }
-        }
-    };
     const updateTotalAmount = (_id, type) => {
         if (type === 'sparePart') {
             const sparePart = booking?.spareParts.find(sparePart => sparePart._id === _id);
@@ -156,7 +145,7 @@ const FinishService = ({ booking }) => {
                 spareParts: selectedSpareParts.map(d => d._id)
             }
 
-            // console.log('dataaaaa===============+>',data)
+            // return
 
             let response = await Apis.HttpPostRequest(
                 Constant.BASE_URL + Constant.APPROVED_PREINSPECTION,
@@ -199,24 +188,26 @@ const FinishService = ({ booking }) => {
                         marginTop={2}
                         p={3}
                     >
-                        <HStack space={2}>
-                            <Box flex={4}>
+                        <Box>
+                            <View flexDirection={'row'}
+                                justifyContent={'space-between'}
+                            >
                                 <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
                                     Booking ID
                                 </Text>
-                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                    {booking?.bookingId}
+                                <Text fontWeight="600" fontSize="bd_sm" lineHeight="20px" color="bd_dark_text" textAlign="right">
+                                    <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre-Inspection Completed' : booking?.status} />
                                 </Text>
-                            </Box>
-                            <Box flex={1}>
-                            </Box>
-                            <Box flex={4}>
-                                <Text fontWeight="600" fontSize="bd_sm" lineHeight="50px" color="bd_dark_text" textAlign="right">
-                                    <BadgeComponent text={booking?.status} />
-                                </Text>
-                            </Box>
-                        </HStack>
+                            </View>
+                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" width='140px'>
+                                {booking?.bookingId}
+                            </Text>
+
+                        </Box>
+
                     </View>
+
+                   
 
                     <View
                         width="100%"

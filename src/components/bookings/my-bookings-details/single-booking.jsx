@@ -245,7 +245,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                 "bookingId": booking?._id,
                 "date": selectedDate,
                 "time": selectedTime,
-                "slot":selectedTimeSlot,
+                "slot": selectedTimeSlot,
             }
 
             let response = await Apis.HttpPostRequest(
@@ -314,38 +314,42 @@ const BookingCardDetail = ({ booking, refresh }) => {
                             marginTop={2}
                             p={3}
                         >
-                            <HStack space={1}>
-                                <Box flex={4} width={width-60}>
+                            <Box>
+                                <View flexDirection={'row'}
+                                    justifyContent={'space-between'}
+                                >
                                     <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
                                         Booking ID
                                     </Text>
-                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" width={width-60}>
-                                        {booking?.bookingId}
+                                    <Text fontWeight="600" fontSize="bd_sm" lineHeight="20px" color="bd_dark_text" textAlign="right">
+                                        <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre-Inspection Completed' : booking?.status} />
                                     </Text>
-                                    {
-                                        booking?.authCode &&
+                                </View>
+                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" width='140px'>
+                                    {booking?.bookingId}
+                                </Text>
+
+
+                                {
+                                    booking?.authCode &&
+                                    <View flexDirection={'row'}
+                                        justifyContent={'space-between'}
+                                    >
                                         <Text fontWeight="500" fontSize="bd_sm" mt={2} lineHeight="20px" color="bd_dark_text">
                                             Auth Code
                                         </Text>
-                                    }
 
-                                </Box>
-                                <Box flex={1}>
-                                </Box>
-                                <Box flex={5} width={width-40}>
-                                    <Text fontWeight="600" fontSize="bd_sm" lineHeight="50px" color="bd_dark_text" textAlign="right">
-                                        <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre-Inspection Completed' : booking?.status} />
-                                    </Text>
-                                    {
-                                        booking?.authCode &&
-                                        <View style={{ backgroundColor: '#66ff66', padding: 1, borderRadius: 5, width: 70, alignSelf: 'flex-end', marginTop: 10 }}>
+                                        <View style={{ backgroundColor: '#66ff66', padding: 1, borderRadius: 5, width: 70, alignSelf: 'flex-end'}}>
                                             <Text fontWeight="600" fontSize={18} lineHeight="20px" color="bd_dark_text" letterSpacing={4} textAlign="center">
                                                 {booking?.authCode}
                                             </Text>
                                         </View>
-                                    }
-                                </Box>
-                            </HStack>
+                                    </View>
+
+                                }
+
+                            </Box>
+
                         </View>
 
                         <View
@@ -712,14 +716,14 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 paddingBottom={2}
                                 alignItems="center"
                                 flexDirection="row"
-                                justifyContent="space-between" 
+                                justifyContent="space-between"
                             >
 
                                 <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
                                     {booking?.completed ? 'Total ' : 'Estimated '}
                                     Amount :
                                 </Text>
-                                <Text fontWeight="500" fontSize="bd_sm" mb={0}  color="bd_dark_text">
+                                <Text fontWeight="500" fontSize="bd_sm" mb={0} color="bd_dark_text">
                                     ₹{booking?.amount}
                                 </Text>
 
@@ -769,12 +773,12 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 alignItems="center"
                             >
                                 <View>
-                                <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
-                                    Invoice
-                                </Text>
-                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                   {booking?.invoice?.invoice_no}
-                                </Text>
+                                    <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                                        Invoice
+                                    </Text>
+                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                        {booking?.invoice?.invoice_no}
+                                    </Text>
                                 </View>
                                 <TouchableOpacity onPress={() => openPdf(booking?.invoice?.url)}>
                                     <Image

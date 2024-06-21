@@ -154,7 +154,6 @@ const ProfileScreen = ({ navigation }) => {
     });
   };
 
-
   const openGallery = (key) => {
     let options = {
       storageOptions: {

@@ -16,6 +16,8 @@ import Geolocation from '@react-native-community/geolocation';
 import { useNavigation } from '@react-navigation/native';
 import { imageConstant } from '../../utils/constant';
 import FastImage from 'react-native-fast-image';
+import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
+
 
 
 const HorizontalFlatList = (props) => {
@@ -28,36 +30,57 @@ const HorizontalFlatList = (props) => {
   const [isAgreed, setIsAgreed] = useState(false);
   const [loadingServices, setLoadingServices] = useState(false);
 
-  // useEffect(() => {
-  //   checkGPS();
-  // }, []);
 
-  const checkGPS = (item) => {
-    setLoadingServices(true)
+  useEffect(() => {
+    checkGPSOnStart();
+  }, []);
+
+  const checkGPSOnStart = () => {
     Geolocation.getCurrentPosition(
       (position) => {
-        setLoadingServices(false)
-        console.log('==============>', position.coords);
         if (position.coords) {
-          navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: position.coords });
-          setLatLong(JSON.stringify(position.coords), JSON.stringify(position.coords))
+          setLatLong(JSON.stringify(position.coords))
         }
       },
       (error) => {
-        setLoadingServices(false)
-        console.log('===================++>', error)
-        Alert.alert(
-          'GPS not enabled',
-          'Please enable GPS to use this app.',
-          [
-            { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-          ],
-          { cancelable: false }
-        );
       },
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 }
     );
   };
+
+
+  const checkGPS = (item) => {
+    if (location) {
+      navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: JSON.parse(location) });
+    } else {
+      setLoadingServices(true)
+      Geolocation.getCurrentPosition(
+        (position) => {
+          setLoadingServices(false)
+          // console.log('==============>', position.coords);
+          if (position.coords) {
+            navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: position.coords });
+            setLatLong(JSON.stringify(position.coords))
+          }
+        },
+        (error) => {
+          setLoadingServices(false)
+          // console.log('===================++>', error)
+          Alert.alert(
+            'Location Error',
+            error.code == 2 ? 'Please enable GPS to use this app.' : error.message,
+            [
+              { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+            ],
+            { cancelable: false }
+          );
+        },
+        { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 }
+      );
+    }
+  };
+
+
 
   if (selectedCity) {
     if (selectedCity._id !== null) {
@@ -125,7 +148,7 @@ const HorizontalFlatList = (props) => {
           <BookingList horizontal={true} isHomePageComponent={true} navigation={props.navigation} />
           <TextHeader title="Book Your Service" showSeeAll={false} />
 
-          {loadingServices ? <Box style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor:'#fff', borderRadius:8 }}> <FastImage
+          {loadingServices ? <Box style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', borderRadius: 8 }}> <FastImage
             source={imageConstant.map}
             style={{ width: 100, height: 100, marginBottom: 5 }}
             resizeMode="contain"

@@ -1505,6 +1505,7 @@ drawable src_assets_images_bookingonline
 drawable src_assets_images_camera
 drawable src_assets_images_cart
 drawable src_assets_images_doorstepservices
+drawable src_assets_images_dummy
 drawable src_assets_images_dummybanner
 drawable src_assets_images_editt
 drawable src_assets_images_empty

@@ -56,6 +56,10 @@
         "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_bikedoot.png"
     },
     {
+        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_dummy.png.flat",
+        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_dummy.png"
+    },
+    {
         "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnativeratings_dist_images_star.png.flat",
         "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnativeratings_dist_images_star.png"
     },
