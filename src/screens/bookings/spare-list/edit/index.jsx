@@ -70,6 +70,7 @@ const EditScreen = (props) => {
       let result = await response.json()
 
       setLoading(false)
+      // console.log('====================>',result)
 
       if (result?.status) {
 
@@ -87,6 +88,8 @@ const EditScreen = (props) => {
         show(result?.message, "success");
       }
       else {
+        setModalVisibleProfile(false)
+        setModalVisibleAadharF(false)
         show(result?.message || "Failed to update, please try again later", "error");
       }
     }

@@ -137,7 +137,7 @@ const BookingCardDetail = ({ booking }) => {
                     border={0}
                     shadow={0}
                     padding={2}>
-                    <View
+                    {/* <View
                         width="100%"
                         bg="#ffffff"
                         borderRadius="10px"
@@ -175,6 +175,51 @@ const BookingCardDetail = ({ booking }) => {
                                 }
                             </Box>
                         </HStack>
+                    </View> */}
+
+                    <View
+                        width="100%"
+                        bg="#ffffff"
+                        borderRadius="10px"
+                        marginTop={2}
+                        p={3}
+                    >
+                        <Box>
+                            <View flexDirection={'row'}
+                                justifyContent={'space-between'}
+                            >
+                                <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                                    Booking ID
+                                </Text>
+                                <Text fontWeight="600" fontSize="bd_sm" lineHeight="20px" color="bd_dark_text" textAlign="right">
+                                    <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre-Inspection Completed' : booking?.status} />
+                                </Text>
+                            </View>
+                            <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" width='140px'>
+                                {booking?.bookingId}
+                            </Text>
+
+
+                            {
+                                booking?.shareCode &&
+                                <View flexDirection={'row'}
+                                    justifyContent={'space-between'}
+                                >
+                                    <Text fontWeight="500" fontSize="bd_sm" mt={2} lineHeight="20px" color="bd_dark_text">
+                                        Auth Code
+                                    </Text>
+
+                                    <View style={{ backgroundColor: '#66ff66', padding: 1, borderRadius: 5, width: 70, alignSelf: 'flex-end' }}>
+                                        <Text fontWeight="600" fontSize={18} lineHeight="20px" color="bd_dark_text" letterSpacing={4} textAlign="center">
+                                            {booking?.shareCode}
+                                        </Text>
+                                    </View>
+                                </View>
+
+                            }
+
+                        </Box>
+
                     </View>
 
                     <View
@@ -621,10 +666,10 @@ const BookingCardDetail = ({ booking }) => {
                 //     Enter Auth Code
                 // </CustomButton>
                 <CustomButton
-                onPress={() => navigation.navigate("OtpVerify", { booking })}
-                btnStyle={{ margin: 10 }}>
-                Enter Auth Code
-            </CustomButton>
+                    onPress={() => navigation.navigate("OtpVerify", { booking })}
+                    btnStyle={{ margin: 10 }}>
+                    Enter Auth Code
+                </CustomButton>
             }
 
             {

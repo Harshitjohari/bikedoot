@@ -80,13 +80,13 @@ const AddOnScreen = (props) => {
   useEffect(() => {
     if (addonData.length > 0) {
 
-    let preSelectedAddService = props.route?.params?.booking?.services.filter(
+    let preSelectedAddService = props.route?.params?.booking?.additionalServices.filter(
       service => service?.service?.service?.serviceType?.name === "Add-On"
     );
     let serviceIds = preSelectedAddService.map(data => data.service._id);
     let filteredServices = addonData.filter(service => serviceIds.includes(service._id)).map(service => service._id);
 
-    // console.log('==========>',preSelectedAddService)
+    // console.log('==========>',props.route?.params?.booking)
 
       setSelectedCards(filteredServices);
     }
@@ -130,6 +130,7 @@ const AddOnScreen = (props) => {
       data
     );
     setLoading(false)
+
     if (response?.status) {
 
       show(response?.message, "success");

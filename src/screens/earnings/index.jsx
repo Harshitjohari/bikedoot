@@ -287,6 +287,9 @@ const styles = StyleSheet.create({
     height: 50,
     marginTop: 5,
   },
+  textStyle: {
+    color: 'black'
+  },
 });
 
 export default Earnings;

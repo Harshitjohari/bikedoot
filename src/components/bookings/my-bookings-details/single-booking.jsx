@@ -187,7 +187,8 @@ const BookingCardDetail = ({ booking }) => {
                         shadow={0}
                         padding={2}
                         paddingBottom={0}>
-                        <View
+
+                        {/* <View
                             width="100%"
                             bg="#F1F0FE"
                             borderRadius="10px"
@@ -211,6 +212,30 @@ const BookingCardDetail = ({ booking }) => {
                                     </Text>
                                 </Box>
                             </HStack>
+                        </View> */}
+
+                        <View
+                            width="100%"
+                            bg="#ffffff"
+                            borderRadius="10px"
+                            marginTop={2}
+                            p={3}
+                        >
+                            <Box>
+                                <View flexDirection={'row'}
+                                    justifyContent={'space-between'}
+                                >
+                                    <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                                        Booking ID
+                                    </Text>
+                                    <Text fontWeight="600" fontSize="bd_sm" lineHeight="20px" color="bd_dark_text" textAlign="right">
+                                        <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre-Inspection Completed' : booking?.status} />
+                                    </Text>
+                                </View>
+                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" width='140px'>
+                                    {booking?.bookingId}
+                                </Text>
+                            </Box>
                         </View>
 
                         <View
