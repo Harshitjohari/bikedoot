@@ -57,13 +57,13 @@ const RevenueCard = ({ revenue }) => {
                             </HStack>
                         </HStack>
 
-                        <HStack justifyContent="space-between" alignItems="center" mb={1}>
+                        {/* <HStack justifyContent="space-between" alignItems="center" mb={1}>
                                                 <Text fontWeight="500" fontSize={14} color="grey">Transaction Charge :</Text>
                                                 <HStack space={1} alignItems="center">
                                                     <Text fontWeight="600" fontSize={14} color="grey">-</Text>
                                                     <Text fontWeight="600" fontSize={14} color="grey">₹{revenue?.txnCharge} ({revenue?.txnRate}%)</Text>
                                                 </HStack>
-                                            </HStack>
+                                            </HStack> */}
     
                         {/* Platform Fee */}
                         <HStack justifyContent="space-between" alignItems="center" mb={1}>

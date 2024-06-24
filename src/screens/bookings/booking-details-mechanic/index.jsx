@@ -66,7 +66,7 @@ const MechanicBookingsDetails = (props) => {
     <View style={{ flex: 1, backgroundColor: '#edeeec' }}>
       <Header title="Booking Details" />
 
-      {bookingData?.status !== 'COMPLETED' && (
+      {bookingData?.status !== 'COMPLETED' && bookingData?.status !== 'SERVICE DONE' && (
         <View style={{ position: 'absolute', top: 15, right: 20 }}>
           <TouchableOpacity onPress={() => fetchBookingsDetails()}>
             <Image source={imageConstant.refresh} alt="" style={{ width: 30, height: 30, resizeMode: 'contain' }} />
@@ -77,7 +77,7 @@ const MechanicBookingsDetails = (props) => {
       {/* <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={{ flex: 1, backgroundColor: "#edeeec" }}> */}
       {
-        bookingData && <BookingCardDetail booking={bookingData} />
+        bookingData && <BookingCardDetail booking={bookingData} refresh={fetchBookingsDetails} />
       }
 
       {bookingData?.status === 'UPDATED' && (
