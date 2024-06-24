@@ -60,6 +60,8 @@ const Stepper = (props) => {
   const [isNotServicable, setIsNotServicable] = useState(false)
 
 
+  let currentLocation = location ? location : {latitude : 18.5204, longitude : 73.8567}
+
 
   const [totalAmount, setTotalAmount] = useState(0);
   const calculateTotalAmount = () => {
@@ -228,10 +230,8 @@ const Stepper = (props) => {
           "city": selectedAddress[0].id,
           "pincode": selectedAddress[0].pincode,
           "address": selectedAddress[0].address1,
-          // "latitude":JSON.parse(location).latitude,
-          // "longitude":JSON.parse(location).longitude,
-          "latitude":location.latitude,
-          "longitude":location.longitude,
+          "latitude":currentLocation.latitude,
+          "longitude":currentLocation.longitude,
           
         },
         "date": selectedDate,

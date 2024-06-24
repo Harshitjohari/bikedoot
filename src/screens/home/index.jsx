@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Center, Box, Button, Text, ScrollView, Platform } from 'native-base';
-import { Alert } from 'react-native';
+import { Alert, PermissionsAndroid } from 'react-native';
 
 import RoundBoxCard from '../../components/UI/services-cards';
 import TextHeader from '../../components/UI/text-header'
@@ -17,7 +17,9 @@ import { useNavigation } from '@react-navigation/native';
 import { imageConstant } from '../../utils/constant';
 import FastImage from 'react-native-fast-image';
 import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
+// import Geolocation from 'react-native-geolocation-service';
 
+import Storage from '../../utils/async-storage';
 
 
 const HorizontalFlatList = (props) => {
@@ -30,28 +32,72 @@ const HorizontalFlatList = (props) => {
   const [isAgreed, setIsAgreed] = useState(false);
   const [loadingServices, setLoadingServices] = useState(false);
 
+console.log('page refresh')
+  // useEffect(() => {
+  //   console.log('==== check     checkGPSOnStart===')
+  //   checkGPSOnStart();
+  //   // requestLOcationPermission();
+  // });
+
 
   useEffect(() => {
-    checkGPSOnStart();
-  }, []);
+    console.log('==== check     fetchHomeData===')
+    fetchHomeData(cityID);
+  }, [cityID]);
 
+  
+  const requestLOcationPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_BACKGROUND_LOCATION,
+        {
+          title: 'Location Permission',
+          message: 'This app needs access to your location.',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('You can use the location');
+      } else {
+        console.log('Location permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+  
   const checkGPSOnStart = () => {
+    console.log('====checkGPSOnStart===')
     Geolocation.getCurrentPosition(
       (position) => {
         if (position.coords) {
+          console.log('==================================================>',position)
           setLatLong(position.coords)
         }
       },
       (error) => {
+        console.log('error=================================================>',error)
+        // Alert.alert(           
+        //   'Location Error',
+        //   error.code == 2 ? 'Please enable GPS to use this app.' : error.message,
+        //   [
+        //     { text: 'Ok', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        //   ],
+        //   { cancelable: false }
+        // );
       },
-      { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 }
+      { enableHighAccuracy: false, timeout: 15000, maximumAge: 10000 }
     );
   };
 
 
-  const checkGPS = (item) => {
+
+  const checkGPS = async (item) => {
     if (location && location.latitude) {
-      navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: location });
+      console.log('main=================================================>',location)
+      navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: location});
     } else {
       setLoadingServices(true)                     
       Geolocation.getCurrentPosition(
@@ -59,6 +105,7 @@ const HorizontalFlatList = (props) => {
           setLoadingServices(false)
           // console.log('==============>', position.coords);
           if (position.coords) {
+            console.log('=======navigation.navigateServicesList=======>');
             navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: position.coords });
             setLatLong(position.coords)
           }
@@ -75,7 +122,7 @@ const HorizontalFlatList = (props) => {
             { cancelable: false }
           );
         },
-        { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 }
+        { enableHighAccuracy: false, timeout: 20000, maximumAge: 10000 }
       );
     }
   };
@@ -109,12 +156,6 @@ const HorizontalFlatList = (props) => {
     <RoundBoxCard onPress={() => checkGPS(item)} iconSource={item.icon ? { uri: item?.icon } : require('../../assets/images/doorstep-services.png')} title={item.name} />
   );
 
-
-
-
-  useEffect(() => {
-    fetchHomeData(cityID);
-  }, [cityID]);
 
   const fetchHomeData = async (cityID) => {
     try {

@@ -1,10 +1,10 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-31:12
-INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-31:12
-INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-31:12
-INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-31:12
-MERGED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-31:12
+ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
+INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
+INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
+INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
+MERGED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.182.0] /Users/harshit/.gradle/caches/transforms-3/9e608db9e576dfdad4d33a713dca398d/transformed/jetified-flipper-network-plugin-0.182.0/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.182.0] /Users/harshit/.gradle/caches/transforms-3/dab9be20d47b86f979ee7142ad89f976/transformed/jetified-flipper-fresco-plugin-0.182.0/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper:0.182.0] /Users/harshit/.gradle/caches/transforms-3/4462f5f2e1d87b4fefe71f1d8b53c912/transformed/jetified-flipper-0.182.0/AndroidManifest.xml:8:1-18:12
@@ -13,6 +13,7 @@ MERGED from [:react-native-async-storage_async-storage] /Users/harshit/Desktop/b
 MERGED from [:react-native-community_geolocation] /Users/harshit/Desktop/bikedoot-client-app/node_modules/@react-native-community/geolocation/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-device-info] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-device-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-fast-image] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-fast-image/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:react-native-geolocation-service] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-geolocation-service/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-gesture-handler] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:react-native-get-location] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-get-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-19:12
@@ -110,17 +111,17 @@ INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/A
 INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml:2:1-13:12
 	package
 		INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-31:12
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
 		INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-31:12
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
 		INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-31:12
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:1-32:12
 		INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:1:11-69
@@ -154,10 +155,14 @@ MERGED from [:react-native-get-location] /Users/harshit/Desktop/bikedoot-client-
 MERGED from [:react-native-get-location] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-get-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-81
 	android:name
 		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:7:22-78
+uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
+ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:8:5-85
+	android:name
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:8:22-82
 application
-ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:10:5-30:19
-MERGED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:10:5-30:19
-MERGED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:10:5-30:19
+ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:11:5-31:19
+MERGED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:11:5-31:19
+MERGED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:11:5-31:19
 MERGED from [:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-17:19
 MERGED from [:react-native-image-picker] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-17:19
 MERGED from [:react-native-razorpay] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-razorpay/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:7:5-11:19
@@ -209,53 +214,53 @@ MERGED from [com.android.installreferrer:installreferrer:1.1.2] /Users/harshit/.
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.8.0] /Users/harshit/.gradle/caches/transforms-3/73d130de081067ccd234419f7a70c184/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:12:7-39
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:12:7-39
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:13:7-39
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:13:7-39
 	tools:ignore
 		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml:10:9-48
 	android:roundIcon
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:14:7-52
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:14:7-52
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:15:7-52
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:15:7-52
 	tools:targetApi
 		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/debug/AndroidManifest.xml:9:9-29
 	android:icon
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:13:7-41
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:13:7-41
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:14:7-41
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:14:7-41
 	android:allowBackup
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:15:7-34
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:15:7-34
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:16:7-34
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:16:7-34
 	android:theme
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:17:7-38
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:17:7-38
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:18:7-38
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:18:7-38
 	android:usesCleartextTraffic
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:16:8-43
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:17:8-43
 	android:name
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:11:7-38
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:11:7-38
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:12:7-38
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:12:7-38
 activity#com.bikedoot.MainActivity
-ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:18:7-29:18
+ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:19:7-30:18
 	android:label
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:20:9-41
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:21:9-41
 	android:launchMode
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:22:9-40
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:23:9-40
 	android:windowSoftInputMode
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:23:9-51
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:24:9-51
 	android:exported
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:24:9-32
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:25:9-32
 	android:configChanges
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:21:9-118
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:22:9-118
 	android:name
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:19:9-37
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:20:9-37
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:25:9-28:25
+ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:9-29:25
 action#android.intent.action.MAIN
-ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:13-65
+ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:27:13-65
 	android:name
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:26:21-62
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:27:21-62
 category#android.intent.category.LAUNCHER
-ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:27:13-73
+ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:28:13-73
 	android:name
-		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:27:23-70
+		ADDED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml:28:23-70
 uses-sdk
 INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/harshit/Desktop/bikedoot-client-app/android/app/src/main/AndroidManifest.xml
@@ -276,6 +281,8 @@ MERGED from [:react-native-device-info] /Users/harshit/Desktop/bikedoot-client-a
 MERGED from [:react-native-device-info] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-device-info/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-fast-image] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-fast-image/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-fast-image] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-fast-image/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:react-native-geolocation-service] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-geolocation-service/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:react-native-geolocation-service] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-geolocation-service/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-gesture-handler] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-gesture-handler] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:react-native-get-location] /Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-get-location/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-44

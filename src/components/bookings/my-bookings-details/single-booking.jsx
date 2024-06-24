@@ -721,15 +721,78 @@ const BookingCardDetail = ({ booking, refresh }) => {
 
                                 <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
                                     {booking?.completed ? 'Total ' : 'Estimated '}
-                                    Amount :
+                                    Grand Amount :
                                 </Text>
                                 <Text fontWeight="500" fontSize="bd_sm" mb={0} color="bd_dark_text">
                                     ₹{booking?.amount}
                                 </Text>
-
-
-
                             </View>
+
+                            {
+                                booking?.bikedootDiscount &&
+                                <View
+                                width="100%"
+                                bg="#ffffff"
+                                borderRadius="10px"
+                                marginTop={3}
+                                paddingBottom={1}
+                                alignItems="center"
+                                flexDirection="row"
+                                justifyContent="space-between"
+                            >
+
+                                <Text fontWeight="500" fontSize={12} mb={0} lineHeight="14px" color="bd_sec_text">
+                                    {booking?.bikedootDiscount?.title}
+                                </Text>
+                                <Text fontWeight="500" fontSize={12} mb={0} color="bd_sec_text">
+                                    - ₹{booking?.bikedootDiscount?.amount}
+                                </Text>
+                                </View>
+                            }
+
+                            {
+                                booking?.garageDiscount &&
+                                <View
+                                width="100%"
+                                bg="#ffffff"
+                                borderRadius="10px"
+                                marginTop={2}
+                                paddingBottom={1}
+                                alignItems="center"
+                                flexDirection="row"
+                                justifyContent="space-between"
+                            >
+
+                                <Text fontWeight="500" fontSize={12} mb={0} lineHeight="14px" color="bd_sec_text">
+                                    {booking?.garageDiscount?.title}
+                                </Text>
+                                <Text fontWeight="500" fontSize={12} mb={0} color="bd_sec_text">
+                                    - ₹{booking?.garageDiscount?.amount}
+                                </Text>
+                                </View>
+                            }
+
+                            {
+                                booking?.finalAmount &&
+                                <View
+                                width="100%"
+                                bg="#ffffff"
+                                borderRadius="10px"
+                                marginTop={2}
+                                paddingBottom={1}
+                                alignItems="center"
+                                flexDirection="row"
+                                justifyContent="space-between"
+                            >
+
+                                <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
+                                    Total Amount :
+                                </Text>
+                                <Text fontWeight="500" fontSize="bd_sm" mb={0} color="bd_dark_text">
+                                    ₹{booking?.finalAmount}
+                                </Text>
+                                </View>
+                            }
 
 
 
@@ -793,6 +856,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
 
 
                         }
+                        
 
 
                         {

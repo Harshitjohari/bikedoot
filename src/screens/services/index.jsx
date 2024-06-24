@@ -23,8 +23,13 @@ const ServiesList = ({ navigation, route }) => {
 
 
     useEffect(() => {
-            fetchGarageData();
+        fetchGarageData();
     }, [radius]);
+
+    // console.log('2222========================>',loc)
+    let currentLocation = loc ? loc : {"latitude" : 18.5204, "longitude" : 73.8567}
+    // console.log('currentLocation========================>',currentLocation)
+
 
     const fetchGarageData = async () => {
         try {
@@ -34,7 +39,8 @@ const ServiesList = ({ navigation, route }) => {
                 "longitude":loc.longitude,
                 "radius": radius === 'All' ? 0 : parseInt(radius)
             }
-            // console.log('=======>',data)
+            // console.log('data========================+>',data)
+            // return
             let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.GARAGE_DATA + cityID + "/garage/" + garageID, token, data)
 
             setLoading(false);
@@ -45,7 +51,7 @@ const ServiesList = ({ navigation, route }) => {
             }
         } catch (e) {
             setLoading(false);
-            console.log('error=========>',e)
+            console.log('errorr=========>',e)
             // show("Some error has occured!");
         }
     };

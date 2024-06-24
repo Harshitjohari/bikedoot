@@ -1989,10 +1989,10 @@ module_dependencies {
   dependency_index: 83
   dependency_index: 89
   dependency_index: 94
+  dependency_index: 16
   dependency_index: 4
   dependency_index: 93
   dependency_index: 95
-  dependency_index: 16
   dependency_index: 34
   dependency_index: 103
   dependency_index: 45

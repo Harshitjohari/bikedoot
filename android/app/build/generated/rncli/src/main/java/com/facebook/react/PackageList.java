@@ -19,6 +19,8 @@ import com.reactnativecommunity.geolocation.GeolocationPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 // react-native-fast-image
 import com.dylanvann.fastimage.FastImageViewPackage;
+// react-native-geolocation-service
+import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 // react-native-get-location
@@ -84,6 +86,7 @@ public class PackageList {
       new GeolocationPackage(),
       new RNDeviceInfo(),
       new FastImageViewPackage(),
+      new RNFusedLocationPackage(),
       new RNGestureHandlerPackage(),
       new ReactNativeGetLocationPackage(),
       new ImagePickerPackage(),

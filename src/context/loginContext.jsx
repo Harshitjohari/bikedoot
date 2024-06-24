@@ -111,7 +111,7 @@ export const AuthProvider = ({ children }) => {
     const setLatLong = async (latlong) => {
         try {
             setLocation(latlong);
-            await Storage.setDataInStorage('location', latlong);
+            await Storage.setDataInStorage('location', JSON.stringify(latlong));
         } catch (error) {
             console.error('Error setting user data to storage:', error);
         }

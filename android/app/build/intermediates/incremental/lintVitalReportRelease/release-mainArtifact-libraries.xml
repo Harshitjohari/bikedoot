@@ -104,6 +104,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="/Users/harshit/Desktop/bikedoot-client-app/android@@:react-native-geolocation-service::release"
+      jars="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-geolocation-service/android/build/.transforms/c225fa1fc052a4996d03b84087bc297b/transformed/out/jars/classes.jar:/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-geolocation-service/android/build/.transforms/c225fa1fc052a4996d03b84087bc297b/transformed/out/jars/libs/R.jar"
+      resolved="bikedoot:react-native-geolocation-service:unspecified"
+      folder="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-geolocation-service/android/build/.transforms/c225fa1fc052a4996d03b84087bc297b/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="/Users/harshit/Desktop/bikedoot-client-app/android@@:react-native-gesture-handler::release"
       jars="/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-gesture-handler/android/build/.transforms/ee04a9c341cfed5b831b2acf45e3e217/transformed/out/jars/classes.jar:/Users/harshit/Desktop/bikedoot-client-app/node_modules/react-native-gesture-handler/android/build/.transforms/ee04a9c341cfed5b831b2acf45e3e217/transformed/out/jars/libs/R.jar"
       resolved="bikedoot:react-native-gesture-handler:unspecified"
