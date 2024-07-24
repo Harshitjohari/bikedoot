@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import messaging from '@react-native-firebase/messaging';
-import Storage from '../utils/async-storage';
-import { Alert } from 'react-native';
-
+import PushNotification from 'react-native-push-notification';
+import {navigate} from '../navigation/NavigationService';
 
 // Initialize Firebase
 export const initializeFirebase = async () => {
@@ -35,33 +34,48 @@ export const setBackgroundMessageHandler = () => {
   });
 };
 
-// Handle foreground messages
-export const onMessage = () => {
-  messaging().onMessage(async remoteMessage => {
-    console.log('Foreground message received:==================>', remoteMessage);
-    Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage.notification));
+export const NotificationListener = () => {
+  messaging().onNotificationOpenedApp(remoteMessage => {
+    console.log(
+      'Notification caused app to open from background state:',
+      remoteMessage.notification,
+    );
   });
-};
 
-//callback foregroung handler
-export const onMessageCallBack = (callback) => {
-  messaging().onMessage(async remoteMessage => {
-    console.log('Foreground message received:', remoteMessage);
-    if (callback) {
-      callback(remoteMessage);
-    }
+
+  messaging()
+    .getInitialNotification()
+    .then(remoteMessage => {
+      if (remoteMessage) {
+        console.log(
+          'Notification caused app to open from quit state:',
+          remoteMessage.notification,
+        );
+      }
+    });
+
+
+
+  PushNotification.configure({
+    onNotification: (notification) => {
+      console.log('onNotification-------------touched object', notification.data);
+      if(notification.data.for === "mechanic"){
+        navigate("MechanicBookingsScreen",{ id: notification.data?.bookingId })
+        // navigate("MechanicBookingsDetails", { id:_id })
+      }
+      if(notification.data.for === "garage"){
+        navigate("BookingsScreen",{ id: notification.data?.bookingId })
+        // navigate("BookingsDetails", { id:_id })
+      }
+    },
+    onAction: function (notification) {
+      console.log("ACTION:", notification.action);
+      console.log("NOTIFICATION:", notification);
+    },
+    popInitialNotification: true,
+    requestPermissions: true,
   });
-};
+}
 
-//in other file for using firebase module
-// onMessage((remoteMessage) => {
-//   console.log('Received message:', remoteMessage);
-// });
-// useEffect(() => {
-//   const messageHandler = (remoteMessage) => {
-//     console.log('Received message:', remoteMessage);
-//   };
-
-//   onMessage(messageHandler);
-
-// }, []);
+//server key
+//AAAA7hxgyDY:APA91bFd0U6-aUw-Cu1gnF-lRUB5rO6cLw3pYitMqfHHbBU2vmRBKh6mCnLBuvxwRzDQ7kIiGrQlk5UoNJj03kLfyxUTpOEyNmokCVWE9ajJYQmcHMZsR3gIwRpjokMkiZgCIV3Cprnb

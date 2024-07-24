@@ -60,6 +60,7 @@ integer react_native_dev_server_port
 integer react_native_inspector_proxy_port
 mipmap ic_launcher
 mipmap ic_launcher_round
+mipmap ic_notification
 string app_name
 string gcm_defaultSenderId
 string google_api_key

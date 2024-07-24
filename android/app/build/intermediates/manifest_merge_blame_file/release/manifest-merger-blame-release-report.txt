@@ -1,8 +1,8 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.bikedoot_partner"
-4    android:versionCode="3"
-5    android:versionName="1.2" >
+4    android:versionCode="5"
+5    android:versionName="1.4" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
@@ -73,11 +73,11 @@
 38        android:usesCleartextTraffic="true" >
 38-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:8:7-42
 39        <meta-data
-39-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:7-136
+39-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:7-134
 40            android:name="com.google.firebase.messaging.default_notification_icon"
 40-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:18-88
-41            android:resource="@mipmap/ic_launcher_round" />
-41-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:89-133
+41            android:resource="@mipmap/ic_notification" />
+41-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:89-131
 42
 43        <activity
 43-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:16:7-27:18

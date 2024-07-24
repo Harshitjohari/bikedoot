@@ -51,6 +51,7 @@ com.bikedoot_partner.app-packaged_res-49 /Users/harshit/Desktop/Bikedoot_Partner
 com.bikedoot_partner.app-packaged_res-50 /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-picker/picker/android/build/intermediates/packaged_res/debug
 com.bikedoot_partner.app-packaged_res-51 /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-gesture-handler/android/build/intermediates/packaged_res/debug
 com.bikedoot_partner.app-packaged_res-52 /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/packaged_res/debug
-com.bikedoot_partner.app-packaged_res-53 /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-safe-area-context/android/build/intermediates/packaged_res/debug
-com.bikedoot_partner.app-packaged_res-54 /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-screens/android/build/intermediates/packaged_res/debug
-com.bikedoot_partner.app-packaged_res-55 /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-vector-icons/android/build/intermediates/packaged_res/debug
+com.bikedoot_partner.app-packaged_res-53 /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-push-notification/android/build/intermediates/packaged_res/debug
+com.bikedoot_partner.app-packaged_res-54 /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-safe-area-context/android/build/intermediates/packaged_res/debug
+com.bikedoot_partner.app-packaged_res-55 /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-screens/android/build/intermediates/packaged_res/debug
+com.bikedoot_partner.app-packaged_res-56 /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-vector-icons/android/build/intermediates/packaged_res/debug

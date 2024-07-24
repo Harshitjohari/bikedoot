@@ -14,17 +14,18 @@ import {
 }
   from 'react-native';
 
+
+
 const width = Dimensions.get('window').width;
 const deviceHeight = Dimensions.get('window').height;
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import HomeScreen from '../screens/home';
 import MechanicHomeScreen from '../screens/home/mechanic';
 import Login from '../screens/authentication/login';
-import LoginStack  from '../navigation/stack';
+import LoginStack from '../navigation/stack';
 import BookingsScreen from '../screens/bookings/my-bookings';
 import MechanicBookingsScreen from '../screens/bookings/my-bookings-mechanic';
 import BookingsDetails from '../screens/bookings/booking-details';
@@ -61,6 +62,11 @@ import EarningDetail from '../screens/earnings/detail'
 
 import { imageConstant } from '../utils/constant';
 
+import { setTopLevelNavigator } from './NavigationService';
+import { NavigationContainer } from '@react-navigation/native';
+
+
+
 const Tab = createBottomTabNavigator();
 const SettingsStack = createStackNavigator()
 const HomeStack = createStackNavigator()
@@ -77,7 +83,6 @@ const MainNavigator = (props) => {
   const [isLoggedIn, setLoggedIn] = useState(null);
 
   const { token, userData } = useAuth();
-
 
   useEffect(() => {
     const checkLoginStatus = async () => {
@@ -108,7 +113,6 @@ const MainNavigator = (props) => {
     setLoggedIn(loggedIn);
   };
 
-  // console.log('ROLE======================>', userData?.role?.type)
 
   // const SettingsStackScreen = () => (
   //   <SettingsStack.Navigator screenOptions={{
@@ -128,7 +132,7 @@ const MainNavigator = (props) => {
   const HomeStackScreen = (props) => (
     <HomeStack.Navigator screenOptions={{
       headerShown: false
-    }}>
+    }} >
       <HomeStack.Screen name="Home" component={HomeScreen} />
       {/* <HomeStack.Screen name="Home">
         {(props) => <HomeScreen {...props} logout={logout} />}
@@ -193,7 +197,7 @@ const MainNavigator = (props) => {
   const MechanicHomeStackScreen = (props) => (
     <MechanicHomeStack.Navigator screenOptions={{
       headerShown: false
-    }}>
+    }} >
       <MechanicHomeStack.Screen name="MechanicHome" component={MechanicHomeScreen} />
       <MechanicHomeStack.Screen name="MechanicBookingsDetails" component={MechanicBookingsDetails} options={{ tabBarVisible: false }} />
       <MechanicHomeStack.Screen name="MechanicBookingsScreen" component={MechanicBookingsScreen} options={{ tabBarVisible: false }} />
@@ -219,7 +223,7 @@ const MainNavigator = (props) => {
     <MechanicHomeStack.Navigator screenOptions={{
       headerShown: false
     }}>
-        <MechanicHomeStack.Screen name="MechanicProfile">
+      <MechanicHomeStack.Screen name="MechanicProfile">
         {(props) => <MechanicProfile {...props} logout={logout} />}
       </MechanicHomeStack.Screen>
       <MechanicHomeStack.Screen name="Login" component={Login} options={{ tabBarVisible: false }} />
@@ -259,147 +263,161 @@ const MainNavigator = (props) => {
   // } 
   else {
     let role = userData?.role?.type
+
     if (role == 'GARAGE_ADMIN') {
 
       return (
-        <Tab.Navigator
-          lazy={false}
-          screenOptions={({ route }) => ({
-            headerShown: false,
-            tabBarIcon: ({ focused }) => {
-              if (route.name === 'Home') {
-                // return <Image source={focused ? imageConstant.home : imageConstant.home1} style={{ width: 30, height: 30, marginBottom: 10 }} />
-                return (
-                  <View style={{ alignItems: 'center' }}>
-                    <Image source={focused ? imageConstant.home : imageConstant.home1} style={{ width: 30, height: 30, marginBottom: 5 }} />
-                    <Text style={{ color: focused ? 'blue' : 'gray', fontWeight:500, fontSize : 13 }}>Home</Text>
-                  </View>
-                );
+        <NavigationContainer
+          independent={true}
+          ref={(navigatorRef) => {
+            setTopLevelNavigator(navigatorRef);
+          }}>
+          <Tab.Navigator
+            lazy={false}
+            screenOptions={({ route }) => ({
+              headerShown: false,
+              tabBarIcon: ({ focused }) => {
+                if (route.name === 'Home') {
+                  // return <Image source={focused ? imageConstant.home : imageConstant.home1} style={{ width: 30, height: 30, marginBottom: 10 }} />
+                  return (
+                    <View style={{ alignItems: 'center' }}>
+                      <Image source={focused ? imageConstant.home : imageConstant.home1} style={{ width: 30, height: 30, marginBottom: 5 }} />
+                      <Text style={{ color: focused ? 'blue' : 'gray', fontWeight: 500, fontSize: 13 }}>Home</Text>
+                    </View>
+                  );
+                }
+                else if (route.name === 'Bookings') {
+                  // return <Image source={focused ? imageConstant.bookings : imageConstant.bookings1} style={{ width: 30, height: 30, marginBottom: 10 }} />
+                  return (
+                    <View style={{ alignItems: 'center' }}>
+                      <Image source={focused ? imageConstant.bookings : imageConstant.bookings1} style={{ width: 30, height: 30, marginBottom: 5 }} />
+                      <Text style={{ color: focused ? 'blue' : 'gray', fontWeight: 500, fontSize: 13 }}>Bookings</Text>
+                    </View>
+                  );
+                }
+                else if (route.name === 'Spares') {
+                  // return <Image source={focused ? imageConstant.spares : imageConstant.spares1} style={{ width: 30, height: 30, marginBottom: 10 }} />
+                  return (
+                    <View style={{ alignItems: 'center' }}>
+                      <Image source={focused ? imageConstant.spares : imageConstant.spares1} style={{ width: 30, height: 30, marginBottom: 5 }} />
+                      <Text style={{ color: focused ? 'blue' : 'gray', fontWeight: 500, fontSize: 13 }}>Store</Text>
+                    </View>
+                  );
+                }
+                else if (route.name === 'Earnings') {
+                  // return <Image source={focused ? imageConstant.earnings : imageConstant.earnings1} style={{ width: 30, height: 30, marginBottom: 10 }} />
+                  return (
+                    <View style={{ alignItems: 'center' }}>
+                      <Image source={focused ? imageConstant.earnings : imageConstant.earnings1} style={{ width: 30, height: 30, marginBottom: 5 }} />
+                      <Text style={{ color: focused ? 'blue' : 'gray', fontWeight: 500, fontSize: 13 }}>Earnings</Text>
+                    </View>
+                  );
+                }
+                else if (route.name === 'Profile') {
+                  // return <Image source={focused ? imageConstant.profile : imageConstant.profile1} style={{ width: 30, height: 30, marginBottom: 10 }} />
+                  return (
+                    <View style={{ alignItems: 'center' }}>
+                      <Image source={focused ? imageConstant.profile : imageConstant.profile1} style={{ width: 30, height: 30, marginBottom: 5 }} />
+                      <Text style={{ color: focused ? 'blue' : 'gray', fontWeight: 500, fontSize: 13 }}>Profile</Text>
+                    </View>
+                  );
+                }
+              },
+              tabBarShowLabel: false,
+              tabBarActiveTintColor: "white",
+              tabBarInactiveTintColor: "white",
+              tabBarStyle: {
+                backgroundColor: "white",
+                height: Platform.OS == 'ios' ? hp('10%') : width / 5.8,
+                width: width,
+                justifyContent: "space-evenly",
               }
-              else if (route.name === 'Bookings') {
-                // return <Image source={focused ? imageConstant.bookings : imageConstant.bookings1} style={{ width: 30, height: 30, marginBottom: 10 }} />
-                return (
-                  <View style={{ alignItems: 'center' }}>
-                    <Image source={focused ? imageConstant.bookings : imageConstant.bookings1} style={{ width: 30, height: 30, marginBottom: 5 }} />
-                    <Text style={{ color: focused ? 'blue' : 'gray', fontWeight:500, fontSize : 13 }}>Bookings</Text>
-                  </View>
-                );
-              }
-              else if (route.name === 'Spares') {
-                // return <Image source={focused ? imageConstant.spares : imageConstant.spares1} style={{ width: 30, height: 30, marginBottom: 10 }} />
-                return (
-                  <View style={{ alignItems: 'center' }}>
-                    <Image source={focused ? imageConstant.spares : imageConstant.spares1} style={{ width: 30, height: 30, marginBottom: 5 }} />
-                    <Text style={{ color: focused ? 'blue' : 'gray', fontWeight:500, fontSize : 13 }}>Store</Text>
-                  </View>
-                );
-              }
-              else if (route.name === 'Earnings') {
-                // return <Image source={focused ? imageConstant.earnings : imageConstant.earnings1} style={{ width: 30, height: 30, marginBottom: 10 }} />
-                return (
-                  <View style={{ alignItems: 'center' }}>
-                    <Image source={focused ? imageConstant.earnings : imageConstant.earnings1} style={{ width: 30, height: 30, marginBottom: 5 }} />
-                    <Text style={{ color: focused ? 'blue' : 'gray', fontWeight:500, fontSize : 13 }}>Earnings</Text>
-                  </View>
-                );
-              }
-              else if (route.name === 'Profile') {
-                // return <Image source={focused ? imageConstant.profile : imageConstant.profile1} style={{ width: 30, height: 30, marginBottom: 10 }} />
-                return (
-                  <View style={{ alignItems: 'center' }}>
-                    <Image source={focused ? imageConstant.profile : imageConstant.profile1} style={{ width: 30, height: 30, marginBottom: 5 }} />
-                    <Text style={{ color: focused ? 'blue' : 'gray', fontWeight:500, fontSize : 13 }}>Profile</Text>
-                  </View>
-                );
-              }
-            },
-            tabBarShowLabel: false,
-            tabBarActiveTintColor: "white",
-            tabBarInactiveTintColor: "white",
-            tabBarStyle: {
-              backgroundColor: "white",
-              height: Platform.OS == 'ios' ? hp('10%') : width / 5.8,
-              width: width,
-              justifyContent: "space-evenly",
-            }
 
-          })}>
-          <Tab.Screen name="Home" component={HomeStackScreen} options={{
-            tabBarLabel: "Home",
-            unmountOnBlur: true,
-          }} />
-          <Tab.Screen name="Bookings" component={HomeBookingStack} />
-          <Tab.Screen name="Spares" component={Store} />
-          <Tab.Screen name="Earnings" component={EarningsStack} />
-          <Tab.Screen name="Profile" component={ProfileStack} />
-          {/* <Tab.Screen name="Settings" component={SettingsStackScreen} /> */}
-        </Tab.Navigator>
+            })}>
+            <Tab.Screen name="Home" component={HomeStackScreen} options={{
+              tabBarLabel: "Home",
+              unmountOnBlur: true,
+            }} />
+            <Tab.Screen name="Bookings" component={HomeBookingStack} />
+            <Tab.Screen name="Spares" component={Store} />
+            <Tab.Screen name="Earnings" component={EarningsStack} />
+            <Tab.Screen name="Profile" component={ProfileStack} />
+            {/* <Tab.Screen name="Settings" component={SettingsStackScreen} /> */}
+          </Tab.Navigator>
+        </NavigationContainer>
+
       );
 
     } else {
 
       return (
-        <Tab.Navigator
-          lazy={false}
-          screenOptions={({ route }) => ({
-            headerShown: false,
-            tabBarIcon: ({ focused }) => {
-              if (route.name === 'MechanicHome') {
-                // return <Image source={focused ? imageConstant.home1 : imageConstant.home} style={{ width: 30, height: 30, marginBottom: 10 }} />
-                return (
-                  <View style={{ alignItems: 'center' }}>
-                    <Image source={focused ? imageConstant.home : imageConstant.home1} style={{ width: 30, height: 30, marginBottom: 5 }} />
-                    <Text style={{ color: focused ? 'blue' : 'gray', fontWeight:500, fontSize : 13 }}>Home</Text>
-                  </View>
-                );
+        <NavigationContainer
+          independent={true}
+          ref={(navigatorRef) => {
+            setTopLevelNavigator(navigatorRef);
+          }}>
+          <Tab.Navigator
+            lazy={false}
+            screenOptions={({ route }) => ({
+              headerShown: false,
+              tabBarIcon: ({ focused }) => {
+                if (route.name === 'MechanicHome') {
+                  // return <Image source={focused ? imageConstant.home1 : imageConstant.home} style={{ width: 30, height: 30, marginBottom: 10 }} />
+                  return (
+                    <View style={{ alignItems: 'center' }}>
+                      <Image source={focused ? imageConstant.home : imageConstant.home1} style={{ width: 30, height: 30, marginBottom: 5 }} />
+                      <Text style={{ color: focused ? 'blue' : 'gray', fontWeight: 500, fontSize: 13 }}>Home</Text>
+                    </View>
+                  );
+                }
+                else if (route.name === 'MechanicBookingsScreen') {
+                  // return <Image source={focused ? imageConstant.bookings1 : imageConstant.bookings} style={{ width: 30, height: 30, marginBottom: 10 }} />
+                  return (
+                    <View style={{ alignItems: 'center' }}>
+                      <Image source={focused ? imageConstant.bookings : imageConstant.bookings1} style={{ width: 30, height: 30, marginBottom: 5 }} />
+                      <Text style={{ color: focused ? 'blue' : 'gray', fontWeight: 500, fontSize: 13 }}>Bookings</Text>
+                    </View>
+                  );
+                }
+                else if (route.name === 'Earnings') {
+                  // return <Image source={focused ? imageConstant.earnings1 : imageConstant.earnings} style={{ width: 30, height: 30, marginBottom: 10 }} />
+                  return (
+                    <View style={{ alignItems: 'center' }}>
+                      <Image source={focused ? imageConstant.earnings : imageConstant.earnings1} style={{ width: 30, height: 30, marginBottom: 5 }} />
+                      <Text style={{ color: focused ? 'blue' : 'gray', fontWeight: 500, fontSize: 13 }}>Earnings</Text>
+                    </View>
+                  );
+                }
+                else if (route.name === 'MechanicProfile') {
+                  // return <Image source={focused ? imageConstant.profile1 : imageConstant.profile} style={{ width: 30, height: 30, marginBottom: 10 }} />
+                  return (
+                    <View style={{ alignItems: 'center' }}>
+                      <Image source={focused ? imageConstant.profile : imageConstant.profile1} style={{ width: 30, height: 30, marginBottom: 5 }} />
+                      <Text style={{ color: focused ? 'blue' : 'gray', fontWeight: 500, fontSize: 13 }}>Profile</Text>
+                    </View>
+                  );
+                }
+              },
+              tabBarShowLabel: false,
+              tabBarActiveTintColor: "white",
+              tabBarInactiveTintColor: "white",
+              tabBarStyle: {
+                backgroundColor: "white",
+                height: Platform.OS == 'ios' ? hp('10%') : width / 5.8,
+                width: width,
+                justifyContent: "space-evenly",
               }
-              else if (route.name === 'MechanicBookingsScreen') {
-                // return <Image source={focused ? imageConstant.bookings1 : imageConstant.bookings} style={{ width: 30, height: 30, marginBottom: 10 }} />
-                return (
-                  <View style={{ alignItems: 'center' }}>
-                    <Image source={focused ? imageConstant.bookings : imageConstant.bookings1} style={{ width: 30, height: 30, marginBottom: 5 }} />
-                    <Text style={{ color: focused ? 'blue' : 'gray', fontWeight:500, fontSize : 13 }}>Bookings</Text>
-                  </View>
-                );
-              }
-              else if (route.name === 'Earnings') {
-                // return <Image source={focused ? imageConstant.earnings1 : imageConstant.earnings} style={{ width: 30, height: 30, marginBottom: 10 }} />
-                return (
-                  <View style={{ alignItems: 'center' }}>
-                    <Image source={focused ? imageConstant.earnings : imageConstant.earnings1} style={{ width: 30, height: 30, marginBottom: 5 }} />
-                    <Text style={{ color: focused ? 'blue' : 'gray', fontWeight:500, fontSize : 13 }}>Earnings</Text>
-                  </View>
-                );
-              }
-              else if (route.name === 'MechanicProfile') {
-                // return <Image source={focused ? imageConstant.profile1 : imageConstant.profile} style={{ width: 30, height: 30, marginBottom: 10 }} />
-                return (
-                  <View style={{ alignItems: 'center' }}>
-                    <Image source={focused ? imageConstant.profile : imageConstant.profile1} style={{ width: 30, height: 30, marginBottom: 5 }} />
-                    <Text style={{ color: focused ? 'blue' : 'gray', fontWeight:500, fontSize : 13 }}>Profile</Text>
-                  </View>
-                );
-              }
-            },
-            tabBarShowLabel: false,
-            tabBarActiveTintColor: "white",
-            tabBarInactiveTintColor: "white",
-            tabBarStyle: {
-              backgroundColor: "white",
-              height: Platform.OS == 'ios' ? hp('10%') : width / 5.8,
-              width: width,
-              justifyContent: "space-evenly",
-            }
 
-          })}>
-          <Tab.Screen name="MechanicHome" component={MechanicHomeStackScreen} options={{
-            tabBarLabel: "MechanicHome",
-            unmountOnBlur: true,
-          }} />
-          <Tab.Screen name="MechanicBookingsScreen" component={MechanicBookingStack} />
-          <Tab.Screen name="Earnings" component={MechanicBookingsScreen} />
-          <Tab.Screen name="MechanicProfile" component={MechanicProfileStack} />
-        </Tab.Navigator>
+            })}>
+            <Tab.Screen name="MechanicHome" component={MechanicHomeStackScreen} options={{
+              tabBarLabel: "MechanicHome",
+              unmountOnBlur: true,
+            }} />
+            <Tab.Screen name="MechanicBookingsScreen" component={MechanicBookingStack} />
+            <Tab.Screen name="Earnings" component={MechanicBookingsScreen} />
+            <Tab.Screen name="MechanicProfile" component={MechanicProfileStack} />
+          </Tab.Navigator>
+        </NavigationContainer>
       );
 
     }

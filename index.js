@@ -5,18 +5,16 @@
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
-import { initializeFirebase, getToken, setBackgroundMessageHandler, onMessage } from './src/utils/NotificationController';
+import { initializeFirebase, setBackgroundMessageHandler, NotificationListener } from './src/utils/NotificationController';
 
 
 // Initialize Firebase
 initializeFirebase();
 
-// Set background message handler
+//Handle notification open
+NotificationListener();
+
+//Handle backgroung
 setBackgroundMessageHandler();
-
-// Listen for foreground messages
-onMessage();
-
-// getToken();
 
 AppRegistry.registerComponent(appName, () => App);

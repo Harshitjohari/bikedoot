@@ -230,9 +230,9 @@ MERGED from [com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/cache
 	android:name
 		ADDED from /Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:9:7-38
 meta-data#com.google.firebase.messaging.default_notification_icon
-ADDED from /Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:7-136
+ADDED from /Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:7-134
 	android:resource
-		ADDED from /Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:89-133
+		ADDED from /Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:89-131
 	android:name
 		ADDED from /Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:18-88
 activity#com.bikedoot_partner.MainActivity

@@ -1,8 +1,8 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.bikedoot_partner"
-4    android:versionCode="3"
-5    android:versionName="1.2" >
+4    android:versionCode="5"
+5    android:versionName="1.4" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
@@ -17,22 +17,22 @@
 13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 13-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:5:1-77
 13-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:5:18-74
-14    <uses-permission android:name="android.permission.WAKE_LOCK" />
-14-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-68
-14-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:22-65
-15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-79
-15-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-76
-16    <!--
-17    This manifest file is used only by Gradle to configure debug-only capabilities
-18    for React Native Apps.
-19    -->
-20    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-20-->[com.facebook.react:react-android:0.73.2] /Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/AndroidManifest.xml:16:5-78
-20-->[com.facebook.react:react-android:0.73.2] /Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/AndroidManifest.xml:16:22-75
-21    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- Required by older versions of Google Play services to create IID tokens -->
-21-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:23:5-77
-21-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:23:22-74
+14    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+14-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:6:1-73
+14-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:6:18-70
+15    <uses-permission android:name="android.permission.WAKE_LOCK" />
+15-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:5-68
+15-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:22-65
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-79
+16-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:22-76
+17    <!--
+18    This manifest file is used only by Gradle to configure debug-only capabilities
+19    for React Native Apps.
+20    -->
+21    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+21-->[com.facebook.react:react-android:0.73.2] /Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/AndroidManifest.xml:16:5-78
+21-->[com.facebook.react:react-android:0.73.2] /Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/AndroidManifest.xml:16:22-75
 22    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 22-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:26:5-82
 22-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:26:22-79
@@ -59,420 +59,473 @@
 31        android:protectionLevel="signature" />
 31-->[androidx.core:core:1.9.0] /Users/harshit/.gradle/caches/transforms-3/131a14e650442bdc8d41eaaa9e5b4d34/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
 32
-33    <uses-permission android:name="com.bikedoot_partner.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+33    <uses-permission android:name="com.bikedoot_partner.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- for android -->
 33-->[androidx.core:core:1.9.0] /Users/harshit/.gradle/caches/transforms-3/131a14e650442bdc8d41eaaa9e5b4d34/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
 33-->[androidx.core:core:1.9.0] /Users/harshit/.gradle/caches/transforms-3/131a14e650442bdc8d41eaaa9e5b4d34/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
-34
-35    <application
-35-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:7:5-28:19
-36        android:name="com.bikedoot_partner.MainApplication"
-36-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:9:7-38
-37        android:allowBackup="false"
-37-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:13:7-34
-38        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-38-->[androidx.core:core:1.9.0] /Users/harshit/.gradle/caches/transforms-3/131a14e650442bdc8d41eaaa9e5b4d34/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
-39        android:debuggable="true"
-40        android:extractNativeLibs="true"
-41        android:icon="@mipmap/ic_launcher"
-41-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:11:7-41
-42        android:label="@string/app_name"
-42-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:10:7-39
-43        android:roundIcon="@mipmap/ic_launcher_round"
-43-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:12:7-52
-44        android:theme="@style/AppTheme"
-44-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:14:7-38
-45        android:usesCleartextTraffic="true" >
-45-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:8:7-42
-46        <meta-data
-46-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:7-136
-47            android:name="com.google.firebase.messaging.default_notification_icon"
-47-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:18-88
-48            android:resource="@mipmap/ic_launcher_round" />
-48-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:89-133
-49
-50        <activity
-50-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:16:7-27:18
-51            android:name="com.bikedoot_partner.MainActivity"
-51-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:17:9-37
-52            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
-52-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:19:9-118
-53            android:exported="true"
-53-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:22:9-32
-54            android:label="@string/app_name"
-54-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:18:9-41
-55            android:launchMode="singleTask"
-55-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:20:9-40
-56            android:windowSoftInputMode="adjustResize" >
-56-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:21:9-51
-57            <intent-filter>
-57-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:23:9-26:25
-58                <action android:name="android.intent.action.MAIN" />
-58-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:24:13-65
-58-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:24:21-62
-59
-60                <category android:name="android.intent.category.LAUNCHER" />
-60-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:25:13-73
-60-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:25:23-70
-61            </intent-filter>
-62        </activity>
-63
-64        <service
-64-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-14:40
-65            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingHeadlessService"
-65-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-103
-66            android:exported="false" />
-66-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-37
-67        <service
-67-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-21:19
-68            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingService"
-68-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-95
-69            android:exported="false" >
-69-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-37
-70            <intent-filter>
-70-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-20:29
-71                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-71-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:17-78
-71-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:25-75
-72            </intent-filter>
-73        </service>
-74
-75        <receiver
-75-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-30:20
-76            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingReceiver"
-76-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-96
-77            android:exported="true"
-77-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-36
-78            android:permission="com.google.android.c2dm.permission.SEND" >
-78-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-73
-79            <intent-filter>
-79-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-29:29
-80                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-80-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-81
-80-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:25-78
-81            </intent-filter>
-82        </receiver>
-83
-84        <meta-data
-84-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:32:9-34:36
-85            android:name="firebase_messaging_auto_init_enabled"
-85-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-64
-86            android:value="true" />
-86-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:34:13-33
-87        <meta-data
-87-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:9-37:32
-88            android:name="com.google.firebase.messaging.default_notification_channel_id"
-88-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-89
-89            android:value="" />
-89-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:37:13-29
-90        <meta-data
-90-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:38:9-40:47
-91            android:name="com.google.firebase.messaging.default_notification_color"
-91-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-84
-92            android:resource="@color/white" />
-92-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:40:13-44
-93        <meta-data
-93-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-11:36
-94            android:name="app_data_collection_default_enabled"
-94-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-63
-95            android:value="true" />
-95-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-33
-96
-97        <service
-97-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:9-21:19
-98            android:name="com.google.firebase.components.ComponentDiscoveryService"
-98-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-84
-99            android:directBootAware="true"
-99-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-43
-100            android:exported="false" >
-100-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
-101            <meta-data
-101-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-20:85
-102                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
-102-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:17-120
-103                android:value="com.google.firebase.components.ComponentRegistrar" />
-103-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:17-82
-104            <meta-data
-104-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:57:13-59:85
-105                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
-105-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:58:17-122
-106                android:value="com.google.firebase.components.ComponentRegistrar" />
-106-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:59:17-82
-107            <meta-data
-107-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:60:13-62:85
-108                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
-108-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:61:17-119
-109                android:value="com.google.firebase.components.ComponentRegistrar" />
-109-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:62:17-82
-110            <meta-data
-110-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:37:13-39:85
-111                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
-111-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:38:17-139
-112                android:value="com.google.firebase.components.ComponentRegistrar" />
-112-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:39:17-82
-113            <meta-data
-113-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:15:13-17:85
-114                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
-114-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:16:17-130
-115                android:value="com.google.firebase.components.ComponentRegistrar" />
-115-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:17:17-82
-116            <meta-data
-116-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:18:13-20:85
-117                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
-117-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:19:17-127
-118                android:value="com.google.firebase.components.ComponentRegistrar" />
-118-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:20:17-82
-119            <meta-data
-119-->[com.google.firebase:firebase-common-ktx:20.4.3] /Users/harshit/.gradle/caches/transforms-3/7784205a870f56c26bcb60ccabf79f4f/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:12:13-14:85
-120                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
-120-->[com.google.firebase:firebase-common-ktx:20.4.3] /Users/harshit/.gradle/caches/transforms-3/7784205a870f56c26bcb60ccabf79f4f/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:13:17-116
-121                android:value="com.google.firebase.components.ComponentRegistrar" />
-121-->[com.google.firebase:firebase-common-ktx:20.4.3] /Users/harshit/.gradle/caches/transforms-3/7784205a870f56c26bcb60ccabf79f4f/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:14:17-82
+34    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
+35    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
+36    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
+37    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
+38    <!-- for Samsung -->
+39    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+39-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:5-86
+39-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:22-83
+40    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+40-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:5-87
+40-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:22-84
+41    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+41-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:5-81
+41-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:22-78
+42    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+42-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:5-83
+42-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:22-80
+43    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+43-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:5-88
+43-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:22-85
+44    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+44-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:5-92
+44-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:22-89
+45    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+45-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:5-84
+45-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:22-81
+46    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+46-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:5-83
+46-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:22-80
+47    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+47-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:5-91
+47-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:22-88
+48    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+48-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:5-92
+48-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:22-89
+49    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+49-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:5-93
+49-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:22-90
+50    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+50-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:5-73
+50-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:22-70
+51    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+51-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:5-82
+51-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:22-79
+52    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+52-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:5-83
+52-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:22-80
+53    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+53-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:5-88
+53-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:22-85
+54    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+54-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:5-89
+54-->[me.leolin:ShortcutBadger:1.1.22] /Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:22-86
+55
+56    <application
+56-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:8:5-29:19
+57        android:name="com.bikedoot_partner.MainApplication"
+57-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:10:7-38
+58        android:allowBackup="false"
+58-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:14:7-34
+59        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+59-->[androidx.core:core:1.9.0] /Users/harshit/.gradle/caches/transforms-3/131a14e650442bdc8d41eaaa9e5b4d34/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+60        android:debuggable="true"
+61        android:extractNativeLibs="true"
+62        android:icon="@mipmap/ic_launcher"
+62-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:12:7-41
+63        android:label="@string/app_name"
+63-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:11:7-39
+64        android:roundIcon="@mipmap/ic_launcher_round"
+64-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:13:7-52
+65        android:theme="@style/AppTheme"
+65-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:15:7-38
+66        android:usesCleartextTraffic="true" >
+66-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:9:7-42
+67        <meta-data
+67-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:16:7-136
+68            android:name="com.google.firebase.messaging.default_notification_icon"
+68-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:16:18-88
+69            android:resource="@drawable/ic_notification" />
+69-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:16:89-133
+70
+71        <activity
+71-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:17:7-28:18
+72            android:name="com.bikedoot_partner.MainActivity"
+72-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:18:9-37
+73            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+73-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:20:9-118
+74            android:exported="true"
+74-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:23:9-32
+75            android:label="@string/app_name"
+75-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:19:9-41
+76            android:launchMode="singleTask"
+76-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:21:9-40
+77            android:windowSoftInputMode="adjustResize" >
+77-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:22:9-51
+78            <intent-filter>
+78-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:24:9-27:25
+79                <action android:name="android.intent.action.MAIN" />
+79-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:25:13-65
+79-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:25:21-62
+80
+81                <category android:name="android.intent.category.LAUNCHER" />
+81-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:26:13-73
+81-->/Users/harshit/Desktop/Bikedoot_Partner/android/app/src/main/AndroidManifest.xml:26:23-70
+82            </intent-filter>
+83        </activity>
+84
+85        <service
+85-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:9-14:40
+86            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingHeadlessService"
+86-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-103
+87            android:exported="false" />
+87-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-37
+88        <service
+88-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-21:19
+89            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingService"
+89-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-95
+90            android:exported="false" >
+90-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-37
+91            <intent-filter>
+91-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-20:29
+92                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+92-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:17-78
+92-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:25-75
+93            </intent-filter>
+94        </service>
+95
+96        <receiver
+96-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-30:20
+97            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingReceiver"
+97-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-96
+98            android:exported="true"
+98-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-36
+99            android:permission="com.google.android.c2dm.permission.SEND" >
+99-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-73
+100            <intent-filter>
+100-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-29:29
+101                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+101-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-81
+101-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:25-78
+102            </intent-filter>
+103        </receiver>
+104
+105        <meta-data
+105-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:32:9-34:36
+106            android:name="firebase_messaging_auto_init_enabled"
+106-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:33:13-64
+107            android:value="true" />
+107-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:34:13-33
+108        <meta-data
+108-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:9-37:32
+109            android:name="com.google.firebase.messaging.default_notification_channel_id"
+109-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-89
+110            android:value="" />
+110-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:37:13-29
+111        <meta-data
+111-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:38:9-40:47
+112            android:name="com.google.firebase.messaging.default_notification_color"
+112-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-84
+113            android:resource="@color/white" />
+113-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:40:13-44
+114        <meta-data
+114-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:9-11:36
+115            android:name="app_data_collection_default_enabled"
+115-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-63
+116            android:value="true" />
+116-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-33
+117
+118        <service
+118-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:9-21:19
+119            android:name="com.google.firebase.components.ComponentDiscoveryService"
+119-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-84
+120            android:directBootAware="true"
+120-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-43
+121            android:exported="false" >
+121-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
 122            <meta-data
-122-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:35:13-37:85
-123                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
-123-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:36:17-109
+122-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-20:85
+123                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
+123-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:17-120
 124                android:value="com.google.firebase.components.ComponentRegistrar" />
-124-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:37:17-82
+124-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:17-82
 125            <meta-data
-125-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/harshit/.gradle/caches/transforms-3/36b22a6d5c83b6d784dafba7e78bd608/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:27:13-29:85
-126                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
-126-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/harshit/.gradle/caches/transforms-3/36b22a6d5c83b6d784dafba7e78bd608/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:28:17-115
+125-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:57:13-59:85
+126                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
+126-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:58:17-122
 127                android:value="com.google.firebase.components.ComponentRegistrar" />
-127-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/harshit/.gradle/caches/transforms-3/36b22a6d5c83b6d784dafba7e78bd608/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:29:17-82
-128        </service>
-129
-130        <provider
-130-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-27:38
-131            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
-131-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-88
-132            android:authorities="com.bikedoot_partner.reactnativefirebaseappinitprovider"
-132-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-86
-133            android:exported="false"
-133-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-37
-134            android:initOrder="99" />
-134-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-35
-135        <provider
-135-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-16:20
-136            android:name="com.imagepicker.ImagePickerProvider"
-136-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-63
-137            android:authorities="com.bikedoot_partner.imagepickerprovider"
-137-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-71
-138            android:exported="false"
-138-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-37
-139            android:grantUriPermissions="true" >
-139-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-47
+127-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:59:17-82
+128            <meta-data
+128-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:60:13-62:85
+129                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+129-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:61:17-119
+130                android:value="com.google.firebase.components.ComponentRegistrar" />
+130-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:62:17-82
+131            <meta-data
+131-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:37:13-39:85
+132                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+132-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:38:17-139
+133                android:value="com.google.firebase.components.ComponentRegistrar" />
+133-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:39:17-82
+134            <meta-data
+134-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:15:13-17:85
+135                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
+135-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:16:17-130
+136                android:value="com.google.firebase.components.ComponentRegistrar" />
+136-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:17:17-82
+137            <meta-data
+137-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:18:13-20:85
+138                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+138-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:19:17-127
+139                android:value="com.google.firebase.components.ComponentRegistrar" />
+139-->[com.google.firebase:firebase-installations:17.2.0] /Users/harshit/.gradle/caches/transforms-3/c8fc2349083b394e9aad4bee1c82fb70/transformed/jetified-firebase-installations-17.2.0/AndroidManifest.xml:20:17-82
 140            <meta-data
-140-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
-141                android:name="android.support.FILE_PROVIDER_PATHS"
-141-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
-142                android:resource="@xml/imagepicker_provider_paths" />
-142-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
-143        </provider>
-144
-145        <activity
-145-->[com.facebook.react:react-android:0.73.2] /Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/AndroidManifest.xml:19:9-21:40
-146            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-146-->[com.facebook.react:react-android:0.73.2] /Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/AndroidManifest.xml:20:13-77
-147            android:exported="false" />
-147-->[com.facebook.react:react-android:0.73.2] /Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/AndroidManifest.xml:21:13-37
-148
-149        <receiver
-149-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:29:9-40:20
-150            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
-150-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:30:13-78
-151            android:exported="true"
-151-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:31:13-36
-152            android:permission="com.google.android.c2dm.permission.SEND" >
-152-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:32:13-73
-153            <intent-filter>
-153-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-29:29
-154                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-154-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-81
-154-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:25-78
-155            </intent-filter>
-156
-157            <meta-data
-157-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:37:13-39:40
-158                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
-158-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:38:17-92
-159                android:value="true" />
-159-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:39:17-37
-160        </receiver>
-161        <!--
-162             FirebaseMessagingService performs security checks at runtime,
-163             but set to not exported to explicitly avoid allowing another app to call it.
-164        -->
-165        <service
-165-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:46:9-53:19
-166            android:name="com.google.firebase.messaging.FirebaseMessagingService"
-166-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:47:13-82
-167            android:directBootAware="true"
-167-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:48:13-43
-168            android:exported="false" >
-168-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:49:13-37
-169            <intent-filter android:priority="-500" >
-169-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-20:29
-170                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-170-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:17-78
-170-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:25-75
-171            </intent-filter>
-172        </service>
-173
-174        <property
-174-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:30:9-32:61
-175            android:name="android.adservices.AD_SERVICES_CONFIG"
-175-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:31:13-65
-176            android:resource="@xml/ga_ad_services_config" />
-176-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:32:13-58
+140-->[com.google.firebase:firebase-common-ktx:20.4.3] /Users/harshit/.gradle/caches/transforms-3/7784205a870f56c26bcb60ccabf79f4f/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:12:13-14:85
+141                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+141-->[com.google.firebase:firebase-common-ktx:20.4.3] /Users/harshit/.gradle/caches/transforms-3/7784205a870f56c26bcb60ccabf79f4f/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:13:17-116
+142                android:value="com.google.firebase.components.ComponentRegistrar" />
+142-->[com.google.firebase:firebase-common-ktx:20.4.3] /Users/harshit/.gradle/caches/transforms-3/7784205a870f56c26bcb60ccabf79f4f/transformed/jetified-firebase-common-ktx-20.4.3/AndroidManifest.xml:14:17-82
+143            <meta-data
+143-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:35:13-37:85
+144                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+144-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:36:17-109
+145                android:value="com.google.firebase.components.ComponentRegistrar" />
+145-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:37:17-82
+146            <meta-data
+146-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/harshit/.gradle/caches/transforms-3/36b22a6d5c83b6d784dafba7e78bd608/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:27:13-29:85
+147                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+147-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/harshit/.gradle/caches/transforms-3/36b22a6d5c83b6d784dafba7e78bd608/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:28:17-115
+148                android:value="com.google.firebase.components.ComponentRegistrar" />
+148-->[com.google.firebase:firebase-datatransport:18.1.7] /Users/harshit/.gradle/caches/transforms-3/36b22a6d5c83b6d784dafba7e78bd608/transformed/jetified-firebase-datatransport-18.1.7/AndroidManifest.xml:29:17-82
+149        </service>
+150
+151        <provider
+151-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:23:9-27:38
+152            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
+152-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-88
+153            android:authorities="com.bikedoot_partner.reactnativefirebaseappinitprovider"
+153-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:13-86
+154            android:exported="false"
+154-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-37
+155            android:initOrder="99" />
+155-->[:react-native-firebase_app] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-35
+156        <provider
+156-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:8:9-16:20
+157            android:name="com.imagepicker.ImagePickerProvider"
+157-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:13-63
+158            android:authorities="com.bikedoot_partner.imagepickerprovider"
+158-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:13-71
+159            android:exported="false"
+159-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-37
+160            android:grantUriPermissions="true" >
+160-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-47
+161            <meta-data
+161-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:70
+162                android:name="android.support.FILE_PROVIDER_PATHS"
+162-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-67
+163                android:resource="@xml/imagepicker_provider_paths" />
+163-->[:react-native-image-picker] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-67
+164        </provider>
+165
+166        <activity
+166-->[com.facebook.react:react-android:0.73.2] /Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/AndroidManifest.xml:19:9-21:40
+167            android:name="com.facebook.react.devsupport.DevSettingsActivity"
+167-->[com.facebook.react:react-android:0.73.2] /Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/AndroidManifest.xml:20:13-77
+168            android:exported="false" />
+168-->[com.facebook.react:react-android:0.73.2] /Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/AndroidManifest.xml:21:13-37
+169
+170        <receiver
+170-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:29:9-40:20
+171            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+171-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:30:13-78
+172            android:exported="true"
+172-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:31:13-36
+173            android:permission="com.google.android.c2dm.permission.SEND" >
+173-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:32:13-73
+174            <intent-filter>
+174-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-29:29
+175                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+175-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:17-81
+175-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:25-78
+176            </intent-filter>
 177
-178        <receiver
-178-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:29:9-33:20
-179            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
-179-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:30:13-85
-180            android:enabled="true"
-180-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:31:13-35
-181            android:exported="false" >
-181-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:32:13-37
-182        </receiver>
-183
-184        <service
-184-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:35:9-38:40
-185            android:name="com.google.android.gms.measurement.AppMeasurementService"
-185-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:36:13-84
-186            android:enabled="true"
-186-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:37:13-35
-187            android:exported="false" />
-187-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:38:13-37
-188        <service
-188-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:39:9-43:72
-189            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
-189-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:40:13-87
-190            android:enabled="true"
-190-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:41:13-35
-191            android:exported="false"
-191-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:42:13-37
-192            android:permission="android.permission.BIND_JOB_SERVICE" />
-192-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:43:13-69
-193
-194        <uses-library
-194-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /Users/harshit/.gradle/caches/transforms-3/7b30ba673135fdaebc2ea7798af0759e/transformed/jetified-ads-adservices-1.0.0-beta05/AndroidManifest.xml:23:9-25:40
-195            android:name="android.ext.adservices"
-195-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /Users/harshit/.gradle/caches/transforms-3/7b30ba673135fdaebc2ea7798af0759e/transformed/jetified-ads-adservices-1.0.0-beta05/AndroidManifest.xml:24:13-50
-196            android:required="false" />
-196-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /Users/harshit/.gradle/caches/transforms-3/7b30ba673135fdaebc2ea7798af0759e/transformed/jetified-ads-adservices-1.0.0-beta05/AndroidManifest.xml:25:13-37
-197
-198        <activity
-198-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:23:9-27:75
-199            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
-199-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:24:13-93
-200            android:excludeFromRecents="true"
-200-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:25:13-46
-201            android:exported="false"
-201-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:26:13-37
-202            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-202-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:27:13-72
-203        <!--
-204            Service handling Google Sign-In user revocation. For apps that do not integrate with
-205            Google Sign-In, this service will never be started.
-206        -->
-207        <service
-207-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:33:9-37:51
-208            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
-208-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:34:13-89
-209            android:exported="true"
-209-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:35:13-36
-210            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
-210-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:36:13-107
-211            android:visibleToInstantApps="true" />
-211-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:37:13-48
-212
-213        <activity
-213-->[com.google.android.gms:play-services-base:18.0.1] /Users/harshit/.gradle/caches/transforms-3/e04577146130542fa21f86a14e93a902/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
-214            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-214-->[com.google.android.gms:play-services-base:18.0.1] /Users/harshit/.gradle/caches/transforms-3/e04577146130542fa21f86a14e93a902/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
-215            android:exported="false"
-215-->[com.google.android.gms:play-services-base:18.0.1] /Users/harshit/.gradle/caches/transforms-3/e04577146130542fa21f86a14e93a902/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
-216            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-216-->[com.google.android.gms:play-services-base:18.0.1] /Users/harshit/.gradle/caches/transforms-3/e04577146130542fa21f86a14e93a902/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
-217
-218        <provider
-218-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:23:9-28:39
-219            android:name="com.google.firebase.provider.FirebaseInitProvider"
-219-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:24:13-77
-220            android:authorities="com.bikedoot_partner.firebaseinitprovider"
-220-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:25:13-72
-221            android:directBootAware="true"
-221-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:26:13-43
+178            <meta-data
+178-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:37:13-39:40
+179                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
+179-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:38:17-92
+180                android:value="true" />
+180-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:39:17-37
+181        </receiver>
+182        <!--
+183             FirebaseMessagingService performs security checks at runtime,
+184             but set to not exported to explicitly avoid allowing another app to call it.
+185        -->
+186        <service
+186-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:46:9-53:19
+187            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+187-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:47:13-82
+188            android:directBootAware="true"
+188-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:48:13-43
+189            android:exported="false" >
+189-->[com.google.firebase:firebase-messaging:23.4.1] /Users/harshit/.gradle/caches/transforms-3/42141c13a80777e90ae8d420bf0f4283/transformed/jetified-firebase-messaging-23.4.1/AndroidManifest.xml:49:13-37
+190            <intent-filter android:priority="-500" >
+190-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-20:29
+191                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+191-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:17-78
+191-->[:react-native-firebase_messaging] /Users/harshit/Desktop/Bikedoot_Partner/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:25-75
+192            </intent-filter>
+193        </service>
+194
+195        <property
+195-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:30:9-32:61
+196            android:name="android.adservices.AD_SERVICES_CONFIG"
+196-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:31:13-65
+197            android:resource="@xml/ga_ad_services_config" />
+197-->[com.google.android.gms:play-services-measurement-api:21.6.1] /Users/harshit/.gradle/caches/transforms-3/130f27b5d06a319ddbf5d4b97a562320/transformed/jetified-play-services-measurement-api-21.6.1/AndroidManifest.xml:32:13-58
+198
+199        <receiver
+199-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:29:9-33:20
+200            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+200-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:30:13-85
+201            android:enabled="true"
+201-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:31:13-35
+202            android:exported="false" >
+202-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:32:13-37
+203        </receiver>
+204
+205        <service
+205-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:35:9-38:40
+206            android:name="com.google.android.gms.measurement.AppMeasurementService"
+206-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:36:13-84
+207            android:enabled="true"
+207-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:37:13-35
+208            android:exported="false" />
+208-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:38:13-37
+209        <service
+209-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:39:9-43:72
+210            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+210-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:40:13-87
+211            android:enabled="true"
+211-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:41:13-35
+212            android:exported="false"
+212-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:42:13-37
+213            android:permission="android.permission.BIND_JOB_SERVICE" />
+213-->[com.google.android.gms:play-services-measurement:21.6.1] /Users/harshit/.gradle/caches/transforms-3/51658a5375c858a434421452b03b8a11/transformed/jetified-play-services-measurement-21.6.1/AndroidManifest.xml:43:13-69
+214
+215        <uses-library
+215-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /Users/harshit/.gradle/caches/transforms-3/7b30ba673135fdaebc2ea7798af0759e/transformed/jetified-ads-adservices-1.0.0-beta05/AndroidManifest.xml:23:9-25:40
+216            android:name="android.ext.adservices"
+216-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /Users/harshit/.gradle/caches/transforms-3/7b30ba673135fdaebc2ea7798af0759e/transformed/jetified-ads-adservices-1.0.0-beta05/AndroidManifest.xml:24:13-50
+217            android:required="false" />
+217-->[androidx.privacysandbox.ads:ads-adservices:1.0.0-beta05] /Users/harshit/.gradle/caches/transforms-3/7b30ba673135fdaebc2ea7798af0759e/transformed/jetified-ads-adservices-1.0.0-beta05/AndroidManifest.xml:25:13-37
+218
+219        <activity
+219-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:23:9-27:75
+220            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+220-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:24:13-93
+221            android:excludeFromRecents="true"
+221-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:25:13-46
 222            android:exported="false"
-222-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:27:13-37
-223            android:initOrder="100" />
-223-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:28:13-36
-224
-225        <meta-data
-225-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/384a194353a31ea2bc52f4ce1050d630/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
-226            android:name="com.google.android.gms.version"
-226-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/384a194353a31ea2bc52f4ce1050d630/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
-227            android:value="@integer/google_play_services_version" />
-227-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/384a194353a31ea2bc52f4ce1050d630/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
-228
-229        <service
-229-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:28:9-34:19
-230            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-230-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:29:13-103
-231            android:exported="false" >
-231-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:30:13-37
-232            <meta-data
-232-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:31:13-33:39
-233                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-233-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:32:17-94
-234                android:value="cct" />
-234-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:33:17-36
-235        </service>
-236        <service
-236-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:26:9-30:19
-237            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-237-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:27:13-117
-238            android:exported="false"
-238-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:28:13-37
-239            android:permission="android.permission.BIND_JOB_SERVICE" >
-239-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:29:13-69
-240        </service>
-241
-242        <receiver
-242-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:32:9-34:40
-243            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-243-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:33:13-132
-244            android:exported="false" />
-244-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:34:13-37
+222-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:26:13-37
+223            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+223-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:27:13-72
+224        <!--
+225            Service handling Google Sign-In user revocation. For apps that do not integrate with
+226            Google Sign-In, this service will never be started.
+227        -->
+228        <service
+228-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:33:9-37:51
+229            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+229-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:34:13-89
+230            android:exported="true"
+230-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:35:13-36
+231            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+231-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:36:13-107
+232            android:visibleToInstantApps="true" />
+232-->[com.google.android.gms:play-services-auth:21.0.0] /Users/harshit/.gradle/caches/transforms-3/308593d8d9f57539674ab3eef7ba2a18/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:37:13-48
+233
+234        <activity
+234-->[com.google.android.gms:play-services-base:18.0.1] /Users/harshit/.gradle/caches/transforms-3/e04577146130542fa21f86a14e93a902/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+235            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+235-->[com.google.android.gms:play-services-base:18.0.1] /Users/harshit/.gradle/caches/transforms-3/e04577146130542fa21f86a14e93a902/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+236            android:exported="false"
+236-->[com.google.android.gms:play-services-base:18.0.1] /Users/harshit/.gradle/caches/transforms-3/e04577146130542fa21f86a14e93a902/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+237            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+237-->[com.google.android.gms:play-services-base:18.0.1] /Users/harshit/.gradle/caches/transforms-3/e04577146130542fa21f86a14e93a902/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+238
+239        <provider
+239-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:23:9-28:39
+240            android:name="com.google.firebase.provider.FirebaseInitProvider"
+240-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:24:13-77
+241            android:authorities="com.bikedoot_partner.firebaseinitprovider"
+241-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:25:13-72
+242            android:directBootAware="true"
+242-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:26:13-43
+243            android:exported="false"
+243-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:27:13-37
+244            android:initOrder="100" />
+244-->[com.google.firebase:firebase-common:20.4.3] /Users/harshit/.gradle/caches/transforms-3/c072f32255cf8293d7216c312c904e4a/transformed/jetified-firebase-common-20.4.3/AndroidManifest.xml:28:13-36
 245
-246        <provider
-246-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-247            android:name="androidx.startup.InitializationProvider"
-247-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
-248            android:authorities="com.bikedoot_partner.androidx-startup"
-248-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
-249            android:exported="false" >
-249-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
-250            <meta-data
-250-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
-251                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-251-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
-252                android:value="androidx.startup" />
-252-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+246        <meta-data
+246-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/384a194353a31ea2bc52f4ce1050d630/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
+247            android:name="com.google.android.gms.version"
+247-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/384a194353a31ea2bc52f4ce1050d630/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
+248            android:value="@integer/google_play_services_version" />
+248-->[com.google.android.gms:play-services-basement:18.3.0] /Users/harshit/.gradle/caches/transforms-3/384a194353a31ea2bc52f4ce1050d630/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+249
+250        <service
+250-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:28:9-34:19
+251            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+251-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:29:13-103
+252            android:exported="false" >
+252-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:30:13-37
 253            <meta-data
-253-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/harshit/.gradle/caches/transforms-3/01815581afc1998c7868acd647df806f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
-254                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-254-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/harshit/.gradle/caches/transforms-3/01815581afc1998c7868acd647df806f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
-255                android:value="androidx.startup" />
-255-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/harshit/.gradle/caches/transforms-3/01815581afc1998c7868acd647df806f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
-256        </provider>
-257
-258        <meta-data
-258-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/a8bc4a39f05b0cfc749bf73de002f192/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:12:9-14:37
-259            android:name="com.facebook.soloader.enabled"
-259-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/a8bc4a39f05b0cfc749bf73de002f192/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:13:13-57
-260            android:value="false" />
-260-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/a8bc4a39f05b0cfc749bf73de002f192/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:14:13-34
-261    </application>
+253-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:31:13-33:39
+254                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+254-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:32:17-94
+255                android:value="cct" />
+255-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/harshit/.gradle/caches/transforms-3/d77aaa61b8062f298ae1729a0b603089/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:33:17-36
+256        </service>
+257        <service
+257-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:26:9-30:19
+258            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+258-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:27:13-117
+259            android:exported="false"
+259-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:28:13-37
+260            android:permission="android.permission.BIND_JOB_SERVICE" >
+260-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:29:13-69
+261        </service>
 262
-263</manifest>
+263        <receiver
+263-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:32:9-34:40
+264            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+264-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:33:13-132
+265            android:exported="false" />
+265-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/harshit/.gradle/caches/transforms-3/1ef7b7c3f498391ab8e50cbd7931a039/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:34:13-37
+266
+267        <provider
+267-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+268            android:name="androidx.startup.InitializationProvider"
+268-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+269            android:authorities="com.bikedoot_partner.androidx-startup"
+269-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+270            android:exported="false" >
+270-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+271            <meta-data
+271-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+272                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+272-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+273                android:value="androidx.startup" />
+273-->[androidx.emoji2:emoji2:1.2.0] /Users/harshit/.gradle/caches/transforms-3/fbb2be9dbd6183e8311d3ac006784ffa/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+274            <meta-data
+274-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/harshit/.gradle/caches/transforms-3/01815581afc1998c7868acd647df806f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+275                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+275-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/harshit/.gradle/caches/transforms-3/01815581afc1998c7868acd647df806f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+276                android:value="androidx.startup" />
+276-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/harshit/.gradle/caches/transforms-3/01815581afc1998c7868acd647df806f/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+277        </provider>
+278
+279        <meta-data
+279-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/a8bc4a39f05b0cfc749bf73de002f192/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:12:9-14:37
+280            android:name="com.facebook.soloader.enabled"
+280-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/a8bc4a39f05b0cfc749bf73de002f192/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:13:13-57
+281            android:value="false" />
+281-->[com.facebook.soloader:soloader:0.10.5] /Users/harshit/.gradle/caches/transforms-3/a8bc4a39f05b0cfc749bf73de002f192/transformed/jetified-soloader-0.10.5/AndroidManifest.xml:14:13-34
+282    </application>
+283
+284</manifest>

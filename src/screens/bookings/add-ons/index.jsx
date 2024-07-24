@@ -130,9 +130,7 @@ const AddOnScreen = (props) => {
       data
     );
     setLoading(false)
-
     if (response?.status) {
-
       show(response?.message, "success");
       navigation.navigate("MechanicBookingsDetails", { id: props.route?.params?.booking?._id })
     } else {

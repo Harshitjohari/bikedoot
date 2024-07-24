@@ -55,6 +55,8 @@ const Constants = {
     RATING : "/api/mechanics/booking/",
     ADD_PAYMENT : "/api/mechanics/booking/",
 
+    UPDATE_FCM : "/auth/updateFcmToken",
+
 
     ASYNC_STORAGE: {
         LOGGED_IN_USER_DATA: "loggedInUserData",
