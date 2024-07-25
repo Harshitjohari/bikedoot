@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-community/geolocation
 import com.reactnativecommunity.geolocation.GeolocationPackage;
+// @react-native-firebase/app
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+// @react-native-firebase/messaging
+import io.invertase.firebase.messaging.ReactNativeFirebaseMessagingPackage;
 // react-native-device-info
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 // react-native-fast-image
@@ -29,6 +33,8 @@ import com.github.douglasjunior.reactNativeGetLocation.ReactNativeGetLocationPac
 import com.imagepicker.ImagePickerPackage;
 // react-native-permissions
 import com.zoontek.rnpermissions.RNPermissionsPackage;
+// react-native-push-notification
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 // react-native-razorpay
 import com.razorpay.rn.RazorpayPackage;
 // react-native-safe-area-context
@@ -84,6 +90,8 @@ public class PackageList {
       new MainReactPackage(mConfig),
       new AsyncStoragePackage(),
       new GeolocationPackage(),
+      new ReactNativeFirebaseAppPackage(),
+      new ReactNativeFirebaseMessagingPackage(),
       new RNDeviceInfo(),
       new FastImageViewPackage(),
       new RNFusedLocationPackage(),
@@ -91,6 +99,7 @@ public class PackageList {
       new ReactNativeGetLocationPackage(),
       new ImagePickerPackage(),
       new RNPermissionsPackage(),
+      new ReactNativePushNotificationPackage(),
       new RazorpayPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),

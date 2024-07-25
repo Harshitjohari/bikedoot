@@ -27,7 +27,7 @@ const Constants = {
     RESCHEDULE_BOOKING : "/api/user/booking/reschedule",
     CANCEL_BOOKING : "/api/user/booking/cancel",
 
-
+    UPDATE_FCM : "/auth/updateFcmToken",
 
     BIKE_BRAND : "/api/user/brand",
     ADD_BIKE : "/api/user/bike",

@@ -20,6 +20,8 @@ import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 // import Geolocation from 'react-native-geolocation-service';
 
 import Storage from '../../utils/async-storage';
+import {getToken} from '../../utils/NotificationController';
+
 
 
 const HorizontalFlatList = (props) => {
@@ -32,18 +34,32 @@ const HorizontalFlatList = (props) => {
   const [isAgreed, setIsAgreed] = useState(false);
   const [loadingServices, setLoadingServices] = useState(false);
 
-console.log('page refresh')
-  // useEffect(() => {
-  //   console.log('==== check     checkGPSOnStart===')
-  //   checkGPSOnStart();
-  //   // requestLOcationPermission();
-  // });
-
 
   useEffect(() => {
-    console.log('==== check     fetchHomeData===')
     fetchHomeData(cityID);
   }, [cityID]);
+
+  useEffect(() => {
+    updateFcmToken();    
+  }, []);
+
+  const updateFcmToken = async () => {
+    try {
+      let fcmToken = await getToken();
+      // console.log('FCM=============>',fcmToken)
+      if(fcmToken !== ""){
+        let data = {
+          "fcmToken": fcmToken
+        }
+        let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.UPDATE_FCM, token, data)
+        if (response?.status) {
+          console.log('FCM UPDATED')
+        }
+      }
+    } catch (e) {
+      console.log("Some error has occured!",e);
+    }
+  };
 
   
   const requestLOcationPermission = async () => {

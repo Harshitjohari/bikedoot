@@ -22,6 +22,9 @@ import OtpVerify from '../screens/bookings/booking-otp'
 import ApprovedPreInspection from '../screens/bookings/approved-pre-inspection'
 import Rating from '../screens/bookings/rating'
 
+import { setTopLevelNavigator } from './NavigationService';
+import { NavigationContainer } from '@react-navigation/native';
+
 const Tab = createBottomTabNavigator();
 const SettingsStack = createStackNavigator()
 const HomeStack = createStackNavigator()
@@ -151,35 +154,42 @@ const MainNavigator = (props) => {
   // } 
   else
     return (
-      <Tab.Navigator
-        lazy={false}
-        screenOptions={({ route }) => ({
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => {
-            let iconName;
-            if (route.name === 'Home') {
-              // Set your custom icon for Home tab
-              iconName = 'home';
-            } else if (route.name === 'Bookings') {
-              // Set your custom icon for Bookings tab
-              iconName = 'list';
-            } else if (route.name === 'Settings') {
-              // Set your custom icon for Settings tab
-              iconName = 'sliders';
-            }
-            // Return your custom icon component
-            return <Icon name={iconName} size={size} color={color} type="FontAwesome5" />;
-          },
-        })}
-        tabBarOptions={{
-          activeTintColor: '#5349f8',
-          inactiveTintColor: '#A9A9A9',
-        }}
-      >
-        <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="Bookings" component={BookingStack} />
-        <Tab.Screen name="Settings" component={SettingsStackScreen} />
-      </Tab.Navigator>
+
+      <NavigationContainer
+        independent={true}
+        ref={(navigatorRef) => {
+          setTopLevelNavigator(navigatorRef);
+        }}>
+        <Tab.Navigator
+          lazy={false}
+          screenOptions={({ route }) => ({
+            headerShown: false,
+            tabBarIcon: ({ color, size }) => {
+              let iconName;
+              if (route.name === 'Home') {
+                // Set your custom icon for Home tab
+                iconName = 'home';
+              } else if (route.name === 'Bookings') {
+                // Set your custom icon for Bookings tab
+                iconName = 'list';
+              } else if (route.name === 'Settings') {
+                // Set your custom icon for Settings tab
+                iconName = 'sliders';
+              }
+              // Return your custom icon component
+              return <Icon name={iconName} size={size} color={color} type="FontAwesome5" />;
+            },
+          })}
+          tabBarOptions={{
+            activeTintColor: '#5349f8',
+            inactiveTintColor: '#A9A9A9',
+          }}
+        >
+          <Tab.Screen name="Home" component={HomeStackScreen} />
+          <Tab.Screen name="Bookings" component={BookingStack} />
+          <Tab.Screen name="Settings" component={SettingsStackScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
     );
 };
 
