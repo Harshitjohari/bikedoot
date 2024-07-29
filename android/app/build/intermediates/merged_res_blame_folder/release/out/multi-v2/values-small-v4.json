@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.bikedoot.app-mergeReleaseResources-36:/values-small-v4/values-small-v4.xml",
+            "outputFile": "com.bikedoot.app-mergeReleaseResources-43:/values-small-v4/values-small-v4.xml",
             "map": [
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/3f9afa29faae8197309f719d70dbe1eb/transformed/material-1.1.0/res/values-small-v4/values-small-v4.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/bab95c0b698ee58b620be7d1f0b5292f/transformed/material-1.1.0/res/values-small-v4/values-small-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

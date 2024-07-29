@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">27409292827-1t55k8f5hkiop3kcq0dgbefgqurg1guk.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">27409292827</string>
+    <string name="google_api_key" translatable="false">AIzaSyCYJSzF4bGzuqQaZFzHM09KZ351dhJSwHs</string>
+    <string name="google_app_id" translatable="false">1:27409292827:android:4429186b5a6625a173a2be</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCYJSzF4bGzuqQaZFzHM09KZ351dhJSwHs</string>
+    <string name="google_storage_bucket" translatable="false">bikedoot.appspot.com</string>
+    <string name="project_id" translatable="false">bikedoot</string>
+</resources>

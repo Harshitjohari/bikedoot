@@ -6,7 +6,7 @@
     mergedManifest="build/intermediates/merged_manifest/release/AndroidManifest.xml"
     proguardFiles="build/intermediates/default_proguard_files/global/proguard-android.txt-7.4.2:proguard-rules.pro"
     partialResultsDir="build/intermediates/lint_vital_partial_results/release/out"
-    desugaredMethodsFiles="/Users/harshit/.gradle/caches/transforms-3/9eebebbd63a4db5d195584623d6bab1e/transformed/D8BackportedDesugaredMethods.txt">
+    desugaredMethodsFiles="/Users/harshit/.gradle/caches/transforms-3/71d241776d7e39834c8080e6be9c7d5d/transformed/D8BackportedDesugaredMethods.txt">
   <buildFeatures
       namespacing="REQUIRED"/>
   <sourceProviders>

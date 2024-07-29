@@ -31,6 +31,11 @@ export const getToken = async () => {
 export const setBackgroundMessageHandler = () => {
   messaging().setBackgroundMessageHandler(async remoteMessage => {
     console.log('Message handled in the background!=======>', remoteMessage);
+    setTimeout(() => {
+      if(remoteMessage.data.for === "user"){
+        navigate("BookingsScreenDetail", { id: remoteMessage.data?.bookingId });
+      }
+    }, 1000)
   });
 };
 
@@ -49,8 +54,13 @@ export const NotificationListener = () => {
       if (remoteMessage) {
         console.log(
           'Notification caused app to open from quit state:',
-          remoteMessage.notification,
+          remoteMessage,
         );
+        setTimeout(() => {
+          if(remoteMessage.data.for === "user"){
+            navigate("BookingsScreenDetail", { id: remoteMessage.data?.bookingId });
+          }
+        }, 2000)
       }
     });
 

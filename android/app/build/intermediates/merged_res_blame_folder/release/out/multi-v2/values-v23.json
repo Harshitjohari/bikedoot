@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.bikedoot.app-mergeReleaseResources-36:/values-v23/values-v23.xml",
+            "outputFile": "com.bikedoot.app-mergeReleaseResources-43:/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/000fcbf7004fc78837f36e1b6b6d76a0/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/d97c40d8a97aca0b68f2d9cd785bfe78/transformed/cardview-1.0.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/ee5e82bf22bf03e557460dedee86cf38/transformed/appcompat-1.4.1/res/values-v23/values-v23.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/642c53f5e2c563fa94406a239dbbb9f1/transformed/appcompat-1.4.1/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -42,7 +42,7 @@
                     }
                 },
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/3f9afa29faae8197309f719d70dbe1eb/transformed/material-1.1.0/res/values-v23/values-v23.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/bab95c0b698ee58b620be7d1f0b5292f/transformed/material-1.1.0/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,6",
                         "startColumns": "4,4",

@@ -1,202 +1,222 @@
 [
     {
-        "merged": "com.bikedoot.app-merged_res-38:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.bikedoot.app-main-39:/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "com.bikedoot.app-merged_res-45:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.bikedoot.app-main-46:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_phone.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_phone.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_dummybanner.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_dummybanner.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_tool.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_tool.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-xhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-xhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_camera.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_camera.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-xhdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-xhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-xxhdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-xxhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_node_modules_reactnativeratings_dist_images_bell.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/node_modules_reactnativeratings_dist_images_bell.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.bikedoot.app-main-39:/mipmap-hdpi/ic_launcher.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.bikedoot.app-main-39:/mipmap-mdpi/ic_launcher_round.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_pin.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_pin.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_verified.gif.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_verified.gif"
+        "merged": "com.bikedoot.app-merged_res-45:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.bikedoot.app-main-46:/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-xhdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-xhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backiconmask.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnativeratings_dist_images_bell.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnativeratings_dist_images_bell.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-xhdpi_ic_notification.png.flat",
+        "source": "com.bikedoot.app-main-46:/drawable-xhdpi/ic_notification.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_doorstepservices.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_doorstepservices.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-hdpi_ic_notification.png.flat",
+        "source": "com.bikedoot.app-main-46:/drawable-hdpi/ic_notification.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.bikedoot.app-main-39:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_refresh.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_refresh.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_invoice.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_invoice.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-xxxhdpi_ic_notification.png.flat",
+        "source": "com.bikedoot.app-main-46:/drawable-xxxhdpi/ic_notification.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_bikedoot.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_bikedoot.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_dummy.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_dummy.png"
+        "merged": "com.bikedoot.app-merged_res-45:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.bikedoot.app-main-46:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnativeratings_dist_images_star.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnativeratings_dist_images_star.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_bike2.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_bike2.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_editt.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_editt.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-hdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-hdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable_rn_edit_text_material.xml.flat",
-        "source": "com.bikedoot.app-main-39:/drawable/rn_edit_text_material.xml"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_gallery.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_gallery.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-xxxhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-xxxhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_dummy.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_dummy.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.bikedoot.app-main-39:/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_bikedoot.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_bikedoot.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_dummybanner.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_dummybanner.png"
+        "merged": "com.bikedoot.app-merged_res-45:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.bikedoot.app-main-46:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_cart.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_cart.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_camera.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_camera.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-xxhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-xxhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+        "merged": "com.bikedoot.app-merged_res-45:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.bikedoot.app-main-46:/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_rating.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_rating.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_editt.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_editt.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-xxxhdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-xxxhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
+        "merged": "com.bikedoot.app-merged_res-45:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.bikedoot.app-main-46:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_bike2.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_bike2.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-xxxhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-xxxhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnativeratings_dist_images_airbnbstar.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnativeratings_dist_images_airbnbstar.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-xxhdpi_ic_notification.png.flat",
+        "source": "com.bikedoot.app-main-46:/drawable-xxhdpi/ic_notification.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.bikedoot.app-main-39:/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_ic_notification.png.flat",
+        "source": "com.bikedoot.app-main-46:/drawable-mdpi/ic_notification.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "com.bikedoot.app-main-39:/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_cart.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_cart.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-xxhdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-xxhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnativeratings_dist_images_rocket.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnativeratings_dist_images_rocket.png"
+        "merged": "com.bikedoot.app-merged_res-45:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.bikedoot.app-main-46:/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-xhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-xhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_bikedootname.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_bikedootname.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_pin.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_pin.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-hdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-hdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-hdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-hdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
+        "merged": "com.bikedoot.app-merged_res-45:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.bikedoot.app-main-46:/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_bikedootname.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_bikedootname.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_time.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_time.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_gallery.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_gallery.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_doorstepservices.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_doorstepservices.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-hdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-hdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_verified.gif.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_verified.gif"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_time.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_time.png"
+        "merged": "com.bikedoot.app-merged_res-45:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.bikedoot.app-main-46:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_bookingonline.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_bookingonline.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_node_modules_reactnavigation_stack_src_views_assets_backiconmask.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backiconmask.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "com.bikedoot.app-main-39:/mipmap-xxxhdpi/ic_launcher_round.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_node_modules_reactnativeratings_dist_images_heart.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/node_modules_reactnativeratings_dist_images_heart.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_node_modules_reactnativeratings_dist_images_rocket.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/node_modules_reactnativeratings_dist_images_rocket.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backiconmask.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-xxhdpi_node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-xxhdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_map.gif.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_map.gif"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-xxxhdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-xxxhdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.bikedoot.app-main-39:/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_phone.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_phone.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnavigation_stack_src_views_assets_backiconmask.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backiconmask.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_node_modules_reactnativeratings_dist_images_airbnbstarselected.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/node_modules_reactnativeratings_dist_images_airbnbstarselected.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.bikedoot.app-main-39:/mipmap-mdpi/ic_launcher.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_bookingonline.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_bookingonline.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_empty.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_empty.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_tool.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_tool.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_src_assets_images_refresh.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/src_assets_images_refresh.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_invoice.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_invoice.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnativeratings_dist_images_airbnbstarselected.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnativeratings_dist_images_airbnbstarselected.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_node_modules_reactnativeratings_dist_images_airbnbstar.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/node_modules_reactnativeratings_dist_images_airbnbstar.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-38:/drawable-mdpi_node_modules_reactnativeratings_dist_images_heart.png.flat",
-        "source": "com.bikedoot.app-res-32:/drawable-mdpi/node_modules_reactnativeratings_dist_images_heart.png"
+        "merged": "com.bikedoot.app-merged_res-45:/drawable_rn_edit_text_material.xml.flat",
+        "source": "com.bikedoot.app-main-46:/drawable/rn_edit_text_material.xml"
+    },
+    {
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_rating.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_rating.png"
+    },
+    {
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_map.gif.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_map.gif"
+    },
+    {
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_src_assets_images_empty.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/src_assets_images_empty.png"
+    },
+    {
+        "merged": "com.bikedoot.app-merged_res-45:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.bikedoot.app-main-46:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.bikedoot.app-merged_res-45:/drawable-mdpi_node_modules_reactnativeratings_dist_images_star.png.flat",
+        "source": "com.bikedoot.app-res-38:/drawable-mdpi/node_modules_reactnativeratings_dist_images_star.png"
     }
 ]
