@@ -1603,6 +1603,19 @@ library {
 }
 library {
   maven_library {
+    groupId: "me.leolin"
+    artifactId: "ShortcutBadger"
+    version: "1.1.22"
+  }
+  digests {
+    sha256: "\315\026\020\334H\305i\222)P!\207\375\303\265\305C8p\325\252\261Y3!!\261\370\301\332\330\303"
+  }
+  repo_index {
+    value: 1
+  }
+}
+library {
+  maven_library {
     groupId: "androidx.coordinatorlayout"
     artifactId: "coordinatorlayout"
     version: "1.1.0"
@@ -2449,48 +2462,48 @@ library_dependencies {
   library_dep_index: 8
 }
 library_dependencies {
-  library_index: 124
+  library_index: 125
   library_dep_index: 8
   library_dep_index: 11
   library_dep_index: 35
   library_dep_index: 10
-}
-library_dependencies {
-  library_index: 125
-  library_dep_index: 8
-  library_dep_index: 6
-  library_dep_index: 126
-  library_dep_index: 124
-  library_dep_index: 11
-  library_dep_index: 32
-  library_dep_index: 15
-  library_dep_index: 127
-  library_dep_index: 128
-  library_dep_index: 38
-  library_dep_index: 129
 }
 library_dependencies {
   library_index: 126
   library_dep_index: 8
+  library_dep_index: 6
+  library_dep_index: 127
+  library_dep_index: 125
+  library_dep_index: 11
+  library_dep_index: 32
+  library_dep_index: 15
+  library_dep_index: 128
+  library_dep_index: 129
+  library_dep_index: 38
+  library_dep_index: 130
 }
 library_dependencies {
   library_index: 127
   library_dep_index: 8
-  library_dep_index: 11
-  library_dep_index: 35
-  library_dep_index: 10
 }
 library_dependencies {
   library_index: 128
   library_dep_index: 8
   library_dep_index: 11
+  library_dep_index: 35
   library_dep_index: 10
 }
 library_dependencies {
   library_index: 129
   library_dep_index: 8
+  library_dep_index: 11
+  library_dep_index: 10
+}
+library_dependencies {
+  library_index: 130
+  library_dep_index: 8
   library_dep_index: 32
-  library_dep_index: 127
+  library_dep_index: 128
   library_dep_index: 11
   library_dep_index: 10
 }
@@ -2508,10 +2521,11 @@ module_dependencies {
   dependency_index: 11
   dependency_index: 123
   dependency_index: 6
-  dependency_index: 32
   dependency_index: 124
-  dependency_index: 49
+  dependency_index: 32
   dependency_index: 125
+  dependency_index: 49
+  dependency_index: 126
 }
 repositories {
   maven_repo {

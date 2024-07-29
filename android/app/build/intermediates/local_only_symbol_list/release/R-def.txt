@@ -1,5 +1,6 @@
 R_DEF: Internal format may change without notice
 local
+drawable ic_notification
 drawable node_modules_freakycoder_reactnativemultipleselect_build_dist_components_icon_downarrowdark
 drawable node_modules_freakycoder_reactnativemultipleselect_build_dist_components_icon_downarrowlight
 drawable node_modules_reactnativebouncycheckbox_build_dist_check
@@ -62,6 +63,7 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap ic_notification
 string app_name
+string default_web_client_id
 string gcm_defaultSenderId
 string google_api_key
 string google_app_id

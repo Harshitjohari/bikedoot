@@ -31,6 +31,13 @@ export const getToken = async () => {
 export const setBackgroundMessageHandler = () => {
   messaging().setBackgroundMessageHandler(async remoteMessage => {
     console.log('Message handled in the background!=======>', remoteMessage);
+    setTimeout(() => {
+      if(remoteMessage.data.for === "mechanic"){
+        navigate("MechanicBookingsDetails", { id: remoteMessage.data?.bookingId });
+      } else if(remoteMessage.data.for === "garage"){
+        navigate("BookingsDetails", { id: remoteMessage.data?.bookingId });
+      }
+    }, 1000)
   });
 };
 
@@ -49,8 +56,15 @@ export const NotificationListener = () => {
       if (remoteMessage) {
         console.log(
           'Notification caused app to open from quit state:',
-          remoteMessage.notification,
+          remoteMessage,
         );
+        setTimeout(() => {
+          if(remoteMessage.data.for === "mechanic"){
+            navigate("MechanicBookingsDetails", { id: remoteMessage.data?.bookingId });
+          } else if(remoteMessage.data.for === "garage"){
+            navigate("BookingsDetails", { id: remoteMessage.data?.bookingId });
+          }
+        }, 2000)
       }
     });
 
@@ -58,14 +72,14 @@ export const NotificationListener = () => {
 
   PushNotification.configure({
     onNotification: (notification) => {
-      console.log('onNotification-------------touched object', notification.data);
+      console.log('ONKILLLLLLLLLLLLLLLLLLLLLLLLLLLLLL-------------touched object', notification.data);
       if(notification.data.for === "mechanic"){
-        navigate("MechanicBookingsScreen",{ id: notification.data?.bookingId })
-        // navigate("MechanicBookingsDetails", { id:_id })
+        // navigate("MechanicBookingsScreen",{ id: notification.data?.bookingId })
+        navigate("MechanicBookingsDetails", { id:notification.data?.bookingId })
       }
       if(notification.data.for === "garage"){
-        navigate("BookingsScreen",{ id: notification.data?.bookingId })
-        // navigate("BookingsDetails", { id:_id })
+        // navigate("BookingsScreen",{ id: notification.data?.bookingId })
+        navigate("BookingsDetails", { id:notification.data?.bookingId })
       }
     },
     onAction: function (notification) {
@@ -79,3 +93,9 @@ export const NotificationListener = () => {
 
 //server key
 //AAAA7hxgyDY:APA91bFd0U6-aUw-Cu1gnF-lRUB5rO6cLw3pYitMqfHHbBU2vmRBKh6mCnLBuvxwRzDQ7kIiGrQlk5UoNJj03kLfyxUTpOEyNmokCVWE9ajJYQmcHMZsR3gIwRpjokMkiZgCIV3Cprnb
+
+
+// @Override
+// protected void onCreate(Bundle savedInstanceState) {
+//   super.onCreate(null);
+// }

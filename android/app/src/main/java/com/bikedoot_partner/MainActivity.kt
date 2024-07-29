@@ -14,10 +14,6 @@ class MainActivity : ReactActivity() {
    */
   override fun getMainComponentName(): String = "Bikedoot_Partner"
 
-    @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(null);
-  }
 
   /**
    * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]

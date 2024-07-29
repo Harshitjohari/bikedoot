@@ -898,16 +898,17 @@
     <string name="common_open_on_phone">Open on phone</string>
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
+    <string name="default_web_client_id" translatable="false">27409292827-1t55k8f5hkiop3kcq0dgbefgqurg1guk.apps.googleusercontent.com</string>
     <string name="error_icon_content_description">Error</string>
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
     <string name="fcm_fallback_notification_channel_label">Miscellaneous</string>
-    <string name="gcm_defaultSenderId" translatable="false">1022678321206</string>
-    <string name="google_api_key" translatable="false">AIzaSyA_kpm3PqSfEImEKkA-WnHsyKlk83lfMM4</string>
-    <string name="google_app_id" translatable="false">1:1022678321206:android:9287fb6ecc6baf77dbb097</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyA_kpm3PqSfEImEKkA-WnHsyKlk83lfMM4</string>
-    <string name="google_storage_bucket" translatable="false">bikedootpartner.appspot.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">27409292827</string>
+    <string name="google_api_key" translatable="false">AIzaSyCYJSzF4bGzuqQaZFzHM09KZ351dhJSwHs</string>
+    <string name="google_app_id" translatable="false">1:27409292827:android:60b6bca9a8ad3b5a73a2be</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCYJSzF4bGzuqQaZFzHM09KZ351dhJSwHs</string>
+    <string name="google_storage_bucket" translatable="false">bikedoot.appspot.com</string>
     <string description="heading to a page or section" name="header_description">Heading</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
@@ -957,7 +958,7 @@
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
     <string description="displays the progress status for tasks that take a long time" name="progressbar_description">Progress Bar</string>
-    <string name="project_id" translatable="false">bikedootpartner</string>
+    <string name="project_id" translatable="false">bikedoot</string>
     <string description="a group of radio buttons" name="radiogroup_description">Radio Group</string>
     <string description="an interactive element inside a tablist" name="rn_tab_description">Tab</string>
     <string description="controls the scrolling of content within a viewing area" name="scrollbar_description">Scroll Bar</string>

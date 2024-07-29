@@ -36,8 +36,26 @@ const HorizontalFlatList = (props) => {
   useEffect(() => {
     fetchHomeData();
     fetchProfileData();
-    // getFcmToken();
+    updateFcmToken();
   }, []);
+
+  const updateFcmToken = async () => {
+    try {
+      let fcmToken = await getToken();
+      // console.log('FCM=============>',fcmToken)
+      if(fcmToken !== ""){
+        let data = {
+          "fcmToken": fcmToken
+        }
+        let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.UPDATE_FCM, token, data)
+        if (response?.status) {
+          console.log('FCM UPDATED')
+        }
+      }
+    } catch (e) {
+      console.log("Some error has occured!",e);
+    }
+  };
 
   const data = [];
 

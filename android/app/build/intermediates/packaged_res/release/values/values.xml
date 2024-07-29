@@ -3,12 +3,13 @@
     <integer name="react_native_dev_server_port">8081</integer>
     <integer name="react_native_inspector_proxy_port">8081</integer>
     <string name="app_name">BikedooT Partner</string>
-    <string name="gcm_defaultSenderId" translatable="false">1022678321206</string>
-    <string name="google_api_key" translatable="false">AIzaSyA_kpm3PqSfEImEKkA-WnHsyKlk83lfMM4</string>
-    <string name="google_app_id" translatable="false">1:1022678321206:android:9287fb6ecc6baf77dbb097</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyA_kpm3PqSfEImEKkA-WnHsyKlk83lfMM4</string>
-    <string name="google_storage_bucket" translatable="false">bikedootpartner.appspot.com</string>
-    <string name="project_id" translatable="false">bikedootpartner</string>
+    <string name="default_web_client_id" translatable="false">27409292827-1t55k8f5hkiop3kcq0dgbefgqurg1guk.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">27409292827</string>
+    <string name="google_api_key" translatable="false">AIzaSyCYJSzF4bGzuqQaZFzHM09KZ351dhJSwHs</string>
+    <string name="google_app_id" translatable="false">1:27409292827:android:60b6bca9a8ad3b5a73a2be</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCYJSzF4bGzuqQaZFzHM09KZ351dhJSwHs</string>
+    <string name="google_storage_bucket" translatable="false">bikedoot.appspot.com</string>
+    <string name="project_id" translatable="false">bikedoot</string>
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>

@@ -1,26 +1,94 @@
 {
   "project_info": {
-    "project_number": "1022678321206",
-    "project_id": "bikedootpartner",
-    "storage_bucket": "bikedootpartner.appspot.com"
+    "project_number": "27409292827",
+    "project_id": "bikedoot",
+    "storage_bucket": "bikedoot.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1022678321206:android:9287fb6ecc6baf77dbb097",
+        "mobilesdk_app_id": "1:27409292827:android:4429186b5a6625a173a2be",
         "android_client_info": {
-          "package_name": "com.bikedoot_partner"
+          "package_name": "com.bikedoot"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "27409292827-1t55k8f5hkiop3kcq0dgbefgqurg1guk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyA_kpm3PqSfEImEKkA-WnHsyKlk83lfMM4"
+          "current_key": "AIzaSyCYJSzF4bGzuqQaZFzHM09KZ351dhJSwHs"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27409292827-1t55k8f5hkiop3kcq0dgbefgqurg1guk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27409292827:android:60b6bca9a8ad3b5a73a2be",
+        "android_client_info": {
+          "package_name": "com.bikedoot_partner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27409292827-1t55k8f5hkiop3kcq0dgbefgqurg1guk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYJSzF4bGzuqQaZFzHM09KZ351dhJSwHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27409292827-1t55k8f5hkiop3kcq0dgbefgqurg1guk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27409292827:android:dee89054569472f073a2be",
+        "android_client_info": {
+          "package_name": "com.pvyinfotech.bikedoot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27409292827-1t55k8f5hkiop3kcq0dgbefgqurg1guk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYJSzF4bGzuqQaZFzHM09KZ351dhJSwHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27409292827-1t55k8f5hkiop3kcq0dgbefgqurg1guk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -527,6 +527,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="/Users/harshit/Desktop/Bikedoot_Partner/android@@:react-native-push-notification::release"
+      jars="/Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-push-notification/android/build/.transforms/de71946f4b525c6a8faed9e495a31525/transformed/out/jars/classes.jar:/Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-push-notification/android/build/.transforms/de71946f4b525c6a8faed9e495a31525/transformed/out/jars/libs/R.jar"
+      resolved="Bikedoot_Partner:react-native-push-notification:unspecified"
+      folder="/Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-push-notification/android/build/.transforms/de71946f4b525c6a8faed9e495a31525/transformed/out"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="/Users/harshit/Desktop/Bikedoot_Partner/android@@:react-native-safe-area-context::release"
       jars="/Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-safe-area-context/android/build/.transforms/eed631608ae1eec1117c78dbf711b36c/transformed/out/jars/classes.jar:/Users/harshit/Desktop/Bikedoot_Partner/node_modules/react-native-safe-area-context/android/build/.transforms/eed631608ae1eec1117c78dbf711b36c/transformed/out/jars/libs/R.jar"
       resolved="Bikedoot_Partner:react-native-safe-area-context:unspecified"
@@ -1449,6 +1462,19 @@
       jars="/Users/harshit/.gradle/caches/transforms-3/7786a6ed6629058b406782c500a88926/transformed/core-runtime-2.1.0/jars/classes.jar"
       resolved="androidx.arch.core:core-runtime:2.1.0"
       folder="/Users/harshit/.gradle/caches/transforms-3/7786a6ed6629058b406782c500a88926/transformed/core-runtime-2.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="me.leolin:ShortcutBadger:1.1.22@aar"
+      jars="/Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22/jars/classes.jar"
+      resolved="me.leolin:ShortcutBadger:1.1.22"
+      folder="/Users/harshit/.gradle/caches/transforms-3/33baa9f95b060905f1864947b1f2f57a/transformed/jetified-ShortcutBadger-1.1.22"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
