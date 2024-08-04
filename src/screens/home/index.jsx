@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Center, Box, Button, Text, ScrollView, Platform } from 'native-base';
-import { Alert, PermissionsAndroid } from 'react-native';
+import { Alert, PermissionsAndroid, View, TouchableOpacity, StyleSheet, Linking } from 'react-native';
 
 import RoundBoxCard from '../../components/UI/services-cards';
 import TextHeader from '../../components/UI/text-header'
@@ -20,7 +20,10 @@ import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 // import Geolocation from 'react-native-geolocation-service';
 
 import Storage from '../../utils/async-storage';
-import {getToken} from '../../utils/NotificationController';
+import { getToken } from '../../utils/NotificationController';
+import crashlytics from '@react-native-firebase/crashlytics';
+import { checkVersion } from "react-native-check-version";
+import Modal from "react-native-modal";
 
 
 
@@ -31,23 +34,48 @@ const HorizontalFlatList = (props) => {
   const [banners, setBanners] = useState([]);
   const [serviceCategory, setServiceCategory] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isAgreed, setIsAgreed] = useState(false);
+  const [appData, setAppData] = useState({});
   const [loadingServices, setLoadingServices] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
 
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+
+  // useEffect(() => {
+  //   crashlytics().crash();
+  // }, []);
 
   useEffect(() => {
     fetchHomeData(cityID);
   }, [cityID]);
 
   useEffect(() => {
-    updateFcmToken();    
+    updateFcmToken();
+    checkAppVersion();
   }, []);
+
+
+  const checkAppVersion = async () => {
+    try {
+      const version = await checkVersion();
+      console.log("Got version info:", version);
+      setAppData(version);
+      if (version.needsUpdate) {
+        console.log(`App has a ${version.updateType} update pending.`);
+        setModalVisible(true);
+      }
+    } catch (e) {
+      console.log("Some error has occured!", e);
+    }
+  };
 
   const updateFcmToken = async () => {
     try {
       let fcmToken = await getToken();
       // console.log('FCM=============>',fcmToken)
-      if(fcmToken !== ""){
+      if (fcmToken !== "") {
         let data = {
           "fcmToken": fcmToken
         }
@@ -57,11 +85,11 @@ const HorizontalFlatList = (props) => {
         }
       }
     } catch (e) {
-      console.log("Some error has occured!",e);
+      console.log("Some error has occured!", e);
     }
   };
 
-  
+
   const requestLOcationPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -83,18 +111,18 @@ const HorizontalFlatList = (props) => {
       console.warn(err);
     }
   };
-  
+
   const checkGPSOnStart = () => {
     console.log('====checkGPSOnStart===')
     Geolocation.getCurrentPosition(
       (position) => {
         if (position.coords) {
-          console.log('==================================================>',position)
+          console.log('==================================================>', position)
           setLatLong(position.coords)
         }
       },
       (error) => {
-        console.log('error=================================================>',error)
+        console.log('error=================================================>', error)
         // Alert.alert(           
         //   'Location Error',
         //   error.code == 2 ? 'Please enable GPS to use this app.' : error.message,
@@ -112,10 +140,10 @@ const HorizontalFlatList = (props) => {
 
   const checkGPS = async (item) => {
     if (location && location.latitude) {
-      console.log('main=================================================>',location)
-      navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: location});
+      console.log('main=================================================>', location)
+      navigation.navigate('ServicesList', { garageID: item._id, title: item.name, loc: location });
     } else {
-      setLoadingServices(true)                     
+      setLoadingServices(true)
       Geolocation.getCurrentPosition(
         (position) => {
           setLoadingServices(false)
@@ -129,7 +157,7 @@ const HorizontalFlatList = (props) => {
         (error) => {
           setLoadingServices(false)
           // console.log('===================++>', error)       
-          Alert.alert(           
+          Alert.alert(
             'Location Error',
             error.code == 2 ? 'Please enable GPS to use this app.' : error.message,
             [
@@ -195,6 +223,34 @@ const HorizontalFlatList = (props) => {
       <MainHeader title="Home" showLanguageIcon={true} onCityChange={(cityID) => fetchHomeData(cityID)} />
       <ScrollView showsVerticalScrollIndicator={false} style={{ marginBottom: 50 }}>
 
+        {isModalVisible && (
+          <Modal isVisible={isModalVisible}>
+            <View style={{ height: 200 }}>
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', borderRadius: 10 }}>
+                <Text fontWeight={500} fontSize={20} textAlign="center" mb={10} >Hello! a new update is available.</Text>
+                <View flexDirection={'row'}
+                  justifyContent={'space-evenly'}
+                  p={3}
+                  marginTop={10}
+                  width={'100%'}>
+                  <TouchableOpacity
+                    onPress={toggleModal}
+                    style={styles.cancelButton}>
+                    <Text style={styles.cancelText}>Cancel</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    onPress={() => Linking.openURL(appData.url)}
+                    style={styles.submitButton}>
+                    <Text style={styles.submitText}>Update</Text>
+                  </TouchableOpacity>
+                </View>
+
+              </View>
+            </View>
+          </Modal>
+        )}
+
         {loading ? <LoadingSpinner /> : <Box p={2}>
           <>
             {
@@ -236,6 +292,74 @@ const HorizontalFlatList = (props) => {
   );
 };
 
+
+const styles = StyleSheet.create({
+  scrollView: {
+      flex: 1,
+      marginBottom: 0,
+      width: "100%"
+  },
+  modalView: {
+      position: 'absolute',
+      backgroundColor: 'white',
+      borderTopStartRadius: 20,
+      borderTopEndRadius: 20,
+      padding: 20,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+          width: 0,
+          height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+      width: '100%',
+      height: 600,
+      bottom: 0
+  },
+  centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.4)',
+  },
+  modalTitle: {
+      fontSize: 15,
+      fontWeight: 'bold',
+      marginBottom: 20,
+      textAlign: 'center',
+      color: 'black'
+  },
+  submitButton: {
+      backgroundColor: '#5349f8',
+      paddingVertical: 15,
+      borderRadius: 5,
+      alignItems: 'center',
+      width: '40%',
+      // marginTop: 40
+  },
+  submitText: {
+      color: 'white',
+      fontSize: 16,
+      fontWeight: 'bold',
+  },
+  cancelButton: {
+      backgroundColor: 'white',
+      paddingVertical: 15,
+      borderRadius: 5,
+      alignItems: 'center',
+      // marginTop: 10,
+      width: '40%',
+      borderColor: '#5349f8',
+      borderWidth: 1
+  },
+  cancelText: {
+      color: '#5349f8',
+      fontSize: 16,
+      fontWeight: 'bold',
+  }
+});
 
 
 export default HorizontalFlatList;

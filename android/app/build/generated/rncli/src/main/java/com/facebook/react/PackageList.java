@@ -17,6 +17,8 @@ import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.reactnativecommunity.geolocation.GeolocationPackage;
 // @react-native-firebase/app
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+// @react-native-firebase/crashlytics
+import io.invertase.firebase.crashlytics.ReactNativeFirebaseCrashlyticsPackage;
 // @react-native-firebase/messaging
 import io.invertase.firebase.messaging.ReactNativeFirebaseMessagingPackage;
 // react-native-device-info
@@ -91,6 +93,7 @@ public class PackageList {
       new AsyncStoragePackage(),
       new GeolocationPackage(),
       new ReactNativeFirebaseAppPackage(),
+      new ReactNativeFirebaseCrashlyticsPackage(),
       new ReactNativeFirebaseMessagingPackage(),
       new RNDeviceInfo(),
       new FastImageViewPackage(),

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.bikedoot.app-mergeDebugResources-45:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.bikedoot.app-mergeDebugResources-49:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/642c53f5e2c563fa94406a239dbbb9f1/transformed/appcompat-1.4.1/res/values-en-rXC/values-en-rXC.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/d26ae2257682fe05dec449978872cc81/transformed/appcompat-1.4.1/res/values-en-rXC/values-en-rXC.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/ff2e97c6cfb44fee7efe1560615e5843/transformed/core-1.9.0/res/values-en-rXC/values-en-rXC.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/4abc0cbe52656e15dd3f2edbc19596c3/transformed/core-1.9.0/res/values-en-rXC/values-en-rXC.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
