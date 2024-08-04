@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Center, Box, Button, ScrollView, } from 'native-base';
-import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, navigation, Switch, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, navigation, Switch, SafeAreaView, Linking } from 'react-native';
 import RoundBoxCard from '../../../components/UI/services-cards';
 import RoundBoxCardNumber from '../../../components/UI/card_number';
 import TextHeader from '../../../components/UI/text-header'
@@ -18,9 +18,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import BookingCard from '../../../components/bookings/my-bookings-mechanic/single-booking';
 import FlatListContainer from '../../../components/flatlist';
 
-import {getToken} from '../../../utils/NotificationController';
-
-
+import { getToken } from '../../../utils/NotificationController';
+import crashlytics from '@react-native-firebase/crashlytics';
+import { checkVersion } from "react-native-check-version";
+import Modal from "react-native-modal";
 
 
 const width = Dimensions.get('window').width;
@@ -41,20 +42,40 @@ const HorizontalFlatList = (props) => {
   const [isAgreed, setIsAgreed] = useState(false);
   const [toggleValue, setToggleValue] = useState(false);
   const [isLoading, setLoading] = useState(true);
-
+  const [appData, setAppData] = useState({});
+  const [isModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     fetchHomeData();
     fetchProfileData();
-    updateFcmToken();    
+    updateFcmToken();
+    checkAppVersion();
   }, []);
 
+  //   useEffect(() => {
+  //     crashlytics().crash();
+  // }, []);
+
+
+  const checkAppVersion = async () => {
+    try {
+      const version = await checkVersion();
+      console.log("Got version info:", version);
+      setAppData(version);
+      if (version.needsUpdate) {
+        console.log(`App has a ${version.updateType} update pending.`);
+        setModalVisible(true);
+      }
+    } catch (e) {
+      console.log("Some error has occured!", e);
+    }
+  };
 
   const updateFcmToken = async () => {
     try {
       let fcmToken = await getToken();
       // console.log('FCM=============>',fcmToken)
-      if(fcmToken !== ""){
+      if (fcmToken !== "") {
         let data = {
           "fcmToken": fcmToken
         }
@@ -64,7 +85,7 @@ const HorizontalFlatList = (props) => {
         }
       }
     } catch (e) {
-      console.log("Some error has occured!",e);
+      console.log("Some error has occured!", e);
     }
   };
 
@@ -84,7 +105,7 @@ const HorizontalFlatList = (props) => {
       let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.MECHANIC_HOME_DATA, token)
       // console.log('home==========================>', response?.data?.bookings?.current)
 
-      if(response?.code == 401){
+      if (response?.code == 401) {
         // clearAuthData()
       }
 

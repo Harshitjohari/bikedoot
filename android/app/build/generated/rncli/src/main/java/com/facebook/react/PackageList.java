@@ -17,6 +17,8 @@ import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.reactnativecommunity.checkbox.ReactCheckBoxPackage;
 // @react-native-firebase/app
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+// @react-native-firebase/crashlytics
+import io.invertase.firebase.crashlytics.ReactNativeFirebaseCrashlyticsPackage;
 // @react-native-firebase/messaging
 import io.invertase.firebase.messaging.ReactNativeFirebaseMessagingPackage;
 // @react-native-picker/picker
@@ -81,6 +83,7 @@ public class PackageList {
       new AsyncStoragePackage(),
       new ReactCheckBoxPackage(),
       new ReactNativeFirebaseAppPackage(),
+      new ReactNativeFirebaseCrashlyticsPackage(),
       new ReactNativeFirebaseMessagingPackage(),
       new RNCPickerPackage(),
       new RNGestureHandlerPackage(),

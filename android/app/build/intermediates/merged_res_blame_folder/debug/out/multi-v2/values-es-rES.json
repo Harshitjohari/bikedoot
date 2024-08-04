@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.bikedoot_partner.app-mergeDebugResources-41:/values-es-rES/values-es-rES.xml",
+            "outputFile": "com.bikedoot_partner.app-mergeDebugResources-44:/values-es-rES/values-es-rES.xml",
             "map": [
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/79957a69d3126a0e010ce6219c37efd7/transformed/jetified-react-android-0.73.2-debug/res/values-es-rES/values-es-rES.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/4d535b51a15c0fd454ccb76625be9b19/transformed/jetified-react-android-0.73.2-debug/res/values-es-rES/values-es-rES.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

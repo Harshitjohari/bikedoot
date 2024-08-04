@@ -1,10 +1,20 @@
 {
     "logs": [
         {
-            "outputFile": "com.bikedoot_partner.app-mergeDebugResources-41:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "com.bikedoot_partner.app-mergeDebugResources-44:/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/ece9184b1dabc61fc00f648a80b543f0/transformed/material-1.1.0/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/b6e564b4baca9f04ba79b3fc6e8b9b2f/transformed/appcompat-1.6.1/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,193,263,337,413,472,543",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "119,188,258,332,408,467,538,606"
+                    }
+                },
+                {
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/c8d0079c9dbca42855e12a45c6a78c37/transformed/material-1.1.0/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
@@ -20,16 +30,6 @@
                         "endLines": "10,11,12,13,14,15,17,18,19,20,21,25",
                         "endColumns": "59,69,70,71,57,57,10,63,55,58,62,10",
                         "endOffsets": "666,736,807,879,937,995,1104,1168,1224,1283,1346,1518"
-                    }
-                },
-                {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/858dc591faff319c774fa62ec5f4cdb2/transformed/appcompat-1.6.1/res/values-sw600dp-v13/values-sw600dp-v13.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,124,193,263,337,413,472,543",
-                        "endColumns": "68,68,69,73,75,58,70,67",
-                        "endOffsets": "119,188,258,332,408,467,538,606"
                     }
                 }
             ]
