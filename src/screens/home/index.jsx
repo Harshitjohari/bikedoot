@@ -60,10 +60,10 @@ const HorizontalFlatList = (props) => {
   const checkAppVersion = async () => {
     try {
       const version = await checkVersion();
-      console.log("Got version info:", version);
+      // console.log("Got version info:", version);
       setAppData(version);
       if (version.needsUpdate) {
-        console.log(`App has a ${version.updateType} update pending.`);
+        // console.log(`App has a ${version.updateType} update pending.`);
         setModalVisible(true);
       }
     } catch (e) {
@@ -227,7 +227,7 @@ const HorizontalFlatList = (props) => {
           <Modal isVisible={isModalVisible}>
             <View style={{ height: 200 }}>
               <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', borderRadius: 10 }}>
-                <Text fontWeight={500} fontSize={20} textAlign="center" mb={10} >Hello! a new update is available.</Text>
+                <Text fontWeight={500} fontSize={20} textAlign="center" mb={10} color={'black'} >Hello! a new update is available.</Text>
                 <View flexDirection={'row'}
                   justifyContent={'space-evenly'}
                   p={3}
@@ -332,32 +332,32 @@ const styles = StyleSheet.create({
       color: 'black'
   },
   submitButton: {
-      backgroundColor: '#5349f8',
-      paddingVertical: 15,
-      borderRadius: 5,
-      alignItems: 'center',
-      width: '40%',
-      // marginTop: 40
+    backgroundColor: '#5349f8',
+    paddingVertical: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '35%',
+    // marginTop: 40
   },
   submitText: {
-      color: 'white',
-      fontSize: 16,
-      fontWeight: 'bold',
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',
   },
   cancelButton: {
-      backgroundColor: 'white',
-      paddingVertical: 15,
-      borderRadius: 5,
-      alignItems: 'center',
-      // marginTop: 10,
-      width: '40%',
-      borderColor: '#5349f8',
-      borderWidth: 1
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    // marginTop: 10,
+    width: '35%',
+    borderColor: '#5349f8',
+    borderWidth: 1
   },
   cancelText: {
-      color: '#5349f8',
-      fontSize: 16,
-      fontWeight: 'bold',
+    color: '#5349f8',
+    fontSize: 15,
+    fontWeight: 'bold',
   }
 });
 
