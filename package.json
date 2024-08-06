@@ -1,5 +1,5 @@
 {
-  "name": "Bikedoot_Partner",
+  "name": "bikedoot_partner",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -26,6 +26,7 @@
     "react-native": "0.73.2",
     "react-native-bouncy-checkbox": "^3.0.7",
     "react-native-check-version": "^1.1.1",
+    "react-native-device-info": "^11.1.0",
     "react-native-dropdown-picker": "^5.4.6",
     "react-native-dropdown-select-list": "^2.0.5",
     "react-native-gesture-handler": "^1.8.0",

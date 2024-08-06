@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Center, Box, Button, ScrollView } from 'native-base';
-import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, navigation, Switch, SafeAreaView, Alert, Modal, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, navigation, Switch, SafeAreaView, Alert, TextInput, Linking } from 'react-native';
 import RoundBoxCard from '../../components/UI/services-cards';
 import RoundBoxCardNumber from '../../components/UI/card_number';
 import TextHeader from '../../components/UI/text-header'
@@ -22,7 +22,10 @@ import { getToken } from '../../utils/NotificationController';
 import Storage from '../../utils/async-storage';
 import CustomButton from '../../components/UI/button'
 import { handleToast } from '../../utils/toast';
-
+import crashlytics from '@react-native-firebase/crashlytics';
+import { checkVersion } from "react-native-check-version";
+import Modal from "react-native-modal";
+import DeviceInfo from 'react-native-device-info';
 
 
 const width = Dimensions.get('window').width;
@@ -37,13 +40,37 @@ const HorizontalFlatList = (props) => {
     fetchHomeData();
     fetchProfileData();
     updateFcmToken();
+    checkAppVersion();
   }, []);
+
+  //   useEffect(() => {
+  //     crashlytics().crash();
+  // }, []);
+
+  const checkAppVersion = async () => {
+    try {
+      const bundleId = DeviceInfo.getBundleId();
+      const version = await checkVersion();
+      // console.log("Got version info:", version);
+      setAppData(version);
+      if (version.needsUpdate) {
+        // console.log(`App has a ${version.updateType} update pending.`);
+        setModalVisible(true);
+      }
+    } catch (e) {
+      console.log("Some error has occured!", e);
+    }
+  };
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   const updateFcmToken = async () => {
     try {
       let fcmToken = await getToken();
       // console.log('FCM=============>',fcmToken)
-      if(fcmToken !== ""){
+      if (fcmToken !== "") {
         let data = {
           "fcmToken": fcmToken
         }
@@ -53,11 +80,10 @@ const HorizontalFlatList = (props) => {
         }
       }
     } catch (e) {
-      console.log("Some error has occured!",e);
+      console.log("Some error has occured!", e);
     }
   };
 
-  const data = [];
 
   const renderItem = ({ item, index }) => (
     <RoundBoxCardNumber value={item.value} title={item.title} onPress={() => props.navigation.navigate('Bookings', { id: item.status, value: item.value, index: index })} />
@@ -77,17 +103,9 @@ const HorizontalFlatList = (props) => {
   const [GarageData, setGarageData] = useState(false);
   const [isAgreed, setIsAgreed] = useState(false);
   const [toggleValue, setToggleValue] = useState();
+  const [appData, setAppData] = useState({});
+  const [isModalVisible, setModalVisible] = useState(false);
 
-
-  const getFcmToken = async () => {
-    try {
-      let fcmToken = await getToken();
-      // await Storage.setDataInStorage('fcmToken', token);
-      console.log('FCM=============>', fcmToken)
-    } catch (e) {
-      console.log("Some error has occured!", e);
-    }
-  };
 
   const fetchHomeData = async () => {
     try {
@@ -105,10 +123,10 @@ const HorizontalFlatList = (props) => {
         setBookigs(response?.data?.booking);
         setEarnings(response?.data?.earnings);
         setMechanics(response?.data?.mechanics);
-        if(response?.data?.withdraw.length > 0){
+        if (response?.data?.withdraw.length > 0) {
           setWithdrawPending(true)
         }
-        else{
+        else {
           setWithdrawPending(false)
         }
       } else {
@@ -168,6 +186,35 @@ const HorizontalFlatList = (props) => {
 
   return (
     <SafeAreaView p={0} mb={20}>
+
+      {isModalVisible && (
+        <Modal isVisible={isModalVisible}>
+          <View style={{ height: 200 }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', borderRadius: 10 }}>
+              <Text fontWeight={400} fontSize={25} textAlign="center" mb={10} color={'black'} >Hello! a new update is available.</Text>
+              <View flexDirection={'row'}
+                justifyContent={'space-evenly'}
+                p={3}
+                marginTop={20}
+                width={'100%'}>
+                <TouchableOpacity
+                  onPress={toggleModal}
+                  style={styles.cancelButton}>
+                  <Text style={styles.cancelText}>Cancel</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => Linking.openURL(appData.url)}
+                  style={styles.submitButton}>
+                  <Text style={styles.submitText}>Update</Text>
+                </TouchableOpacity>
+              </View>
+
+            </View>
+          </View>
+        </Modal>
+      )}
+
       <View style={{ height: 60, width: width }}>
         <View style={{
           // backgroundColor: 'pink',
@@ -459,5 +506,33 @@ const styles = StyleSheet.create({
     height: 50,
     marginTop: 5,
   },
-  
+  submitButton: {
+    backgroundColor: '#5349f8',
+    paddingVertical: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '35%',
+    // marginTop: 40
+  },
+  submitText: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  cancelButton: {
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    // marginTop: 10,
+    width: '35%',
+    borderColor: '#5349f8',
+    borderWidth: 1
+  },
+  cancelText: {
+    color: '#5349f8',
+    fontSize: 15,
+    fontWeight: 'bold',
+  }
+
 })

@@ -22,6 +22,7 @@ import { getToken } from '../../../utils/NotificationController';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { checkVersion } from "react-native-check-version";
 import Modal from "react-native-modal";
+import DeviceInfo from 'react-native-device-info';
 
 
 const width = Dimensions.get('window').width;
@@ -59,16 +60,21 @@ const HorizontalFlatList = (props) => {
 
   const checkAppVersion = async () => {
     try {
+      const bundleId = DeviceInfo.getBundleId();
       const version = await checkVersion();
-      console.log("Got version info:", version);
+      // console.log("Got version info:", version);
       setAppData(version);
       if (version.needsUpdate) {
-        console.log(`App has a ${version.updateType} update pending.`);
+        // console.log(`App has a ${version.updateType} update pending.`);
         setModalVisible(true);
       }
     } catch (e) {
       console.log("Some error has occured!", e);
     }
+  };
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
   };
 
   const updateFcmToken = async () => {
@@ -182,6 +188,34 @@ const HorizontalFlatList = (props) => {
 
   return (
     <SafeAreaView p={0} mb={20}>
+
+      {isModalVisible && (
+        <Modal isVisible={isModalVisible}>
+          <View style={{ height: 200 }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', borderRadius: 10 }}>
+              <Text fontWeight={400} fontSize={25} textAlign="center" mb={10} color={'black'} >Hello! a new update is available.</Text>
+              <View flexDirection={'row'}
+                justifyContent={'space-evenly'}
+                p={3}
+                marginTop={20}
+                width={'100%'}>
+                <TouchableOpacity
+                  onPress={toggleModal}
+                  style={styles.cancelButton}>
+                  <Text style={styles.cancelText}>Cancel</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => Linking.openURL(appData.url)}
+                  style={styles.submitButton}>
+                  <Text style={styles.submitText}>Update</Text>
+                </TouchableOpacity>
+              </View>
+
+            </View>
+          </View>
+        </Modal>
+      )}
       {/* <MainHeader title="Home" showLanguageIcon={true}/> */}
 
       <View style={{ height: 60, width: width }}>
@@ -221,6 +255,8 @@ const HorizontalFlatList = (props) => {
 
 
       <ScrollView showsVerticalScrollIndicator={false}>
+
+
 
         {isLoading ? <LoadingSpinner /> : <Box p={2}>
 
@@ -305,4 +341,32 @@ const styles = StyleSheet.create({
     height: 30,
     alignContent: 'center'
   },
+  submitButton: {
+    backgroundColor: '#5349f8',
+    paddingVertical: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '35%',
+    // marginTop: 40
+  },
+  submitText: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  cancelButton: {
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    // marginTop: 10,
+    width: '35%',
+    borderColor: '#5349f8',
+    borderWidth: 1
+  },
+  cancelText: {
+    color: '#5349f8',
+    fontSize: 15,
+    fontWeight: 'bold',
+  }
 })
