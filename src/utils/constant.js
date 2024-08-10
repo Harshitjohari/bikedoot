@@ -36,6 +36,7 @@ import insurance from '../assets/images/insurance.png';
 import terms from '../assets/images/terms.png';
 import phoneCall from '../assets/images/phoneCall.png';
 import navigate from '../assets/images/navigate.png';
+import update from '../assets/images/update.png';
 
 
 const imageConstant = {
@@ -76,7 +77,8 @@ const imageConstant = {
     terms,
     helpSupport,
     phoneCall,
-    navigate
+    navigate,
+    update
 }
 
 const fontConstant = {

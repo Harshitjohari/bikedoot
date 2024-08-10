@@ -23,9 +23,6 @@ import Storage from '../../utils/async-storage';
 import CustomButton from '../../components/UI/button'
 import { handleToast } from '../../utils/toast';
 import crashlytics from '@react-native-firebase/crashlytics';
-import { checkVersion } from "react-native-check-version";
-import Modal from "react-native-modal";
-import DeviceInfo from 'react-native-device-info';
 
 
 const width = Dimensions.get('window').width;
@@ -40,31 +37,11 @@ const HorizontalFlatList = (props) => {
     fetchHomeData();
     fetchProfileData();
     updateFcmToken();
-    checkAppVersion();
   }, []);
 
   //   useEffect(() => {
   //     crashlytics().crash();
   // }, []);
-
-  const checkAppVersion = async () => {
-    try {
-      const bundleId = DeviceInfo.getBundleId();
-      const version = await checkVersion();
-      // console.log("Got version info:", version);
-      setAppData(version);
-      if (version.needsUpdate) {
-        // console.log(`App has a ${version.updateType} update pending.`);
-        setModalVisible(true);
-      }
-    } catch (e) {
-      console.log("Some error has occured!", e);
-    }
-  };
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
 
   const updateFcmToken = async () => {
     try {
@@ -103,8 +80,6 @@ const HorizontalFlatList = (props) => {
   const [GarageData, setGarageData] = useState(false);
   const [isAgreed, setIsAgreed] = useState(false);
   const [toggleValue, setToggleValue] = useState();
-  const [appData, setAppData] = useState({});
-  const [isModalVisible, setModalVisible] = useState(false);
 
 
   const fetchHomeData = async () => {
@@ -186,34 +161,6 @@ const HorizontalFlatList = (props) => {
 
   return (
     <SafeAreaView p={0} mb={20}>
-
-      {isModalVisible && (
-        <Modal isVisible={isModalVisible}>
-          <View style={{ height: 200 }}>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', borderRadius: 10 }}>
-              <Text fontWeight={400} fontSize={25} textAlign="center" mb={10} color={'black'} >Hello! a new update is available.</Text>
-              <View flexDirection={'row'}
-                justifyContent={'space-evenly'}
-                p={3}
-                marginTop={20}
-                width={'100%'}>
-                <TouchableOpacity
-                  onPress={toggleModal}
-                  style={styles.cancelButton}>
-                  <Text style={styles.cancelText}>Cancel</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => Linking.openURL(appData.url)}
-                  style={styles.submitButton}>
-                  <Text style={styles.submitText}>Update</Text>
-                </TouchableOpacity>
-              </View>
-
-            </View>
-          </View>
-        </Modal>
-      )}
 
       <View style={{ height: 60, width: width }}>
         <View style={{
