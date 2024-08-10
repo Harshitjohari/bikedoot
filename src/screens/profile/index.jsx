@@ -72,7 +72,7 @@ const ProfilePage = (props) => {
   const { garage } = GarageData;
 
   const handleMenuItemPress = (item) => {
-    if (item.label === 'Update Available') {
+    if (item.label === 'Update Available ') {
       setModalVisible(true);
     } else if (item.isRoute) {
       navigation.navigate(item.route);
@@ -196,7 +196,7 @@ const ProfilePage = (props) => {
 
 
         <CustomButton
-        btnStyle={{ borderRadius: 5, marginBottom: 10, marginTop: 0, marginLeft: 10, marginRight: 10 }}
+        btnStyle={{ borderRadius: 5, marginBottom: 10, marginTop: 0, marginLeft: 10, marginRight: 10, marginTop: 10 }}
         onPress={props.logout}
         // onPress={() => props.navigation.navigate('Mechanic')}
         isLoading={false}

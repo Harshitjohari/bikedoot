@@ -81,7 +81,7 @@ const MechanicProfile = (props) => {
   };
 
   const handleMenuItemPress = (item) => {    
-    if (item.label === 'Update Available') {
+    if (item.label === 'Update Available ') {
       setModalVisible(true);
     } else if (item.isRoute) {
       navigation.navigate(item.route);
