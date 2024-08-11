@@ -30,6 +30,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
     const [previewVisible, setPreviewVisible] = useState(false);
     const [selectedImageUrl, setSelectedImageUrl] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
+    const [spareImageModalVisible, setSpareImageModalVisible] = useState(false);
     const [garageData, setGarageData] = useState([]);
     const [selectedDateIndex, setSelectedDateIndex] = useState(null);
     const [selectedDate, setSelectedDate] = useState(null);
@@ -292,7 +293,6 @@ const BookingCardDetail = ({ booking, refresh }) => {
         Linking.openURL(pdfUrl).catch(err => console.error("Couldn't load page", err));
     };
 
-
     return (
         <>
             <ScrollView>
@@ -339,7 +339,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                             Auth Code
                                         </Text>
 
-                                        <View style={{ backgroundColor: '#66ff66', padding: 1, borderRadius: 5, width: 70, alignSelf: 'flex-end'}}>
+                                        <View style={{ backgroundColor: '#66ff66', padding: 1, borderRadius: 5, width: 70, alignSelf: 'flex-end' }}>
                                             <Text fontWeight="600" fontSize={18} lineHeight="20px" color="bd_dark_text" letterSpacing={4} textAlign="center">
                                                 {booking?.authCode}
                                             </Text>
@@ -691,9 +691,32 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                             <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
                                                 ₹{spareParts?.price}
                                             </Text>
-
                                         </View>
+
                                     ))}
+
+                                    <CustomButton
+                                        onPress={() => setSpareImageModalVisible(!spareImageModalVisible)}
+                                        btnStyle={{
+                                            marginTop: 5,
+                                            height: 'auto',
+                                            width: 'auto',
+                                            alignSelf: 'flex-end',
+                                            backgroundColor: 'transparent',
+                                            borderWidth: 0,
+                                            padding: 0
+                                        }}
+                                        textStyle={{
+                                            color: "#007AFF",
+                                            fontWeight: "500",
+                                            fontSize: 12,
+                                            textDecorationLine: 'underline'
+                                        }}
+                                    >
+                                        View spares images
+                                    </CustomButton>
+
+
                                     {/* <CustomButton
                             onPress={() => navigation.navigate("SpareListScreen", booking?._id)}
                             btnStyle={{ marginTop: 15, height: 40, width: '30%', alignSelf: 'flex-end' }}
@@ -731,66 +754,66 @@ const BookingCardDetail = ({ booking, refresh }) => {
                             {
                                 booking?.bikedootDiscount &&
                                 <View
-                                width="100%"
-                                bg="#ffffff"
-                                borderRadius="10px"
-                                marginTop={3}
-                                paddingBottom={1}
-                                alignItems="center"
-                                flexDirection="row"
-                                justifyContent="space-between"
-                            >
+                                    width="100%"
+                                    bg="#ffffff"
+                                    borderRadius="10px"
+                                    marginTop={3}
+                                    paddingBottom={1}
+                                    alignItems="center"
+                                    flexDirection="row"
+                                    justifyContent="space-between"
+                                >
 
-                                <Text fontWeight="500" fontSize={12} mb={0} lineHeight="14px" color="bd_sec_text">
-                                    {booking?.bikedootDiscount?.title}
-                                </Text>
-                                <Text fontWeight="500" fontSize={12} mb={0} color="bd_sec_text">
-                                    - ₹{booking?.bikedootDiscount?.amount}
-                                </Text>
+                                    <Text fontWeight="500" fontSize={12} mb={0} lineHeight="14px" color="bd_sec_text">
+                                        {booking?.bikedootDiscount?.title}
+                                    </Text>
+                                    <Text fontWeight="500" fontSize={12} mb={0} color="bd_sec_text">
+                                        - ₹{booking?.bikedootDiscount?.amount}
+                                    </Text>
                                 </View>
                             }
 
                             {
                                 booking?.garageDiscount &&
                                 <View
-                                width="100%"
-                                bg="#ffffff"
-                                borderRadius="10px"
-                                marginTop={2}
-                                paddingBottom={1}
-                                alignItems="center"
-                                flexDirection="row"
-                                justifyContent="space-between"
-                            >
+                                    width="100%"
+                                    bg="#ffffff"
+                                    borderRadius="10px"
+                                    marginTop={2}
+                                    paddingBottom={1}
+                                    alignItems="center"
+                                    flexDirection="row"
+                                    justifyContent="space-between"
+                                >
 
-                                <Text fontWeight="500" fontSize={12} mb={0} lineHeight="14px" color="bd_sec_text">
-                                    {booking?.garageDiscount?.title}
-                                </Text>
-                                <Text fontWeight="500" fontSize={12} mb={0} color="bd_sec_text">
-                                    - ₹{booking?.garageDiscount?.amount}
-                                </Text>
+                                    <Text fontWeight="500" fontSize={12} mb={0} lineHeight="14px" color="bd_sec_text">
+                                        {booking?.garageDiscount?.title}
+                                    </Text>
+                                    <Text fontWeight="500" fontSize={12} mb={0} color="bd_sec_text">
+                                        - ₹{booking?.garageDiscount?.amount}
+                                    </Text>
                                 </View>
                             }
 
                             {
                                 booking?.finalAmount &&
                                 <View
-                                width="100%"
-                                bg="#ffffff"
-                                borderRadius="10px"
-                                marginTop={2}
-                                paddingBottom={1}
-                                alignItems="center"
-                                flexDirection="row"
-                                justifyContent="space-between"
-                            >
+                                    width="100%"
+                                    bg="#ffffff"
+                                    borderRadius="10px"
+                                    marginTop={2}
+                                    paddingBottom={1}
+                                    alignItems="center"
+                                    flexDirection="row"
+                                    justifyContent="space-between"
+                                >
 
-                                <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
-                                    Total Amount :
-                                </Text>
-                                <Text fontWeight="500" fontSize="bd_sm" mb={0} color="bd_dark_text">
-                                    ₹{booking?.finalAmount}
-                                </Text>
+                                    <Text fontWeight="500" fontSize="bd_sm" mb={0} lineHeight="14px" color="bd_dark_text">
+                                        Total Amount :
+                                    </Text>
+                                    <Text fontWeight="500" fontSize="bd_sm" mb={0} color="bd_dark_text">
+                                        ₹{booking?.finalAmount}
+                                    </Text>
                                 </View>
                             }
 
@@ -856,7 +879,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
 
 
                         }
-                        
+
 
 
                         {
@@ -946,7 +969,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                         setModalVisible(!modalVisible);
                     }}>
                     <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
+                        <View style={[{ height: 600 }, styles.modalView]}>
                             <Text style={styles.modalTitle}>Reschedule Service</Text>
 
                             <VStack space={3} mb={0} height={200} width={'100%'}>
@@ -1030,6 +1053,78 @@ const BookingCardDetail = ({ booking, refresh }) => {
                         </View>
                     </View>
                 </Modal>
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={spareImageModalVisible}
+                    supportedOrientations={['portrait', 'landscape']}
+                    onRequestClose={() => {
+                        setSpareImageModalVisible(!spareImageModalVisible);
+                    }}>
+                    <View style={styles.centeredView}>
+                        <View style={[{ height: 750 }, styles.modalView]}>
+                            <Text style={styles.modalTitle}>Spare Before/After Images</Text>
+
+                            <FlatList
+                                data={booking?.spareParts}
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={({ item }) => (
+                                    <View style={styles.partContainer}>
+                                        <Text style={styles.name}>{item?.name}</Text>
+
+                                        <View style={styles.imageContainer}>
+                                            <View style={styles.imageTextContainer}>
+                                                <Text style={styles.imageText}>Before Image</Text>
+                                                <TouchableOpacity onPress={() => handleImageClick(item?.beforeImage)}>
+                                                    <Image source={{ uri: item?.beforeImage }} style={styles.image} alt='' />
+                                                </TouchableOpacity>
+                                                <ImagePreviewModal
+                                                visible={previewVisible}
+                                                imageUrl={selectedImageUrl}
+                                                onClose={handleClosePreview}
+                                                />
+                                            </View>
+
+                                            <View style={styles.imageTextContainer}>
+                                                <Text style={styles.imageText}>After Image</Text>
+                                                <TouchableOpacity onPress={() => handleImageClick(item?.afterImage)}>
+                                                    <Image source={{ uri: item?.afterImage }} style={styles.image} alt='' />
+                                                </TouchableOpacity>
+                                                <ImagePreviewModal
+                                                visible={previewVisible}
+                                                imageUrl={selectedImageUrl}
+                                                onClose={handleClosePreview}
+                                                />
+                                            </View>
+                                        </View>
+                                    </View>
+                                )}
+                                contentContainerStyle={styles.flatListContent}
+                                showsVerticalScrollIndicator={false}
+                                showsHorizontalScrollIndicator={false}
+                                scrollEnabled={true} 
+                            />
+
+
+                            <View
+                                flexDirection={'row'}
+                                justifyContent={'space-evenly'}
+                                p={3}
+                                marginTop={5}
+                                width={'100%'}>
+                                <TouchableOpacity
+                                    onPress={() => setSpareImageModalVisible(false)}
+                                    style={styles.cancelButton}>
+                                    <Text style={styles.cancelText}>Close</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+
+
+
             </ScrollView>
 
             {/* CREATED */}
@@ -1111,7 +1206,7 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
         width: '100%',
-        height: 600,
+        // height: 600,
         bottom: 0
     },
     centeredView: {
@@ -1142,19 +1237,88 @@ const styles = StyleSheet.create({
     },
     cancelButton: {
         backgroundColor: 'white',
-        paddingVertical: 15,
+        paddingVertical: 10,
         borderRadius: 5,
         alignItems: 'center',
         // marginTop: 10,
-        width: '43%',
+        width: '20%',
         borderColor: '#5349f8',
         borderWidth: 1
     },
     cancelText: {
         color: '#5349f8',
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: 'bold',
-    }
+    },
+    imageContainer: {
+        flexDirection: 'row', // Arrange images in a row
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 10,
+        marginBottom: 10,
+        flexWrap: 'wrap'
+    },
+    image: {
+        width: 100, 
+        height: 100,
+        borderRadius: 10,
+        resizeMode: 'cover',
+    },
+    imageTextContainer: {
+        alignItems: 'center',
+        marginBottom: 5,
+        marginLeft: 15,
+    },
+    imageText: {
+        fontSize: 12,
+        fontWeight: '400',
+        textAlign: 'center',
+        color: 'black'
+    },
+    partContainer: {
+        marginBottom: 20,
+        padding: 10,
+        // backgroundColor: '#f9f9f9',
+        // borderRadius: 10,
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 2 },
+        // shadowOpacity: 0.25,
+        // shadowRadius: 3.84,
+        // elevation: 5,
+        width: '100%',
+    },
+    flatListContent: {
+        marginBottom: 10,        
+        paddingHorizontal: 10,
+        width: '90%'
+    },
+    container: {
+        flexGrow: 1,
+        paddingVertical: 20,
+        paddingHorizontal: 10,
+    },
+    card: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
+        // marginTop: 20,
+        backgroundColor: '#ffffff',
+        borderRadius: 10,
+        padding: 8,
+        borderWidth: 1,
+        borderColor: '#e7e7e7',
+    },
+    cardContent: {
+        flex: 1,
+        marginRight: 10,
+    },
+    name: {
+        fontSize: 15,
+        fontWeight: '600',
+        color: 'black',
+        textAlign: 'center',
+    },
 });
 
 export default BookingCardDetail;
