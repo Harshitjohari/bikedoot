@@ -201,7 +201,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                             </Text>
 
 
-                            {
+                            {/* {
                                 booking?.shareCode &&
                                 <View flexDirection={'row'}
                                     justifyContent={'space-between'}
@@ -217,7 +217,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                     </View>
                                 </View>
 
-                            }
+                            } */}
 
                         </Box>
 
@@ -756,6 +756,23 @@ const BookingCardDetail = ({ booking, refresh }) => {
             >
                 View Spares List
             </CustomButton> */}
+
+            {
+                booking?.status == 'ASSIGNED' &&
+
+                <CustomButton
+                    onPress={() => navigation.navigate("OtpVerify", { booking })}
+                    btnStyle={{ margin: 10 }}>
+                    Verify Details
+                </CustomButton>
+
+                // <CustomButton
+                //     onPress={() => navigation.navigate("OtpVerify", { booking })}
+                //     btnStyle={{ margin: 10 }}>
+                //     End Service
+                // </CustomButton>
+            }
+
             {
                 booking?.status == 'VERIFIED' &&
 
@@ -763,7 +780,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                     // onPress={handleAlert}
                     onPress={() => navigation.navigate("InseptionScreen", { booking })}
                     btnStyle={{ margin: 10 }}>
-                    Start Pre-Inspection
+                    Start Service
                 </CustomButton>
             }
 

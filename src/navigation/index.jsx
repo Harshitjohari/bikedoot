@@ -143,6 +143,7 @@ const MainNavigator = (props) => {
       <HomeStack.Screen name="BookingConfirmation" component={BookingConfirmation} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="Bookings" component={BookingsScreen} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="BookingsDetails" component={BookingsDetails} options={{ tabBarVisible: false }} />
+      <HomeStack.Screen name="AddOnScreen" component={AddOnScreen} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="Mechanic" component={Mechanic} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="MechanicAdd" component={MechanicAdd} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="MechanicDetails" component={MechanicDetails} options={{ tabBarVisible: false }} />
@@ -169,6 +170,7 @@ const MainNavigator = (props) => {
       <HomeStack.Screen name="Bookings" component={BookingsScreen} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="BookingsDetails" component={BookingsDetails} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="AssignMechanic" component={AssignMechanic} options={{ tabBarVisible: false }} />
+      <HomeStack.Screen name="AddOnScreen" component={AddOnScreen} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="Mechanic" component={Mechanic} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="MechanicAdd" component={MechanicAdd} options={{ tabBarVisible: false }} />
     </HomeStack.Navigator>
