@@ -63,7 +63,7 @@ const BookingCardDetail = ({ booking }) => {
         const currentDate = selectedDate || date;
         setShowDatePicker(Platform.OS === 'ios');
         setDate(currentDate);
-        setShowTimePicker(true);
+        if(event.type != 'dismissed'){setShowTimePicker(true);}
     };
 
     // Handle time change
@@ -394,18 +394,28 @@ const BookingCardDetail = ({ booking }) => {
                                     <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
                                         Estimated Time
                                     </Text>
-                                    <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                        {booking?.estimatedTime || 'N/A'}
-                                    </Text>
+                                    {
+                                        booking?.estimatedTime && 
+                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                        {booking?.estimatedTime}
+                                        </Text>
+                                    }
+                                    
                                 </View>
                                 <View>
                                     {
                                         ['ASSIGNED', 'UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED'].includes(booking?.status) && (
 
                                             <>
-                                                <CustomButton btnStyle={{ height: 40 }} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={() => setShowDatePicker(true)}>
+                                                {/* <CustomButton btnStyle={{ height: 40 }} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={() => setShowDatePicker(true)}>
                                                     Update Estimated Time
-                                                </CustomButton>
+                                                </CustomButton> */}
+
+                                                <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+                                                    <Text style={{ fontSize: 12, fontWeight: '500', color: '#5349f8', textDecorationLine: 'underline' }}>
+                                                        {booking?.estimatedTime ? 'Update': 'Add'} Estimated Time
+                                                    </Text>
+                                                </TouchableOpacity>
                                             </>
                                         )}
 

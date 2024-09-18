@@ -47,8 +47,6 @@ const AddOnScreen = (props) => {
   const [selectedServiceCards, setSelectedServiceCards] = useState([]);
   const [customCards, setCustomCards] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-  const [addOnCardModalVisible, setAddOnCardModalVisible] = useState(false);
-  const [spareCardModalVisible, setSpareCardModalVisible] = useState(false);
   const [customData, setCustomData] = useState({
     name: '',
     quantity: '',
@@ -57,8 +55,6 @@ const AddOnScreen = (props) => {
   });
   const [services, setServices] = useState([]);
   const [selectedAdd, setselectedAdd] = useState([]);
-  const [selectedButton, setSelectedButton] = useState('Additional Service');
-
 
 
   let preSelectedServices = props.route?.params?.booking?.services.filter(
@@ -79,48 +75,23 @@ const AddOnScreen = (props) => {
     fetchSpareList();
     fetchGarageData();
     setSelectedServiceCards(preSelectedServices);
-    fetchBookingsDetails();
   }, [isFocused]);
 
-  // useEffect(() => {
-  //   if (addonData.length > 0) {
+  useEffect(() => {
+    if (addonData.length > 0) {
 
-  //     let preSelectedAddService = props.route?.params?.booking?.additionalServices.filter(
-  //       service => service?.service?.service?.serviceType?.name === "Add-On"
-  //     );
-  //     let serviceIds = preSelectedAddService.map(data => data.service._id);
-  //     let filteredServices = addonData.filter(service => serviceIds.includes(service._id)).map(service => service._id);
-
-  //     // console.log('==========>',props.route?.params?.booking)
-
-  //     setSelectedCards(filteredServices);
-  //   }
-  // }, [addonData]);
-
-
-  const fetchBookingsDetails = async () => {
-    try {
-      setLoading(true);
-      let response = await Apis.HttpGetRequest(
-        Constant.BASE_URL + Constant.GET_BOOKING_DETAILS + props.route?.params?.booking?._id,
-        token
+      let preSelectedAddService = props.route?.params?.booking?.additionalServices.filter(
+        service => service?.service?.service?.serviceType?.name === "Add-On"
       );
+      let serviceIds = preSelectedAddService.map(data => data.service._id);
+      let filteredServices = addonData.filter(service => serviceIds.includes(service._id)).map(service => service._id);
 
-      // console.log('=========?',token)
+      // console.log('==========>',props.route?.params?.booking)
 
-      if (response?.status) {
-
-        const data = await response?.data?.additionalServices;
-        // setBookingData(data);
-        setAddonData(data);
-        setLoading(false);
-      } else {
-        setLoading(false);
-      }
-    } catch (e) {
-      setLoading(false);
+      setSelectedCards(filteredServices);
     }
-  };
+  }, [addonData]);
+
 
   const fetchAddonList = async () => {
     try {
@@ -133,7 +104,7 @@ const AddOnScreen = (props) => {
       if (response?.status) {
 
         const data = await response?.data;
-        // setAddonData(data);
+        setAddonData(data);
         setLoading(false);
       } else {
         setLoading(false);
@@ -268,21 +239,28 @@ const AddOnScreen = (props) => {
         onPress={() => onPress(_id)}>
         <Image
           style={styles.imageButton}
-          source={imageConstant.remove} />
+          source={selected ? imageConstant.remove : imageConstant.plus} />
       </TouchableOpacity>
     </View>
   );
 
-
-  const ServiceCard = ({ _id, name, price, onPress, selected }) => (
-    <TouchableOpacity
-      style={[styles.card, selected && styles.selectedCard]}
-      onPress={() => onPress(_id)}>
+  const ServiceCard = ({ _id, name, description, price, gstRate, onPress, selected }) => (
+    <View style={styles.card}>
       <View style={styles.cardContent}>
         <Text style={styles.name}>{name}</Text>
+        {/* <Text style={styles.description}>{description}</Text> */}
         <Text style={styles.price}>{`Price: ₹ ${price}`}</Text>
+        {/* <Text style={styles.price}>{`₹${gstRate}`}</Text> */}
       </View>
-    </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, selected ? styles.selectedButton : null]}
+        onPress={() => onPress(_id)}>
+        <Image
+          style={styles.imageButton}
+          source={selected ? imageConstant.remove : imageConstant.plus}
+        />
+      </TouchableOpacity>
+    </View>
   );
 
   const CustomCard = ({ name, quantity, price, gstRate, onPressRemove }) => (
@@ -347,14 +325,13 @@ const AddOnScreen = (props) => {
 
 
   const handleCardPress = (_id) => {
-    console.log('==========+>', _id)
-    // TODO : call api to remove add. service from booking details and call booking details again
+    // console.log('Selected item received:', _id);
 
-    // if (selectedCards.includes(_id)) {
-    //   setSelectedCards(selectedCards.filter((id) => id !== _id));
-    // } else {
-    //   setSelectedCards([...selectedCards, _id]);
-    // }
+    if (selectedCards.includes(_id)) {
+      setSelectedCards(selectedCards.filter((id) => id !== _id));
+    } else {
+      setSelectedCards([...selectedCards, _id]);
+    }
   };
 
 
@@ -376,18 +353,6 @@ const AddOnScreen = (props) => {
   const selectedItemFn1 = (selectedItem, index) => {
     // console.log('Selected item received:', selectedItem.name);
     handleCustomInputChange1('gstRate', selectedItem.name)
-  };
-
-  const handleButtonPress = (button) => {
-    setSelectedButton(button);
-  };
-
-  const handleButtonPressModal = () => {
-    if (selectedButton === "Additional Service") {
-      setAddOnCardModalVisible(true);
-    } else {
-      setSpareCardModalVisible(true);
-    }
   };
 
 
@@ -417,114 +382,113 @@ const AddOnScreen = (props) => {
             />
           ))}
 
-          <View style={{ backgroundColor: '#f0f0f0', padding: 5, borderRadius: 10, marginTop: 10, }}>
-            <View style={styles.buttonContainer2}>
-              <TouchableOpacity
-                style={[
-                  styles.button2,
-                  selectedButton === 'Additional Service' && styles.selectedButton2
-                ]}
-                onPress={() => handleButtonPress('Additional Service')}
-              >
-                <Text
-                  style={[
-                    styles.buttonText,
-                    selectedButton === 'Additional Service' ? styles.selectedButtonText : styles.unselectedButtonText
-                  ]}
-                >Additional Service</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={[
-                  styles.button2,
-                  selectedButton === 'Spare Parts' && styles.selectedButton2
-                ]}
-                onPress={() => handleButtonPress('Spare Parts')}
-              >
-                <Text
-                  style={[
-                    styles.buttonText,
-                    selectedButton === 'Spare Parts' ? styles.selectedButtonText : styles.unselectedButtonText
-                  ]}
-                >Spare Parts</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={{ borderBottomWidth: 1, borderBottomColor: 'black', marginBottom: 10 }}>
+            <Text style={styles.customTitle}>Additional Service</Text>
           </View>
+          {data.map((item) => (
+            <Card
+              key={item._id}
+              _id={item._id}
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              // gstRate={item.gstRate}
+              onPress={handleCardPress}
+              selected={selectedCards.includes(item._id)}
+            />
+          ))}
 
-          <CustomButton
-            onPress={() => handleButtonPressModal()}
-            btnStyle={{
-              alignItems: 'right',
-              marginTop: 10,
-              backgroundColor: '#5349f8',
-              borderColor: '#5349f8',
-              borderWidth: 1,
-            }}
-            textStyle={{
-              color: '#fff'
-            }}>
-            + {selectedButton}
-          </CustomButton>
-
-          {
-            selectedButton === 'Additional Service' &&
-            <>
-              <View style={{ marginBottom: 10 }}>
+          {customCards.length > 0 && (
+            <View>
+              <View style={{ borderBottomWidth: 1, borderBottomColor: 'black', marginBottom: 10 }}>
+                <Text style={styles.customTitle}>Spares</Text>
               </View>
-              {data.map((item) => (
-                <Card
-                  key={item._id}
-                  _id={item._id}
-                  name={item.name}
-                  description={item.description}
-                  price={item.price}
-                  // gstRate={item.gstRate}
-                  onPress={handleCardPress}
-                // selected={selectedCards.includes(item._id)}
+              {customCards.map((customCard, index) => (
+                <CustomCard
+                  key={index}
+                  name={customCard.name}
+                  quantity={customCard.quantity}
+                  price={customCard.price}
+                  gstRate={customCard.gstRate}
+                  onPressRemove={() => handleRemoveCustomCard(index)}
                 />
               ))}
-            </>
-          }
+            </View>
+          )}
 
+          {/* <View style={styles.buttonContainer}>
+          <Button
+            title="Add custom"
+            onPress={() => setModalVisible(!modalVisible)}
+          />
+        </View> */}
 
-          {
-            selectedButton === 'Spare Parts' &&
-            <>
-              {customCards.length > 0 && (
-                <View>
-                  <View style={{ borderBottomWidth: 1, borderBottomColor: 'black', marginBottom: 10 }}>
-                    <Text style={styles.customTitle}>Spares</Text>
-                  </View>
-                  {customCards.map((customCard, index) => (
-                    <CustomCard
-                      key={index}
-                      name={customCard.name}
-                      quantity={customCard.quantity}
-                      price={customCard.price}
-                      gstRate={customCard.gstRate}
-                      onPressRemove={() => handleRemoveCustomCard(index)}
-                    />
-                  ))}
-                </View>
-              )}
-            </>
-          }
-
+          {/* <CustomButton
+          onPress={() => setModalVisible(!modalVisible)}
+          btnStyle={{
+            alignItems: 'right',
+            marginTop: 10,
+            // marginBottom: 20,
+            backgroundColor: 'white',
+            borderColor: '#5349f8',
+            borderWidth: 1,
+          }}
+          textStyle={{
+            color: '#5349f8'
+          }}>
+          Add Custom Additional Service
+        </CustomButton> */}
         </ScrollView>
+
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10 }}>
+          <CustomButton
+            onPress={() => setModalVisible(!modalVisible)}
+            btnStyle={{
+              alignItems: 'center',
+              backgroundColor: 'white',
+              borderColor: '#5349f8',
+              borderWidth: 1,
+              padding: 10,
+              width: '45%'
+            }}
+            textStyle={{
+              color: '#5349f8',
+            }}
+          >
+            Add Spares
+          </CustomButton>
+
+          <CustomButton
+            onPress={handleSubmit}
+            btnStyle={{
+              alignItems: 'center',
+              borderColor: '#5349f8',
+              borderWidth: 1,
+              padding: 10,
+              width: '45%'
+            }}
+            textStyle={{
+              color: 'white',
+            }}
+          >
+            Submit
+          </CustomButton>
+        </View>
       </>
       }
 
-      <Modal
+      {/* <Modal
         animationType="slide"
         transparent={true}
-        visible={addOnCardModalVisible}
+        visible={modalVisible}
         supportedOrientations={['portrait', 'landscape']}
         onRequestClose={() => {
-          setAddOnCardModalVisible(!addOnCardModalVisible);
+          setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalTitle}>Add Additional Service</Text>
+            <Text style={styles.modalTitle}>Add Spare</Text>
 
 
             <View style={{
@@ -537,12 +501,12 @@ const AddOnScreen = (props) => {
               borderBottomWidth: 1,
               borderColor: '#E6E8EC',
             }}>
-              <Text style={styles.textStyle}>Name *</Text>
+              <Text style={styles.textStyle}>Name</Text>
               <TextInput
                 style={styles.input}
                 placeholderTextColor="black"
-                value={customData.price}
-                onChangeText={(text) => handleCustomInputChange('price', text)}
+                value={customData.name}
+                onChangeText={(text) => handleCustomInputChange('name', text)}
               />
             </View>
 
@@ -556,7 +520,7 @@ const AddOnScreen = (props) => {
               borderBottomWidth: 1,
               borderColor: '#E6E8EC',
             }}>
-              <Text style={styles.textStyle}>Price *</Text>
+              <Text style={styles.textStyle}>Quantity</Text>
               <TextInput
                 style={styles.input}
                 placeholderTextColor="black"
@@ -566,7 +530,7 @@ const AddOnScreen = (props) => {
               />
             </View>
 
-            {/* <View style={{
+            <View style={{
               width: "90%",
               minHeight: 40,
               maxHeight: 40,
@@ -584,92 +548,37 @@ const AddOnScreen = (props) => {
                 keyboardType="numeric"
                 onChangeText={(text) => handleCustomInputChange('price', text)}
               />
-            </View> */}
-
-            {/* <View style={{
-              // width: "90%",
-              minHeight: 40,
-              maxHeight: 40,
-              justifyContent: 'center',
-              alignSelf: 'center',
-              marginTop: 40,
-              borderBottomWidth: 1,
-              borderColor: '#E6E8EC',
-            }}>
-              <Text style={styles.textStyle}>Gst Rate</Text>
-              <SelectDropdown
-                data={gstData}
-                onSelect={(selectedItem, index) => {
-                  selectedItemFn1(selectedItem, index)
-
-                  // console.log('selected item ===========>',selectedItems)
-                  // setSelectedItems([selectedItem]);
-                  // selectedItems[0].name
-                }}
-                buttonTextAfterSelection={(selectedItem, index) => {
-                  return selectedItem.name;
-                }}
-                rowTextForSelection={(item, index) => {
-                  // Display mechanic name in dropdown
-                  return item.name;
-                }}
-                buttonStyle={{
-                  fontSize: 16,
-                  color: 'black',
-                  fontWeight: '400',
-                  paddingVertical: 0,
-                  borderWidth: 0.5,
-                  borderRadius: 8,
-                  backgroundColor: '#f4f5f7',
-                  borderColor: '#e7e7e7',
-                  padding: 15,
-                  height: 50,
-                  marginTop: 5,
-                  width: '90%'
-                }}
-                buttonTextStyle={{ color: 'black' }}
-                defaultButtonText="Select Gst Rate"
-                dropdownStyle={{ borderColor: '#E6E8EC' }}
-              />
-            </View> */}
-
-
-            <View flexDirection={'row'}
-              justifyContent={'space-evenly'}
-              p={3}
-              marginTop={40}
-              width={'100%'}>
-
-              <TouchableOpacity
-                onPress={() => setAddOnCardModalVisible(false)}
-                style={styles.cancelButton}>
-                <Text style={styles.cancelText}>Cancel</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={handleSubmitCustomData}
-                style={styles.submitButton}>
-                <Text style={styles.submitText}>Submit</Text>
-              </TouchableOpacity>
-
             </View>
+
+
+            <TouchableOpacity
+              onPress={handleSubmitCustomData}
+              style={styles.submitButton}>
+              <Text style={styles.submitText}>Submit</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => setModalVisible(false)}
+              style={styles.cancelButton}>
+              <Text style={styles.cancelText}>Cancel</Text>
+            </TouchableOpacity>
 
 
           </View>
         </View>
-      </Modal>
+      </Modal> */}
 
       <Modal
         animationType="slide"
         transparent={true}
-        visible={spareCardModalVisible}
+        visible={modalVisible}
         supportedOrientations={['portrait', 'landscape']}
         onRequestClose={() => {
-          setSpareCardModalVisible(!spareCardModalVisible);
+          setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalTitle}>Add Spare Part</Text>
+            <Text style={styles.modalTitle}>Add Spare</Text>
 
 
             <View style={{
@@ -831,7 +740,7 @@ const AddOnScreen = (props) => {
               width={'100%'}>
 
               <TouchableOpacity
-                onPress={() => setSpareCardModalVisible(false)}
+                onPress={() => setModalVisible(false)}
                 style={styles.cancelButton}>
                 <Text style={styles.cancelText}>Cancel</Text>
               </TouchableOpacity>
@@ -848,8 +757,6 @@ const AddOnScreen = (props) => {
           </View>
         </View>
       </Modal>
-
-
     </View>
 
   );
@@ -869,29 +776,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: 10,
+    // marginTop: 20,
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
     padding: 8,
-    marginVertical: 8,
-    backgroundColor: '#fff',
-    borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#ddd',
-  },
-  selectedCard: {
-    borderColor: '#5349f8',
-    borderWidth: 2
+    borderColor: '#e7e7e7',
   },
   cardContent: {
     flex: 1,
+    marginRight: 10,
   },
   name: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '600',
-  },
-  price: {
-    fontSize: 12,
-    color: '#666',
-    marginTop: 5,
-    fontWeight: '500'
+    color: 'black',
   },
   quantity: {
     fontSize: 12,
@@ -899,7 +799,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: 'grey',
   },
-  price1: {
+  price: {
     fontSize: 12,
     fontWeight: '500',
     marginTop: 5,
@@ -1013,43 +913,6 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
   },
-  container: {
-    flexGrow: 1,
-    padding: 16,
-  },
-
-  buttonContainer2: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  button2: {
-    flex: 1,
-    padding: 10,
-    // borderWidth: 1,
-    borderColor: 'black',
-    alignItems: 'center',
-    // marginHorizontal: 5,
-    borderRadius: 5,
-    borderColor: '#e7e7e7'
-  },
-  selectedButton2: {
-    backgroundColor: '#5349f8',
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-  },
-  selectedButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 500
-  },
-  unselectedButtonText: {
-    color: '#5349f8',
-    fontSize: 16,
-    fontWeight: 500
-  },
-
 });
 
 
