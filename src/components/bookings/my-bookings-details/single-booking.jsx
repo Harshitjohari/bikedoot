@@ -75,7 +75,12 @@ const BookingCardDetail = ({ booking }) => {
     };
 
     const handleEstimatedTime = () => {
-        console.log('============>', date)
+        const currentDate = new Date();
+        if (date < currentDate) {
+            Alert.alert("Invalid Time", "You cannot select a past time. Please choose a future time.");
+        } else {
+            console.log('Valid date and time selected:', date);
+        }
     };
 
     // const isAllChecked = () => {
@@ -428,6 +433,7 @@ const BookingCardDetail = ({ booking }) => {
                                     mode="date"
                                     display="default"
                                     onChange={onDateChange}
+                                    minimumDate={new Date()}
                                 />
                             )}
 
@@ -437,6 +443,7 @@ const BookingCardDetail = ({ booking }) => {
                                     mode="time"
                                     display="default"
                                     onChange={onTimeChange}
+                                    minimumDate={date.toDateString() === new Date().toDateString() ? new Date() : null}
                                 />
                             )}
                         </View>

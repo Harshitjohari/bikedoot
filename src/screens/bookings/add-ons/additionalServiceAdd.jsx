@@ -14,8 +14,7 @@ import {
   Picker,
   FlatList,
   Platform,
-  Dimensions,
-  KeyboardAvoidingView
+  Dimensions
 } from 'react-native';
 import Constant from '../../../common/constant';
 import Apis from '../../../utils/api';
@@ -34,7 +33,7 @@ import LoadingSpinner from '../../../components/UI/loading';
 let Height = Dimensions.get("window").height;
 let Width = Dimensions.get("window").width;
 
-const AddOnScreen = (props) => {
+const AddAdditionalServicePage = (props) => {
   // console.log('props==============+>', props.route?.params?.booking)
 
   const navigation = useNavigation()
@@ -76,19 +75,10 @@ const AddOnScreen = (props) => {
 
 
 
-  let preSelectedServices = props.route?.params?.booking?.services.filter(
-    service => service?.service?.service?.serviceType?.name === "Service"
-  ).map(service => service.service._id);
-
-
-
-
   useEffect(() => {
     if (isFocused)
       fetchAddonList();
-    fetchSpareList();
     fetchGarageData();
-    setSelectedServiceCards(preSelectedServices);
     fetchBookingsDetails();
   }, [isFocused]);
 
@@ -139,51 +129,6 @@ const AddOnScreen = (props) => {
     }
   };
 
-  // const handleSubmit = async () => {
-  //   if (selectedServiceCards.length === 0) {
-  //     Alert.alert('Please select atleast one service...')
-  //     return
-  //   }
-  //   const data = {
-  //     additionalServices: selectedCards,
-  //     spareParts: customCards,
-  //     services: selectedServiceCards
-  //   };
-  //   setLoading(true)
-  //   let response = await Apis.HttpPostRequest(
-  //     Constant.BASE_URL + Constant.PRE_INCEPTION + props.route?.params?.booking?._id + '/preInception',
-  //     token,
-  //     data
-  //   );
-  //   setLoading(false)
-  //   if (response?.status) {
-  //     show(response?.message, "success");
-  //     navigation.navigate("MechanicBookingsDetails", { id: props.route?.params?.booking?._id })
-  //   } else {
-  //     show(response?.message || "Failed to send data, try again later", "error");
-  //   }
-  // };
-
-  const fetchSpareList = async () => {
-    try {
-      setLoading(true);
-      let response = await Apis.HttpGetRequest(
-        Constant.BASE_URL + Constant.GET_MECHANIC_BOOKINGS_DETAILS + props.route?.params?.booking?._id + '/spareParts',
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIzNGNjZTczOTcyM2U0MmNiM2UwMGEiLCJyb2xlIjoiTUVDSEFOSUMiLCJnYXJhZ2UiOiI2NjFhNmMxNzkxODE3YWMxYjAxOTI1YWEiLCJjaXR5IjoiNjU5ZWQ2YWY5OThkN2E4Y2JjOGI0N2Q0IiwiaWF0IjoxNzI2NTkzMjAxLCJleHAiOjE3NTgxMjkyMDF9.pEcJmYxSAoCkfTi6gUoaDQWQfqGnJD1XfCZar9160Lk"
-        // token
-      );
-      if (response?.status) {
-
-        const data = await response?.data;
-        setSpareData(data);
-        setLoading(false);
-      } else {
-        setLoading(false);
-      }
-    } catch (e) {
-      setLoading(false);
-    }
-  };
 
   const fetchGarageData = async () => {
     try {
@@ -213,114 +158,38 @@ const AddOnScreen = (props) => {
     }
   };
 
-  let filterServices = services.filter(data => data.cc._id === props.route?.params?.booking?.bike?.cc?._id)
 
-  let gstData = [
-    {
-      "_id": '1',
-      "name": '0%'
-    },
-    {
-      "_id": '2',
-      "name": '5%'
-    },
-    {
-      "_id": '3',
-      "name": '12%'
-    },
-    {
-      "_id": '4',
-      "name": '18%'
-    },
-    {
-      "_id": '5',
-      "name": '28%'
-    }
-  ]
-
-  const data = addonData
-
-  const Card = ({ _id, name, description, price, gstRate, onPress, selected }) => (
-    <View style={styles.card}>
-      <View style={styles.cardContent}>
-        <Text style={styles.name}>{name}</Text>
-        {/* <Text style={styles.description}>{description}</Text> */}
-        <Text style={styles.price}>{`Price: ₹ ${price}`}</Text>
-        {/* <Text style={styles.price}>{`₹${gstRate}`}</Text> */}
-      </View>
-      <TouchableOpacity
-        style={[styles.button, selected ? styles.selectedButton : null]}
-        onPress={() => onPress(_id)}>
-        <Image
-          style={styles.imageButton}
-          source={imageConstant.remove} />
-      </TouchableOpacity>
-    </View>
-  );
-
-
-  const ServiceCard = ({ _id, name, price, onPress, selected }) => (
-    <TouchableOpacity
-      style={[styles.card, selected && styles.selectedCard]}
-      onPress={() => onPress(_id)}>
-      <View style={styles.cardContent}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.price}>{`Price: ₹ ${price}`}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-
-  const CustomCard = ({ name, quantity, price, gstRate, onPressRemove }) => (
-    <View style={styles.card}>
-      <View style={styles.cardContent}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.quantity}>Quantity: {quantity}</Text>
-        <Text style={styles.quantity}>Price: {`₹ ${price}`}</Text>
-        <Text style={styles.quantity}>Gst: {`${gstRate}`}%</Text>
-      </View>
-      <TouchableOpacity style={styles.removeButton} onPress={onPressRemove}>
-        <Image
-          style={styles.imageButton}
-          source={imageConstant.remove}
-        />
-      </TouchableOpacity>
-    </View>
-  );
-
-
-  const handleRemoveCustomCard = (index) => {
-    // const updatedCustomCards = [...customCards];
-
-    // updatedCustomCards.splice(index, 1);
-
-    // setCustomCards(updatedCustomCards);
-
-    // TODO : call api to remove spare from booking details and call booking details again
-  };
-
-
-  const handleCardPress = (_id) => {
-    console.log('==========+>', _id)
-    // TODO : call api to remove add. service from booking details and call booking details again
-
-    // if (selectedCards.includes(_id)) {
-    //   setSelectedCards(selectedCards.filter((id) => id !== _id));
-    // } else {
-    //   setSelectedCards([...selectedCards, _id]);
-    // }
-  };
-
-
-  const handleServiceCardPress = (_id) => {
-    if (selectedServiceCards.includes(_id)) {
-      setSelectedServiceCards([]);
-    } else {
-      setSelectedServiceCards([_id]);
+  const handleCustomInputChange = (key, value) => {
+    setCustomData({ ...customData, [key]: value });
+    if (key === 'name') {
+      setSearchText(value);
     }
   };
+  const handleCustomInputChange1 = (key, value) => {
+    setCustomData({ ...customData, [key]: value });
+  };
 
-  const handleButtonPress = (button) => {
-    setSelectedButton(button);
+  const handleSubmitAddOnCustomData = () => {
+    if (!addOnCustomData.name || !addOnCustomData.price) {
+      Alert.alert('All fields are required');
+      return;
+    }
+    const newCustomCard = {
+      _id: addOnCustomData._id,
+      name: addOnCustomData.name,
+      price: addOnCustomData.price
+    };
+
+    console.log('==========+>', newCustomCard)
+
+
+    setSearchText('')
+    setAddOnCustomData({
+      name: '',
+      price: ''
+    })
+    navigation.goBack();
+    //TODO : call api to save additional service in booking
   };
 
   const handleSearch = (text) => {
@@ -329,16 +198,9 @@ const AddOnScreen = (props) => {
     }
 
     searchTimeout.current = setTimeout(() => {
-      let filtered
-      if (selectedButton === 'Additional Service') {
-        filtered = AddOnData.filter(item =>
-          item.name.toLowerCase().includes(text.toLowerCase())
-        );
-      } else if (selectedButton === 'Spare Parts') {
-        filtered = spareData.filter(item =>
-          item.name.toLowerCase().includes(text.toLowerCase())
-        );
-      }
+      let filtered = AddOnData.filter(item =>
+        item.name.toLowerCase().includes(text.toLowerCase())
+      );
 
       setFilteredData(filtered);
     }, 300);
@@ -354,129 +216,116 @@ const AddOnScreen = (props) => {
     };
   }, [searchText]);
 
+  const handleCustomInputChangeAddon = (field, value) => {
+    setAddOnCustomData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+    if (field === 'name') {
+      setSearchText(value);
+    }
+  };
+
+  const handleItemSelection = (item) => {
+
+    if (selectedButton === 'Additional Service') {
+      setAddOnCustomData({ _id: item._id, name: item.name, price: item.price.toString() });
+    } else if (selectedButton === 'Spare Parts') {
+      handleCustomInputChange('name', item.name)
+    }
+
+    setFilteredData([]);
+    setSearchText('')
+
+  };
+
+
+
   return (
 
-    <View style={{ flex: 1, backgroundColor: "#ffffff" }}>
-      <Header title="Edit/Add Services & Spares" />
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+      <Header title="Add Additional Service" />
 
       {isLoading ? <LoadingSpinner /> : <>
-        <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false}>
 
-          <View style={{ marginBottom: 0 }}>
-            <Text style={styles.customTitle}>Services</Text>
-          </View>
+          <View style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
 
-          {filterServices.map((item) => (
-            <ServiceCard
-              key={item._id}
-              _id={item._id}
-              name={item.name}
-              description={item.description}
-              price={item.price}
-              // gstRate={item.gstRate}
-              onPress={handleServiceCardPress}
-              selected={selectedServiceCards.includes(item._id)}
-            />
-          ))}
+            <View style={{
+              width: "90%",
+              minHeight: 40,
+              maxHeight: 40,
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginTop: 40,
+              borderBottomWidth: 1,
+              borderColor: '#E6E8EC',
+            }}>
+              <Text style={styles.textStyle}>Name *</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter service name"
+                placeholderTextColor="grey"
+                value={addOnCustomData.name}
+                onChangeText={(text) => handleCustomInputChangeAddon('name', text)}
+              />
+            </View>
 
-          <View style={{ backgroundColor: '#f0f0f0', padding: 5, borderRadius: 10, marginTop: 10, }}>
-            <View style={styles.buttonContainer2}>
+            {searchText.length > 1 && (
+              <View style={styles.filteredListContainer}>
+                <FlatList
+                  data={filteredData}
+                  keyExtractor={(item) => item._id}
+                  renderItem={({ item }) => (
+                    <TouchableOpacity
+                      style={styles.filteredItem}
+                      onPress={() => handleItemSelection(item)}>
+                      <Text style={styles.searchTextStyle}>{item.name}</Text>
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
+            )}
+
+            <View style={{
+              width: "90%",
+              minHeight: 40,
+              maxHeight: 40,
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginTop: 40,
+              borderBottomWidth: 1,
+              borderColor: '#E6E8EC',
+            }}>
+              <Text style={styles.textStyle}>Price *</Text>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="grey"
+                placeholder="Enter price"
+                value={addOnCustomData.price}
+                keyboardType="numeric"
+                onChangeText={(text) => handleCustomInputChangeAddon('price', text)}
+              />
+            </View>
+
+
+            <View flexDirection={'row'}
+              justifyContent={'space-evenly'}
+              p={3}
+              marginTop={60}
+              width={'100%'}>
+
               <TouchableOpacity
-                style={[
-                  styles.button2,
-                  selectedButton === 'Additional Service' && styles.selectedButton2
-                ]}
-                onPress={() => handleButtonPress('Additional Service')}
-              >
-                <Text
-                  style={[
-                    styles.buttonText,
-                    selectedButton === 'Additional Service' ? styles.selectedButtonText : styles.unselectedButtonText
-                  ]}
-                >Additional Service</Text>
+                onPress={handleSubmitAddOnCustomData}
+                style={styles.submitButton}>
+                <Text style={styles.submitText}>Add Additional Service</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={[
-                  styles.button2,
-                  selectedButton === 'Spare Parts' && styles.selectedButton2
-                ]}
-                onPress={() => handleButtonPress('Spare Parts')}
-              >
-                <Text
-                  style={[
-                    styles.buttonText,
-                    selectedButton === 'Spare Parts' ? styles.selectedButtonText : styles.unselectedButtonText
-                  ]}
-                >Spare Parts</Text>
-              </TouchableOpacity>
             </View>
           </View>
-
-          <CustomButton
-            onPress={() => {
-              if (selectedButton === 'Spare Parts') {
-                navigation.navigate("AddSparePartsPage", { booking: props.route?.params?.booking });
-              } else {
-                navigation.navigate("AddAdditionalServicePage", { booking: props.route?.params?.booking });
-              }
-            }}
-            btnStyle={{
-              alignItems: 'right',
-              marginTop: 10,
-              backgroundColor: '#5349f8',
-              borderColor: '#5349f8',
-              borderWidth: 1,
-            }}
-            textStyle={{
-              color: '#fff'
-            }}>
-            + {selectedButton}
-          </CustomButton>
-
-          {
-            selectedButton === 'Additional Service' &&
-            <>
-              <View style={{ marginBottom: 10 }}>
-              </View>
-              {data.map((item) => (
-                <Card
-                  key={item._id}
-                  _id={item._id}
-                  name={item.name}
-                  description={item.description}
-                  price={item.price}
-                  // gstRate={item.gstRate}
-                  onPress={handleCardPress}
-                // selected={selectedCards.includes(item._id)}
-                />
-              ))}
-            </>
-          }
-
-
-          {
-            selectedButton === 'Spare Parts' &&
-            <>
-              {customCards.length > 0 && (
-                <View>
-                  <View style={{ marginBottom: 10 }}>
-                    {/* <Text style={styles.customTitle}>Spares</Text> */}
-                  </View>
-                  {customCards.map((customCard, index) => (
-                    <CustomCard
-                      key={index}
-                      name={customCard.name}
-                      quantity={customCard.quantity}
-                      price={customCard.price}
-                      gstRate={customCard.gstRate}
-                      onPressRemove={() => handleRemoveCustomCard(index)}
-                    />
-                  ))}
-                </View>
-              )}
-            </>
-          }
 
         </ScrollView>
       </>
@@ -617,8 +466,8 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 5,
     alignItems: 'center',
-    width: '43%',
-    // marginTop: 40
+    width: '90%',
+    marginTop: 40
   },
   submitText: {
     color: 'white',
@@ -709,4 +558,4 @@ const styles = StyleSheet.create({
 
 
 
-export default AddOnScreen;
+export default AddAdditionalServicePage;

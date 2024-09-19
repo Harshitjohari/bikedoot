@@ -24,6 +24,7 @@ const Otpverify = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const { token } = useAuth();
   const [Reading, setReading] = useState('');
+  const [FuelReading, setFuelReading] = useState('');
   const [RcNumber, setRcNumber] = useState('');
 
 
@@ -63,7 +64,7 @@ const Otpverify = (props) => {
     try {
       setIsLoading(true);
 
-      let data = { authCode: otpNumber, reading : Reading, rc : RcNumber }
+      let data = { authCode: otpNumber, reading : Reading, rc : RcNumber, fuel : FuelReading }
       const response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.START_BOOKING + booking?._id + '/startService', token, data);
       // console.log('==========>',response)
       setIsLoading(false);
@@ -194,6 +195,46 @@ const Otpverify = (props) => {
             placeholderTextColor="grey"
             value={Reading}
             onChangeText={setReading}
+            keyboardType="numeric"
+            maxLength={12}
+          />
+        </View>
+
+        <View style={{
+          width: "90%",
+          minHeight: 40,
+          maxHeight: 40,
+          justifyContent: 'center',
+          alignSelf: 'center',
+          marginTop: 10,
+          marginBottom: 40,
+          borderBottomWidth: 1,
+          borderColor: '#E6E8EC',
+        }}>
+          <View style={{
+            flexDirection: 'row'
+          }}>
+            <Text style={{ color: 'red' }}>*</Text>
+            <Text style={{ color: 'black' }}> Fuel Readings(%)</Text>
+          </View>
+          <TextInput
+            style={{
+              fontSize: 16,
+              color: 'black',
+              fontWeight: '400',
+              paddingVertical: 0,
+              borderWidth: 0.5,
+              borderRadius: 8,
+              backgroundColor: '#f4f5f7',
+              borderColor: 'grey',
+              padding: 15,
+              height: 50,
+              marginTop: 5
+            }}
+            placeholder="Fuel Readings(%)"
+            placeholderTextColor="grey"
+            value={FuelReading}
+            onChangeText={setFuelReading}
             keyboardType="numeric"
             maxLength={12}
           />
