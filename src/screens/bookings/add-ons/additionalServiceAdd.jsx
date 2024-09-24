@@ -113,8 +113,7 @@ const AddAdditionalServicePage = (props) => {
       setLoading(true);
       let response = await Apis.HttpGetRequest(
         Constant.BASE_URL + Constant.ADD_ONS_LIST + props.route?.params?.booking?._id + '/addons',
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIzNGNjZTczOTcyM2U0MmNiM2UwMGEiLCJyb2xlIjoiTUVDSEFOSUMiLCJnYXJhZ2UiOiI2NjFhNmMxNzkxODE3YWMxYjAxOTI1YWEiLCJjaXR5IjoiNjU5ZWQ2YWY5OThkN2E4Y2JjOGI0N2Q0IiwiaWF0IjoxNzI2NTkzMjAxLCJleHAiOjE3NTgxMjkyMDF9.pEcJmYxSAoCkfTi6gUoaDQWQfqGnJD1XfCZar9160Lk"
-        // token
+        token
       );
       if (response?.status) {
 
@@ -169,27 +168,35 @@ const AddAdditionalServicePage = (props) => {
     setCustomData({ ...customData, [key]: value });
   };
 
-  const handleSubmitAddOnCustomData = () => {
+  const handleSubmitAddOnCustomData = async () => {
     if (!addOnCustomData.name || !addOnCustomData.price) {
       Alert.alert('All fields are required');
       return;
     }
-    const newCustomCard = {
+    const data = {
       _id: addOnCustomData._id,
       name: addOnCustomData.name,
       price: addOnCustomData.price
     };
 
-    console.log('==========+>', newCustomCard)
-
-
-    setSearchText('')
-    setAddOnCustomData({
-      name: '',
-      price: ''
-    })
-    navigation.goBack();
-    //TODO : call api to save additional service in booking
+    setLoading(true)
+    let response = await Apis.HttpPostRequest(
+      Constant.BASE_URL + Constant.ADD_ONS_LIST + props.route?.params?.booking?._id + '/addons/add',
+      token,
+      data
+    );
+    setLoading(false)
+    if (response?.status) {
+      show(response?.message, "success");
+      setSearchText('')
+      setAddOnCustomData({
+        name: '',
+        price: ''
+      })
+      navigation.goBack();
+    } else {
+      show(response?.message || "Failed to send data, try again later", "error");
+    }
   };
 
   const handleSearch = (text) => {

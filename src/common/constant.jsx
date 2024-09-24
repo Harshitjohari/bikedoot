@@ -10,6 +10,7 @@ const Constants = {
         GURAGE_DEATIL_API: "/api/mechanics/garage/",
     },
 
+    GARAGE_BOOKING_API: "/api/garage/booking/",
     UPDATE_LIVE_STATUS: "/api/garage/live/update",
     HOME_DATA: "/api/garage/home",
     REQUEST_WITHDRAW: "/api/garage/withdraw/request",
@@ -41,8 +42,9 @@ const Constants = {
     START_BOOKING: "/api/mechanics/booking/",
     INCEPTION_LIST: "/api/mechanics/booking/",
     PRE_INCEPTION: "/api/mechanics/booking/",
-    ADD_ONS_LIST: "/api/mechanics/booking/",
-    SPARE_LIST: "/api/mechanics/booking/",
+    ADD_ONS_LIST: "/api/garage/booking/",
+
+    SPARE_LIST: "/api/garage/booking/",
 
     ADD_SPARE: "/api/mechanics/booking/",
     UPDATE_SPARE: "/api/mechanics/booking/",
@@ -56,6 +58,9 @@ const Constants = {
     ADD_PAYMENT : "/api/mechanics/booking/",
 
     UPDATE_FCM : "/auth/updateFcmToken",
+
+    ESTIMATED_TIME : "/api/garage/booking/updateEstimatedTime",
+
 
 
     ASYNC_STORAGE: {

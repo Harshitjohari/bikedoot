@@ -35,9 +35,9 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 const { width } = Dimensions.get('window');
 
 
-const BookingCardDetail = ({ booking }) => {
+const BookingCardDetail = ({ booking, refresh }) => {
 
-    // console.log('==========>', booking?._id)
+    // console.log('==========>', booking)
 
     const { token } = useAuth();
     const { show, close, closeAll } = handleToast();
@@ -63,7 +63,7 @@ const BookingCardDetail = ({ booking }) => {
         const currentDate = selectedDate || date;
         setShowDatePicker(Platform.OS === 'ios');
         setDate(currentDate);
-        if(event.type != 'dismissed'){setShowTimePicker(true);}
+        if (event.type != 'dismissed') { setShowTimePicker(true); }
     };
 
     // Handle time change
@@ -74,12 +74,31 @@ const BookingCardDetail = ({ booking }) => {
         handleEstimatedTime()
     };
 
-    const handleEstimatedTime = () => {
+    const handleEstimatedTime = async () => {
         const currentDate = new Date();
         if (date < currentDate) {
             Alert.alert("Invalid Time", "You cannot select a past time. Please choose a future time.");
         } else {
             console.log('Valid date and time selected:', date);
+        }
+
+        const data = {
+            _id: booking?._id,
+            estimatedTime: date
+        };
+
+        setLoading(true)
+        let response = await Apis.HttpPostRequest(
+            Constant.BASE_URL + Constant.ESTIMATED_TIME,
+            token,
+            data
+        );
+        setLoading(false)
+        if (response?.status) {
+            show(response?.message, "success");
+            refresh()
+        } else {
+            show(response?.message || "Failed to send data, try again later", "error");
         }
     };
 
@@ -400,12 +419,26 @@ const BookingCardDetail = ({ booking }) => {
                                         Estimated Time
                                     </Text>
                                     {
-                                        booking?.estimatedTime && 
-                                        <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                        {booking?.estimatedTime}
-                                        </Text>
+                                        booking?.estimatedTime &&
+                                        <>
+                                            <View
+                                                width="100%"
+                                                bg="#ffffff"
+                                                borderRadius="10px"
+                                                flexDirection="row"
+                                                alignItems="center"
+                                            >
+                                                <Image source={imageConstant.time} alt="" style={{ width: 14, height: 14 }} />
+                                                <Text fontSize="bd_xsm" color="bd_sec_text" marginLeft={2}>
+                                                    {formatDate2(booking?.estimatedTime)}
+                                                </Text>
+                                            </View>
+                                        </>
+                                        // <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
+                                        // {booking?.estimatedTime}
+                                        // </Text>
                                     }
-                                    
+
                                 </View>
                                 <View>
                                     {
@@ -418,7 +451,7 @@ const BookingCardDetail = ({ booking }) => {
 
                                                 <TouchableOpacity onPress={() => setShowDatePicker(true)}>
                                                     <Text style={{ fontSize: 12, fontWeight: '500', color: '#5349f8', textDecorationLine: 'underline' }}>
-                                                        {booking?.estimatedTime ? 'Update': 'Add'} Estimated Time
+                                                        {booking?.estimatedTime ? 'Update' : 'Add'} Estimated Time
                                                     </Text>
                                                 </TouchableOpacity>
                                             </>
@@ -532,7 +565,7 @@ const BookingCardDetail = ({ booking }) => {
                                                 justifyContent="space-between"
                                             >
                                                 <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                    {index + 1}. {service?.service?.service?.name}
+                                                    {index + 1}. {service?.name}
                                                 </Text>
                                                 <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
                                                     ₹{service?.price}

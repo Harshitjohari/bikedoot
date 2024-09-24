@@ -80,7 +80,7 @@ useEffect(() => {
       {/* <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={{ flex: 1, backgroundColor: "#edeeec" }}> */}
         {
-          bookingData &&  <BookingCardDetail booking={bookingData} />
+          bookingData &&  <BookingCardDetail booking={bookingData} refresh={fetchBookingsDetails} />
         }
        
         {/* </View>

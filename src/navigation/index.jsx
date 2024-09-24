@@ -61,6 +61,7 @@ import Earnings from '../screens/earnings'
 import EarningDetail from '../screens/earnings/detail'
 import AddAdditionalServicePage from '../screens/bookings/add-ons/additionalServiceAdd'
 import AddSparePartsPage from '../screens/bookings/add-ons/sparePartsAdd'
+import ImagesUploadScreen from '../screens/bookings/images-upload/imagesUpload'
 
 import { imageConstant } from '../utils/constant';
 
@@ -148,6 +149,7 @@ const MainNavigator = (props) => {
       <HomeStack.Screen name="AddOnScreen" component={AddOnScreen} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="AddAdditionalServicePage" component={AddAdditionalServicePage} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="AddSparePartsPage" component={AddSparePartsPage} options={{ tabBarVisible: false }} />
+      <HomeStack.Screen name="ImagesUploadScreen" component={ImagesUploadScreen} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="Mechanic" component={Mechanic} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="MechanicAdd" component={MechanicAdd} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="MechanicDetails" component={MechanicDetails} options={{ tabBarVisible: false }} />
@@ -177,6 +179,7 @@ const MainNavigator = (props) => {
       <HomeStack.Screen name="AddOnScreen" component={AddOnScreen} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="AddAdditionalServicePage" component={AddAdditionalServicePage} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="AddSparePartsPage" component={AddSparePartsPage} options={{ tabBarVisible: false }} />
+      <HomeStack.Screen name="ImagesUploadScreen" component={ImagesUploadScreen} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="Mechanic" component={Mechanic} options={{ tabBarVisible: false }} />
       <HomeStack.Screen name="MechanicAdd" component={MechanicAdd} options={{ tabBarVisible: false }} />
     </HomeStack.Navigator>

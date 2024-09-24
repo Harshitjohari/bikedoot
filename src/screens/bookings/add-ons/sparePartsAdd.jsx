@@ -61,7 +61,7 @@ const AddSparePartsPage = (props) => {
 
   useEffect(() => {
     if (isFocused)
-    fetchSpareList();
+      fetchSpareList();
     fetchGarageData();
   }, [isFocused]);
 
@@ -69,9 +69,8 @@ const AddSparePartsPage = (props) => {
     try {
       setLoading(true);
       let response = await Apis.HttpGetRequest(
-        Constant.BASE_URL + Constant.GET_MECHANIC_BOOKINGS_DETAILS + props.route?.params?.booking?._id + '/spareParts',
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIzNGNjZTczOTcyM2U0MmNiM2UwMGEiLCJyb2xlIjoiTUVDSEFOSUMiLCJnYXJhZ2UiOiI2NjFhNmMxNzkxODE3YWMxYjAxOTI1YWEiLCJjaXR5IjoiNjU5ZWQ2YWY5OThkN2E4Y2JjOGI0N2Q0IiwiaWF0IjoxNzI2NTkzMjAxLCJleHAiOjE3NTgxMjkyMDF9.pEcJmYxSAoCkfTi6gUoaDQWQfqGnJD1XfCZar9160Lk"
-        // token
+        Constant.BASE_URL + Constant.SPARE_LIST + props.route?.params?.booking?._id + '/spareParts',
+        token
       );
       if (response?.status) {
 
@@ -146,35 +145,33 @@ const AddSparePartsPage = (props) => {
     setCustomData({ ...customData, [key]: value });
   };
 
-  const handleSubmitCustomData = () => {
+  const handleSubmitCustomData = async () => {
     if (!customData.name || !customData.quantity || !customData.price) {
       Alert.alert('All fields are required');
       return;
     }
-
-    // Create a new custom card object
-    const newCustomCard = {
+    const data = {
       name: customData.name,
       quantity: customData.quantity,
       price: customData.price,
       gstRate: customData.gstRate.replace("%", "")
     };
 
-    console.log('==========>',newCustomCard)
-
-    //TODO : call api to save spare parts in booking
-
-
-
-    // // Add the new custom card to the existing custom cards array
-    // setCustomCards([...customCards, newCustomCard]);
-
-    // Clear input fields
-    setCustomData({ name: '', quantity: '', price: '', gstRate: '' });
-
-    // Close the modal
-    setSearchText('')
-    navigation.goBack();
+    setLoading(true)
+    let response = await Apis.HttpPostRequest(
+      Constant.BASE_URL + Constant.ADD_ONS_LIST + props.route?.params?.booking?._id + '/spareParts/add',
+      token,
+      data
+    );
+    setLoading(false)
+    if (response?.status) {
+      show(response?.message, "success");
+      setCustomData({ name: '', quantity: '', price: '', gstRate: '' });
+      setSearchText('')
+      navigation.goBack();
+    } else {
+      show(response?.message || "Failed to send data, try again later", "error");
+    }
   };
 
 
@@ -194,9 +191,9 @@ const AddSparePartsPage = (props) => {
 
     searchTimeout.current = setTimeout(() => {
       let filtered = spareData.filter(item =>
-          item.name.toLowerCase().includes(text.toLowerCase())
-        );
-    
+        item.name.toLowerCase().includes(text.toLowerCase())
+      );
+
       setFilteredData(filtered);
     }, 300);
   };
@@ -212,7 +209,7 @@ const AddSparePartsPage = (props) => {
   }, [searchText]);
 
   const handleItemSelection = (item) => {
-    
+
     handleCustomInputChange('name', item.name)
     setFilteredData([]);
     setSearchText('')
@@ -228,157 +225,157 @@ const AddSparePartsPage = (props) => {
       {isLoading ? <LoadingSpinner /> : <>
         <ScrollView showsVerticalScrollIndicator={false}>
 
-      <View style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-
-
-        <View style={{
-          width: "90%",
-          minHeight: 40,
-          maxHeight: 40,
-          justifyContent: 'center',
-          alignSelf: 'center',
-          marginTop: 40,
-          borderBottomWidth: 1,
-          borderColor: '#E6E8EC',
-          // backgroundColor:'pink',
-          // marginBottom: isOther ? 30 : 0
-        }}>
-          <Text style={styles.textStyle}>Name</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter spare part name"
-            placeholderTextColor="grey"
-            value={customData.name}
-            onChangeText={(text) => handleCustomInputChange('name', text)}
-          />
-        </View>
-
-        {searchText.length > 1 && (
-          <View style={styles.filteredListContainer}>
-            <FlatList
-              data={filteredData}
-              keyExtractor={(item) => item._id}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.filteredItem}
-                  onPress={() => handleItemSelection(item)}>
-                  <Text style={styles.searchTextStyle}>{item.name}</Text>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
-        )}
-
-        <View style={{
-          width: "90%",
-          minHeight: 40,
-          maxHeight: 40,
-          justifyContent: 'center',
-          alignSelf: 'center',
-          marginTop: 40,
-          borderBottomWidth: 1,
-          borderColor: '#E6E8EC',
-        }}>
-          <Text style={styles.textStyle}>Quantity</Text>
-          <TextInput
-            style={styles.input}
-            placeholderTextColor="grey"
-            placeholder="Enter quantity"
-            value={customData.quantity}
-            keyboardType="numeric"
-            onChangeText={(text) => handleCustomInputChange('quantity', text)}
-          />
-        </View>
-
-        <View style={{
-          width: "90%",
-          minHeight: 40,
-          maxHeight: 40,
-          justifyContent: 'center',
-          alignSelf: 'center',
-          marginTop: 40,
-          borderBottomWidth: 1,
-          borderColor: '#E6E8EC',
-        }}>
-          <Text style={styles.textStyle}>Price</Text>
-          <TextInput
-            style={styles.input}
-            placeholderTextColor="grey"
-            placeholder="Enter price"
-            value={customData.price}
-            keyboardType="numeric"
-            onChangeText={(text) => handleCustomInputChange('price', text)}
-          />
-        </View>
-
-        {GarageData?.garage?.firmRegistered === true && GarageData?.garage?.firmGstNo !== '' &&
           <View style={{
-            // width: "90%",
-            minHeight: 40,
-            maxHeight: 40,
             justifyContent: 'center',
-            alignSelf: 'center',
-            marginTop: 40,
-            borderBottomWidth: 1,
-            borderColor: '#E6E8EC',
+            alignItems: 'center',
           }}>
-            <Text style={styles.textStyle}>Gst Rate</Text>
-            <SelectDropdown
-              data={gstData}
-              onSelect={(selectedItem, index) => {
-                selectedItemFn1(selectedItem, index)
 
-                // console.log('selected item ===========>',selectedItems)
-                // setSelectedItems([selectedItem]);
-                // selectedItems[0].name
-              }}
-              buttonTextAfterSelection={(selectedItem, index) => {
-                return selectedItem.name;
-              }}
-              rowTextForSelection={(item, index) => {
-                // Display mechanic name in dropdown
-                return item.name;
-              }}
-              buttonStyle={{
-                fontSize: 16,
-                color: 'black',
-                fontWeight: '400',
-                paddingVertical: 0,
-                borderWidth: 0.5,
-                borderRadius: 8,
-                backgroundColor: '#f4f5f7',
-                borderColor: '#e7e7e7',
-                padding: 15,
-                height: 50,
-                marginTop: 5,
-                width: '90%'
-              }}
-              buttonTextStyle={{ color: 'black' }}
-              defaultButtonText="Select Gst Rate"
-              dropdownStyle={{ borderColor: '#E6E8EC' }}
-            />
+
+            <View style={{
+              width: "90%",
+              minHeight: 40,
+              maxHeight: 40,
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginTop: 40,
+              borderBottomWidth: 1,
+              borderColor: '#E6E8EC',
+              // backgroundColor:'pink',
+              // marginBottom: isOther ? 30 : 0
+            }}>
+              <Text style={styles.textStyle}>Name</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Enter spare part name"
+                placeholderTextColor="grey"
+                value={customData.name}
+                onChangeText={(text) => handleCustomInputChange('name', text)}
+              />
+            </View>
+
+            {searchText.length > 1 && (
+              <View style={styles.filteredListContainer}>
+                <FlatList
+                  data={filteredData}
+                  keyExtractor={(item) => item._id}
+                  renderItem={({ item }) => (
+                    <TouchableOpacity
+                      style={styles.filteredItem}
+                      onPress={() => handleItemSelection(item)}>
+                      <Text style={styles.searchTextStyle}>{item.name}</Text>
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
+            )}
+
+            <View style={{
+              width: "90%",
+              minHeight: 40,
+              maxHeight: 40,
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginTop: 40,
+              borderBottomWidth: 1,
+              borderColor: '#E6E8EC',
+            }}>
+              <Text style={styles.textStyle}>Quantity</Text>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="grey"
+                placeholder="Enter quantity"
+                value={customData.quantity}
+                keyboardType="numeric"
+                onChangeText={(text) => handleCustomInputChange('quantity', text)}
+              />
+            </View>
+
+            <View style={{
+              width: "90%",
+              minHeight: 40,
+              maxHeight: 40,
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginTop: 40,
+              borderBottomWidth: 1,
+              borderColor: '#E6E8EC',
+            }}>
+              <Text style={styles.textStyle}>Price</Text>
+              <TextInput
+                style={styles.input}
+                placeholderTextColor="grey"
+                placeholder="Enter price"
+                value={customData.price}
+                keyboardType="numeric"
+                onChangeText={(text) => handleCustomInputChange('price', text)}
+              />
+            </View>
+
+            {GarageData?.garage?.firmRegistered === true && GarageData?.garage?.firmGstNo !== '' &&
+              <View style={{
+                // width: "90%",
+                minHeight: 40,
+                maxHeight: 40,
+                justifyContent: 'center',
+                alignSelf: 'center',
+                marginTop: 40,
+                borderBottomWidth: 1,
+                borderColor: '#E6E8EC',
+              }}>
+                <Text style={styles.textStyle}>Gst Rate</Text>
+                <SelectDropdown
+                  data={gstData}
+                  onSelect={(selectedItem, index) => {
+                    selectedItemFn1(selectedItem, index)
+
+                    // console.log('selected item ===========>',selectedItems)
+                    // setSelectedItems([selectedItem]);
+                    // selectedItems[0].name
+                  }}
+                  buttonTextAfterSelection={(selectedItem, index) => {
+                    return selectedItem.name;
+                  }}
+                  rowTextForSelection={(item, index) => {
+                    // Display mechanic name in dropdown
+                    return item.name;
+                  }}
+                  buttonStyle={{
+                    fontSize: 16,
+                    color: 'black',
+                    fontWeight: '400',
+                    paddingVertical: 0,
+                    borderWidth: 0.5,
+                    borderRadius: 8,
+                    backgroundColor: '#f4f5f7',
+                    borderColor: '#e7e7e7',
+                    padding: 15,
+                    height: 50,
+                    marginTop: 5,
+                    width: '90%'
+                  }}
+                  buttonTextStyle={{ color: 'black' }}
+                  defaultButtonText="Select Gst Rate"
+                  dropdownStyle={{ borderColor: '#E6E8EC' }}
+                />
+              </View>
+            }
+
+            <View flexDirection={'row'}
+              justifyContent={'space-evenly'}
+              p={3}
+              marginTop={40}
+              width={'100%'}>
+
+              <TouchableOpacity
+                onPress={handleSubmitCustomData}
+                style={styles.submitButton}>
+                <Text style={styles.submitText}>Add Spare Part</Text>
+              </TouchableOpacity>
+
+            </View>
+
           </View>
-        }
-
-        <View flexDirection={'row'}
-          justifyContent={'space-evenly'}
-          p={3}
-          marginTop={40}
-          width={'100%'}>
-
-          <TouchableOpacity
-            onPress={handleSubmitCustomData}
-            style={styles.submitButton}>
-            <Text style={styles.submitText}>Add Spare Part</Text>
-          </TouchableOpacity>
-
-        </View>
-
-      </View>
-      </ScrollView>
+        </ScrollView>
       </>
       }
     </View>

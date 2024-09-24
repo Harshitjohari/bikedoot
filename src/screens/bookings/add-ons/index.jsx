@@ -123,8 +123,7 @@ const AddOnScreen = (props) => {
       setLoading(true);
       let response = await Apis.HttpGetRequest(
         Constant.BASE_URL + Constant.ADD_ONS_LIST + props.route?.params?.booking?._id + '/addons',
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIzNGNjZTczOTcyM2U0MmNiM2UwMGEiLCJyb2xlIjoiTUVDSEFOSUMiLCJnYXJhZ2UiOiI2NjFhNmMxNzkxODE3YWMxYjAxOTI1YWEiLCJjaXR5IjoiNjU5ZWQ2YWY5OThkN2E4Y2JjOGI0N2Q0IiwiaWF0IjoxNzI2NTkzMjAxLCJleHAiOjE3NTgxMjkyMDF9.pEcJmYxSAoCkfTi6gUoaDQWQfqGnJD1XfCZar9160Lk"
-        // token
+        token
       );
       if (response?.status) {
 
@@ -288,34 +287,72 @@ const AddOnScreen = (props) => {
   );
 
 
-  const handleRemoveCustomCard = (index) => {
-    // const updatedCustomCards = [...customCards];
+  const handleRemoveCustomCard = async (index) => {
+    const data = {
+      _id: index._id
+    };
 
-    // updatedCustomCards.splice(index, 1);
-
-    // setCustomCards(updatedCustomCards);
-
-    // TODO : call api to remove spare from booking details and call booking details again
+    setLoading(true)
+    let response = await Apis.HttpPostRequest(
+      Constant.BASE_URL + Constant.SPARE_LIST + props.route?.params?.booking?._id + '/spareParts/remove',
+      token,
+      data
+    );
+    setLoading(false)
+    if (response?.status) {
+      show(response?.message, "success");
+      fetchBookingsDetails();
+    } else {
+      show(response?.message || "Failed to send data, try again later", "error");
+    }
   };
 
 
-  const handleCardPress = (_id) => {
-    console.log('==========+>', _id)
-    // TODO : call api to remove add. service from booking details and call booking details again
+  const handleCardPress = async (_id) => {
+    const data = {
+      _id: _id
+    };
 
-    // if (selectedCards.includes(_id)) {
-    //   setSelectedCards(selectedCards.filter((id) => id !== _id));
-    // } else {
-    //   setSelectedCards([...selectedCards, _id]);
-    // }
+    setLoading(true)
+    let response = await Apis.HttpPostRequest(
+      Constant.BASE_URL + Constant.ADD_ONS_LIST + props.route?.params?.booking?._id + '/addons/remove',
+      token,
+      data
+    );
+    setLoading(false)
+    if (response?.status) {
+      show(response?.message, "success");
+      fetchBookingsDetails();
+    } else {
+      show(response?.message || "Failed to send data, try again later", "error");
+    }
   };
 
 
-  const handleServiceCardPress = (_id) => {
+  const handleServiceCardPress = async (_id) => {
     if (selectedServiceCards.includes(_id)) {
       setSelectedServiceCards([]);
     } else {
       setSelectedServiceCards([_id]);
+    }
+
+    //TODO
+    const data = {
+      _id: _id
+    };
+
+    setLoading(true)
+    let response = await Apis.HttpPostRequest(
+      Constant.BASE_URL + Constant.SPARE_LIST + props.route?.params?.booking?._id + '/spareParts/remove',
+      token,
+      data
+    );
+    setLoading(false)
+    if (response?.status) {
+      show(response?.message, "success");
+      fetchGarageData();
+    } else {
+      show(response?.message || "Failed to send data, try again later", "error");
     }
   };
 
@@ -470,7 +507,7 @@ const AddOnScreen = (props) => {
                       quantity={customCard.quantity}
                       price={customCard.price}
                       gstRate={customCard.gstRate}
-                      onPressRemove={() => handleRemoveCustomCard(index)}
+                      onPressRemove={() => handleRemoveCustomCard(customCard)}
                     />
                   ))}
                 </View>
@@ -479,6 +516,14 @@ const AddOnScreen = (props) => {
           }
 
         </ScrollView>
+
+        {/* <CustomButton onPress={() => navigation.navigate("ImagesUploadScreen", { booking : props.route?.params?.booking })} btnStyle={{ margin: 10 }}>
+          Upload Images
+        </CustomButton> */}
+
+        <CustomButton onPress={() => console.log('==========HIiiiiii========')} btnStyle={{ margin: 10 }}>
+          Upload Images
+        </CustomButton>
       </>
       }
     </View>
