@@ -28,6 +28,7 @@
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Jaa: <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Tiivistä"</string>
     <string gender="unknown" name="alert_description">Hälytys</string>
+    <string name="ampm_description">Valitse am/pm</string>
     <string gender="unknown" name="catalyst_dev_menu_header">Reagointien natiivikehittäjävalikko (%1$s)</string>
     <string gender="unknown" name="catalyst_dev_menu_sub_header">Näytetään %1$s</string>
     <string gender="unknown" name="combobox_description">Yhdistelmäruutu</string>
@@ -49,13 +50,21 @@
     <string name="common_open_on_phone">Avaa puhelimessa</string>
     <string name="common_signin_button_text">Kirjaudu sisään</string>
     <string name="common_signin_button_text_long">Kirjaudu Google-tilille</string>
+    <string name="date_description">Valitse Päivämäärä</string>
+    <string name="day_description">Valitse Päivä</string>
     <string gender="unknown" name="header_description">Otsikko</string>
+    <string name="hour_description">Valitse Tunti</string>
+    <string name="hour_tag">Tunti:</string>
     <string gender="unknown" name="image_description">Kuva</string>
     <string gender="unknown" name="imagebutton_description">Painike, kuva</string>
     <string gender="unknown" name="link_description">Linkki</string>
     <string gender="unknown" name="menu_description">Valikko</string>
     <string gender="unknown" name="menubar_description">Valikkopalkki</string>
     <string gender="unknown" name="menuitem_description">Valikkokohde</string>
+    <string name="minutes_description">Valitse Minuutit</string>
+    <string name="minutes_tag">Minuutit</string>
+    <string name="month_description">Valitse Kuukausi</string>
+    <string name="overlay">Päivämääränvalitsin</string>
     <string gender="unknown" name="progressbar_description">Edistymispalkki</string>
     <string gender="unknown" name="radiogroup_description">Valintanappiryhmä</string>
     <string gender="unknown" name="rn_tab_description">Välilehti</string>
@@ -72,6 +81,8 @@
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string gender="unknown" name="summary_description">Yhteenveto</string>
     <string gender="unknown" name="tablist_description">Välilehtilista</string>
+    <string name="time_tag">Kello on</string>
     <string gender="unknown" name="timer_description">Ajastin</string>
     <string gender="unknown" name="toolbar_description">Työkalupalkki</string>
+    <string name="year_description">Valitse Vuosi</string>
 </resources>

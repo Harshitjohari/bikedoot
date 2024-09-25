@@ -28,6 +28,7 @@
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Delen met <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Samenvouwen"</string>
     <string gender="unknown" name="alert_description">Waarschuwing</string>
+    <string name="ampm_description">Selecteer AM/PM</string>
     <string gender="unknown" name="catalyst_dev_menu_header">Native ontwikkelaarsmenu (%1$s) opnieuw activeren</string>
     <string gender="unknown" name="catalyst_dev_menu_sub_header">%1$s actief</string>
     <string gender="unknown" name="combobox_description">Combivak</string>
@@ -49,11 +50,19 @@
     <string name="common_open_on_phone">Openen op telefoon</string>
     <string name="common_signin_button_text">Inloggen</string>
     <string name="common_signin_button_text_long">Inloggen met Google</string>
+    <string name="date_description">Selecteer datum</string>
+    <string name="day_description">Selecteer dag</string>
     <string gender="unknown" name="header_description">Kop</string>
+    <string name="hour_description">Selecteer uur</string>
+    <string name="hour_tag">Uur :</string>
     <string gender="unknown" name="image_description">Afbeelding</string>
     <string gender="unknown" name="imagebutton_description">Knop, afbeelding</string>
     <string gender="unknown" name="menubar_description">Menubalk</string>
     <string gender="unknown" name="menuitem_description">Menu-item</string>
+    <string name="minutes_description">Selecteer minuten</string>
+    <string name="minutes_tag">Minuten </string>
+    <string name="month_description">Selecteer maand</string>
+    <string name="overlay">Date Picker Overlay</string>
     <string gender="unknown" name="progressbar_description">Voortgangsbalk</string>
     <string gender="unknown" name="radiogroup_description">Keuzegroep</string>
     <string gender="unknown" name="rn_tab_description">Tabblad</string>
@@ -70,5 +79,7 @@
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string gender="unknown" name="summary_description">Samenvatting</string>
     <string gender="unknown" name="tablist_description">Lijst met tabbladen</string>
+    <string name="time_tag">Tijd is</string>
     <string gender="unknown" name="toolbar_description">Werkbalk</string>
+    <string name="year_description">Selecteer jaar</string>
 </resources>

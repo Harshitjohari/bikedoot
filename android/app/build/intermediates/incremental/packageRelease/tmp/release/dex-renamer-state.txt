@@ -1,7 +1,10 @@
-#Thu Jul 25 17:47:11 IST 2024
+#Tue Sep 24 22:46:22 IST 2024
 base.0=/Users/harshit/Desktop/Bikedoot_Partner/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
 base.1=/Users/harshit/Desktop/Bikedoot_Partner/android/app/build/intermediates/dex/release/mergeDexRelease/classes2.dex
+base.2=/Users/harshit/Desktop/Bikedoot_Partner/android/app/build/intermediates/dex/release/mergeDexRelease/classes3.dex
 path.0=classes.dex
 path.1=classes2.dex
+path.2=classes3.dex
 renamed.0=classes.dex
 renamed.1=classes2.dex
+renamed.2=classes3.dex

@@ -28,6 +28,7 @@
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Dela med <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Komprimera"</string>
     <string gender="unknown" name="alert_description">Avisering</string>
+    <string name="ampm_description">Välj am/pm</string>
     <string gender="unknown" name="catalyst_dev_menu_sub_header">Kör %1$s</string>
     <string gender="unknown" name="combobox_description">Kombinationsruta</string>
     <string msgid="2523291102206661146" name="common_google_play_services_enable_button">Aktivera</string>
@@ -48,13 +49,21 @@
     <string name="common_open_on_phone">Öppna på mobilen</string>
     <string name="common_signin_button_text">Logga in</string>
     <string name="common_signin_button_text_long">Logga in med Google</string>
+    <string name="date_description">Välj ett datum</string>
+    <string name="day_description">Välj en dag</string>
     <string gender="unknown" name="header_description">Rubrik</string>
+    <string name="hour_description">Välj en timme</string>
+    <string name="hour_tag">Timme:</string>
     <string gender="unknown" name="image_description">Bild</string>
     <string gender="unknown" name="imagebutton_description">Knapp, bild</string>
     <string gender="unknown" name="link_description">Länk</string>
     <string gender="unknown" name="menu_description">Meny</string>
     <string gender="unknown" name="menubar_description">Menyfält</string>
     <string gender="unknown" name="menuitem_description">Menyobjekt</string>
+    <string name="minutes_description">Välj minuter</string>
+    <string name="minutes_tag">Minuter</string>
+    <string name="month_description">Välj en månad</string>
+    <string name="overlay">Datumväljare på</string>
     <string gender="unknown" name="progressbar_description">Förloppsfält</string>
     <string gender="unknown" name="radiogroup_description">Radiogrupp</string>
     <string gender="unknown" name="rn_tab_description">Flik</string>
@@ -71,5 +80,7 @@
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string gender="unknown" name="summary_description">Sammanfattning</string>
     <string gender="unknown" name="tablist_description">Fliklista</string>
+    <string name="time_tag">Tiden är</string>
     <string gender="unknown" name="toolbar_description">Verktygsfält</string>
+    <string name="year_description">Välj ett år</string>
 </resources>

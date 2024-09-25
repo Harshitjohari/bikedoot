@@ -62,7 +62,7 @@ const AddSparePartsPage = (props) => {
   useEffect(() => {
     if (isFocused)
       fetchSpareList();
-    fetchGarageData();
+    // fetchGarageData();
   }, [isFocused]);
 
   const fetchSpareList = async () => {
@@ -85,30 +85,30 @@ const AddSparePartsPage = (props) => {
     }
   };
 
-  const fetchGarageData = async () => {
-    try {
-      let response = await Apis.HttpGetRequest(Constant.BASE_URL + Constant.AUTH.GURAGE_DEATIL_API + props.route?.params?.booking?.garage?._id, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIzNGNjZTczOTcyM2U0MmNiM2UwMGEiLCJyb2xlIjoiTUVDSEFOSUMiLCJnYXJhZ2UiOiI2NjFhNmMxNzkxODE3YWMxYjAxOTI1YWEiLCJjaXR5IjoiNjU5ZWQ2YWY5OThkN2E4Y2JjOGI0N2Q0IiwiaWF0IjoxNzI2NTkzMjAxLCJleHAiOjE3NTgxMjkyMDF9.pEcJmYxSAoCkfTi6gUoaDQWQfqGnJD1XfCZar9160Lk")
-      if (response?.status) {
-        // console.log('============>',response.data)
-        let services = response?.data?.services;
+  // const fetchGarageData = async () => {
+  //   try {
+  //     let response = await Apis.HttpGetRequest(Constant.BASE_URL + Constant.AUTH.GURAGE_DEATIL_API + props.route?.params?.booking?.garage?._id, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIzNGNjZTczOTcyM2U0MmNiM2UwMGEiLCJyb2xlIjoiTUVDSEFOSUMiLCJnYXJhZ2UiOiI2NjFhNmMxNzkxODE3YWMxYjAxOTI1YWEiLCJjaXR5IjoiNjU5ZWQ2YWY5OThkN2E4Y2JjOGI0N2Q0IiwiaWF0IjoxNzI2NTkzMjAxLCJleHAiOjE3NTgxMjkyMDF9.pEcJmYxSAoCkfTi6gUoaDQWQfqGnJD1XfCZar9160Lk")
+  //     if (response?.status) {
+  //       // console.log('============>',response.data)
+  //       let services = response?.data?.services;
 
-        setGarageData(response?.data)
+  //       setGarageData(response?.data)
 
-        // if (response.data.garage.serviceCategory.length === 0) {
-        //   setIsNotServicable(true)
-        // }
-        for (let index = 0; index < services.length; index++) {
-          if (services[index]?.type === "Service") {
-            setServices(services[index]?.data)
-          }
-        }
-      } else {
-        show(response?.message || "Failed to fetch data");
-      }
-    } catch (e) {
-      // show("Some error has occured!");
-    }
-  };
+  //       // if (response.data.garage.serviceCategory.length === 0) {
+  //       //   setIsNotServicable(true)
+  //       // }
+  //       for (let index = 0; index < services.length; index++) {
+  //         if (services[index]?.type === "Service") {
+  //           setServices(services[index]?.data)
+  //         }
+  //       }
+  //     } else {
+  //       show(response?.message || "Failed to fetch data");
+  //     }
+  //   } catch (e) {
+  //     // show("Some error has occured!");
+  //   }
+  // };
 
   let gstData = [
     {

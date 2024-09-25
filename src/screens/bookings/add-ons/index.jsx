@@ -52,7 +52,6 @@ const AddOnScreen = (props) => {
   const [selectedCards, setSelectedCards] = useState([]);
   const [selectedServiceCards, setSelectedServiceCards] = useState([]);
   const [customCards, setCustomCards] = useState([]);
-  const [GarageData, setGarageData] = useState({});
   const [addOnCardModalVisible, setAddOnCardModalVisible] = useState(false);
   const [spareCardModalVisible, setSpareCardModalVisible] = useState(false);
   const [customData, setCustomData] = useState({
@@ -85,9 +84,7 @@ const AddOnScreen = (props) => {
 
   useEffect(() => {
     if (isFocused)
-      fetchAddonList();
-    fetchSpareList();
-    fetchGarageData();
+    fetchServiceList();
     setSelectedServiceCards(preSelectedServices);
     fetchBookingsDetails();
   }, [isFocused]);
@@ -118,91 +115,15 @@ const AddOnScreen = (props) => {
     }
   };
 
-  const fetchAddonList = async () => {
+
+  const fetchServiceList = async () => {
     try {
       setLoading(true);
-      let response = await Apis.HttpGetRequest(
-        Constant.BASE_URL + Constant.ADD_ONS_LIST + props.route?.params?.booking?._id + '/addons',
-        token
-      );
-      if (response?.status) {
-
-        const data = await response?.data;
-        setAddOnData(data);
-        setLoading(false);
-      } else {
-        setLoading(false);
-      }
-    } catch (e) {
-      setLoading(false);
-    }
-  };
-
-  // const handleSubmit = async () => {
-  //   if (selectedServiceCards.length === 0) {
-  //     Alert.alert('Please select atleast one service...')
-  //     return
-  //   }
-  //   const data = {
-  //     additionalServices: selectedCards,
-  //     spareParts: customCards,
-  //     services: selectedServiceCards
-  //   };
-  //   setLoading(true)
-  //   let response = await Apis.HttpPostRequest(
-  //     Constant.BASE_URL + Constant.PRE_INCEPTION + props.route?.params?.booking?._id + '/preInception',
-  //     token,
-  //     data
-  //   );
-  //   setLoading(false)
-  //   if (response?.status) {
-  //     show(response?.message, "success");
-  //     navigation.navigate("MechanicBookingsDetails", { id: props.route?.params?.booking?._id })
-  //   } else {
-  //     show(response?.message || "Failed to send data, try again later", "error");
-  //   }
-  // };
-
-  const fetchSpareList = async () => {
-    try {
-      setLoading(true);
-      let response = await Apis.HttpGetRequest(
-        Constant.BASE_URL + Constant.GET_MECHANIC_BOOKINGS_DETAILS + props.route?.params?.booking?._id + '/spareParts',
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIzNGNjZTczOTcyM2U0MmNiM2UwMGEiLCJyb2xlIjoiTUVDSEFOSUMiLCJnYXJhZ2UiOiI2NjFhNmMxNzkxODE3YWMxYjAxOTI1YWEiLCJjaXR5IjoiNjU5ZWQ2YWY5OThkN2E4Y2JjOGI0N2Q0IiwiaWF0IjoxNzI2NTkzMjAxLCJleHAiOjE3NTgxMjkyMDF9.pEcJmYxSAoCkfTi6gUoaDQWQfqGnJD1XfCZar9160Lk"
-        // token
-      );
-      if (response?.status) {
-
-        const data = await response?.data;
-        setSpareData(data);
-        setLoading(false);
-      } else {
-        setLoading(false);
-      }
-    } catch (e) {
-      setLoading(false);
-    }
-  };
-
-  const fetchGarageData = async () => {
-    try {
-      setLoading(true);
-      let response = await Apis.HttpGetRequest(Constant.BASE_URL + Constant.AUTH.GURAGE_DEATIL_API + props.route?.params?.booking?.garage?._id, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIzNGNjZTczOTcyM2U0MmNiM2UwMGEiLCJyb2xlIjoiTUVDSEFOSUMiLCJnYXJhZ2UiOiI2NjFhNmMxNzkxODE3YWMxYjAxOTI1YWEiLCJjaXR5IjoiNjU5ZWQ2YWY5OThkN2E4Y2JjOGI0N2Q0IiwiaWF0IjoxNzI2NTkzMjAxLCJleHAiOjE3NTgxMjkyMDF9.pEcJmYxSAoCkfTi6gUoaDQWQfqGnJD1XfCZar9160Lk")
+      let response = await Apis.HttpGetRequest(Constant.BASE_URL + Constant.GARAGE_BOOKING_API + props.route?.params?.booking?._id + '/service', token)
       setLoading(false);
       if (response?.status) {
-        // console.log('============>',response.data)
         let services = response?.data?.services;
-
-        setGarageData(response?.data)
-
-        // if (response.data.garage.serviceCategory.length === 0) {
-        //   setIsNotServicable(true)
-        // }
-        for (let index = 0; index < services.length; index++) {
-          if (services[index]?.type === "Service") {
-            setServices(services[index]?.data)
-          }
-        }
+        setServices(services)
       } else {
         show(response?.message || "Failed to fetch data");
       }
@@ -213,29 +134,6 @@ const AddOnScreen = (props) => {
   };
 
   let filterServices = services.filter(data => data.cc._id === props.route?.params?.booking?.bike?.cc?._id)
-
-  let gstData = [
-    {
-      "_id": '1',
-      "name": '0%'
-    },
-    {
-      "_id": '2',
-      "name": '5%'
-    },
-    {
-      "_id": '3',
-      "name": '12%'
-    },
-    {
-      "_id": '4',
-      "name": '18%'
-    },
-    {
-      "_id": '5',
-      "name": '28%'
-    }
-  ]
 
   const data = addonData
 
@@ -335,22 +233,20 @@ const AddOnScreen = (props) => {
     } else {
       setSelectedServiceCards([_id]);
     }
-
-    //TODO
     const data = {
       _id: _id
     };
 
     setLoading(true)
-    let response = await Apis.HttpPostRequest(
-      Constant.BASE_URL + Constant.SPARE_LIST + props.route?.params?.booking?._id + '/spareParts/remove',
+    let response = await Apis.HttpPutRequest(
+      Constant.BASE_URL + Constant.GARAGE_BOOKING_API + props.route?.params?.booking?._id + '/service/update',
       token,
       data
     );
     setLoading(false)
     if (response?.status) {
       show(response?.message, "success");
-      fetchGarageData();
+      fetchServiceList();
     } else {
       show(response?.message || "Failed to send data, try again later", "error");
     }
@@ -359,37 +255,6 @@ const AddOnScreen = (props) => {
   const handleButtonPress = (button) => {
     setSelectedButton(button);
   };
-
-  const handleSearch = (text) => {
-    if (searchTimeout.current) {
-      clearTimeout(searchTimeout.current);
-    }
-
-    searchTimeout.current = setTimeout(() => {
-      let filtered
-      if (selectedButton === 'Additional Service') {
-        filtered = AddOnData.filter(item =>
-          item.name.toLowerCase().includes(text.toLowerCase())
-        );
-      } else if (selectedButton === 'Spare Parts') {
-        filtered = spareData.filter(item =>
-          item.name.toLowerCase().includes(text.toLowerCase())
-        );
-      }
-
-      setFilteredData(filtered);
-    }, 300);
-  };
-
-
-  useEffect(() => {
-    handleSearch(searchText);
-    return () => {
-      if (searchTimeout.current) {
-        clearTimeout(searchTimeout.current);
-      }
-    };
-  }, [searchText]);
 
   return (
 
@@ -517,13 +382,13 @@ const AddOnScreen = (props) => {
 
         </ScrollView>
 
-        {/* <CustomButton onPress={() => navigation.navigate("ImagesUploadScreen", { booking : props.route?.params?.booking })} btnStyle={{ margin: 10 }}>
+        <CustomButton onPress={() => navigation.navigate("ImagesUploadScreen", { booking : props.route?.params?.booking })} btnStyle={{ margin: 10 }}>
           Upload Images
-        </CustomButton> */}
+        </CustomButton> 
 
-        <CustomButton onPress={() => console.log('==========HIiiiiii========')} btnStyle={{ margin: 10 }}>
+        {/* <CustomButton onPress={() => console.log('==========HIiiiiii========')} btnStyle={{ margin: 10 }}>
           Upload Images
-        </CustomButton>
+        </CustomButton>*/}
       </>
       }
     </View>

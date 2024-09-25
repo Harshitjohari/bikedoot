@@ -28,6 +28,7 @@
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Del med <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Skjul"</string>
     <string gender="unknown" name="alert_description">Varsel</string>
+    <string name="ampm_description">Velg am/pm</string>
     <string gender="unknown" name="catalyst_dev_menu_header">React Native-utviklermenyen (%1$s)</string>
     <string gender="unknown" name="catalyst_dev_menu_sub_header">Kjører %1$s</string>
     <string gender="unknown" name="combobox_description">Kombinasjonsboks</string>
@@ -49,13 +50,21 @@
     <string name="common_open_on_phone">Åpne på telefonen</string>
     <string name="common_signin_button_text">Logg på</string>
     <string name="common_signin_button_text_long">Logg på med Google</string>
+    <string name="date_description">Velg dato</string>
+    <string name="day_description">Velg dag</string>
     <string gender="unknown" name="header_description">Overskrift</string>
+    <string name="hour_description">Velg time</string>
+    <string name="hour_tag">Time</string>
     <string gender="unknown" name="image_description">Bilde</string>
     <string gender="unknown" name="imagebutton_description">Knapp, bilde</string>
     <string gender="unknown" name="link_description">Lenke</string>
     <string gender="unknown" name="menu_description">Meny</string>
     <string gender="unknown" name="menubar_description">Menyfelt</string>
     <string gender="unknown" name="menuitem_description">Menyelement</string>
+    <string name="minutes_description">Velg minutter</string>
+    <string name="minutes_tag">Minutter</string>
+    <string name="month_description">Velg måned</string>
+    <string name="overlay">Datovelger</string>
     <string gender="unknown" name="progressbar_description">Fremdriftslinje</string>
     <string gender="unknown" name="radiogroup_description">Radiogruppe</string>
     <string gender="unknown" name="rn_tab_description">Fane</string>
@@ -72,6 +81,8 @@
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
     <string gender="unknown" name="summary_description">Sammendrag</string>
     <string gender="unknown" name="tablist_description">Faneliste</string>
+    <string name="time_tag">Tiden er</string>
     <string gender="unknown" name="timer_description">Tidsur</string>
     <string gender="unknown" name="toolbar_description">Verktøylinje</string>
+    <string name="year_description">Velg år</string>
 </resources>

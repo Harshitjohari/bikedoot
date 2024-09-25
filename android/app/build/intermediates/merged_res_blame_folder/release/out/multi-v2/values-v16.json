@@ -1,20 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.bikedoot_partner.app-mergeReleaseResources-39:/values-v16/values-v16.xml",
+            "outputFile": "com.bikedoot_partner.app-mergeReleaseResources-42:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/131a14e650442bdc8d41eaaa9e5b4d34/transformed/core-1.9.0/res/values-v16/values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
-                    }
-                },
-                {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/858dc591faff319c774fa62ec5f4cdb2/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/b6e564b4baca9f04ba79b3fc6e8b9b2f/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -30,6 +20,16 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/05ef259aa8acd54f3ad49fbb02a18541/transformed/core-1.9.0/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
                     }
                 }
             ]

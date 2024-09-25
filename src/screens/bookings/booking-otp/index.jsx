@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Box, Text, HStack, Pressable, Input } from 'native-base';
-import { View, TextInput, Button, Image, Modal, Alert, StyleSheet, TouchableOpacity, Permissions, KeyboardAvoidingView, Platform, Dimensions } from 'react-native';
+import { View, TextInput, Button, Image, Modal, Alert, StyleSheet, TouchableOpacity, Permissions, KeyboardAvoidingView,ScrollView, Platform, Dimensions } from 'react-native';
 
 import CustomButton from '../../../components/UI/button';
 import Apis from '../../../utils/api';
@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 const Otpverify = (props) => {
 
   let booking = props.route?.params?.booking
-  // console.log('props===========>',booking)
+  // console.log('props===========>',booking._id)
   const navigation = useNavigation()
 
   const { show } = handleToast();
@@ -56,16 +56,19 @@ const Otpverify = (props) => {
   const verifyOtp = async () => {
     const otpNumber = otpDigits.join('');
 
-    if (otpNumber === '') {
-      show('Please enter a valid OTP');
-      return;
+    if(booking.serviceCategory.name !== 'Bike Service at Garage'){
+      if (otpNumber === '') {
+        show('Please enter a valid OTP');
+        return;
+      }
     }
+    
 
     try {
       setIsLoading(true);
 
-      let data = { authCode: otpNumber, reading : Reading, rc : RcNumber, fuel : FuelReading }
-      const response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.START_BOOKING + booking?._id + '/startService', token, data);
+      let data = { shareCode : otpNumber, odometerReading : Reading, rcNumber : RcNumber, fuel : FuelReading, serviceCategory : booking.serviceCategory.name }
+      const response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.START_BOOKING + booking?._id + '/verifyDetails', token, data);
       // console.log('==========>',response)
       setIsLoading(false);
 
@@ -84,7 +87,9 @@ const Otpverify = (props) => {
 
   return (
     <Box flex={1} justifyContent="center" p={0} bg="screen_bg">
-      <Header title="Save Details"/>
+      <Header title="Verify Details"/>
+
+      <ScrollView showsVerticalScrollIndicator={false}>
 
       <Box flex={1} justifyContent="center" p={4} bg="bg_white">
         {
@@ -150,7 +155,8 @@ const Otpverify = (props) => {
               borderColor: 'grey',
               padding: 15,
               height: 50,
-              marginTop: 5
+              marginTop: 5,
+              textTransform: 'uppercase'
             }}
             placeholder="Registration Number"
             placeholderTextColor="grey"
@@ -189,7 +195,8 @@ const Otpverify = (props) => {
               borderColor: 'grey',
               padding: 15,
               height: 50,
-              marginTop: 5
+              marginTop: 5,
+              keyboardType: "numeric"
             }}
             placeholder="Odometer Readings(km.)"
             placeholderTextColor="grey"
@@ -209,7 +216,7 @@ const Otpverify = (props) => {
           marginTop: 10,
           marginBottom: 40,
           borderBottomWidth: 1,
-          borderColor: '#E6E8EC',
+          borderColor: '#E6E8EC'
         }}>
           <View style={{
             flexDirection: 'row'
@@ -229,7 +236,8 @@ const Otpverify = (props) => {
               borderColor: 'grey',
               padding: 15,
               height: 50,
-              marginTop: 5
+              marginTop: 5,
+              keyboardType: "numeric"
             }}
             placeholder="Fuel Readings(%)"
             placeholderTextColor="grey"
@@ -242,11 +250,12 @@ const Otpverify = (props) => {
 
 
 
-        <CustomButton onPress={verifyOtp} isLoading={isLoading} isLoadingText="Verifying auth code" disabled={isLoading}>
+        <CustomButton onPress={verifyOtp} isLoading={isLoading} isLoadingText="Saving Details..." disabled={isLoading}>
           Save
         </CustomButton>
 
       </Box>
+      </ScrollView>
     </Box>
   );
 };

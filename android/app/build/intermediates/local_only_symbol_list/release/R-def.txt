@@ -54,6 +54,7 @@ drawable src_assets_images_spares1
 drawable src_assets_images_terms
 drawable src_assets_images_time
 drawable src_assets_images_tool
+drawable src_assets_images_update
 drawable src_assets_images_user
 drawable src_assets_images_user1
 drawable src_assets_images_view
@@ -63,6 +64,7 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap ic_notification
 string app_name
+string com.google.firebase.crashlytics.mapping_file_id
 string default_web_client_id
 string gcm_defaultSenderId
 string google_api_key

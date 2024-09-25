@@ -123,6 +123,46 @@ const BookingCardDetail = ({ booking, refresh }) => {
             .catch((err) => console.error('An error occurred', err));
     };
 
+    const startService = async () => {
+        try {
+            setLoading(true);
+
+            let response = await Apis.HttpPostRequest(
+                Constant.BASE_URL + Constant.START_BOOKING + booking?._id + '/startService',
+                token
+            );
+
+            if (response?.status) {
+                setLoading(false);
+                show(response?.message, 'success');
+                refresh()
+            } else {
+                setLoading(false);
+            }
+        } catch (e) {
+            setLoading(false);
+        }
+    };
+
+    const completeService = async () => {
+        try {
+            setLoading(true);
+            let response = await Apis.HttpPostRequest(
+                Constant.BASE_URL + Constant.START_BOOKING + booking?._id + '/completeService',
+                token  
+            );
+
+            if (response?.status) {
+                show(response?.message, 'success');
+                refresh()
+            } else {
+                setLoading(false);
+            }
+        } catch (e) {
+            setLoading(false);
+        }
+    };
+
 
 
     return (
@@ -778,7 +818,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
 
                 <CustomButton
                     // onPress={handleAlert}
-                    onPress={() => navigation.navigate("InseptionScreen", { booking })}
+                    onPress={() => startService()}
                     btnStyle={{ margin: 10 }}>
                     Start Service
                 </CustomButton>
@@ -788,13 +828,13 @@ const BookingCardDetail = ({ booking, refresh }) => {
                 booking?.status == 'IN PROGRESS' &&
 
                 <CustomButton
-                    onPress={() => navigation.navigate('FinishService', booking?._id)}
+                    onPress={() => completeService()}
                     btnStyle={{ margin: 10 }}>
-                    Start Service
+                    Complete Service
                 </CustomButton>
             }
 
-            {
+            {/* {
                 booking?.status == 'APPROVED' &&
 
                 // <CustomButton
@@ -807,7 +847,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                     btnStyle={{ margin: 10 }}>
                     Enter Auth Code
                 </CustomButton>
-            }
+            } */}
 
             {/* {
                 booking?.status == 'SERVICE DONE' &&
@@ -829,14 +869,14 @@ const BookingCardDetail = ({ booking, refresh }) => {
                 </CustomButton>
             }
 
-            {booking?.status === 'SERVICE DONE' && (
+            {/* {booking?.status === 'SERVICE DONE' && (
                 <CustomButton
                     onPress={() => {
                         setModalVisible(!modalVisible);
                     }} btnStyle={{ margin: 10, borderRadius: 10 }}>
                     Add Discount
                 </CustomButton>
-            )}
+            )} */}
 
 
 
