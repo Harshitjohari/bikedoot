@@ -652,7 +652,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                                 justifyContent="space-between"
                                             >
                                                 <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                    {index + 1}. {service?.service?.service?.name}
+                                                    {index + 1}. {service?.name}
                                                 </Text>
                                                 <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
                                                     ₹{service?.price}
