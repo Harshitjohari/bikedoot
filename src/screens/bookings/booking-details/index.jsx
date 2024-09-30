@@ -82,13 +82,13 @@ const DetailsScreen = (props) => {
         bookingData && <BookingCardDetail booking={bookingData} refresh={fetchBookingsDetails} />
       }
 
-      {bookingData?.status === 'APPROVED' && (
+      {/* {bookingData?.status === 'APPROVED' && (
         <CustomButton
           onPress={() => fetchBookingsDetails()}
           btnStyle={{ margin: 10 }}>
           Share Auth Code with Mechanic...
         </CustomButton>
-      )}
+      )} */}
 
       {/* </View>
       </ScrollView> */}

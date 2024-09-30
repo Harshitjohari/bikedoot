@@ -633,35 +633,45 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 )
                             } */}
 
-                            {
+                                {
                                 booking?.additionalServices.length > 0 && (
                                     <>
-                                        {/* <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
-                                            Add Ons (Mechanic)
-                                        </Text> */}
-                                        {booking?.additionalServices.map((service, index) => (
-                                            <View
-                                                key={index}
-                                                width="100%"
-                                                bg="#ffffff"
-                                                borderRadius="10px"
-                                                // marginTop={2}
-                                                // p={3}
-                                                alignItems="center"
-                                                flexDirection="row"
-                                                justifyContent="space-between"
+                                    {booking?.additionalServices
+                                        .filter((service) => service.approved)
+                                        .map((service, index) => (
+                                        <View
+                                            key={index}
+                                            width="100%"
+                                            bg="#ffffff"
+                                            borderRadius="10px"
+                                            alignItems="center"
+                                            flexDirection="row"
+                                            justifyContent="space-between"
+                                        >
+                                            <Text
+                                            fontWeight="500"
+                                            fontSize="bd_xsm"
+                                            mb={1}
+                                            lineHeight="20px"
+                                            color="bd_sec_text"
                                             >
-                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                    {index + 1}. {service?.name}
-                                                </Text>
-                                                <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                    ₹{service?.price}
-                                                </Text>
-                                            </View>
+                                            {index + 1}. {service?.name}
+                                            </Text>
+                                            <Text
+                                            fontWeight="500"
+                                            fontSize="bd_xsm"
+                                            mb={1}
+                                            lineHeight="20px"
+                                            color="bd_sec_text"
+                                            >
+                                            ₹{service?.price}
+                                            </Text>
+                                        </View>
                                         ))}
                                     </>
                                 )
-                            }
+                                }
+
 
                             {
                                 booking?.accessories.length > 0 && (
@@ -724,7 +734,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                     <Text fontWeight="500" fontSize="bd_sm" mt={4} mb={2} lineHeight="18px" color="bd_dark_text">
                                         Spares
                                     </Text>
-                                    {booking?.spareParts.map((spareParts, index) => (
+                                    {booking?.spareParts.filter((spareParts) => spareParts.approved).map((spareParts, index) => (
                                         <View
                                             key={index}
                                             width="100%"
