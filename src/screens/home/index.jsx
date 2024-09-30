@@ -33,6 +33,8 @@ const HorizontalFlatList = (props) => {
   const { token, userData, clearAuthData } = useAuth();
   const navigation = useNavigation()
 
+      // console.log('FCM=============>',token)
+
   useEffect(() => {
     fetchHomeData();
     fetchProfileData();
@@ -46,7 +48,7 @@ const HorizontalFlatList = (props) => {
   const updateFcmToken = async () => {
     try {
       let fcmToken = await getToken();
-      // console.log('FCM=============>',fcmToken)
+      // console.log('FCM=============>',token)
       if (fcmToken !== "") {
         let data = {
           "fcmToken": fcmToken

@@ -65,7 +65,7 @@ const AddOnScreen = (props) => {
   const [selectedButton, setSelectedButton] = useState('Additional Service');
   const [AddOnData, setAddOnData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [searchText, setSearchText] = useState('');
+  const [BookingData, setBookingData] = useState({});
   const searchTimeout = useRef(null);
 
   const [addOnCustomData, setAddOnCustomData] = useState({
@@ -103,7 +103,7 @@ const AddOnScreen = (props) => {
       if (response?.status) {
 
         const data = await response?.data?.additionalServices;
-        // setBookingData(data);
+        setBookingData(response?.data);
         setAddonData(data);
         setCustomCards(response?.data?.spareParts)
         setLoading(false);
@@ -386,9 +386,6 @@ const AddOnScreen = (props) => {
           Upload Images
         </CustomButton> 
 
-        {/* <CustomButton onPress={() => console.log('==========HIiiiiii========')} btnStyle={{ margin: 10 }}>
-          Upload Images
-        </CustomButton>*/}
       </>
       }
     </View>

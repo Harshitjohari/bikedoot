@@ -312,9 +312,11 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 </Text>
                                 <HStack alignItems="center" space={2}>
                                     <Text fontWeight="500" fontSize="bd_xsm" lineHeight="20px" color="bd_sec_text">
-                                        Mobile No. : {booking?.user?.mobile}
+                                        Mobile No. : { booking?.status !== 'COMPLETED' ? booking?.user?.mobile :  booking?.user?.mobile.toString().substring(0, 2) + 'xxxxxx' + booking?.user?.mobile.toString().substring(8)}
                                     </Text>
-                                    <TouchableOpacity onPress={() => openDialer(booking?.user?.mobile)}>
+                                    {
+                                        booking?.status !== 'COMPLETED' && 
+                                        <TouchableOpacity onPress={() => openDialer(booking?.user?.mobile)}>
                                         <Image
                                             source={imageConstant.phoneCall}
                                             alt="Phone Icon"
@@ -322,6 +324,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                             borderRadius="md"
                                         />
                                     </TouchableOpacity>
+                                    }
                                 </HStack>
                                 <Text fontWeight="500" fontSize="bd_xsm" mb={1} mt={1} lineHeight="20px" color="bd_sec_text">
                                     Address : {booking?.address?.address}
@@ -330,7 +333,10 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                     City : {booking?.address?.city?.name}, Pincode : {booking?.address?.pincode}
                                 </Text>
                             </Box>
-                            <CustomButton btnStyle={{ height: "35%" }} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={navigate}>Navigate</CustomButton>
+                            {
+                                booking?.status !== 'COMPLETED' && 
+                                <CustomButton btnStyle={{ height: "35%" }} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={navigate}>Navigate</CustomButton>
+                            }
                         </HStack>
                     </View>
 
@@ -814,7 +820,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
             }
 
             {
-                booking?.status == 'VERIFIED' &&
+                booking?.status == 'VERIFIED' && booking?.estimatedTime &&
 
                 <CustomButton
                     // onPress={handleAlert}

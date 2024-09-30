@@ -8,7 +8,7 @@ import Constant from '../../../common/constant';
 import { handleToast } from '../../../utils/toast';
 import { useAuth } from '../../../context/loginContext';
 import Header from '../../../components/header';
-
+import Slider from 'react-native-slider';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -24,7 +24,7 @@ const Otpverify = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const { token } = useAuth();
   const [Reading, setReading] = useState('');
-  const [FuelReading, setFuelReading] = useState('');
+  const [FuelReading, setFuelReading] = useState(0);
   const [RcNumber, setRcNumber] = useState('');
 
 
@@ -181,7 +181,7 @@ const Otpverify = (props) => {
             flexDirection: 'row'
           }}>
             <Text style={{ color: 'red' }}>*</Text>
-            <Text style={{ color: 'black' }}> Odometer Readings(km.)</Text>
+            <Text style={{ color: 'black' }}> Odometer Readings(Km.)</Text>
           </View>
           <TextInput
             style={{
@@ -198,7 +198,7 @@ const Otpverify = (props) => {
               marginTop: 5,
               keyboardType: "numeric"
             }}
-            placeholder="Odometer Readings(km.)"
+            placeholder="Odometer Readings(Km.)"
             placeholderTextColor="grey"
             value={Reading}
             onChangeText={setReading}
@@ -213,10 +213,10 @@ const Otpverify = (props) => {
           maxHeight: 40,
           justifyContent: 'center',
           alignSelf: 'center',
-          marginTop: 10,
+          marginTop: 20,
           marginBottom: 40,
-          borderBottomWidth: 1,
-          borderColor: '#E6E8EC'
+          // borderBottomWidth: 1,
+          // borderColor: '#E6E8EC'
         }}>
           <View style={{
             flexDirection: 'row'
@@ -224,28 +224,20 @@ const Otpverify = (props) => {
             <Text style={{ color: 'red' }}>*</Text>
             <Text style={{ color: 'black' }}> Fuel Readings(%)</Text>
           </View>
-          <TextInput
-            style={{
-              fontSize: 16,
-              color: 'black',
-              fontWeight: '400',
-              paddingVertical: 0,
-              borderWidth: 0.5,
-              borderRadius: 8,
-              backgroundColor: '#f4f5f7',
-              borderColor: 'grey',
-              padding: 15,
-              height: 50,
-              marginTop: 5,
-              keyboardType: "numeric"
-            }}
-            placeholder="Fuel Readings(%)"
-            placeholderTextColor="grey"
-            value={FuelReading}
-            onChangeText={setFuelReading}
-            keyboardType="numeric"
-            maxLength={12}
+    
+          <Slider
+            style={styles.slider}
+            minimumValue={0} 
+            maximumValue={100} 
+            step={1} 
+            value={FuelReading} 
+            onValueChange={(value) => setFuelReading(value)} 
+            minimumTrackTintColor="#5349f8"
+            maximumTrackTintColor="#d3d3d3" 
+            thumbTintColor="#5349f8" 
           />
+
+          <Text style={styles.valueText}>{FuelReading}%</Text> 
         </View>
 
 
@@ -259,6 +251,33 @@ const Otpverify = (props) => {
     </Box>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: "90%",
+    minHeight: 80,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 10,
+    marginBottom: 40,
+    borderBottomWidth: 1,
+    borderColor: '#E6E8EC',
+  },
+  labelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  slider: {
+    marginTop: 5,
+  },
+  valueText: {
+    fontSize: 16,
+    color: 'black',
+    marginTop: 5,
+    textAlign: 'center',
+  },
+});
+
 
 export default Otpverify;
 

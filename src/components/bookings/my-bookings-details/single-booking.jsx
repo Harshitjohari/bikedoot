@@ -8,7 +8,8 @@ import {
     ScrollView,
     Alert,
     Linking,
-    Dimensions
+    Dimensions,
+    TextInput
 } from 'react-native';
 import BadgeComponent from '../../UI/badges'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -37,7 +38,7 @@ const { width } = Dimensions.get('window');
 
 const BookingCardDetail = ({ booking, refresh }) => {
 
-    // console.log('==========>', booking)
+    // console.log('==========>', booking._id)
 
     const { token } = useAuth();
     const { show, close, closeAll } = handleToast();
@@ -52,6 +53,9 @@ const BookingCardDetail = ({ booking, refresh }) => {
     const [date, setDate] = useState(new Date());
     const [showDatePicker, setShowDatePicker] = useState(false);  // Controls visibility of the date picker
     const [showTimePicker, setShowTimePicker] = useState(false);
+    const [DiscountModalVisible, setDiscountModalVisible] = useState(false);
+    const [discount, setDiscount] = useState('');
+
     // const [checkedItems, setCheckedItems] = useState(mechanic.map(item => ({ _id: item.id, isChecked: false })));
 
     const handleCheckboxChange = (id) => {
@@ -225,6 +229,69 @@ const BookingCardDetail = ({ booking, refresh }) => {
         Linking.openURL(mapUrl);
     }
 
+    const submitDiscount = async () => {
+        try {
+            setLoading(true);
+
+            let data = {
+                amount: discount
+            }
+            let response = await Apis.HttpPostRequest(
+                Constant.BASE_URL + Constant.GARAGE_BOOKING_API + booking?._id + '/addDiscount',
+                token,
+                data
+            );
+            if (response?.status) {
+                setLoading(false);
+                setDiscountModalVisible(false)
+                setDiscount('')
+                show(response?.message, 'success');
+                refresh()
+            } else {
+                setLoading(false);
+            }
+        } catch (e) {
+            setLoading(false);
+        }
+    };
+
+    const sentForapproval = async () => {
+        try {
+            setLoading(true);
+            let response = await Apis.HttpPostRequest(
+                Constant.BASE_URL + Constant.GARAGE_BOOKING_API + booking?._id + '/sentForapproval',
+                token
+            );            if (response?.status) {
+                setLoading(false);
+                show(response?.message, 'success');
+                refresh()
+            } else {
+                setLoading(false);
+            }
+        } catch (e) {
+            setLoading(false);
+        }
+    };
+
+    const generateBill = async () => {
+        try {
+            setLoading(true);
+            let response = await Apis.HttpPostRequest(
+                Constant.BASE_URL + Constant.GARAGE_BOOKING_API + booking?._id + '/generateBill',
+                token
+            );
+            if (response?.status) {
+                setLoading(false);
+                show(response?.message, 'success');
+                refresh()
+            } else {
+                setLoading(false);
+            }
+        } catch (e) {
+            setLoading(false);
+        }
+    };
+
     return (
         <>
             <ScrollView>
@@ -338,16 +405,19 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                     </Text>
                                     <HStack alignItems="center" space={2}>
                                         <Text fontWeight="500" fontSize="bd_xsm" lineHeight="20px" color="bd_sec_text">
-                                            Mobile No. : {booking?.user?.mobile}
+                                            Mobile No. : {booking?.status !== 'COMPLETED' ? booking?.user?.mobile : booking?.user?.mobile.toString().substring(0, 2) + 'xxxxxx' + booking?.user?.mobile.toString().substring(8)}
                                         </Text>
-                                        <TouchableOpacity onPress={() => openDialer(booking?.user?.mobile)}>
-                                            <Image
-                                                source={imageConstant.phoneCall}
-                                                alt="Phone Icon"
-                                                size={"18px"}
-                                                borderRadius="md"
-                                            />
-                                        </TouchableOpacity>
+                                        {
+                                            booking?.status !== 'COMPLETED' &&
+                                            <TouchableOpacity onPress={() => openDialer(booking?.user?.mobile)}>
+                                                <Image
+                                                    source={imageConstant.phoneCall}
+                                                    alt="Phone Icon"
+                                                    size={"18px"}
+                                                    borderRadius="md"
+                                                />
+                                            </TouchableOpacity>
+                                        }
                                     </HStack>
                                     <Text fontWeight="500" fontSize="bd_xsm" mb={1} mt={1} lineHeight="20px" color="bd_sec_text">
                                         Address : {booking?.address?.address}
@@ -925,15 +995,59 @@ const BookingCardDetail = ({ booking, refresh }) => {
                 )
             }
 
+
             {
-                ['ASSIGNED', 'UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED'].includes(booking?.status) && (
-                    <>
-                        <CustomButton onPress={() => navigation.navigate("AddOnScreen", { booking })} btnStyle={{ margin: 10 }}>
-                            Update Service
+                booking?.completed === false && ['APPROVED', 'SERVICE DONE'].includes(booking?.status) ? (
+                    booking?.afterImages.length > 0 && booking?.beforeImages.length > 0 ? (
+                        <CustomButton
+                            onPress={() => generateBill()}
+                            btnStyle={{ marginHorizontal: 10 }}
+                        >
+                            Generate Bill
                         </CustomButton>
-                    </>
-                )
+                    ) : (
+                        <CustomButton
+                            onPress={() => Alert.alert('Action Required', 'Please upload the before/after image first.')}
+                            btnStyle={{ marginHorizontal: 10, backgroundColor: 'grey' }}
+                        >
+                            Generate Bill
+                        </CustomButton>
+                    )
+                ) : null
             }
+
+            {
+                booking?.approved === false && booking?.sparePartPermission === true &&
+                <CustomButton
+                    onPress={() => sentForapproval()}
+                    btnStyle={{ marginHorizontal: 20}}
+                >
+                    Sent for approval
+                </CustomButton>
+            }
+
+
+            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+
+
+                {['ASSIGNED', 'UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) && booking?.completed === false && (
+                    <CustomButton
+                        onPress={() => navigation.navigate("AddOnScreen", { booking })}
+                        btnStyle={{ margin: 10, width: booking?.status === 'SERVICE DONE' ? "45%" : "90%" }}>
+                        Update Service
+                    </CustomButton>
+                )}
+
+                {booking?.status === 'SERVICE DONE' && booking?.completed === false && (
+                    <CustomButton
+                        onPress={() => {
+                            setDiscountModalVisible(!DiscountModalVisible);
+                        }}
+                        btnStyle={{ margin: 10, width: "45%" }}>
+                        {booking?.garageDiscount ? 'Update' : 'Add'} Discount
+                    </CustomButton>
+                )}
+            </View>
 
             <Modal
                 animationType="slide"
@@ -979,6 +1093,62 @@ const BookingCardDetail = ({ booking, refresh }) => {
 
                             <TouchableOpacity
                                 onPress={handleAssignMechanic}
+                                style={styles.submitButton}>
+                                <Text style={styles.submitText}>Submit</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={DiscountModalVisible}
+                supportedOrientations={['portrait', 'landscape']}
+                onRequestClose={() => {
+                    setDiscountModalVisible(!DiscountModalVisible);
+                }}>
+                <View style={styles.centeredView}>
+                    <View style={[styles.modalView, { height: 400 }]}>
+                        <Text style={styles.modalTitle}>{booking?.garageDiscount ? 'Update' : 'Add'} Discount</Text>
+
+                        <View style={{
+                            width: "90%",
+                            minHeight: 40,
+                            maxHeight: 40,
+                            justifyContent: 'center',
+                            alignSelf: 'center',
+                            marginTop: 40,
+                            borderBottomWidth: 1,
+                            borderColor: '#E6E8EC',
+                        }}>
+                            <Text style={styles.textStyle}>Discount</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholderTextColor="black"
+                                keyboardType='numeric'
+                                value={discount}
+                                onChangeText={setDiscount}
+                                maxLength={2}
+                            />
+                        </View>
+
+
+
+                        <View flexDirection={'row'}
+                            justifyContent={'space-evenly'}
+                            p={3}
+                            marginTop={50}
+                            width={'100%'}>
+                            <TouchableOpacity
+                                onPress={() => setDiscountModalVisible(false)}
+                                style={styles.cancelButton}>
+                                <Text style={styles.cancelText}>Cancel</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => submitDiscount()}
                                 style={styles.submitButton}>
                                 <Text style={styles.submitText}>Submit</Text>
                             </TouchableOpacity>
@@ -1097,6 +1267,22 @@ const styles = StyleSheet.create({
     },
     checkboxText: {
         fontSize: 15,
+        color: 'black'
+    },
+    input: {
+        fontSize: 16,
+        color: 'black',
+        fontWeight: '400',
+        paddingVertical: 0,
+        borderWidth: 0.5,
+        borderRadius: 8,
+        backgroundColor: '#f4f5f7',
+        borderColor: '#e7e7e7',
+        padding: 15,
+        height: 50,
+        marginTop: 5,
+    },
+    textStyle: {
         color: 'black'
     },
 });

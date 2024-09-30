@@ -34,7 +34,7 @@ let Height = Dimensions.get("window").height;
 let Width = Dimensions.get("window").width;
 
 const ImagesUploadScreen = (props) => {
-  // console.log('imagesUpload==============+>', props.route?.params?.booking._id)
+  // console.log('imagesUpload==============+>', props.route?.params?.booking)
 
   const navigation = useNavigation()
 
@@ -52,7 +52,7 @@ const ImagesUploadScreen = (props) => {
 
   useEffect(() => {
     // if (isFocused)
-      fetchImages();
+    fetchImages();
   }, []);
 
 
@@ -157,10 +157,10 @@ const ImagesUploadScreen = (props) => {
   const updateImage = async (reqData) => {
     try {
       setModalVisible(false);
-      
+
       let type = selectedButton === 'Before Image' ? 'beforeImages' : 'afterImages';
       setLoading(true);
-  
+
       for (const asset of reqData.assets) {
         let formDataReq = new FormData();
         let data = {
@@ -168,10 +168,10 @@ const ImagesUploadScreen = (props) => {
           type: asset.type,
           name: asset.fileName,
         };
-  
+
         formDataReq.append('image', data);
         formDataReq.append('type', type);
-  
+
         let response = await fetch(Constant.BASE_URL + Constant.GARAGE_BOOKING_API + props.route?.params?.booking?._id + '/images/add', {
           method: "POST",
           headers: {
@@ -180,9 +180,9 @@ const ImagesUploadScreen = (props) => {
           },
           body: formDataReq
         });
-  
+
         let result = await response.json();
-  
+
         if (result?.status) {
           fetchImages();
         } else {
@@ -191,18 +191,18 @@ const ImagesUploadScreen = (props) => {
           break;
         }
       }
-  
+
       setLoading(false);
       setModalVisible(false);
       show("Images uploaded successfully", "success");
-  
+
     } catch (error) {
       setLoading(false);
       console.log(error);
       show("An error occurred, please try again later", "error");
     }
   };
-  
+
 
 
   const Card = ({ image, onPress }) => (
@@ -287,7 +287,7 @@ const ImagesUploadScreen = (props) => {
 
           {
             selectedButton === 'Before Image' && (
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent:'space-around' }}>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
                 {BeforeImages.map((item, index) => (
                   <Card
                     key={index}
@@ -317,9 +317,13 @@ const ImagesUploadScreen = (props) => {
 
         </ScrollView>
 
-        <CustomButton onPress={() => navigation.navigate("BookingsDetails", { id: props.route?.params?.booking?._id })} btnStyle={{ margin: 10 }}>
+        <CustomButton
+          onPress={() => navigation.navigate("BookingsDetails", { id: props.route?.params?.booking?._id })}
+          btnStyle={{ margin: 10 }}
+        >
           Done
         </CustomButton>
+
       </>
       }
 

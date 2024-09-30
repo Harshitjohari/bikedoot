@@ -61,7 +61,7 @@ const AddAdditionalServicePage = (props) => {
     gstRate: ''
   });
   const [services, setServices] = useState([]);
-  const [selectedAdd, setselectedAdd] = useState([]);
+  const [BookingData, setBookingData] = useState({});
   const [selectedButton, setSelectedButton] = useState('Additional Service');
   const [AddOnData, setAddOnData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -96,7 +96,7 @@ const AddAdditionalServicePage = (props) => {
       if (response?.status) {
 
         const data = await response?.data?.additionalServices;
-        // setBookingData(data);
+        setBookingData(esponse?.data);
         setAddonData(data);
         setCustomCards(response?.data?.spareParts)
         setLoading(false);
@@ -176,7 +176,8 @@ const AddAdditionalServicePage = (props) => {
     const data = {
       _id: addOnCustomData._id,
       name: addOnCustomData.name,
-      price: addOnCustomData.price
+      price: addOnCustomData.price,
+      approved: BookingData.sparePartPermission === true && BookingData?.approved === false ? false : true
     };
 
     setLoading(true)

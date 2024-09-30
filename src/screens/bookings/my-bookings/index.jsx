@@ -61,7 +61,10 @@ const BookingList = (props) => {
       let data = {
         "status": status
       }
+
       let response = await Apis.HttpPostRequest(Constant.BASE_URL + Constant.GET_USER_BOOKINGS, token, data)
+      // console.log('===========>',response)
+
       if (response?.status) {
        
         let fullData = response?.data;
@@ -91,6 +94,7 @@ const BookingList = (props) => {
             "bookingAmount": fullData[index]?.amount || 0,
             "serviceType": fullData[index]?.services[0]?.service?.service?.name,
             "mechanic": fullData[index]?.mechanics?.name || "Not Yet Assigned",
+            sparePartPermission:fullData[index]?.sparePartPermission
           })
         }
 

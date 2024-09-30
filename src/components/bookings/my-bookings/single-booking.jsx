@@ -31,7 +31,8 @@ const BookingCard = ({onCustomPress,booking}) => {
         time,
         bookingAmount,
         serviceType,
-        mechanic
+        mechanic,
+        sparePartPermission
     } = booking;
 
     // console.log('==========>',booking._id)
@@ -91,6 +92,9 @@ const BookingCard = ({onCustomPress,booking}) => {
                         </Text>
                         <Text fontWeight="400" fontSize="bd_xsm" mb={2} lineHeight="16px" color="bd_sec_text">
                         {accsOnAttr}
+                        </Text>
+                        <Text fontWeight="400" fontSize="bd_xsm" mb={2} lineHeight="16px" color="bd_dark_text">
+                        Estimate Required : {sparePartPermission === false ? 'No' : 'Yes'}
                         </Text>
                         <Text fontWeight="400" fontSize="bd_xsm" mb={2} lineHeight="16px" color="bd_dark_text">
                         Mechanic: {mechanic}
