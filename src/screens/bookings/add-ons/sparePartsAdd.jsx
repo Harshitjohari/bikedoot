@@ -143,7 +143,8 @@ const AddSparePartsPage = (props) => {
       quantity: customData.quantity,
       price: customData.price,
       gstRate: customData.gstRate.replace("%", ""),
-      approved: props.route?.params?.booking?.sparePartPermission === true && props.route?.params?.booking?.approved === false ? false : true    };
+      approved: props.route?.params?.booking?.sparePartPermission === true && props.route?.params?.booking?.approved === false ? false : true
+    };
 
     setLoading(true)
     let response = await Apis.HttpPostRequest(
