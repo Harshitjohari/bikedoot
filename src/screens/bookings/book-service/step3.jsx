@@ -8,8 +8,9 @@ const { height } = Dimensions.get('window');
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AddressCard from '../../../components/address/single-address'
+import { Tooltip } from 'react-native-elements';
 
-const DateTimePicker = ({ dateArray,dateArrayNew, timeArray, navigation, selectedDate, setSelectedDateIndex, selectedDateIndex,
+const DateTimePicker = ({ dateArray, dateArrayNew, timeArray, navigation, selectedDate, setSelectedDateIndex, selectedDateIndex,
     setSelectedDate,
     selectedTime,
     setSelectedTime,
@@ -20,13 +21,14 @@ const DateTimePicker = ({ dateArray,dateArrayNew, timeArray, navigation, selecte
     takePermissionBeforeReplacing,
     setTakePermissionBeforeReplacing,
     setSelectedAddress,
-    }) => {
+}) => {
 
-  const [selectedTimeSlots, setSelectedTimeSlots] = useState(null);
+    const [selectedTimeSlots, setSelectedTimeSlots] = useState(null);
+    const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-   
-  }, [selectedTimeSlots]);
+    useEffect(() => {
+
+    }, [selectedTimeSlots]);
 
 
     // function formatDate(dateString) {
@@ -199,8 +201,116 @@ const DateTimePicker = ({ dateArray,dateArrayNew, timeArray, navigation, selecte
                 <CustomButton onPress={() => openBottomSheet("select_address")} btnStyle={{ width: "30%", alignSelf: "center", height: 40, borderRadius: 5, borderWidth: 2, borderColor: "#DDD", backgroundColor: "transparent", alignItems: "center", alignContents: "center", paddingTop: 8 }} textStyle={{ color: "#000", fontSize: 12 }}>{selectedAddress.length > 0 ? "Change" : "Select"}</CustomButton> */}
             </VStack>
 
+            {/* <Box>
+                <HStack space={0} mb={4} mt={5}>
+                <Icon name="gear" style={{ marginTop: 3 }} size={18} />
 
-            <VStack space={2} mb={4}>
+                    <Box>
+                    <Text pl={1} w="85%" fontWeight="500" fontSize="bd_sm" mb={0} color="bd_dark_text">
+                        Do you want detailed Estimate? 
+                    </Text>
+                    <Icon name="info" style={{ marginTop: 3 }} size={18} />
+                    </Box>
+                    
+
+
+                    <Box
+                    flexDirection="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    >
+                    <Switch
+                        onValueChange={() =>
+                        setTakePermissionBeforeReplacing((pre) => !pre)
+                        }
+                        defaultIsChecked={takePermissionBeforeReplacing}
+                        colorScheme="primary"
+                    />
+                    <Text
+                        style={{
+                        color: '#5349f8',
+                        fontWeight: 600,
+                        fontSize: 14,
+                        alignSelf: 'center',
+                        letterSpacing: 1
+                        }}
+                    >
+                        {takePermissionBeforeReplacing == true ? 'Yes' : 'No'}
+                    </Text>
+                    </Box>
+
+                </HStack>
+            </Box> */}
+
+            <Box>
+                <HStack space={0} mb={4} mt={5} justifyContent="space-between" alignItems="center">
+
+                    <HStack space={1} alignItems="center">
+                        <Icon name="file-pdf-o" style={{ marginTop: 3 }} size={18} />
+
+                        <Text fontWeight="500" fontSize={16} color="bd_dark_text">
+                            Do you want Detailed Estimate?
+                        </Text>
+
+                        {/* <Tooltip label="If you opted for detail estimate mechanic will send you the pre inspection and will wait for your approval to start service." openDelay={100} placement="top">
+                    <Icon name="info-circle" style={{ marginTop: 3 }} size={18} />
+                </Tooltip> */}
+                        <TouchableOpacity
+                            onPressIn={() => setVisible(true)} 
+                            onPressOut={() => setVisible(false)}
+                        >
+                            <Icon name="info-circle" size={18} />
+                        </TouchableOpacity>
+
+                        {visible && (
+                            <View style={{
+                                position: 'absolute',
+                                top: 30,
+                                backgroundColor: '#FFFFFF',
+                                padding: 10,
+                                borderRadius: 5,
+                                elevation: 5,
+                                zIndex: 10,
+                                width: '90%',
+                            }}>
+                                <Text style={{
+                                    fontSize: 14,
+                                    color:'black',
+                                    fontWeight:400
+                                }}>
+                                    If you opted for detail estimate, the mechanic will send you the pre-inspection and will wait for your approval to start service.
+                                </Text>
+                            </View>
+                        )}
+                    </HStack>
+
+
+                    <Box flexDirection="row" alignItems="center">
+                        <Switch
+                            onValueChange={() => setTakePermissionBeforeReplacing((pre) => !pre)}
+                            defaultIsChecked={takePermissionBeforeReplacing}
+                            colorScheme="primary"
+                        />
+                        <Text
+                            style={{
+                                color: '#5349f8',
+                                fontWeight: '700',
+                                fontSize: 16,
+                                letterSpacing: 1,
+                            }}
+                        >
+                            {takePermissionBeforeReplacing ? 'Yes' : 'No'}
+                        </Text>
+                    </Box>
+
+                </HStack>
+            </Box>
+
+
+
+
+
+            <VStack space={2} mb={4} mt={5}>
                 <Text fontWeight="600" fontSize="bd_xsm" mb={0} lineHeight="20px" color="bd_dark_text">
                     Any Suggesstions?
                 </Text>
@@ -211,23 +321,6 @@ const DateTimePicker = ({ dateArray,dateArrayNew, timeArray, navigation, selecte
                     onChangeText={text => setOtherSuggestionText(text)}
                     placeholder="Enter any other problems" w="100%" />
             </VStack>
-
-            <Box>
-                <HStack space={0} mb={4} mt={5}>
-                    <Icon name="gear" style={{ marginTop: 3 }} size={18} />
-                    <Text pl={1} w="85%" fontWeight="500" fontSize="bd_sm" mb={0} color="bd_dark_text">
-                        Don't take permission before replacing any spare
-                    </Text>
-
-                    <Box
-                        px={0}
-                        py={0}
-                        justifyContent="center"
-                        alignItems="center">
-                        <Switch onValueChange={() => setTakePermissionBeforeReplacing((pre) => !pre)} defaultIsChecked={takePermissionBeforeReplacing} colorScheme="primary" />
-                    </Box>
-                </HStack>
-            </Box>
         </Box>
     );
 };

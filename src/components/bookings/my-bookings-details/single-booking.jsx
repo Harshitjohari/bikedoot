@@ -37,6 +37,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedTimeSlots, setSelectedTimeSlots] = useState(null);
     const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+    const [selectedButton, setSelectedButton] = useState('Before Image');
 
 
 
@@ -289,9 +290,20 @@ const BookingCardDetail = ({ booking, refresh }) => {
     };
 
     const openPdf = (pdfUrl) => {
-        // console.log('============>', pdfUrl)
         Linking.openURL(pdfUrl).catch(err => console.error("Couldn't load page", err));
     };
+
+    const handleButtonPress = (button) => {
+        setSelectedButton(button);
+    };
+
+    const Card = ({ image, onPress }) => (
+        <View style={{ marginTop: 10, borderWidth: 1, borderRadius: 10, borderColor: 'grey' }}>
+            <View>
+                <Image source={{ uri: image }} style={styles.image} alt="image" />
+            </View>
+        </View>
+    );
 
     return (
         <>
@@ -331,17 +343,17 @@ const BookingCardDetail = ({ booking, refresh }) => {
 
 
                                 {
-                                    booking?.authCode &&
+                                    booking?.shareCode && booking.serviceCategory.name != 'Bike Service at Garage' &&
                                     <View flexDirection={'row'}
                                         justifyContent={'space-between'}
                                     >
                                         <Text fontWeight="500" fontSize="bd_sm" mt={2} lineHeight="20px" color="bd_dark_text">
-                                            Auth Code
+                                            Share Code
                                         </Text>
 
                                         <View style={{ backgroundColor: '#66ff66', padding: 1, borderRadius: 5, width: 70, alignSelf: 'flex-end' }}>
                                             <Text fontWeight="600" fontSize={18} lineHeight="20px" color="bd_dark_text" letterSpacing={4} textAlign="center">
-                                                {booking?.authCode}
+                                                {booking?.shareCode}
                                             </Text>
                                         </View>
                                     </View>
@@ -433,6 +445,45 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 </View>
                             </View>
                         </View>
+
+                        {
+                            booking?.estimatedTime &&
+                            <View
+                                width="100%"
+                                bg="#ffffff"
+                                borderRadius="10px"
+                                marginTop={2}
+                            >
+                                <View
+                                    flexDirection={'row'}
+                                    justifyContent={'space-between'}
+                                    p={3}
+                                >
+                                    <View>
+                                        <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
+                                            Estimated Time
+                                        </Text>
+
+                                        <View
+                                            width="100%"
+                                            bg="#ffffff"
+                                            borderRadius="10px"
+                                            flexDirection="row"
+                                            alignItems="center"
+                                        >
+                                            <Image source={imageConstant.time} alt="" style={{ width: 14, height: 14 }} />
+                                            <Text fontSize="bd_xsm" color="bd_sec_text" marginLeft={2}>
+                                                {formatDate2(booking?.estimatedTime)}
+                                            </Text>
+                                        </View>
+
+                                    </View>
+                                </View>
+                            </View>
+
+                        }
+
+
 
 
                         {/* <View
@@ -695,26 +746,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
 
                                     ))}
 
-                                    <CustomButton
-                                        onPress={() => setSpareImageModalVisible(!spareImageModalVisible)}
-                                        btnStyle={{
-                                            marginTop: 5,
-                                            height: 'auto',
-                                            width: 'auto',
-                                            alignSelf: 'flex-end',
-                                            backgroundColor: 'transparent',
-                                            borderWidth: 0,
-                                            padding: 0
-                                        }}
-                                        textStyle={{
-                                            color: "#007AFF",
-                                            fontWeight: "500",
-                                            fontSize: 12,
-                                            textDecorationLine: 'underline'
-                                        }}
-                                    >
-                                        View spares images
-                                    </CustomButton>
+
 
 
                                     {/* <CustomButton
@@ -730,6 +762,33 @@ const BookingCardDetail = ({ booking, refresh }) => {
                         </CustomButton> */}
                                 </View>
                             }
+
+                            {
+                                booking?.invoice &&
+                                <CustomButton
+                                    onPress={() => setSpareImageModalVisible(!spareImageModalVisible)}
+                                    btnStyle={{
+                                        marginTop: 5,
+                                        height: 'auto',
+                                        width: 'auto',
+                                        alignSelf: 'flex-end',
+                                        backgroundColor: 'transparent',
+                                        borderWidth: 0,
+                                        padding: 0
+                                    }}
+                                    textStyle={{
+                                        color: "#007AFF",
+                                        fontWeight: "500",
+                                        fontSize: 12,
+                                        textDecorationLine: 'underline'
+                                    }}
+                                >
+                                    View images
+                                    {/* View spares images */}
+                                </CustomButton>
+                            }
+
+
 
                             <View
                                 width="100%"
@@ -1064,47 +1123,73 @@ const BookingCardDetail = ({ booking, refresh }) => {
                     }}>
                     <View style={styles.centeredView}>
                         <View style={[{ height: 750 }, styles.modalView]}>
-                            <Text style={styles.modalTitle}>Spare Before/After Images</Text>
+                            <Text style={styles.modalTitle}>Before/After Images</Text>
+                            <View style={{ backgroundColor: '#f0f0f0', padding: 5, borderRadius: 10, marginTop: 5, }}>
+                                <View style={styles.buttonContainer2}>
+                                    <TouchableOpacity
+                                        style={[
+                                            styles.button2,
+                                            selectedButton === 'Before Image' && styles.selectedButton2
+                                        ]}
+                                        onPress={() => handleButtonPress('Before Image')}
+                                    >
+                                        <Text
+                                            style={[
+                                                styles.buttonText,
+                                                selectedButton === 'Before Image' ? styles.selectedButtonText : styles.unselectedButtonText
+                                            ]}
+                                        >Before Image</Text>
+                                    </TouchableOpacity>
 
-                            <FlatList
-                                data={booking?.spareParts}
-                                keyExtractor={(item, index) => index.toString()}
-                                renderItem={({ item }) => (
-                                    <View style={styles.partContainer}>
-                                        <Text style={styles.name}>{item?.name}</Text>
+                                    <TouchableOpacity
+                                        style={[
+                                            styles.button2,
+                                            selectedButton === 'After Image' && styles.selectedButton2
+                                        ]}
+                                        onPress={() => handleButtonPress('After Image')}
+                                    >
+                                        <Text
+                                            style={[
+                                                styles.buttonText,
+                                                selectedButton === 'After Image' ? styles.selectedButtonText : styles.unselectedButtonText
+                                            ]}
+                                        >After Image</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
 
-                                        <View style={styles.imageContainer}>
-                                            <View style={styles.imageTextContainer}>
-                                                <Text style={styles.imageText}>Before Image</Text>
-                                                <TouchableOpacity onPress={() => handleImageClick(item?.beforeImage)}>
-                                                    <Image source={{ uri: item?.beforeImage }} style={styles.image} alt='' />
-                                                </TouchableOpacity>
-                                                <ImagePreviewModal
-                                                visible={previewVisible}
-                                                imageUrl={selectedImageUrl}
-                                                onClose={handleClosePreview}
+                            <ScrollView showsVerticalScrollIndicator={false}>
+
+                                {
+                                    selectedButton === 'Before Image' && (
+                                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+                                            {booking?.beforeImages.map((item, index) => (
+                                                <Card
+                                                    key={index}
+                                                    image={item}
+                                                    onPress={() => handleCardPress('beforeImages', index, item)}
                                                 />
-                                            </View>
-
-                                            <View style={styles.imageTextContainer}>
-                                                <Text style={styles.imageText}>After Image</Text>
-                                                <TouchableOpacity onPress={() => handleImageClick(item?.afterImage)}>
-                                                    <Image source={{ uri: item?.afterImage }} style={styles.image} alt='' />
-                                                </TouchableOpacity>
-                                                <ImagePreviewModal
-                                                visible={previewVisible}
-                                                imageUrl={selectedImageUrl}
-                                                onClose={handleClosePreview}
-                                                />
-                                            </View>
+                                            ))}
                                         </View>
-                                    </View>
-                                )}
-                                contentContainerStyle={styles.flatListContent}
-                                showsVerticalScrollIndicator={false}
-                                showsHorizontalScrollIndicator={false}
-                                scrollEnabled={true} 
-                            />
+                                    )
+                                }
+
+
+                                {
+                                    selectedButton === 'After Image' &&
+                                    <>
+                                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+                                            {booking?.afterImages.map((item, index) => (
+                                                <Card
+                                                    key={index}
+                                                    image={item}
+                                                    onPress={() => handleCardPress('afterImages', index, item)}
+                                                />
+                                            ))}
+                                        </View>
+                                    </>
+                                }
+                            </ScrollView>
 
 
                             <View
@@ -1144,13 +1229,13 @@ const BookingCardDetail = ({ booking, refresh }) => {
             )}
 
             {/* ASSIGNED */}
-            {booking?.status === 'ASSIGNED' && (
+            {/* {booking?.status === 'ASSIGNED' && (
                 <CustomButton onPress={() => {
                     navigation.navigate("OtpVerify", { booking })
                 }} btnStyle={{ margin: 10, borderRadius: 10 }}>
                     Verify
                 </CustomButton>
-            )}
+            )} */}
 
 
             {/* UPDATED */}
@@ -1170,7 +1255,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                 </CustomButton>
             )}
 
-            {booking?.status === 'SERVICE DONE' && (
+            {booking?.status === 'SERVICE DONE' && booking?.completed === true && (
                 <CustomButton
                     onPress={() => {
                         handlePayment()
@@ -1259,7 +1344,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap'
     },
     image: {
-        width: 100, 
+        width: 100,
         height: 100,
         borderRadius: 10,
         resizeMode: 'cover',
@@ -1288,7 +1373,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     flatListContent: {
-        marginBottom: 10,        
+        marginBottom: 10,
         paddingHorizontal: 10,
         width: '90%'
     },
@@ -1318,6 +1403,38 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: 'black',
         textAlign: 'center',
+    },
+    buttonContainer2: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '90%'
+    },
+    button2: {
+        flex: 1,
+        padding: 10,
+        // borderWidth: 1,
+        borderColor: 'black',
+        alignItems: 'center',
+        // marginHorizontal: 5,
+        borderRadius: 5,
+        borderColor: '#e7e7e7'
+    },
+    selectedButton2: {
+        backgroundColor: '#5349f8',
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+    },
+    selectedButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 500
+    },
+    unselectedButtonText: {
+        color: '#5349f8',
+        fontSize: 16,
+        fontWeight: 500
     },
 });
 

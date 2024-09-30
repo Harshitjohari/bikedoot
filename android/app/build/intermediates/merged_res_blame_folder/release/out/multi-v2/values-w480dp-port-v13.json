@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.bikedoot.app-mergeReleaseResources-43:/values-w480dp-port-v13/values-w480dp-port-v13.xml",
+            "outputFile": "com.bikedoot.app-mergeReleaseResources-47:/values-w480dp-port-v13/values-w480dp-port-v13.xml",
             "map": [
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/bab95c0b698ee58b620be7d1f0b5292f/transformed/material-1.1.0/res/values-w480dp-port-v13/values-w480dp-port-v13.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/975391ae76a30053c14c3a0dc34555c9/transformed/material-1.1.0/res/values-w480dp-port-v13/values-w480dp-port-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

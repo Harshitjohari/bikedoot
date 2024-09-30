@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.bikedoot.app-mergeReleaseResources-43:/values-land/values-land.xml",
+            "outputFile": "com.bikedoot.app-mergeReleaseResources-47:/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/642c53f5e2c563fa94406a239dbbb9f1/transformed/appcompat-1.4.1/res/values-land/values-land.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/d26ae2257682fe05dec449978872cc81/transformed/appcompat-1.4.1/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/harshit/.gradle/caches/transforms-3/bab95c0b698ee58b620be7d1f0b5292f/transformed/material-1.1.0/res/values-land/values-land.xml",
+                    "source": "/Users/harshit/.gradle/caches/transforms-3/975391ae76a30053c14c3a0dc34555c9/transformed/material-1.1.0/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,24,30",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

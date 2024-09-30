@@ -1,6 +1,7 @@
 const Constants = {
     BASE_URL: "http://bikedoot-backend-1645567596.eu-north-1.elb.amazonaws.com",
     // BASE_URL: "http://16.16.246.10",
+    // BASE_URL: "http://10.0.2.2:3005",
 
     AUTH: {
         OTP_REQUEST: "/auth/sendOtpForMobileLogin",

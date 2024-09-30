@@ -53,7 +53,7 @@ MERGED from [androidx.datastore:datastore-preferences:1.0.0] /Users/harshit/.gra
 MERGED from [androidx.datastore:datastore:1.0.0] /Users/harshit/.gradle/caches/transforms-3/6614a5aeda1eab8a9edb788bfabbe0ba/transformed/jetified-datastore-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.1.0] /Users/harshit/.gradle/caches/transforms-3/975391ae76a30053c14c3a0dc34555c9/transformed/material-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat:1.4.1] /Users/harshit/.gradle/caches/transforms-3/d26ae2257682fe05dec449978872cc81/transformed/appcompat-1.4.1/AndroidManifest.xml:17:1-24:12
-MERGED from [com.razorpay:checkout:1.6.40] /Users/harshit/.gradle/caches/transforms-3/cfbe0104a3ac1c89ab7c17d825947e4b/transformed/jetified-checkout-1.6.40/AndroidManifest.xml:2:1-7:12
+MERGED from [com.razorpay:checkout:1.6.41] /Users/harshit/.gradle/caches/transforms-3/acad3715ee7ae5efc0b62a1e9974cdf3/transformed/jetified-checkout-1.6.41/AndroidManifest.xml:2:1-7:12
 MERGED from [com.razorpay:standard-core:1.6.40] /Users/harshit/.gradle/caches/transforms-3/6ef3fd6c642386163c3e52db748b8f1e/transformed/jetified-standard-core-1.6.40/AndroidManifest.xml:2:1-66:12
 MERGED from [com.google.android.gms:play-services-auth:21.2.0] /Users/harshit/.gradle/caches/transforms-3/a96511f991c069c34046b89bd0cfd1ad/transformed/jetified-play-services-auth-21.2.0/AndroidManifest.xml:17:1-40:12
 MERGED from [com.github.bumptech.glide:glide:4.12.0] /Users/harshit/.gradle/caches/transforms-3/a2a718d699702561c2f5e56fa535be53/transformed/jetified-glide-4.12.0/AndroidManifest.xml:2:1-12:12
@@ -469,8 +469,8 @@ MERGED from [com.google.android.material:material:1.1.0] /Users/harshit/.gradle/
 MERGED from [com.google.android.material:material:1.1.0] /Users/harshit/.gradle/caches/transforms-3/975391ae76a30053c14c3a0dc34555c9/transformed/material-1.1.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.appcompat:appcompat:1.4.1] /Users/harshit/.gradle/caches/transforms-3/d26ae2257682fe05dec449978872cc81/transformed/appcompat-1.4.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.4.1] /Users/harshit/.gradle/caches/transforms-3/d26ae2257682fe05dec449978872cc81/transformed/appcompat-1.4.1/AndroidManifest.xml:20:5-22:41
-MERGED from [com.razorpay:checkout:1.6.40] /Users/harshit/.gradle/caches/transforms-3/cfbe0104a3ac1c89ab7c17d825947e4b/transformed/jetified-checkout-1.6.40/AndroidManifest.xml:5:5-44
-MERGED from [com.razorpay:checkout:1.6.40] /Users/harshit/.gradle/caches/transforms-3/cfbe0104a3ac1c89ab7c17d825947e4b/transformed/jetified-checkout-1.6.40/AndroidManifest.xml:5:5-44
+MERGED from [com.razorpay:checkout:1.6.41] /Users/harshit/.gradle/caches/transforms-3/acad3715ee7ae5efc0b62a1e9974cdf3/transformed/jetified-checkout-1.6.41/AndroidManifest.xml:5:5-44
+MERGED from [com.razorpay:checkout:1.6.41] /Users/harshit/.gradle/caches/transforms-3/acad3715ee7ae5efc0b62a1e9974cdf3/transformed/jetified-checkout-1.6.41/AndroidManifest.xml:5:5-44
 MERGED from [com.razorpay:standard-core:1.6.40] /Users/harshit/.gradle/caches/transforms-3/6ef3fd6c642386163c3e52db748b8f1e/transformed/jetified-standard-core-1.6.40/AndroidManifest.xml:6:5-44
 MERGED from [com.razorpay:standard-core:1.6.40] /Users/harshit/.gradle/caches/transforms-3/6ef3fd6c642386163c3e52db748b8f1e/transformed/jetified-standard-core-1.6.40/AndroidManifest.xml:6:5-44
 MERGED from [com.google.android.gms:play-services-auth:21.2.0] /Users/harshit/.gradle/caches/transforms-3/a96511f991c069c34046b89bd0cfd1ad/transformed/jetified-play-services-auth-21.2.0/AndroidManifest.xml:20:5-44

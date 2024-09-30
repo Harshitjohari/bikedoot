@@ -2186,6 +2186,7 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
 raw firebase_common_keep
+raw firebase_crashlytics_keep
 raw rzp_config
 string abc_action_bar_home_description
 string abc_action_bar_up_description
@@ -2254,6 +2255,7 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string clear_text_end_icon_content_description
+string com_google_firebase_crashlytics_mapping_file_id
 string combobox_description
 string common_google_play_services_enable_button
 string common_google_play_services_enable_text
