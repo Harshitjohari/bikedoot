@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Dimensions, TouchableOpacity } from 'react-native';
+import { Dimensions, TouchableOpacity, Image } from 'react-native';
 import { View, Box, Text, Button, VStack, HStack, Pressable, ScrollView, Divider, TextArea, Switch } from 'native-base';
 import Header from '../../../components/header';
 import CustomBottomSheet from "../../../components/modals";
@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AddressCard from '../../../components/address/single-address'
 import { Tooltip } from 'react-native-elements';
+import { imageConstant } from '../../../utils/constant';
 
 const DateTimePicker = ({ dateArray, dateArrayNew, timeArray, navigation, selectedDate, setSelectedDateIndex, selectedDateIndex,
     setSelectedDate,
@@ -246,20 +247,18 @@ const DateTimePicker = ({ dateArray, dateArrayNew, timeArray, navigation, select
                 <HStack space={0} mb={4} mt={5} justifyContent="space-between" alignItems="center">
 
                     <HStack space={1} alignItems="center">
-                        <Icon name="file-pdf-o" style={{ marginTop: 3 }} size={18} />
+                        <Image source={imageConstant.estimate} alt="" style={{ width: 18, height: 18, resizeMode: 'contain' }} />
 
                         <Text fontWeight="500" fontSize={16} color="bd_dark_text">
                             Do you want Detailed Estimate?
                         </Text>
 
-                        {/* <Tooltip label="If you opted for detail estimate mechanic will send you the pre inspection and will wait for your approval to start service." openDelay={100} placement="top">
-                    <Icon name="info-circle" style={{ marginTop: 3 }} size={18} />
-                </Tooltip> */}
                         <TouchableOpacity
                             onPressIn={() => setVisible(true)} 
                             onPressOut={() => setVisible(false)}
                         >
-                            <Icon name="info-circle" size={18} />
+                            <Image source={imageConstant.tooltip} alt="" style={{ width: 18, height: 18, resizeMode: 'contain' }} />
+
                         </TouchableOpacity>
 
                         {visible && (

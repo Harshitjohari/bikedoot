@@ -14,6 +14,7 @@ import TextHeader from '../../../components/UI/text-header';
 import { useAuth } from '../../../context/loginContext';
 import Checkbox from '../../../components/UI/checkbox';
 import Ratings from '../../../components/UI/rating';
+import { imageConstant } from '../../../utils/constant';
 
 const FinalizeAndConfirmBooking = ({
     selectedDate,
@@ -30,6 +31,8 @@ const FinalizeAndConfirmBooking = ({
 }) => {
 
     const { userData } = useAuth();
+    const [visible, setVisible] = useState(false);
+
 
     const formatDate = (inputDate) => {
         const date = new Date(inputDate);
@@ -236,11 +239,11 @@ const FinalizeAndConfirmBooking = ({
                 </Text>
             </VStack>
 
-            <Box>
+            {/* <Box>
                 <HStack space={0} mb={4} mt={5}>
                     <Icon name="gear" style={{ marginTop: 5 }} size={18} />
                     <Text pl={1} w="85%" fontWeight="600" fontSize="bd_sm" mb={0} color="bd_dark_text">
-                        Don't take permission before replacing any spare
+                        Do you want Detailed Estimate?
                     </Text>
 
                     <Box
@@ -249,6 +252,66 @@ const FinalizeAndConfirmBooking = ({
                         justifyContent="center"
                         alignItems="center">
                         <Switch disabled={false} defaultIsChecked={takePermissionBeforeReplacing} colorScheme="primary" />
+                    </Box>
+                </HStack>
+            </Box> */}
+
+            <Box>
+                <HStack space={0} mb={5} mt={5} justifyContent="space-between" alignItems="center">
+
+                    <HStack space={1} alignItems="center">
+                    <Image source={imageConstant.estimate} alt="" style={{ width: 18, height: 18, resizeMode: 'contain' }} />
+
+                        <Text fontWeight="500" fontSize={16} color="bd_dark_text">
+                            Do you want Detailed Estimate?
+                        </Text>
+
+                        <TouchableOpacity
+                            onPressIn={() => setVisible(true)} 
+                            onPressOut={() => setVisible(false)}
+                        >
+                        <Image source={imageConstant.tooltip} alt="" style={{ width: 18, height: 18, resizeMode: 'contain' }} />
+                        </TouchableOpacity>
+
+                        {visible && (
+                            <View style={{
+                                position: 'absolute',
+                                top: 30,
+                                backgroundColor: '#FFFFFF',
+                                padding: 10,
+                                borderRadius: 5,
+                                elevation: 5,
+                                zIndex: 10,
+                                width: '90%',
+                            }}>
+                                <Text style={{
+                                    fontSize: 14,
+                                    color:'black',
+                                    fontWeight:400
+                                }}>
+                                    If you opted for detail estimate, the mechanic will send you the pre-inspection and will wait for your approval to start service.
+                                </Text>
+                            </View>
+                        )}
+                    </HStack>
+
+
+                    <Box flexDirection="row" alignItems="center">
+                        <Switch
+                            onValueChange={() => setTakePermissionBeforeReplacing((pre) => !pre)}
+                            defaultIsChecked={takePermissionBeforeReplacing}
+                            colorScheme="primary"
+                        />
+                        <Text
+                            style={{
+                                color: '#5349f8',
+                                fontWeight: '700',
+                                fontSize: 16,
+                                letterSpacing: 1,
+                            }}
+                        >
+                            {takePermissionBeforeReplacing ? 'Yes' : 'No'}
+                        </Text>
                     </Box>
 
                 </HStack>

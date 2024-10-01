@@ -18,8 +18,8 @@ import time from '../assets/images/time.png';
 // import view from '../assets/images/view.png';
 // import back from '../assets/images/back.png';
 // import edit from '../assets/images/edit.png';
-// import add from '../assets/images/add.png';
-// import mech from '../assets/images/mech.png';
+import tooltip from '../assets/images/tooltip.png';
+import estimate from '../assets/images/estimate.png';
 import camera from '../assets/images/camera.png';
 import edit from '../assets/images/editt.png';
 import galary from '../assets/images/gallery.png';
@@ -37,8 +37,8 @@ import invoice from '../assets/images/invoice.png';
 
 
 const imageConstant = {
-    // home,
-    // home1,
+    tooltip,
+    estimate,
     // bookings,
     // bookings1,
     // spares,
