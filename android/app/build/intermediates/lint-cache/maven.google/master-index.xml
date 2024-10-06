@@ -68,6 +68,7 @@
   <androidx.health.connect/>
   <androidx.heifwriter/>
   <androidx.hilt/>
+  <androidx.ink/>
   <androidx.input/>
   <androidx.interpolator/>
   <androidx.javascriptengine/>
@@ -204,6 +205,7 @@
   <com.google.ads.interactivemedia.v3/>
   <com.google.ads.mediation/>
   <com.google.ai.client.generativeai/>
+  <com.google.ai.edge.aicore/>
   <com.google.ai.edge.litert/>
   <com.google.ambient.crossdevice/>
   <com.google.android.ads/>

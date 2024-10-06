@@ -140,6 +140,10 @@
         "source": "com.bikedoot.app-res-42:/drawable-mdpi/src_assets_images_empty.png"
     },
     {
+        "merged": "com.bikedoot.app-merged_res-49:/drawable-mdpi_src_assets_images_estimate.png.flat",
+        "source": "com.bikedoot.app-res-42:/drawable-mdpi/src_assets_images_estimate.png"
+    },
+    {
         "merged": "com.bikedoot.app-merged_res-49:/drawable-mdpi_src_assets_images_verified.gif.flat",
         "source": "com.bikedoot.app-res-42:/drawable-mdpi/src_assets_images_verified.gif"
     },
@@ -158,6 +162,10 @@
     {
         "merged": "com.bikedoot.app-merged_res-49:/drawable-mdpi_ic_notification.png.flat",
         "source": "com.bikedoot.app-main-50:/drawable-mdpi/ic_notification.png"
+    },
+    {
+        "merged": "com.bikedoot.app-merged_res-49:/drawable-mdpi_src_assets_images_tooltip.png.flat",
+        "source": "com.bikedoot.app-res-42:/drawable-mdpi/src_assets_images_tooltip.png"
     },
     {
         "merged": "com.bikedoot.app-merged_res-49:/drawable-mdpi_src_assets_images_time.png.flat",
@@ -212,11 +220,11 @@
         "source": "com.bikedoot.app-res-42:/drawable-mdpi/node_modules_reactnavigation_bottomtabs_node_modules_reactnavigation_elements_src_assets_backicon.png"
     },
     {
-        "merged": "com.bikedoot.app-merged_res-49:/drawable-mdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
-        "source": "com.bikedoot.app-res-42:/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
-    },
-    {
         "merged": "com.bikedoot.app-merged_res-49:/drawable-mdpi_node_modules_reactnavigation_stack_src_views_assets_backiconmask.png.flat",
         "source": "com.bikedoot.app-res-42:/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backiconmask.png"
+    },
+    {
+        "merged": "com.bikedoot.app-merged_res-49:/drawable-mdpi_node_modules_reactnavigation_stack_src_views_assets_backicon.png.flat",
+        "source": "com.bikedoot.app-res-42:/drawable-mdpi/node_modules_reactnavigation_stack_src_views_assets_backicon.png"
     }
 ]

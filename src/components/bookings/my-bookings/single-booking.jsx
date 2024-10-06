@@ -89,12 +89,12 @@ const BookingCard = ({ booking }) => {
                                 Mechanic: {mechanic}
                             </Text>
 
-                            {
+                            {/* {
                                 authCode &&
                                 <Text fontWeight="500" fontSize="bd_sm" mt={2} lineHeight="16px" color="bd_dark_text" >
                                     Auth Code : {authCode}
                                 </Text>
-                            }
+                            } */}
 
                             {/* Date and timing */}
                             <HStack space={1} alignItems="center" mt={3}>

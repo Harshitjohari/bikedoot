@@ -1265,7 +1265,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                 </CustomButton>
             )}
 
-            {booking?.status === 'SERVICE DONE' && booking?.completed === true && (
+            { booking?.completed === true && (
                 <CustomButton
                     onPress={() => {
                         handlePayment()
