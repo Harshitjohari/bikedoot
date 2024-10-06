@@ -1001,14 +1001,14 @@ const BookingCardDetail = ({ booking, refresh }) => {
                     booking?.afterImages.length > 0 && booking?.beforeImages.length > 0 ? (
                         <CustomButton
                             onPress={() => generateBill()}
-                            btnStyle={{ marginHorizontal: 10 }}
+                            btnStyle={{ marginHorizontal: 20, marginBottom:10 }}
                         >
                             Generate Bill
                         </CustomButton>
                     ) : (
                         <CustomButton
                             onPress={() => Alert.alert('Action Required', 'Please upload the before/after image first.')}
-                            btnStyle={{ marginHorizontal: 10, backgroundColor: 'grey' }}
+                            btnStyle={{ marginHorizontal: 20, marginBottom:10, backgroundColor: 'grey' }}
                         >
                             Generate Bill
                         </CustomButton>
@@ -1017,7 +1017,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
             }
 
             {
-                booking?.approved === false && booking?.sparePartPermission === true &&
+                booking?.approved === false && booking?.sparePartPermission === true && ['ASSIGNED', 'UPDATED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) &&
                 <CustomButton
                     onPress={() => sentForapproval()}
                     btnStyle={{ marginHorizontal: 20}}
