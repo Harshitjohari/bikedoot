@@ -138,12 +138,18 @@ const AddSparePartsPage = (props) => {
       Alert.alert('All fields are required');
       return;
     }
+    let isApproved = true
+
+    if(props.route?.params?.booking?.sparePartPermission === true && props.route?.params?.booking?.approved === false){
+      isApproved = false
+    }
+
     const data = {
       name: customData.name,
       quantity: customData.quantity,
       price: customData.price,
       gstRate: customData.gstRate.replace("%", ""),
-      approved: props.route?.params?.booking?.sparePartPermission === true && props.route?.params?.booking?.approved === false ? false : true
+      approved: isApproved
     };
 
     setLoading(true)

@@ -96,7 +96,7 @@ const AddAdditionalServicePage = (props) => {
       if (response?.status) {
 
         const data = await response?.data?.additionalServices;
-        setBookingData(esponse?.data);
+        setBookingData(response?.data);
         setAddonData(data);
         setCustomCards(response?.data?.spareParts)
         setLoading(false);
@@ -173,12 +173,19 @@ const AddAdditionalServicePage = (props) => {
       Alert.alert('All fields are required');
       return;
     }
+
+    let isApproved = true
+
+    if(BookingData.sparePartPermission === true && BookingData?.approved === false){
+      isApproved = false
+    }
     const data = {
       _id: addOnCustomData._id,
       name: addOnCustomData.name,
       price: addOnCustomData.price,
-      approved: BookingData.sparePartPermission === true && BookingData?.approved === false ? false : true
-    };
+      approved: isApproved
+      // approved: BookingData?.sparePartPermission === true ? (BookingData?.approved === true ? true : false) : true
+      };
 
     setLoading(true)
     let response = await Apis.HttpPostRequest(

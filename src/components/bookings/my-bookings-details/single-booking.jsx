@@ -38,7 +38,7 @@ const { width } = Dimensions.get('window');
 
 const BookingCardDetail = ({ booking, refresh }) => {
 
-    // console.log('==========>', booking._id)
+    // console.log('==========>', booking)
 
     const { token } = useAuth();
     const { show, close, closeAll } = handleToast();
@@ -81,7 +81,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
     const handleEstimatedTime = async () => {
         const currentDate = new Date();
         if (date < currentDate) {
-            Alert.alert("Invalid Time", "You cannot select a past time. Please choose a future time.");
+            return Alert.alert("Invalid Time", "You cannot select a past time. Please choose a future time.");
         } else {
             console.log('Valid date and time selected:', date);
         }
@@ -489,7 +489,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                         Estimated Time
                                     </Text>
                                     {
-                                        booking?.estimatedTime &&
+                                        booking?.estimatedTime ?
                                         <>
                                             <View
                                                 width="100%"
@@ -504,20 +504,26 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                                 </Text>
                                             </View>
                                         </>
+                                        :
+                                        <>
+                                        <Text fontSize="bd_xsm" color="bd_sec_text" marginLeft={2}>
+                                            N/A
+                                        </Text>
+                                        </>
                                         // <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
                                         // {booking?.estimatedTime}
                                         // </Text>
                                     }
 
                                 </View>
-                                <View>
+                                {/* <View>
                                     {
                                         ['ASSIGNED', 'UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED'].includes(booking?.status) && (
 
                                             <>
-                                                {/* <CustomButton btnStyle={{ height: 40 }} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={() => setShowDatePicker(true)}>
+                                                <CustomButton btnStyle={{ height: 40 }} textStyle={{ fontSize: 12, fontWeight: 500 }} onPress={() => setShowDatePicker(true)}>
                                                     Update Estimated Time
-                                                </CustomButton> */}
+                                                </CustomButton>
 
                                                 <TouchableOpacity onPress={() => setShowDatePicker(true)}>
                                                     <Text style={{ fontSize: 12, fontWeight: '500', color: '#5349f8', textDecorationLine: 'underline' }}>
@@ -527,7 +533,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                             </>
                                         )}
 
-                                </View>
+                                </View> */}
                             </View>
 
                             {showDatePicker && (
@@ -1016,7 +1022,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                 ) : null
             }
 
-            {
+            {/* {
                 booking?.approved === false && booking?.sparePartPermission === true && ['ASSIGNED', 'UPDATED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) &&
                 <CustomButton
                     onPress={() => sentForapproval()}
@@ -1024,19 +1030,45 @@ const BookingCardDetail = ({ booking, refresh }) => {
                 >
                     Sent for approval
                 </CustomButton>
-            }
+            } */}
+            {/* {
+                booking?.approved === false &&
+                booking?.sparePartPermission === true &&
+                ['UPDATED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) &&
+                (
+                    booking?.additionalServices?.some(service => service.approved === false) ||
+                    booking?.spareParts?.some(part => part.approved === false)
+                ) && (
+                    <CustomButton
+                        onPress={() => sentForapproval()}
+                        btnStyle={{ marginHorizontal: 20 }}
+                    >
+                        Sent for approval
+                    </CustomButton>
+                )
+            } */}
+
 
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
 
-
-                {['ASSIGNED', 'UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) && booking?.completed === false && (
+                {['UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) && booking?.completed === false && (
                     <CustomButton
-                        onPress={() => navigation.navigate("AddOnScreen", { booking })}
-                        btnStyle={{ margin: 10, width: booking?.status === 'SERVICE DONE' ? "45%" : "90%" }}>
-                        Update Service
+                        onPress={() => {
+                                navigation.navigate("AddOnScreen", { booking });
+                        }}
+                        btnStyle={{
+                            margin: 10,
+                            width: booking?.status === 'SERVICE DONE' ? "45%" : "90%",
+                            backgroundColor: ['UPDATED', 'APPROVED', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) ? '#5349f8' :  'grey',
+                        }}
+                        disabled={!['UPDATED', 'APPROVED', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status)}
+                    >
+                        Update Job Card
                     </CustomButton>
                 )}
+
+
 
                 {booking?.status === 'SERVICE DONE' && booking?.completed === false && (
                     <CustomButton

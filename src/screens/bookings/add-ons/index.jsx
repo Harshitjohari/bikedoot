@@ -28,6 +28,7 @@ import { useIsFocused } from '@react-navigation/native';
 import SelectDropdown from 'react-native-select-dropdown';
 import { handleToast } from '../../../utils/toast';
 import LoadingSpinner from '../../../components/UI/loading';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 
@@ -72,6 +73,13 @@ const AddOnScreen = (props) => {
     name: '',
     price: ''
   });
+  const [showDatePicker, setShowDatePicker] = useState(false);  // Controls visibility of the date picker
+  const [showTimePicker, setShowTimePicker] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [showSendForApproval, setShowSendForApproval] = useState(false);
+  const [showEstimatedTime, setShowEstimatedTime] = useState(false);
+  const [showWaitingForApproval, setShowWaitingForApproval] = useState(false);
+
 
 
 
@@ -80,15 +88,113 @@ const AddOnScreen = (props) => {
   ).map(service => service.service._id);
 
 
+  // Handle date change
+  const onDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowDatePicker(Platform.OS === 'ios');
+    setDate(currentDate);
+    if (event.type != 'dismissed') { setShowTimePicker(true); }
+  };
+
+  // Handle time change
+  const onTimeChange = (event, selectedTime) => {
+    const currentTime = selectedTime || date;
+    setShowTimePicker(Platform.OS === 'ios');
+    setDate(currentTime);
+    handleAlert()
+  };
+
+  const formatDate2 = (timestamp) => {
+    const date = new Date(timestamp);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  };
+
+  const handleAlert = () => {
+    Alert.alert(
+      'Check Estd. Time',
+      `You have provided ${formatDate2(date)}, are you sure?`,
+      [
+        {
+          text: 'No',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        { text: 'Yes', onPress: () => handleEstimatedTime() },
+      ],
+      { cancelable: false }
+    );
+  };
+
+  const handleEstimatedTime = async () => {
+    const currentDate = new Date();
+    if (date < currentDate) {
+      return Alert.alert("Invalid Time", "You cannot select a past time. Please choose a future time.");
+    } else {
+      console.log('Valid date and time selected:', date);
+    }
+
+    const data = {
+      _id: BookingData?._id,
+      estimatedTime: date
+    };
+
+    setLoading(true)
+    let response = await Apis.HttpPostRequest(
+      Constant.BASE_URL + Constant.ESTIMATED_TIME,
+      token,
+      data
+    );
+    setLoading(false)
+    if (response?.status) {
+      show(response?.message, "success");
+      navigation.goBack();
+    } else {
+      show(response?.message || "Failed to send data, try again later", "error");
+    }
+  };
 
 
   useEffect(() => {
     if (isFocused)
-    fetchServiceList();
+      fetchServiceList();
     setSelectedServiceCards(preSelectedServices);
     fetchBookingsDetails();
   }, [isFocused]);
 
+
+  useEffect(() => {
+    setShowEstimatedTime(false)
+    setShowSendForApproval(false)
+    setShowWaitingForApproval(false)
+
+    if(BookingData?.status == 'VERIFIED'){
+      if(
+        BookingData?.sparePartPermission === true
+        && (
+          BookingData?.additionalServices?.some(service => service.approved === false) ||
+          BookingData?.spareParts?.some(part => part.approved === false)
+        )
+      ){
+        setShowSendForApproval(true)
+      }else{
+        setShowEstimatedTime(true)
+      }
+
+    }else if(BookingData?.status == 'UPDATED'){
+      setShowWaitingForApproval(true)
+    }else if(BookingData?.status == 'APPROVED'){
+      if(!BookingData?.estimatedTime){
+        setShowEstimatedTime(true)
+      }
+    }
+  }, [BookingData]);
 
   const fetchBookingsDetails = async () => {
     try {
@@ -132,6 +238,25 @@ const AddOnScreen = (props) => {
       // show("Some error has occured!");
     }
   };
+
+  const sentForapproval = async () => {
+    try {
+        setLoading(true);
+        let response = await Apis.HttpPostRequest(
+            Constant.BASE_URL + Constant.GARAGE_BOOKING_API + props.route?.params?.booking?._id + '/sentForapproval',
+            token
+        );            
+        if (response?.status) {
+            setLoading(false);
+            show(response?.message, 'success');
+            navigation.goBack();
+        } else {
+            setLoading(false);
+        }
+    } catch (e) {
+        setLoading(false);
+    }
+};
 
   let filterServices = services.filter(data => data.cc._id === props.route?.params?.booking?.bike?.cc?._id)
 
@@ -379,12 +504,114 @@ const AddOnScreen = (props) => {
               )}
             </>
           }
+          {showDatePicker && (
+            <DateTimePicker
+              value={date}
+              mode="date"
+              display="default"
+              onChange={onDateChange}
+              minimumDate={new Date()}
+            />
+          )}
+
+          {showTimePicker && (
+            <DateTimePicker
+              value={date}
+              mode="time"
+              display="default"
+              onChange={onTimeChange}
+              minimumDate={date.toDateString() === new Date().toDateString() ? new Date() : null}
+            />
+          )}
 
         </ScrollView>
 
-        <CustomButton onPress={() => navigation.navigate("ImagesUploadScreen", { booking : props.route?.params?.booking })} btnStyle={{ margin: 10 }}>
+        {/* {
+
+          !BookingData?.estimatedTime &&
+          <CustomButton btnStyle={{ margin: 10 }}
+            onPress={() => setShowDatePicker(true)}
+          >
+            Add Estd. Time To Start
+          </CustomButton>
+
+        } */}
+
+        {/* <CustomButton onPress={() => navigation.navigate("ImagesUploadScreen", { booking : props.route?.params?.booking })} btnStyle={{ margin: 10 }}>
           Upload Images
-        </CustomButton> 
+        </CustomButton>  */}
+
+        {
+          BookingData?.estimatedTime &&
+
+          <CustomButton
+            onPress={() => navigation.navigate("ImagesUploadScreen", { booking: props.route?.params?.booking })}
+            btnStyle={{
+              margin: 10,
+              backgroundColor: BookingData?.status === 'SERVICE DONE' ? '#5349f8' : 'grey',
+            }}
+            disabled={BookingData?.status !== 'SERVICE DONE'}
+          >
+            Upload Images
+          </CustomButton>
+        }
+
+        {/* {
+          BookingData?.approved === false &&
+          BookingData?.sparePartPermission === true &&
+          ['UPDATED'].includes(BookingData?.status) &&
+          (
+            BookingData?.additionalServices?.some(service => service.approved === false) ||
+            BookingData?.spareParts?.some(part => part.approved === false)
+          ) ? (
+            <CustomButton
+              onPress={() => sentForapproval()}
+              btnStyle={{ marginHorizontal: 10 }}
+            >
+              Sent for approval
+            </CustomButton>
+          ) : (
+            
+
+              !BookingData?.estimatedTime &&
+              <CustomButton btnStyle={{ margin: 10 }}
+                onPress={() => setShowDatePicker(true)}
+              >
+                Add Estd. Time To Start
+              </CustomButton>
+    
+            
+          )
+        } */}
+
+        {
+          showEstimatedTime && 
+          <CustomButton btnStyle={{ margin: 10 }}
+            onPress={() => setShowDatePicker(true)}
+          >
+            Add Estd. Time To Start
+          </CustomButton>
+        }
+
+        {
+          showSendForApproval && 
+          <CustomButton
+            onPress={() => sentForapproval()}
+            btnStyle={{ margin: 10 }}
+          >
+            Sent for approval
+          </CustomButton>
+        }
+
+        {
+          showWaitingForApproval && 
+          <CustomButton
+            btnStyle={{ margin:10, backgroundColor: 'grey' }}
+            disabled = {true}
+          >
+            Waiting for approval...
+          </CustomButton>
+        }
 
       </>
       }
