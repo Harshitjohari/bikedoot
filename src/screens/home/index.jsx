@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FlatList, Center, Box, Button, ScrollView } from 'native-base';
 import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, navigation, Switch, SafeAreaView, Alert, TextInput, Linking } from 'react-native';
 import RoundBoxCard from '../../components/UI/services-cards';
@@ -16,7 +16,7 @@ import { imageConstant } from '../../utils/constant';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Logout } from '../../utils/logout'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import { getToken } from '../../utils/NotificationController';
 import Storage from '../../utils/async-storage';
@@ -33,13 +33,15 @@ const HorizontalFlatList = (props) => {
   const { token, userData, clearAuthData } = useAuth();
   const navigation = useNavigation()
 
-      // console.log('FCM=============>',token)
+  // console.log('FCM=============>',token)
 
-  useEffect(() => {
-    fetchHomeData();
-    fetchProfileData();
-    updateFcmToken();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchHomeData();
+      fetchProfileData();
+      updateFcmToken();
+    }, [])
+  );
 
   //   useEffect(() => {
   //     crashlytics().crash();

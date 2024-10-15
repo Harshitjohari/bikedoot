@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { FlatList, Center, Box, Button, ScrollView, } from 'native-base';
 import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity, navigation, Switch, SafeAreaView, Linking } from 'react-native';
 import RoundBoxCard from '../../../components/UI/services-cards';
@@ -23,6 +23,8 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import { checkVersion } from "react-native-check-version";
 import Modal from "react-native-modal";
 import DeviceInfo from 'react-native-device-info';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+
 
 
 const width = Dimensions.get('window').width;
@@ -46,12 +48,14 @@ const HorizontalFlatList = (props) => {
   const [appData, setAppData] = useState({});
   const [isModalVisible, setModalVisible] = useState(false);
 
-  useEffect(() => {
-    fetchHomeData();
-    fetchProfileData();
-    updateFcmToken();
-    checkAppVersion();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchHomeData();
+      fetchProfileData();
+      updateFcmToken();
+      checkAppVersion();
+    }, [])
+  );
 
   //   useEffect(() => {
   //     crashlytics().crash();
