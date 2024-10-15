@@ -50,6 +50,7 @@ const BookingList = ({ horizontal = false, isHomePageComponent = false, navigati
                     bookingData.push({
                         "_id": fullData[index] ?._id,
                         "bookingId": fullData[index] ?.bookingId,
+                        "serviceCategory":fullData[index] ?.serviceCategory,
                         "bikeImage": fullData[index] ?.bike ?.icon,
                         "bikeName": fullData[index] ?.bike ?.name || "N/A",
                         "status": fullData[index] ?.status || "Confirmed",
@@ -59,7 +60,7 @@ const BookingList = ({ horizontal = false, isHomePageComponent = false, navigati
                         "bookingAmount": fullData[index] ?.amount || 0,
                         "serviceType": fullData[index] ?.services[0] ?.service ?.service ?.name,
                         "mechanic": fullData[index]?.mechanics?.name || "Not Yet Assigned",
-                        "authCode": fullData[index]?.authCode,
+                        "shareCode": fullData[index]?.shareCode,
                         "garage": fullData[index]?.garage?.name || "N/A",
                 })
                 }
@@ -68,6 +69,7 @@ const BookingList = ({ horizontal = false, isHomePageComponent = false, navigati
                         bookingData.push({
                         "_id": fullData[index] ?._id,
                             "bookingId": fullData[index] ?.bookingId,
+                            "serviceCategory":fullData[index] ?.serviceCategory,
                             "bikeImage": fullData[index] ?.bike ?.icon,
                             "bikeName": fullData[index] ?.bike ?.name || "N/A",
                             "status": fullData[index] ?.status || "Confirmed",
@@ -77,7 +79,7 @@ const BookingList = ({ horizontal = false, isHomePageComponent = false, navigati
                             "bookingAmount": fullData[index] ?.amount || 0,
                             "serviceType": fullData[index] ?.services[0] ?.service ?.service ?.name,
                             "mechanic": fullData[index]?.mechanics?.name || "Not Yet Assigned",
-                            "authCode": fullData[index]?.authCode,
+                            "shareCode": fullData[index]?.shareCode,
                             "garage": fullData[index]?.garage?.name || "N/A",
                     })
                     }

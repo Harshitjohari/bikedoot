@@ -12,6 +12,7 @@ const BookingCard = ({ booking }) => {
     const {
         _id,
         bookingId,
+        serviceCategory,
         bikeImage = "https://placehold.jp/150x150.png",
         bikeName,
         status,
@@ -21,7 +22,7 @@ const BookingCard = ({ booking }) => {
         bookingAmount,
         serviceType,
         mechanic,
-        authCode,
+        shareCode,
         garage
     } = booking;
 
@@ -89,12 +90,13 @@ const BookingCard = ({ booking }) => {
                                 Mechanic: {mechanic}
                             </Text>
 
-                            {/* {
-                                authCode &&
+                            {
+                                shareCode && serviceCategory.name != 'Bike Service at Garage' &&
                                 <Text fontWeight="500" fontSize="bd_sm" mt={2} lineHeight="16px" color="bd_dark_text" >
-                                    Auth Code : {authCode}
+                                    Share Code : {shareCode}
                                 </Text>
-                            } */}
+
+                            }
 
                             {/* Date and timing */}
                             <HStack space={1} alignItems="center" mt={3}>

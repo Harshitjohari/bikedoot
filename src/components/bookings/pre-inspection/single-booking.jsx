@@ -485,7 +485,7 @@ const FinishService = ({ booking }) => {
             <CustomButton
                 onPress={handleAlert}
                 btnStyle={{ margin: 10 }}>
-                Approve
+                Approve Job Card & Estimate
             </CustomButton>
         </>
 

@@ -56,7 +56,7 @@ const Stepper = (props) => {
   const [selectedAddress, setSelectedAddress] = useState([]);
   const [otherSuggestionText, setOtherSuggestionText] = useState("");
   const [takePermissionBeforeReplacing, setTakePermissionBeforeReplacing] = useState(false);
-  const [selectedDateIndex, setSelectedDateIndex] = useState(-1);
+  const [selectedDateIndex, setSelectedDateIndex] = useState(0);
   const [isNotServicable, setIsNotServicable] = useState(false)
 
 

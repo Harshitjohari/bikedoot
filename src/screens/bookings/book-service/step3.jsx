@@ -8,64 +8,40 @@ const { height } = Dimensions.get('window');
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AddressCard from '../../../components/address/single-address'
-import { Tooltip } from 'react-native-elements';
 import { imageConstant } from '../../../utils/constant';
 
-const DateTimePicker = ({ dateArray, dateArrayNew, timeArray, navigation, selectedDate, setSelectedDateIndex, selectedDateIndex,
-    setSelectedDate,
-    selectedTime,
-    setSelectedTime,
-    selectedTimeSlot,
-    setSelectedTimeSlot,
-    selectedAddress,
-    setOtherSuggestionText, otherSuggestionText,
-    takePermissionBeforeReplacing,
-    setTakePermissionBeforeReplacing,
-    setSelectedAddress,
-}) => {
+const DateTimePicker = ({ dateArrayNew, navigation, selectedDate, setSelectedDateIndex, selectedDateIndex,
+    setSelectedDate, selectedTime, setSelectedTime, selectedTimeSlot, setSelectedTimeSlot,
+    selectedAddress, setOtherSuggestionText, otherSuggestionText, takePermissionBeforeReplacing, setTakePermissionBeforeReplacing,
+    setSelectedAddress }) => {
 
     const [selectedTimeSlots, setSelectedTimeSlots] = useState(null);
     const [visible, setVisible] = useState(false);
+    const bottomSheetRef = useRef(null);
+    const [bottomSheetHeight, setBottomSheetHeight] = useState(height - 100);
+    const [contentType, setContentType] = useState('');
 
     useEffect(() => {
-
-    }, [selectedTimeSlots]);
-
-
-    // function formatDate(dateString) {
-    //     const dateObject = new Date(dateString);
-    //     // Get day of the month (e.g., '15')
-    //     const day = dateObject.getDate();
-    //     const dayName = dateObject.getDay();
-    //     // Get month name in short format (e.g., 'JAN')
-    //     const monthNamesShort = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-    //     const monthIndex = dateObject.getMonth();
-    //     const monthShort = monthNamesShort[monthIndex];
-    //     return { day, monthShort, dayName };
-    // }
-    function formatDate(dateString) {
-        const dateObject = new Date(dateString);
-        const day = dateObject.getDate();
-
-        const dayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        const dayName = dayNamesShort[dateObject.getDay()];
-
-        const monthNamesShort = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-        const monthIndex = dateObject.getMonth();
-        const monthShort = monthNamesShort[monthIndex];
-
-        return { day, monthShort, dayName };
-    }
+        // Automatically select the first date and time slot if they exist
+        if (dateArrayNew && dateArrayNew.length > 0) {
+            handleDateSelection(dateArrayNew[0], 0);
+        }
+    }, [dateArrayNew]);
 
     const handleDateSelection = (date, index) => {
-        setSelectedDateIndex(index)
+        setSelectedDateIndex(index);
         setSelectedDate(date.date);
-        setSelectedTimeSlots(date.slots)
+        setSelectedTimeSlots(date.slots);
+
+        // Automatically select the first time slot when the date is selected
+        if (date.slots && date.slots.length > 0) {
+            handleTimeSelection(date.slots[0]);
+        }
     };
 
     const handleTimeSelection = (time) => {
         setSelectedTime(time.label);
-        setSelectedTimeSlot(time.value)
+        setSelectedTimeSlot(time.value);
     };
 
     const renderTimeItem = (time, index) => (
@@ -78,28 +54,24 @@ const DateTimePicker = ({ dateArray, dateArrayNew, timeArray, navigation, select
             mr={1}
             mt={3}
         >
-            <Text fontWeight="500" fontSize="bd_sm" lineHeight="20px" color={selectedTime === time.label ? 'white' : '#ce8b7b'}>{time.label}</Text>
+            <Text fontWeight="500" fontSize="bd_sm" lineHeight="20px" color={selectedTime === time.label ? 'white' : '#ce8b7b'}>
+                {time.label}
+            </Text>
         </Pressable>
     );
 
-    const bottomSheetRef = useRef(null);
-
     const openBottomSheet = (type = "addons") => {
-
-        setBottomSheetHeight(height - 100)
+        setBottomSheetHeight(height - 100);
         setContentType(type);
         setTimeout(() => {
             bottomSheetRef.current.open();
-        }, 50)
+        }, 50);
     };
 
     const closeBottomSheet = () => {
         setContentType("");
         bottomSheetRef.current.close();
     };
-
-    const [bottomSheetHeight, setBottomSheetHeight] = useState(height - 100);
-    const [contentType, setContentType] = useState('');
 
     return (
         <Box p={0} flex={1} mb={2}>
@@ -113,43 +85,25 @@ const DateTimePicker = ({ dateArray, dateArrayNew, timeArray, navigation, select
                     contentType={contentType}
                     addNewAddress={() => {
                         closeBottomSheet();
-                        navigation.navigate("SavedAddress")
+                        navigation.navigate("SavedAddress");
                     }}
                     setSelectedAddress={setSelectedAddress}
-                    // setSelectedAccessories={setSelectedAccessories}
-
                     closeBottomSheet={() => closeBottomSheet()}
                 />
 
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={3}>
                     {dateArrayNew && dateArrayNew.map((data, index) => {
                         return (
-                            <Pressable onPress={() => handleDateSelection(data, index)}>
+                            <Pressable key={index} onPress={() => handleDateSelection(data, index)}>
                                 <VStack mr={2} space={2} bg={selectedDateIndex === index ? "#5349f8" : "transparent"} p={2} borderRadius={50} pt={4} pb={4}>
-                                    <Text fontWeight="700" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_sec_text"} textAlign="center">{data.dateLabel}</Text>
-                                    {/* <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.dayName}</Text>
-                                    <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.day}</Text> */}
+                                    <Text fontWeight="700" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_sec_text"} textAlign="center">
+                                        {data.dateLabel}
+                                    </Text>
                                 </VStack>
                             </Pressable>
-                        )
+                        );
                     })}
                 </ScrollView>
-
-
-                {/* <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={3}>
-                    {dateArray && dateArray.map((data, index) => {
-                        let formattedDate = formatDate(data);
-                        return (
-                            <Pressable onPress={() => handleDateSelection(data, index)}>
-                                <VStack mr={2} space={2} bg={selectedDateIndex === index ? "#5349f8" : "transparent"} p={2} borderRadius={50} pt={4} pb={4}>
-                                    <Text fontWeight="700" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_sec_text"} textAlign="center">{formattedDate.monthShort}</Text>
-                                    <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.dayName}</Text>
-                                    <Text fontWeight="500" fontSize="bd_md" mb={0} lineHeight="20px" color={selectedDateIndex === index ? "#FFF" : "bd_dark_text"} textAlign="center">{formattedDate.day}</Text>
-                                </VStack>
-                            </Pressable>
-                        )
-                    })}
-                </ScrollView> */}
             </VStack>
 
             <VStack space={2} mb={4} mt={5}>
@@ -160,18 +114,10 @@ const DateTimePicker = ({ dateArray, dateArrayNew, timeArray, navigation, select
 
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
                     {selectedTimeSlots && selectedTimeSlots.map((data, index) => {
-                        return renderTimeItem(data, index)
+                        return renderTimeItem(data, index);
                     })}
                 </ScrollView>
-
-                {/* <ScrollView horizontal showsHorizontalScrollIndicator={false} mt={0}>
-                    {timeArray && timeArray.map((data, index) => {
-                        return renderTimeItem(data, index)
-                    })}
-                </ScrollView> */}
-
             </VStack>
-
 
             <VStack space={2} mb={4} mt={5}>
                 <Text fontWeight="600" fontSize="bd_md" mb={2} lineHeight="20px" color="bd_dark_text">
@@ -201,47 +147,6 @@ const DateTimePicker = ({ dateArray, dateArrayNew, timeArray, navigation, select
                 {/* {selectedAddress.length > 0 && <AddressCard showDeleteIcon={false} address={selectedAddress[0]} />}
                 <CustomButton onPress={() => openBottomSheet("select_address")} btnStyle={{ width: "30%", alignSelf: "center", height: 40, borderRadius: 5, borderWidth: 2, borderColor: "#DDD", backgroundColor: "transparent", alignItems: "center", alignContents: "center", paddingTop: 8 }} textStyle={{ color: "#000", fontSize: 12 }}>{selectedAddress.length > 0 ? "Change" : "Select"}</CustomButton> */}
             </VStack>
-
-            {/* <Box>
-                <HStack space={0} mb={4} mt={5}>
-                <Icon name="gear" style={{ marginTop: 3 }} size={18} />
-
-                    <Box>
-                    <Text pl={1} w="85%" fontWeight="500" fontSize="bd_sm" mb={0} color="bd_dark_text">
-                        Do you want detailed Estimate? 
-                    </Text>
-                    <Icon name="info" style={{ marginTop: 3 }} size={18} />
-                    </Box>
-                    
-
-
-                    <Box
-                    flexDirection="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    >
-                    <Switch
-                        onValueChange={() =>
-                        setTakePermissionBeforeReplacing((pre) => !pre)
-                        }
-                        defaultIsChecked={takePermissionBeforeReplacing}
-                        colorScheme="primary"
-                    />
-                    <Text
-                        style={{
-                        color: '#5349f8',
-                        fontWeight: 600,
-                        fontSize: 14,
-                        alignSelf: 'center',
-                        letterSpacing: 1
-                        }}
-                    >
-                        {takePermissionBeforeReplacing == true ? 'Yes' : 'No'}
-                    </Text>
-                    </Box>
-
-                </HStack>
-            </Box> */}
 
             <Box>
                 <HStack space={0} mb={4} mt={5} justifyContent="space-between" alignItems="center">
@@ -305,20 +210,17 @@ const DateTimePicker = ({ dateArray, dateArrayNew, timeArray, navigation, select
                 </HStack>
             </Box>
 
-
-
-
-
             <VStack space={2} mb={4} mt={5}>
                 <Text fontWeight="600" fontSize="bd_xsm" mb={0} lineHeight="20px" color="bd_dark_text">
-                    Any Suggesstions?
+                    Any Suggestions?
                 </Text>
                 <Divider />
 
                 <TextArea
                     value={otherSuggestionText}
                     onChangeText={text => setOtherSuggestionText(text)}
-                    placeholder="Enter any other problems" w="100%" />
+                    placeholder="Enter any other problems"
+                    w="100%" />
             </VStack>
         </Box>
     );
