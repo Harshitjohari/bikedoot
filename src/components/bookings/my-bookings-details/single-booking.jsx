@@ -1052,7 +1052,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
 
             <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
 
-                {['UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) && booking?.completed === false && (
+                {/* {['UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) && booking?.completed === false && (
                     <CustomButton
                         onPress={() => {
                                 navigation.navigate("AddOnScreen", { booking });
@@ -1066,7 +1066,26 @@ const BookingCardDetail = ({ booking, refresh }) => {
                     >
                         Update Job Card
                     </CustomButton>
-                )}
+                )} */}
+
+                    <CustomButton
+                        onPress={() => {
+                            if (['UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) && booking?.completed === false) {
+                                navigation.navigate("AddOnScreen", { booking });
+                            }
+                        }}
+                        btnStyle={{
+                            margin: 10,
+                            width: booking?.status === 'SERVICE DONE' ? "45%" : "90%",
+                            backgroundColor: ['UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) && booking?.completed === false
+                                ? '#5349f8'
+                                : 'grey', // If condition is not met, set background to grey
+                        }}
+                        disabled={!['UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) || booking?.completed !== false} // Disable if condition is not met
+                    >
+                        Update Job Card
+                    </CustomButton>
+
 
 
 
