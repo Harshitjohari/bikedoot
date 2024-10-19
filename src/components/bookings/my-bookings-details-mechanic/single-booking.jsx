@@ -512,7 +512,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                             justifyContent="space-between"
                         >
                             <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                Spare Part Permission :
+                            Estimate Required :
                             </Text>
                             <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
                                 {booking?.sparePartPermission == false ? 'No' : 'Yes'}
