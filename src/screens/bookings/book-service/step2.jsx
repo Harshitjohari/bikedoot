@@ -197,7 +197,7 @@ const AddAllServices = ({
 
                     <HStack justifyContent="space-between" alignItems="center">
                         <Text fontWeight="600" fontSize="bd_md" mb={0} lineHeight="20px" color="bd_dark_text">
-                            Select Add On Services
+                            Select Additional Service
                         </Text>
                         <CustomButton onPress={() => openBottomSheet()} btnStyle={{ width: 100, height: 40, borderRadius: 50, borderWidth: 2, borderColor: "#DDD", alignItems: "center", justifyContent: "center" }} textStyle={{ color: "#fff", lineHeight: 15, fontSize: 12 }}>{selectedAddOns.length > 0 ? "Add More" : "Click to add"}</CustomButton>
                     </HStack>

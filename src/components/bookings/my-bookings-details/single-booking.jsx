@@ -1253,7 +1253,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                 <CustomButton onPress={() => {
                     navigation.navigate("ApprovedPreInspection", { booking })
                 }} btnStyle={{ margin: 10, borderRadius: 10 }}>
-                    Approve Pre Inspection
+                    Verify Job Card & Estimate
                 </CustomButton>
             )}
 
