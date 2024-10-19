@@ -53,8 +53,8 @@ const Header = (props) => {
     //   </Box>
     <Box safeAreaTop bg="#534AF9" px={4} py={5} mb={0}>
     <HStack space={2} alignItems="center">
-      <Pressable onPress={() => navigation.goBack()}>
-        <HStack space={1} alignItems="center">
+      <Pressable onPress={() => navigation.goBack()} style={{width: 20, height: 20}}>
+        <HStack space={0} alignItems="center">
           <Image source={imageConstant.back} alt="" style={{ width: 15, height: 15 }} />
         </HStack>
       </Pressable>

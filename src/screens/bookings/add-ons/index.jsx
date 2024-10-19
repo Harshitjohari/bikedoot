@@ -80,12 +80,9 @@ const AddOnScreen = (props) => {
   const [showEstimatedTime, setShowEstimatedTime] = useState(false);
   const [showWaitingForApproval, setShowWaitingForApproval] = useState(false);
 
-
-
-
-  let preSelectedServices = props.route?.params?.booking?.services.filter(
-    service => service?.service?.service?.serviceType?.name === "Service"
-  ).map(service => service.service._id);
+  // let preSelectedServices = props.route?.params?.booking?.services.filter(
+  //   service => service?.service?.service?.serviceType?.name === "Service"
+  // ).map(service => service.service._id);
 
 
   // Handle date change
@@ -163,9 +160,11 @@ const AddOnScreen = (props) => {
 
   useEffect(() => {
     if (isFocused)
+      fetchBookingsDetails();
       fetchServiceList();
-    setSelectedServiceCards(preSelectedServices);
-    fetchBookingsDetails();
+      // if(BookingData){
+        // setSelectedServiceCards(preSelectedServices);
+      // }
   }, [isFocused]);
 
 
@@ -204,14 +203,12 @@ const AddOnScreen = (props) => {
         token
       );
 
-      // console.log('=========?',response?.data)
-
       if (response?.status) {
-
         const data = await response?.data?.additionalServices;
         setBookingData(response?.data);
         setAddonData(data);
         setCustomCards(response?.data?.spareParts)
+        setSelectedServiceCards(response?.data?.services[0].service._id);
         setLoading(false);
       } else {
         setLoading(false);
@@ -298,7 +295,9 @@ const AddOnScreen = (props) => {
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.quantity}>Quantity: {quantity}</Text>
         <Text style={styles.quantity}>Price: {`₹ ${price}`}</Text>
-        <Text style={styles.quantity}>Gst: {`${gstRate}`}%</Text>
+        { gstRate &&
+          <Text style={styles.quantity}>GST: {`${gstRate}`}%</Text>
+        }
       </View>
       <TouchableOpacity style={styles.removeButton} onPress={onPressRemove}>
         <Image
