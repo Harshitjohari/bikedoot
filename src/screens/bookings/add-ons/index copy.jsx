@@ -269,7 +269,7 @@ const AddOnScreen = (props) => {
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.quantity}>Quantity: {quantity}</Text>
         <Text style={styles.quantity}>Price: {`₹ ${price}`}</Text>
-        <Text style={styles.quantity}>Gst: {`${gstRate}`}%</Text>
+        <Text style={styles.quantity}>GST: {`${gstRate}`}%</Text>
       </View>
       <TouchableOpacity style={styles.removeButton} onPress={onPressRemove}>
         <Image

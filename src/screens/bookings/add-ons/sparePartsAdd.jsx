@@ -138,6 +138,12 @@ const AddSparePartsPage = (props) => {
       Alert.alert('All fields are required');
       return;
     }
+    if(GarageData?.garage?.firmRegistered === true && GarageData?.garage?.firmGstNo !== ''){
+      if(!customData.gstRate){
+        Alert.alert('GST is required');
+        return;
+      }
+    }
     let isApproved = true
 
     if(props.route?.params?.booking?.sparePartPermission === true && props.route?.params?.booking?.approved === false){

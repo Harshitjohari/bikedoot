@@ -75,7 +75,7 @@ const RevenueCard = ({ revenue }) => {
                         </HStack>
 
                         <HStack justifyContent="space-between" alignItems="center" mb={1}>
-                                                <Text fontWeight="500" fontSize={14} color="grey">Platform Fee Gst :</Text>
+                                                <Text fontWeight="500" fontSize={14} color="grey">Platform Fee GST :</Text>
                                                 <HStack space={1} alignItems="center">
                                                     <Text fontWeight="600" fontSize={14} color="grey">-</Text>
                                                     <Text fontWeight="600" fontSize={14} color="grey">₹{revenue?.plateformFeeGst} ({revenue?.gstRate}%)</Text>

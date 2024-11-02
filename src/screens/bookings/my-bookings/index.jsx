@@ -24,7 +24,7 @@ const BookingList = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [bookings, setBookings] = useState([]);
-  const [selectedButton, setSelectedButton] = useState(props.route.params?.index !== undefined ? props.route.params.index : 0);
+  const [selectedButton, setSelectedButton] = useState(props.route.params?.index || 0);
 
   // console.log('props.route.params================>',props.route.params)
 
@@ -34,7 +34,8 @@ const BookingList = (props) => {
 
   useEffect(() => {
     if (isFocused) {
-      const initialStatus = props.route.params?.id || 'ASSIGNED';
+      const initialStatus = props.route.params?.id || ['ASSIGNED','VERIFIED', 'UPDATED', 'APPROVED', 'IN PROGRESS', 'SERVICE DONE'];
+      setSelectedButton(props.route.params?.index || 0);
       fetchTabsData();
       fetchBookingsData(initialStatus);
     }
@@ -42,7 +43,7 @@ const BookingList = (props) => {
 
 
   const handleButtonPress = (button, index) => {
-    setSelectedButton(index,button.status);
+    setSelectedButton(index);
     fetchBookingsData(button.status)
   };
 

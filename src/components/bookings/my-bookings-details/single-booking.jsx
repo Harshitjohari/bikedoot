@@ -1067,7 +1067,8 @@ const BookingCardDetail = ({ booking, refresh }) => {
                         Update Job Card
                     </CustomButton>
                 )} */}
-
+                {
+                    booking?.status !== 'CREATED' && 
                     <CustomButton
                         onPress={() => {
                             if (['UPDATED', 'APPROVED', 'IN PROGRESS', 'VERIFIED', 'SERVICE DONE'].includes(booking?.status) && booking?.completed === false) {
@@ -1085,9 +1086,9 @@ const BookingCardDetail = ({ booking, refresh }) => {
                     >
                         Update Job Card
                     </CustomButton>
+                }
 
-
-
+                    
 
                 {booking?.status === 'SERVICE DONE' && booking?.completed === false && (
                     <CustomButton
