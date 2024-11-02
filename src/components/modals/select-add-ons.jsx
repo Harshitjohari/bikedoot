@@ -50,13 +50,13 @@ const SelectAddOns = ({ data, setSelectedAddOns,setData, closeBottomSheet }) => 
                     <VStack space={2} mb={0}>
                         <HStack mb={3}>
                             <Text fontWeight="600" fontSize="bd_md" mb={0} lineHeight="20px" color="bd_dark_text">
-                                Select Addons
+                                Select Additional Service
                     </Text>
                             <CustomButton onPress={closeBottomSheet} btnStyle={{ height: 30, width: "10%", position:"absolute",right:0,top:0,borderRadius:0,paddingTop:4 }} textStyle={{fontSize:12}}>X</CustomButton>
                         </HStack>
                         <Divider />
                         <FlatListContainer
-                            emptyMessage="No addons found"
+                            emptyMessage="No additional service found"
                             containerStyle={{ margin: 0 }}
                             data={data}
                             isLoading={false}
