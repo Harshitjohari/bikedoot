@@ -182,7 +182,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
             })
             .catch((error) => {
                 console.log('error===============>', error)
-                Alert.alert('Error', `Payment failed: ${error.description}`);
+                Alert.alert('Transaction Failed!', `Transaction failed or not completed, Please try again...`);
             });
     };
 
@@ -334,7 +334,14 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                         Booking ID
                                     </Text>
                                     <Text fontWeight="600" fontSize="bd_sm" lineHeight="20px" color="bd_dark_text" textAlign="right">
-                                        <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre-Inspection Completed' : booking?.status} />
+                                        {/* <BadgeComponent text={booking?.status == 'UPDATED' ? 'Pre-Inspection Completed' : booking?.status} /> */}
+                                        <BadgeComponent
+                                            text={booking?.status === 'UPDATED'
+                                                ? 'Pre-Inspection Completed'
+                                                : booking?.status === 'CREATED'
+                                                    ? 'Job Card Created'
+                                                    : booking?.status}
+                                        />
                                     </Text>
                                 </View>
                                 <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text" width='140px'>
@@ -530,7 +537,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                                 Name : {booking?.mechanics?.name}
                                             </Text>
                                             <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
-                                                Mobile : {booking?.mechanics?.mobile}
+                                                Mobile : {booking?.status !== 'COMPLETED' ? booking?.mechanics?.mobile : booking?.mechanics?.mobile.toString().substring(0, 2) + 'xxxxxx' + booking?.mechanics?.mobile.toString().substring(8)}
                                             </Text>
                                             <Text fontWeight="500" fontSize="bd_xsm" mb={1} lineHeight="20px" color="bd_sec_text">
                                                 Experience : {booking?.mechanics?.experience} Years
@@ -578,6 +585,12 @@ const BookingCardDetail = ({ booking, refresh }) => {
                             marginTop={2}
                             p={3}
                         >
+                            <Text fontWeight="500" fontSize="bd_sm" mb={1} lineHeight="18px" color="bd_dark_text">
+                                Services Type
+                            </Text>
+                            <Text fontWeight="500" fontSize="bd_xsm" mb={2} lineHeight="20px" color="bd_sec_text">
+                                {booking?.serviceCategory?.name}
+                            </Text>
                             <Text fontWeight="500" fontSize="bd_sm" mb={2} lineHeight="18px" color="bd_dark_text">
                                 Services
                             </Text>
@@ -633,44 +646,44 @@ const BookingCardDetail = ({ booking, refresh }) => {
                                 )
                             } */}
 
-                                {
+                            {
                                 booking?.additionalServices.length > 0 && (
                                     <>
-                                    {booking?.additionalServices
-                                        .filter((service) => service.approved)
-                                        .map((service, index) => (
-                                        <View
-                                            key={index}
-                                            width="100%"
-                                            bg="#ffffff"
-                                            borderRadius="10px"
-                                            alignItems="center"
-                                            flexDirection="row"
-                                            justifyContent="space-between"
-                                        >
-                                            <Text
-                                            fontWeight="500"
-                                            fontSize="bd_xsm"
-                                            mb={1}
-                                            lineHeight="20px"
-                                            color="bd_sec_text"
-                                            >
-                                            {index + 1}. {service?.name}
-                                            </Text>
-                                            <Text
-                                            fontWeight="500"
-                                            fontSize="bd_xsm"
-                                            mb={1}
-                                            lineHeight="20px"
-                                            color="bd_sec_text"
-                                            >
-                                            ₹{service?.price}
-                                            </Text>
-                                        </View>
-                                        ))}
+                                        {booking?.additionalServices
+                                            .filter((service) => service.approved)
+                                            .map((service, index) => (
+                                                <View
+                                                    key={index}
+                                                    width="100%"
+                                                    bg="#ffffff"
+                                                    borderRadius="10px"
+                                                    alignItems="center"
+                                                    flexDirection="row"
+                                                    justifyContent="space-between"
+                                                >
+                                                    <Text
+                                                        fontWeight="500"
+                                                        fontSize="bd_xsm"
+                                                        mb={1}
+                                                        lineHeight="20px"
+                                                        color="bd_sec_text"
+                                                    >
+                                                        {index + 1}. {service?.name}
+                                                    </Text>
+                                                    <Text
+                                                        fontWeight="500"
+                                                        fontSize="bd_xsm"
+                                                        mb={1}
+                                                        lineHeight="20px"
+                                                        color="bd_sec_text"
+                                                    >
+                                                        ₹{service?.price}
+                                                    </Text>
+                                                </View>
+                                            ))}
                                     </>
                                 )
-                                }
+                            }
 
 
                             {
@@ -1265,7 +1278,7 @@ const BookingCardDetail = ({ booking, refresh }) => {
                 </CustomButton>
             )}
 
-            { booking?.completed === true && (
+            {booking?.completed === true && (
                 <CustomButton
                     onPress={() => {
                         handlePayment()

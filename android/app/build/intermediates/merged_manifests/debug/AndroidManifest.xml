@@ -319,6 +319,26 @@
             </intent-filter>
         </receiver>
 
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="com.bikedoot.androidx-startup"
+            android:exported="false" >
+            <meta-data
+                android:name="com.razorpay.RazorpayInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
+        <activity
+            android:name="com.razorpay.MagicXActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <meta-data
             android:name="com.razorpay.plugin.googlepay_all"
             android:value="com.razorpay.RzpGpayMerged" />
@@ -349,19 +369,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.bikedoot.androidx-startup"
-            android:exported="false" >
-            <meta-data
-                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-                android:value="androidx.startup" />
-        </provider>
-
         <meta-data
             android:name="com.facebook.soloader.enabled"
             android:value="false" />

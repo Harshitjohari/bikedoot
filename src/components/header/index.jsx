@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 const Header = (props) => {
   const { title, onLeftIconPress, showRightBtn = false, btnText = "Add", onBtnPressed, showLeftArrow = true, showRadiusBtn,onRadiusChange } = props;
   const navigation = useNavigation();
-  const [defaultValue, setDefaultValue] = useState('All');
+  const [defaultValue, setDefaultValue] = useState('5');
 
   // useEffect(() => {
   //   if (showRadiusBtn) {

@@ -137,7 +137,7 @@ const FinalizeAndConfirmBooking = ({
                         <HStack space={2}>
                             <Box flex={1}>
                                 <Image
-                                    source={{uri:garageData?.icon}}
+                                    source={{ uri: garageData?.icon }}
                                     alt="Icon"
                                     width={60}
                                     height={60}
@@ -260,17 +260,17 @@ const FinalizeAndConfirmBooking = ({
                 <HStack space={0} mb={5} mt={5} justifyContent="space-between" alignItems="center">
 
                     <HStack space={1} alignItems="center">
-                    <Image source={imageConstant.estimate} alt="" style={{ width: 18, height: 18, resizeMode: 'contain' }} />
+                        <Image source={imageConstant.estimate} alt="" style={{ width: 18, height: 18, resizeMode: 'contain' }} />
 
                         <Text fontWeight="500" fontSize={16} color="bd_dark_text">
                             Do you want Detailed Estimate?
                         </Text>
 
                         <TouchableOpacity
-                            onPressIn={() => setVisible(true)} 
+                            onPressIn={() => setVisible(true)}
                             onPressOut={() => setVisible(false)}
                         >
-                        <Image source={imageConstant.tooltip} alt="" style={{ width: 18, height: 18, resizeMode: 'contain' }} />
+                            <Image source={imageConstant.tooltip} alt="" style={{ width: 18, height: 18, resizeMode: 'contain' }} />
                         </TouchableOpacity>
 
                         {visible && (
@@ -286,8 +286,8 @@ const FinalizeAndConfirmBooking = ({
                             }}>
                                 <Text style={{
                                     fontSize: 14,
-                                    color:'black',
-                                    fontWeight:400
+                                    color: 'black',
+                                    fontWeight: 400
                                 }}>
                                     If you opted for detail estimate, the mechanic will send you the pre-inspection and will wait for your approval to start service.
                                 </Text>
@@ -320,7 +320,6 @@ const FinalizeAndConfirmBooking = ({
             <Box>
                 <Checkbox isChecked={isAgreed} onChange={() => setIsAgreed((pre) => !pre)} >
                     <Text pl={2} fontWeight="600" fontSize="bd_xsm" mb={0} lineHeight="16px" color="bd_sec_text">I accept the</Text>
-                    {/* <Text pl={1} fontWeight="600" fontSize="bd_xsm" mb={0} lineHeight="16px" color="bd_sec_text">Terms and Conditions</Text> */}
                     <TouchableOpacity onPress={handlePress}>
                         <Text style={{
                             marginLeft: 2,
@@ -328,11 +327,14 @@ const FinalizeAndConfirmBooking = ({
                             fontSize: 12,
                             marginBottom: 0,
                             lineHeight: 16,
-                            color: 'blue'
+                            color: 'blue',
                         }}>Terms and Conditions</Text>
                     </TouchableOpacity>
                 </Checkbox>
             </Box>
+
+            
+
 
         </Box>
     );

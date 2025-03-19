@@ -116,7 +116,15 @@ const BookingCard = ({ booking }) => {
                             />
 
                             <HStack space={2} alignItems="center" style={{ marginVertical: 5 }}>
-                                <BadgeComponent text={status == 'UPDATED' ? 'Pre Inspection Done' : status} colorScheme={colorScheme} />
+                                {/* <BadgeComponent text={status == 'UPDATED' ? 'Pre Inspection Done' : status} colorScheme={colorScheme} /> */}
+                                <BadgeComponent 
+                                    text={status === 'UPDATED' 
+                                        ? 'Pre Inspection Done' 
+                                        : status === 'CREATED' 
+                                        ? 'Job Card Created' 
+                                        : status} 
+                                    colorScheme={colorScheme} 
+                                />
                             </HStack>
                         </Box>
                     </HStack>

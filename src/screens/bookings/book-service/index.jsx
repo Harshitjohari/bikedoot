@@ -217,7 +217,8 @@ const Stepper = (props) => {
     }
 
     if (!isAgreed) {
-      show("Please accept terms & conditions", "error");
+      show(" Please accept Terms & Conditions before creating Booking", "error");
+      // show("Please accept terms & conditions", "error");
       return;
     }
 
@@ -417,7 +418,7 @@ const Stepper = (props) => {
           onPress={handleNext}
           disabled={createBookingLoader}
         >
-          {currentStep === 4 ? <Text fontWeight="700" fontSize="bd_sm" color="#5349f8">{createBookingLoader ? "Creating.." : "Create Booking"}</Text> : <Text fontWeight="700" fontSize="bd_sm" color="#5349f8">Next</Text>}
+          {currentStep === 4 ? <Text fontWeight="700" fontSize="bd_sm" color="#5349f8">{createBookingLoader ? "Creating…" : "Create Booking"}</Text> : <Text fontWeight="700" fontSize="bd_sm" color="#5349f8">Next</Text>}
           {/* {currentStep === 4 ? <Text fontWeight="700" fontSize="bd_sm" color="#5349f8">{createBookingLoader ? "Creating.." : "Create Booking"}</Text> : <FontAwesome5 name="chevron-right" color="#5349f8" size={18} />} */}
         </TouchableOpacity>}
       </View>}

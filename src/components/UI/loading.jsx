@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Spinner, Text } from 'native-base';
 
-const LoadingSpinner = ({ text = "Loading Please wait.." }) => {
+const LoadingSpinner = ({ text = "Loading Please Wait..." }) => {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} pt={20}>
             <Spinner color="blue" />

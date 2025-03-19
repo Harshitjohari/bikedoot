@@ -19,7 +19,7 @@ const ServiesList = ({ navigation, route }) => {
     const [page, setPage] = useState(1);
     const [latitude, setlatitude] = useState(null);
     const [longitude, setlongitude] = useState(null);
-    const [radius, setRadius] = useState(0);
+    const [radius, setRadius] = useState(5);
 
 
     useEffect(() => {

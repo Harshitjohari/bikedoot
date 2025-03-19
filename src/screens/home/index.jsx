@@ -215,13 +215,21 @@ const HorizontalFlatList = (props) => {
             style={{ width: 100, height: 100, marginBottom: 5 }}
             resizeMode="contain"
           /> </Box > : (
+            // <FlatList
+            //   data={serviceCategory}
+            //   renderItem={renderServicesItem}
+            //   keyExtractor={(item) => item._id}
+            //   horizontal
+            //   showsHorizontalScrollIndicator={false}
+            // // numColumns={2}
+            // />
             <FlatList
               data={serviceCategory}
               renderItem={renderServicesItem}
               keyExtractor={(item) => item._id}
-              horizontal
+              numColumns={2} // This creates 2 rows
               showsHorizontalScrollIndicator={false}
-            // numColumns={2}
+              columnWrapperStyle={{ justifyContent: "space-between" }}
             />
           )}
 

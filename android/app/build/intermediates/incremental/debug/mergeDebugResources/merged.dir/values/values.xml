@@ -2873,6 +2873,23 @@
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
+    <style name="CheckoutTheme">
+
+        <item name="android:background">@android:color/transparent</item>
+        
+        <item name="android:windowNoTitle">true</item>
+        
+        <item name="android:windowBackground">@android:color/transparent</item>
+        
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        
+        <item name="android:windowIsTranslucent">true</item>
+        
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowContentOverlay">@null</item>
+        
+
+    </style>
     <style name="DialogAnimationFade">
     <item name="android:windowEnterAnimation">@anim/catalyst_fade_in</item>
     <item name="android:windowExitAnimation">@anim/catalyst_fade_out</item>

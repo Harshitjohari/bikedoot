@@ -118,7 +118,7 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
 
             <Box flex={1} justifyContent="center" p={0} bg="bg_white">
                 <Text fontSize="bd_xlg" textAlign="center" mb={0} fontWeight="900">
-                    Enter the OTP send on
+                    Enter the OTP sent on
                 </Text>
                 <Text fontSize="bd_md" textAlign="center" fontWeight="600" color="bd_secondary_c" mb={5}>+91 {hiddenDigits}</Text>
 
@@ -165,7 +165,7 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
                 <CustomButton
                     onPress={handleSignIn}
                     isLoading={isLoading}
-                    isLoadingText="Logging in.."
+                    isLoadingText="Logging in..."
                     disabled={isLoading}
                 >
                     Verify OTP
@@ -173,7 +173,7 @@ const VerifyOTP = ({ navigation, onLogin, route }) => {
                 <Text textAlign="center" mt={4}>
                     Didn't get any OTP?{' '}
                     <Text color="blue.500" onPress={() => resendOtp()}>
-                        click to resend
+                        Click to Resend OTP
                     </Text>
                 </Text>
             </Box>

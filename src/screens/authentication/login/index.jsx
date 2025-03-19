@@ -89,7 +89,7 @@ const Login = ({ navigation, onLogin }) => {
                 <CustomButton
                     onPress={handleSignIn}
                     isLoading={isLoading}
-                    isLoadingText="Sending OTP.."
+                    isLoadingText="Sending OTP..."
                     disabled={isLoading}>
                     Get OTP
                 </CustomButton>

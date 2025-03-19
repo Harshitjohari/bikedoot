@@ -33,6 +33,7 @@ const ProfilePage = (props) => {
     }
   };
 
+
   let menuItems = [
     { label: 'My Vehicles', icon: 'motorcycle', route: "MyVehicles", isRoute: true },
     { label: 'Saved Address', icon: 'bookmark', route: "SavedAddress", isRoute: true },
@@ -178,13 +179,31 @@ const ProfilePage = (props) => {
             </Text>
           </VStack>
         </Box>
-        <Box p={4} mt="auto" pt={0} >
+        <Box p={4} mt="auto" pt={0} width="100%">
           <VStack space={0} alignItems="center">
-            <Text fontWeight="400" fontSize={10} lineHeight="16px" color="bd_sec_text">
-              Copyrights ©2021-2024 BikedooT Service Private Limited. All rights reserved.
+            <Text
+              fontWeight="400"
+              fontSize={10}
+              lineHeight="16px"
+              color="bd_sec_text"
+              textAlign="center"
+              width="100%"
+            >
+              Copyrights ©2021-2025 BikedooT Service Private Limited.
+            </Text>
+            <Text
+              fontWeight="400"
+              fontSize={10}
+              lineHeight="16px"
+              color="bd_sec_text"
+              textAlign="center"
+              width="100%"
+            >
+              All rights reserved.
             </Text>
           </VStack>
         </Box>
+
       </Box>
     </ScrollView>
   );

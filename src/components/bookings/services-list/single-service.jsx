@@ -9,17 +9,21 @@ import Button from '../../UI/button'
 const AddServiceCard = ({ showAddRemoveButtonBox = true, booking, onPress, showRemoveBtn = false, itemRemovedBtnPressed }) => {
 
     const remove = () => {
-       
-        if (showRemoveBtn){
+
+        if (showRemoveBtn) {
             itemRemovedBtnPressed()
         }
     }
 
     const [isExpanded, setIsExpanded] = useState(false);
-    const {
+    let {
         name, description, price,
         is_selected
     } = booking;
+
+    if (description) {
+        description = description.trim()
+    }
 
     return (
         <Box
@@ -61,7 +65,10 @@ const AddServiceCard = ({ showAddRemoveButtonBox = true, booking, onPress, showR
                 </HStack>
             </Box>
 
-            <Pressable onPress={() => setIsExpanded((prevExpanded) => !prevExpanded)}>
+            <Pressable
+                onPress={() => setIsExpanded((prevExpanded) => !prevExpanded)}
+                disabled={description === '' || description.length <= 50}
+            >
                 <Box
                     width="100%"
                     bg="#F1F0FE"
@@ -73,15 +80,32 @@ const AddServiceCard = ({ showAddRemoveButtonBox = true, booking, onPress, showR
                     <HStack space={2}>
                         <Box flex={4} pr={1}>
                             <HStack space={1} mr={1}>
-                                <Text numberOfLines={isExpanded ? undefined : 2} fontWeight="400" fontSize="bd_xsm" mb={0} lineHeight="16px" color="bd_sec_text">
+                                <Text
+                                    numberOfLines={isExpanded ? undefined : 2}
+                                    fontWeight="400"
+                                    fontSize="bd_xsm"
+                                    mb={0}
+                                    lineHeight="16px"
+                                    color="bd_sec_text"
+                                >
                                     {description}
                                 </Text>
-                                <FontAwesome5 name={isExpanded ? "chevron-up" : "chevron-down"} color="#000" size={14} style={{ alignItems: "flex-end", alignSelf: "center", paddingRight: 5 }} />
+                                {
+                                    description !== '' && description.length > 50 && ( // Maintain both conditions
+                                        <FontAwesome5
+                                            name={isExpanded ? "chevron-up" : "chevron-down"}
+                                            color="#000"
+                                            size={14}
+                                            style={{ alignItems: "flex-end", alignSelf: "center", paddingRight: 5 }}
+                                        />
+                                    )
+                                }
                             </HStack>
                         </Box>
                     </HStack>
                 </Box>
             </Pressable>
+
         </Box>
 
     );

@@ -34,6 +34,8 @@ import phone from '../assets/images/phone.png';
 import bikedoot from '../assets/images/bikedoot.png';
 import dummyBanner from '../assets/images/dummyBanner.png';
 import invoice from '../assets/images/invoice.png';
+import BikedootN1 from '../assets/images/BikedootN1.png';
+import BikedootN2 from '../assets/images/BikedootN2.jpg';
 
 
 const imageConstant = {
@@ -74,7 +76,9 @@ const imageConstant = {
     dummyBanner,
     invoice,
     map,
-    dummy
+    dummy,
+    BikedootN1,
+    BikedootN2
 }
 
 const fontConstant = {

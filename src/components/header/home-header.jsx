@@ -31,13 +31,17 @@ const MainHeader = ({ onCityChange, onPress, showLanguageIcon = false, title, se
 
     return (
         <View style={{ height: 60, width: '100%', flexDirection: 'row',backgroundColor:'#e6e5e5', alignItems: 'center' }}>
-        <TouchableOpacity style={{ marginLeft: -30 }}>
+        <TouchableOpacity style={{ marginLeft: -10 }}>
+            <Image source={imageConstant.BikedootN1} style={{ height: 40, width: 120, resizeMode: "contain" }} />
+        </TouchableOpacity>
+
+        {/* <TouchableOpacity style={{ marginLeft: -30 }}>
             <Image source={require("../../assets/images/bikedoot.png")} style={{ height: 40, width: 120, resizeMode: "contain" }} />
         </TouchableOpacity>
 
         <TouchableOpacity style={{ marginLeft: -30,marginTop:-5 }}>
             <Image source={require("../../assets/images/bikedooTName.png")} style={{ height: 60, width: 120, resizeMode: "contain" }} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         {/* <Text style={{color:'black'}}>BikedooT</Text> */}
     

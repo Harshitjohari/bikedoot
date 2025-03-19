@@ -280,17 +280,6 @@
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.bikedoot.androidx-startup"
-            android:exported="false" >
-            <meta-data
-                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-                android:value="androidx.startup" />
-        </provider>
 
         <receiver
             android:name="com.razorpay.RzpTokenReceiver"
@@ -299,6 +288,26 @@
                 <action android:name="rzp.device_token.share" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="com.bikedoot.androidx-startup"
+            android:exported="false" >
+            <meta-data
+                android:name="com.razorpay.RazorpayInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
+        <activity
+            android:name="com.razorpay.MagicXActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <meta-data
             android:name="com.razorpay.plugin.googlepay_all"

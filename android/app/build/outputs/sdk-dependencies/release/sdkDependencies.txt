@@ -548,10 +548,10 @@ library {
   maven_library {
     groupId: "androidx.startup"
     artifactId: "startup-runtime"
-    version: "1.0.0"
+    version: "1.1.1"
   }
   digests {
-    sha256: "\377\b\035-\267\335(\256\305\237t\223LQO\272\364\256Z\254RXI_\341\ra*6\"\370v"
+    sha256: "\340\2462\2327\022b\376LE\003r\267\017\332\363;v\236\366\221p\224r7\207\317\316\211k\035\323"
   }
   repo_index {
   }
@@ -1777,10 +1777,10 @@ library {
   maven_library {
     groupId: "com.razorpay"
     artifactId: "standard-core"
-    version: "1.6.40"
+    version: "1.6.46"
   }
   digests {
-    sha256: "\344\250\252\v\314\270\004\344x@\262WT\242urw\234~\224\223\324\024\311i\351\224yfH\234\021"
+    sha256: "\001\302N\n\021\335a\031=\230\024,\247\351-\201\364\357\207\036h\305N\fnK\316\233\331\271G\267"
   }
   repo_index {
     value: 1
@@ -2788,6 +2788,7 @@ library_dependencies {
   library_dep_index: 131
   library_dep_index: 33
   library_dep_index: 145
+  library_dep_index: 45
   library_dep_index: 40
 }
 library_dependencies {

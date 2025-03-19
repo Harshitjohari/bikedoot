@@ -70,6 +70,7 @@ const ProfileScreen = ({ navigation }) => {
         setIsLoading(false)
         if (response?.status) {
           show(response?.message, "success");
+          setModalVisibleProfile(false)
           await setAuthData(JSON.stringify(response?.data[0]?.token), JSON.stringify(response?.data[0]))
           // navigation.navigate("VerifyOTP", { phone: phoneNumber })
         } else {
@@ -112,10 +113,9 @@ const ProfileScreen = ({ navigation }) => {
       })
       let result = await response.json()
 
-
       setIsLoading(false)
-
       if (result?.status) {
+        await setAuthData(JSON.stringify(result?.data[0]?.token), JSON.stringify(result?.data[0]))
         // show(response ?.message, "success");
         navigation.goBack();
         // props.navigation.navigate('SpareEdit',{id : spareData._id})
@@ -272,7 +272,7 @@ const ProfileScreen = ({ navigation }) => {
           <CustomButton
             onPress={updateProfile}
             isLoading={isLoading}
-            isLoadingText="Updating Please wait.."
+            isLoadingText="Updating Please Wait..."
             disabled={isLoading}>
             Update
           </CustomButton>
